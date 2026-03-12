@@ -2,8 +2,18 @@
 Compute Layout Durability (0-9) and Steerability (0-9) ratings for each bit design
 by analyzing cutter pocket positions and orientations from Min Engagement files.
 
+ALL scoring inputs (back rake, side rake, positions, orientations, force directions,
+redundancy, engagement patterns) are derived from the Min Engagement .xlsm files.
+The main workbook is only used for bit number identification and bit size fallback.
+
 Durability 0 = most aggressive, 9 = most durable
 Steerability 0 = least steerable, 9 = most steerable
+
+Layout classification derived from cutter geometry:
+- Redundancy: detected from radial overlap between blade pairs (not from labels)
+- Force direction: detected from orientation vectors (dz=axial vs dx/dy=radial)
+- 6-3 offset: detected from Z-position differences between blade groups
+- Blade exposure equality: detected from how uniformly blades cover the profile
 """
 
 import openpyxl
@@ -26,7 +36,6 @@ def extract_cutters_from_me_file(filepath):
     wb = openpyxl.load_workbook(filepath, data_only=True, read_only=True)
     ws = wb["Assy.Model"]
 
-    # Detect version from filename
     basename = os.path.basename(filepath)
     is_v6 = "v6." in basename
 
@@ -36,9 +45,7 @@ def extract_cutters_from_me_file(filepath):
         if row_idx == 1:
             for c in row:
                 if hasattr(c, "column_letter") and c.column_letter == "C" and c.value:
-                    val = str(c.value)
-                    # Extract leading number as bit diameter
-                    parts = val.split()
+                    parts = str(c.value).split()
                     if parts:
                         try:
                             bit_diameter = float(parts[0])
@@ -46,24 +53,43 @@ def extract_cutters_from_me_file(filepath):
                             pass
             break
 
-    # Also try Settings sheet for bit diameter
     if bit_diameter is None:
         try:
             ws_settings = wb["Settings"]
             for row_idx, row in enumerate(ws_settings.iter_rows(values_only=False), 1):
-                if row_idx == 19:  # Row where "Bit ø" typically is
+                if row_idx == 19:
                     for c in row:
-                        if (
-                            hasattr(c, "column_letter")
-                            and c.column_letter == "C"
-                            and isinstance(c.value, (int, float))
-                        ):
+                        if (hasattr(c, "column_letter") and c.column_letter == "C"
+                                and isinstance(c.value, (int, float))):
                             bit_diameter = float(c.value)
                             break
                 if bit_diameter:
                     break
         except (KeyError, Exception):
             pass
+
+    # Extract per-cutter engagement thresholds from Settings sheet
+    # Column M = min in/rev for that cutter row to engage, Column P = threshold in/rev
+    engagement_thresholds = []
+    try:
+        ws_settings = wb["Settings"]
+        for row_idx, row in enumerate(ws_settings.iter_rows(values_only=False), 1):
+            if row_idx >= 14:
+                m_val = None
+                p_val = None
+                for c in row:
+                    if not hasattr(c, "column_letter"):
+                        continue
+                    if c.column_letter == "M" and isinstance(c.value, (int, float)):
+                        m_val = c.value
+                    elif c.column_letter == "P" and isinstance(c.value, (int, float)):
+                        p_val = c.value
+                if p_val is not None:
+                    engagement_thresholds.append(p_val)
+                elif m_val is not None:
+                    engagement_thresholds.append(m_val)
+    except (KeyError, Exception):
+        pass
 
     cutters = []
     for row_idx, row in enumerate(ws.iter_rows(values_only=False), 1):
@@ -72,56 +98,35 @@ def extract_cutters_from_me_file(filepath):
 
         data = {}
         for c in row:
-            if not hasattr(c, "column_letter"):
+            if not hasattr(c, "column_letter") or c.value is None:
                 continue
             cl = c.column_letter
-            if c.value is None:
-                continue
-            if cl == "B":
-                data["x"] = c.value
-            elif cl == "C":
-                data["y"] = c.value
-            elif cl == "D":
-                data["z"] = c.value
-            elif cl == "E":
-                data["dx"] = c.value
-            elif cl == "F":
-                data["dy"] = c.value
-            elif cl == "G":
-                data["dz"] = c.value
-            elif cl == "H":
-                data["pocket_radius"] = c.value
-            elif cl == "I":
-                data["pocket_depth"] = c.value
-            elif cl == "J":
-                data["name"] = c.value
-            elif cl == "K":
-                data["element"] = c.value
-            elif cl == "L":
-                data["zone"] = c.value
-            elif cl == "R":
-                data["radial_pos"] = c.value
-            elif cl == "Q":
-                data["theta_deg"] = c.value
-            elif cl == "AN":
-                data["tilt_raw"] = c.value
-            elif cl == "AO":
-                data["backrake_raw"] = c.value
-            elif cl == "AP":
-                data["siderake_raw"] = c.value
+            if cl == "B": data["x"] = c.value
+            elif cl == "C": data["y"] = c.value
+            elif cl == "D": data["z"] = c.value
+            elif cl == "E": data["dx"] = c.value
+            elif cl == "F": data["dy"] = c.value
+            elif cl == "G": data["dz"] = c.value
+            elif cl == "H": data["pocket_radius"] = c.value
+            elif cl == "I": data["pocket_depth"] = c.value
+            elif cl == "J": data["name"] = c.value
+            elif cl == "K": data["element"] = c.value
+            elif cl == "L": data["zone"] = c.value
+            elif cl == "R": data["radial_pos"] = c.value
+            elif cl == "Q": data["theta_deg"] = c.value
+            elif cl == "AN": data["tilt_raw"] = c.value
+            elif cl == "AO": data["backrake_raw"] = c.value
+            elif cl == "AP": data["siderake_raw"] = c.value
 
-        # Filter: must have a name (cutter ID) and position
         if data.get("name") is None or data.get("x") is None:
             continue
 
-        # Skip "Flip Vector?" or header-like entries
         name_str = str(data["name"])
         if "flip" in name_str.lower() or "vector" in name_str.lower():
             continue
         if "Part" in name_str:
             continue
 
-        # Parse blade number from name (e.g., "1.113" -> blade 1)
         if "." in name_str:
             blade_str = name_str.split(".")[0]
             try:
@@ -131,13 +136,13 @@ def extract_cutters_from_me_file(filepath):
         else:
             continue
 
-        # Convert back rake for v6.xx files
+        # Convert back rake for v6.xx files (stored as 180 - actual_backrake)
         if is_v6 and data.get("backrake_raw") is not None:
             raw = data["backrake_raw"]
             if isinstance(raw, (int, float)) and raw > 90:
                 data["backrake"] = 180.0 - raw
             elif isinstance(raw, (int, float)) and raw == 0:
-                data["backrake"] = None  # center cutter, skip
+                data["backrake"] = None
             else:
                 data["backrake"] = raw if isinstance(raw, (int, float)) else None
         elif data.get("backrake_raw") is not None:
@@ -146,11 +151,10 @@ def extract_cutters_from_me_file(filepath):
         else:
             data["backrake"] = None
 
-        # Side rake
+        # Side rake conversion for v6
         if data.get("siderake_raw") is not None:
             raw = data["siderake_raw"]
             if is_v6 and isinstance(raw, (int, float)):
-                # v6 side rake is also in raw angle form
                 data["siderake"] = abs(180.0 - raw) if raw > 90 else raw
             else:
                 data["siderake"] = raw if isinstance(raw, (int, float)) else None
@@ -158,78 +162,245 @@ def extract_cutters_from_me_file(filepath):
             data["siderake"] = None
 
         # Compute radial position if not available
-        if data.get("radial_pos") is None and data.get("x") is not None and data.get("y") is not None:
-            x, y = data["x"], data["y"]
+        if data.get("radial_pos") is None:
+            x, y = data.get("x"), data.get("y")
             if isinstance(x, (int, float)) and isinstance(y, (int, float)):
                 data["radial_pos"] = math.sqrt(x**2 + y**2)
 
         cutters.append(data)
 
     wb.close()
-    return cutters, bit_diameter
+    return cutters, bit_diameter, engagement_thresholds
 
 
-def compute_metrics(cutters, bit_diameter, layout_type, pattern_order, blade_count_meta):
-    """Compute durability and steerability metrics from cutter data."""
+def detect_layout_from_geometry(cutters, gauge_radius):
+    """
+    Derive layout classification purely from cutter geometry:
+    - Redundancy score: radial overlap between blade pairs
+    - Force direction: ratio of axial vs radial orientation components
+    - 6-3 offset: Z-position gap between blade groups at same radial zone
+    - Blade exposure equality: how uniformly blades cover the full profile
+    """
+    blades_dict = defaultdict(list)
+    for c in cutters:
+        blades_dict[c["blade"]].append(c)
+
+    blade_nums = sorted(blades_dict.keys())
+    num_blades = len(blade_nums)
+
+    if num_blades < 2:
+        return {
+            "redundancy_score": 0.0,
+            "axial_force_ratio": 0.5,
+            "radial_force_ratio": 0.5,
+            "perpendicular_force_ratio": 0.0,
+            "six_three_offset": 0.0,
+            "blade_exposure_equality": 1.0,
+            "effective_blade_count": num_blades,
+        }
+
+    # --- 1. REDUNDANCY: radial overlap between blade pairs ---
+    # For each blade, get set of radial positions (rounded to bin)
+    bin_size = gauge_radius * 0.03 if gauge_radius > 0 else 0.1  # ~3% of gauge radius
+    blade_radial_bins = {}
+    for b in blade_nums:
+        bins = set()
+        for c in blades_dict[b]:
+            rp = c.get("radial_pos")
+            if isinstance(rp, (int, float)):
+                bins.add(round(abs(rp) / bin_size))
+        blade_radial_bins[b] = bins
+
+    # Compute pairwise radial overlap
+    max_overlap = 0.0
+    pair_overlaps = []
+    for i, b1 in enumerate(blade_nums):
+        for b2 in blade_nums[i+1:]:
+            r1, r2 = blade_radial_bins[b1], blade_radial_bins[b2]
+            union = len(r1 | r2)
+            if union > 0:
+                overlap = len(r1 & r2) / union
+                pair_overlaps.append(overlap)
+                max_overlap = max(max_overlap, overlap)
+
+    # Redundancy score: average of top blade-pair overlaps
+    # True redundant designs have pairs with >50% overlap
+    if pair_overlaps:
+        sorted_overlaps = sorted(pair_overlaps, reverse=True)
+        # Take top N/2 pairs (for 6 blades, top 3 pairs represent the redundant pairs)
+        top_n = max(1, num_blades // 2)
+        redundancy_score = np.mean(sorted_overlaps[:top_n])
+    else:
+        redundancy_score = 0.0
+
+    # --- 2. FORCE DIRECTION from orientation vectors ---
+    # dz component = axial force, dx/dy = lateral/radial force
+    # Perpendicular to profile = forces that push straight into the formation
+    axial_sum = 0.0
+    radial_sum = 0.0
+    total_force = 0.0
+    for c in cutters:
+        dx = c.get("dx")
+        dy = c.get("dy")
+        dz = c.get("dz")
+        if isinstance(dx, (int, float)) and isinstance(dy, (int, float)) and isinstance(dz, (int, float)):
+            mag = math.sqrt(dx**2 + dy**2 + dz**2)
+            if mag > 0:
+                axial_sum += abs(dz) / mag
+                radial_sum += math.sqrt(dx**2 + dy**2) / mag
+                total_force += 1
+
+    if total_force > 0:
+        axial_force_ratio = axial_sum / total_force
+        radial_force_ratio = radial_sum / total_force
+    else:
+        axial_force_ratio = 0.5
+        radial_force_ratio = 0.5
+
+    # Perpendicular force ratio: when forces are balanced between axial and radial
+    # (redundant layouts push perpendicular to profile, which is a mix)
+    perpendicular_force_ratio = 1.0 - abs(axial_force_ratio - radial_force_ratio)
+
+    # --- 3. 6-3 OFFSET: Z-position difference between blade groups ---
+    # At the nose region (35-65% of gauge radius), compare average Z per blade
+    nose_lo = 0.35 * gauge_radius
+    nose_hi = 0.65 * gauge_radius
+
+    blade_z_at_nose = {}
+    for b in blade_nums:
+        zs = [c["z"] for c in blades_dict[b]
+              if isinstance(c.get("z"), (int, float))
+              and isinstance(c.get("radial_pos"), (int, float))
+              and nose_lo < abs(c["radial_pos"]) < nose_hi]
+        if zs:
+            blade_z_at_nose[b] = np.mean(zs)
+
+    six_three_offset = 0.0
+    if len(blade_z_at_nose) >= 2:
+        z_vals = list(blade_z_at_nose.values())
+        z_mean = np.mean(z_vals)
+        primary = [z for z in z_vals if z >= z_mean]
+        secondary = [z for z in z_vals if z < z_mean]
+        if primary and secondary:
+            six_three_offset = abs(np.mean(primary) - np.mean(secondary))
+
+    # --- 4. BLADE EXPOSURE EQUALITY ---
+    # How uniformly do all blades cover the full radial profile?
+    # F-Type and redundant have all blades equally exposed
+    # 6-3 has unequal exposure (secondary blades start later)
+    blade_radial_ranges = {}
+    for b in blade_nums:
+        radii = [abs(c.get("radial_pos", 0)) for c in blades_dict[b]
+                 if isinstance(c.get("radial_pos"), (int, float))]
+        if radii:
+            blade_radial_ranges[b] = (min(radii), max(radii))
+
+    if blade_radial_ranges:
+        coverages = [(hi - lo) for lo, hi in blade_radial_ranges.values()]
+        max_coverage = max(coverages) if coverages else 1.0
+        if max_coverage > 0:
+            normalized_coverages = [c / max_coverage for c in coverages]
+            blade_exposure_equality = np.mean(normalized_coverages)
+        else:
+            blade_exposure_equality = 1.0
+
+        # Also check how many blades start from near the center
+        center_threshold = 0.15 * gauge_radius
+        blades_from_center = sum(1 for lo, _ in blade_radial_ranges.values() if lo < center_threshold)
+        effective_blade_count = blades_from_center if blades_from_center > 0 else num_blades
+    else:
+        blade_exposure_equality = 1.0
+        effective_blade_count = num_blades
+
+    return {
+        "redundancy_score": float(redundancy_score),
+        "axial_force_ratio": float(axial_force_ratio),
+        "radial_force_ratio": float(radial_force_ratio),
+        "perpendicular_force_ratio": float(perpendicular_force_ratio),
+        "six_three_offset": float(six_three_offset),
+        "blade_exposure_equality": float(blade_exposure_equality),
+        "effective_blade_count": int(effective_blade_count),
+    }
+
+
+def compute_metrics(cutters, bit_diameter, engagement_thresholds):
+    """
+    Compute durability and steerability metrics purely from Min Engagement data.
+    No inputs from the main workbook except bit_diameter as fallback.
+    """
     if not cutters:
-        return None, None
+        return None
 
-    # Organize by blade
     blades = defaultdict(list)
     for c in cutters:
         blades[c["blade"]].append(c)
 
     num_blades = len(blades)
     if num_blades == 0:
-        return None, None
+        return None
 
     bit_radius = bit_diameter / 2.0 if bit_diameter else None
 
-    # --- DURABILITY METRICS ---
+    # Gauge radius from cutter data
+    all_radii = [abs(c.get("radial_pos", 0)) for c in cutters
+                 if isinstance(c.get("radial_pos"), (int, float))]
+    gauge_radius = bit_radius if bit_radius else (max(all_radii) if all_radii else 4.0)
 
-    # 1. Total cutter count (more cutters = more durable)
     total_cutters = len(cutters)
-
-    # 2. Average cutters per blade
     avg_cutters_per_blade = total_cutters / num_blades
 
-    # 3. Back rake statistics (higher back rake = more durable/conservative)
-    all_backrakes = [c["backrake"] for c in cutters if c.get("backrake") is not None
+    # --- LAYOUT DETECTION FROM GEOMETRY ---
+    layout = detect_layout_from_geometry(cutters, gauge_radius)
+
+    # --- BACK RAKE STATISTICS (from ME file) ---
+    all_backrakes = [c["backrake"] for c in cutters
+                     if c.get("backrake") is not None
                      and isinstance(c["backrake"], (int, float)) and 0 < c["backrake"] < 60]
-    avg_backrake = np.mean(all_backrakes) if all_backrakes else 20.0
-    min_backrake = min(all_backrakes) if all_backrakes else 15.0
+    avg_backrake = float(np.mean(all_backrakes)) if all_backrakes else 20.0
 
-    # 4. Radial coverage and redundancy
-    # For each radial zone, count how many blades have cutters there
-    if bit_radius:
-        gauge_radius = bit_radius
-    else:
-        # Estimate from max radial position
-        all_radii = [abs(c.get("radial_pos", 0)) for c in cutters
-                     if isinstance(c.get("radial_pos"), (int, float))]
-        gauge_radius = max(all_radii) if all_radii else 4.0
+    # Back rake by zone (cone <30%, nose 30-60%, taper 60-85%, gauge >85%)
+    cone_br = [c["backrake"] for c in cutters
+               if c.get("backrake") and isinstance(c["backrake"], (int, float))
+               and 0 < c["backrake"] < 60
+               and isinstance(c.get("radial_pos"), (int, float))
+               and abs(c["radial_pos"]) < 0.30 * gauge_radius]
+    nose_br = [c["backrake"] for c in cutters
+               if c.get("backrake") and isinstance(c["backrake"], (int, float))
+               and 0 < c["backrake"] < 60
+               and isinstance(c.get("radial_pos"), (int, float))
+               and 0.30 * gauge_radius <= abs(c["radial_pos"]) < 0.60 * gauge_radius]
+    taper_br = [c["backrake"] for c in cutters
+                if c.get("backrake") and isinstance(c["backrake"], (int, float))
+                and 0 < c["backrake"] < 60
+                and isinstance(c.get("radial_pos"), (int, float))
+                and 0.60 * gauge_radius <= abs(c["radial_pos"]) < 0.85 * gauge_radius]
+    gauge_br = [c["backrake"] for c in cutters
+                if c.get("backrake") and isinstance(c["backrake"], (int, float))
+                and 0 < c["backrake"] < 60
+                and isinstance(c.get("radial_pos"), (int, float))
+                and abs(c["radial_pos"]) >= 0.85 * gauge_radius]
 
-    # Divide the profile into zones based on percentage of gauge radius
+    avg_cone_backrake = float(np.mean(cone_br)) if cone_br else 15.0
+    avg_nose_backrake = float(np.mean(nose_br)) if nose_br else 15.0
+    avg_gauge_backrake = float(np.mean(gauge_br)) if gauge_br else 30.0
+
+    # --- CUTTER DENSITY AND SPACING (from ME file) ---
+    cutter_density = total_cutters / gauge_radius if gauge_radius > 0 else total_cutters / 4.0
+
+    # Radial zone coverage: how many blades present per zone
     num_zones = 10
-    zone_width = gauge_radius / num_zones
-    zone_blade_coverage = defaultdict(set)  # zone -> set of blade numbers
-
+    zone_width = gauge_radius / num_zones if gauge_radius > 0 else 0.5
+    zone_blade_coverage = defaultdict(set)
     for c in cutters:
         rp = c.get("radial_pos")
-        if rp is None or not isinstance(rp, (int, float)):
-            continue
-        rp = abs(rp)
-        zone_idx = min(int(rp / zone_width), num_zones - 1) if zone_width > 0 else 0
-        zone_blade_coverage[zone_idx].add(c["blade"])
+        if isinstance(rp, (int, float)) and zone_width > 0:
+            zone_idx = min(int(abs(rp) / zone_width), num_zones - 1)
+            zone_blade_coverage[zone_idx].add(c["blade"])
 
-    # Average blades per zone (higher = more redundant = more durable)
-    if zone_blade_coverage:
-        avg_blades_per_zone = np.mean([len(v) for v in zone_blade_coverage.values()])
-    else:
-        avg_blades_per_zone = 1.0
+    avg_blades_per_zone = float(np.mean([len(v) for v in zone_blade_coverage.values()])) if zone_blade_coverage else 1.0
 
-    # 5. Cutter spacing uniformity in radial direction per blade
-    spacing_scores = []
+    # Spacing uniformity per blade
+    spacing_cvs = []
     for blade_num, blade_cutters in blades.items():
         radii = sorted([abs(c.get("radial_pos", 0)) for c in blade_cutters
                         if isinstance(c.get("radial_pos"), (int, float))])
@@ -237,155 +408,81 @@ def compute_metrics(cutters, bit_diameter, layout_type, pattern_order, blade_cou
             spacings = [radii[i+1] - radii[i] for i in range(len(radii)-1)]
             if spacings:
                 mean_sp = np.mean(spacings)
-                std_sp = np.std(spacings)
-                # Coefficient of variation: lower = more uniform = more durable
-                cv = std_sp / mean_sp if mean_sp > 0 else 1.0
-                spacing_scores.append(cv)
+                if mean_sp > 0:
+                    spacing_cvs.append(float(np.std(spacings) / mean_sp))
 
-    avg_spacing_cv = np.mean(spacing_scores) if spacing_scores else 0.5
+    avg_spacing_cv = float(np.mean(spacing_cvs)) if spacing_cvs else 0.5
 
-    # 6. Layout type scoring
-    layout_score = 0.0
-    if layout_type:
-        lt = layout_type.lower()
-        if "redundant" in lt:
-            layout_score = 1.0  # Most durable layout
-        elif "singleset" in lt or "single" in lt:
-            layout_score = 0.4
-        else:
-            layout_score = 0.5
-
-    # 7. Pocket depth uniformity (deeper pockets = more secure = more durable)
-    depths = [c.get("pocket_depth") for c in cutters
-              if isinstance(c.get("pocket_depth"), (int, float))]
-    avg_depth = np.mean(depths) if depths else 0.4
-
-    # 8. Cutter density (cutters per unit of radial coverage)
-    if gauge_radius > 0:
-        cutter_density = total_cutters / gauge_radius
-    else:
-        cutter_density = total_cutters / 4.0
-
-    # --- STEERABILITY METRICS ---
-
-    # 1. Gauge region analysis
-    # Cutters near gauge (>85% of gauge radius) affect steerability
+    # --- GAUGE REGION ANALYSIS (from ME file) ---
     gauge_threshold = 0.85 * gauge_radius
     gauge_cutters = [c for c in cutters
                      if isinstance(c.get("radial_pos"), (int, float))
-                     and abs(c.get("radial_pos", 0)) > gauge_threshold]
+                     and abs(c["radial_pos"]) > gauge_threshold]
     gauge_cutter_ratio = len(gauge_cutters) / total_cutters if total_cutters > 0 else 0
 
-    # 2. Gauge cutter back rake (higher at gauge = less steerable)
-    gauge_backrakes = [c["backrake"] for c in gauge_cutters
-                       if c.get("backrake") is not None
-                       and isinstance(c["backrake"], (int, float)) and 0 < c["backrake"] < 60]
-    avg_gauge_backrake = np.mean(gauge_backrakes) if gauge_backrakes else 30.0
-
-    # 3. Profile aggressiveness from cutter Z positions
-    # More variation in Z = more aggressive profile = potentially more steerable
-    all_z = [c.get("z") for c in cutters if isinstance(c.get("z"), (int, float))]
-    z_range = (max(all_z) - min(all_z)) if len(all_z) > 1 else 0
-
-    # 4. Side rake analysis (more side rake = more steerable)
-    all_siderakes = [c.get("siderake") for c in cutters
+    # --- SIDE RAKE (from ME file) ---
+    all_siderakes = [c["siderake"] for c in cutters
                      if c.get("siderake") is not None
                      and isinstance(c["siderake"], (int, float)) and abs(c["siderake"]) < 30]
-    avg_siderake = np.mean([abs(s) for s in all_siderakes]) if all_siderakes else 0
+    avg_siderake = float(np.mean([abs(s) for s in all_siderakes])) if all_siderakes else 0.0
 
-    # 5. Force imbalance estimation
-    # Compute approximate lateral force vectors from cutter orientations
-    fx_sum = 0.0
-    fy_sum = 0.0
-    force_count = 0
+    # --- FORCE IMBALANCE (from ME file orientation vectors) ---
+    fx_sum, fy_sum, force_count = 0.0, 0.0, 0
     for c in cutters:
-        dx = c.get("dx")
-        dy = c.get("dy")
+        dx, dy = c.get("dx"), c.get("dy")
         if isinstance(dx, (int, float)) and isinstance(dy, (int, float)):
             fx_sum += dx
             fy_sum += dy
             force_count += 1
+    lateral_resultant = math.sqrt(fx_sum**2 + fy_sum**2) / force_count if force_count > 0 else 0.0
 
-    if force_count > 0:
-        # Normalized resultant lateral force (higher = more steerable tendency)
-        lateral_resultant = math.sqrt(fx_sum**2 + fy_sum**2) / force_count
-    else:
-        lateral_resultant = 0
+    # --- PROFILE DEPTH (from ME file Z positions) ---
+    all_z = [c["z"] for c in cutters if isinstance(c.get("z"), (int, float))]
+    z_range = (max(all_z) - min(all_z)) if len(all_z) > 1 else 0.0
 
-    # 6. Blade count effect (fewer blades can be more steerable)
-    blade_count_for_steer = num_blades
+    # --- ENGAGEMENT THRESHOLDS (from ME Settings sheet) ---
+    # Higher min engagement = more aggressive (secondary cutters don't engage easily)
+    avg_engagement_threshold = float(np.mean(engagement_thresholds)) if engagement_thresholds else 0.25
+    max_engagement_threshold = max(engagement_thresholds) if engagement_thresholds else 0.5
 
-    # 7. Cone region aggressiveness
-    # Cutters in inner 30% of radius with low backrake = aggressive cone = more steerable
-    cone_threshold = 0.30 * gauge_radius
-    cone_cutters = [c for c in cutters
-                    if isinstance(c.get("radial_pos"), (int, float))
-                    and abs(c.get("radial_pos", 0)) < cone_threshold]
-    cone_backrakes = [c["backrake"] for c in cone_cutters
-                      if c.get("backrake") is not None
-                      and isinstance(c["backrake"], (int, float)) and 0 < c["backrake"] < 60]
-    avg_cone_backrake = np.mean(cone_backrakes) if cone_backrakes else 15.0
-
-    # 8. Angular spread of cutters (more uniform angular distribution = less steerable)
-    all_thetas = [c.get("theta_deg") for c in cutters
-                  if isinstance(c.get("theta_deg"), (int, float))]
-    if len(all_thetas) > 2:
-        sorted_thetas = sorted([t % 360 for t in all_thetas])
-        angular_gaps = []
-        for i in range(len(sorted_thetas) - 1):
-            angular_gaps.append(sorted_thetas[i+1] - sorted_thetas[i])
-        angular_gaps.append(360 - sorted_thetas[-1] + sorted_thetas[0])
-        max_angular_gap = max(angular_gaps) if angular_gaps else 60
-    else:
-        max_angular_gap = 60
+    # --- POCKET DEPTH (from ME file) ---
+    depths = [c["pocket_depth"] for c in cutters
+              if isinstance(c.get("pocket_depth"), (int, float))]
+    avg_depth = float(np.mean(depths)) if depths else 0.4
 
     return {
+        # Layout geometry (all from ME file)
+        "redundancy_score": layout["redundancy_score"],
+        "axial_force_ratio": layout["axial_force_ratio"],
+        "radial_force_ratio": layout["radial_force_ratio"],
+        "perpendicular_force_ratio": layout["perpendicular_force_ratio"],
+        "six_three_offset": layout["six_three_offset"],
+        "blade_exposure_equality": layout["blade_exposure_equality"],
+        "effective_blade_count": layout["effective_blade_count"],
+        # Cutter geometry (all from ME file)
         "total_cutters": total_cutters,
         "num_blades": num_blades,
         "avg_cutters_per_blade": avg_cutters_per_blade,
         "avg_backrake": avg_backrake,
-        "min_backrake": min_backrake,
+        "avg_cone_backrake": avg_cone_backrake,
+        "avg_nose_backrake": avg_nose_backrake,
+        "avg_gauge_backrake": avg_gauge_backrake,
+        "cutter_density": cutter_density,
         "avg_blades_per_zone": avg_blades_per_zone,
         "avg_spacing_cv": avg_spacing_cv,
-        "layout_score": layout_score,
-        "avg_depth": avg_depth,
-        "cutter_density": cutter_density,
         "gauge_cutter_ratio": gauge_cutter_ratio,
-        "avg_gauge_backrake": avg_gauge_backrake,
-        "z_range": z_range,
         "avg_siderake": avg_siderake,
         "lateral_resultant": lateral_resultant,
-        "blade_count_for_steer": blade_count_for_steer,
-        "avg_cone_backrake": avg_cone_backrake,
-        "max_angular_gap": max_angular_gap,
+        "z_range": z_range,
+        "avg_engagement_threshold": avg_engagement_threshold,
+        "max_engagement_threshold": max_engagement_threshold,
+        "avg_depth": avg_depth,
         "gauge_radius": gauge_radius,
-    }, None
-
-
-def normalize_to_scale(values, low=0, high=9, invert=False):
-    """Normalize a list of values to 0-9 scale. invert=True means higher input -> lower output."""
-    arr = np.array(values, dtype=float)
-    valid = ~np.isnan(arr)
-    if valid.sum() < 2:
-        return [4.5] * len(values)
-
-    vmin = np.nanmin(arr)
-    vmax = np.nanmax(arr)
-
-    if vmax == vmin:
-        return [4.5] * len(values)
-
-    normalized = (arr - vmin) / (vmax - vmin)  # 0 to 1
-    if invert:
-        normalized = 1.0 - normalized
-
-    scaled = normalized * (high - low) + low
-    return [round(float(s), 1) if not np.isnan(s) else None for s in scaled]
+    }
 
 
 def main():
-    # Load main workbook to get bit metadata
-    print("Loading main workbook...")
+    print("Loading main workbook (for bit numbers and size fallback only)...")
     wb_main = openpyxl.load_workbook(WORKBOOK_PATH, data_only=True)
     ws = wb_main["Sheet1"]
 
@@ -394,59 +491,37 @@ def main():
         bit_data = {}
         for c in row:
             cl = c.column_letter
-            if cl == "B":
-                bit_data["bit_num"] = c.value
-            elif cl == "X":
-                bit_data["size"] = c.value
-            elif cl == "AA":
-                bit_data["blade_count"] = c.value
-            elif cl == "AR":
-                bit_data["layout_type"] = c.value
-            elif cl == "AS":
-                bit_data["pattern_order"] = c.value
-            elif cl == "AO":
-                bit_data["durability"] = c.value
-            elif cl == "AP":
-                bit_data["steerability"] = c.value
+            if cl == "B": bit_data["bit_num"] = c.value
+            elif cl == "X": bit_data["size"] = c.value
+            elif cl == "AR": bit_data["layout_type"] = c.value  # for display only
         if bit_data.get("bit_num") is not None:
             bit_data["row_num"] = row[0].row
             bits.append(bit_data)
 
     print(f"Found {len(bits)} bits in workbook")
 
-    # Find Min Engagement files for each bit
+    # Find and match Min Engagement files
     all_me_files = glob.glob(f"{BIT_DESIGNS_DIR}/**/*Min Engagement*.xlsm", recursive=True)
     print(f"Found {len(all_me_files)} Min Engagement files")
 
-    # Map bit numbers to ME files (prefer latest version)
     bit_me_map = {}
     for f in all_me_files:
         folder_parts = f.replace("\\", "/").split("/")
         folder_name = folder_parts[1] if len(folder_parts) > 1 else ""
-
         for bit in bits:
             bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
-            # Match by folder name or filename containing bit number
             if folder_name == bn or bn in os.path.basename(f).split(" ")[0].replace(".", "").replace("r", ""):
-                # Prefer highest version
                 version = 0
                 bname = os.path.basename(f)
-                if "v8." in bname:
-                    version = 8
-                elif "v7." in bname:
-                    version = 7
-                elif "v6." in bname:
-                    version = 6
-
-                # Skip XH/variant files unless it's the only one
+                if "v8." in bname: version = 8
+                elif "v7." in bname: version = 7
+                elif "v6." in bname: version = 6
                 is_variant = any(x in bname.upper() for x in ["XH", "RIPPER", "W "])
-
                 current = bit_me_map.get(bn)
                 if current is None:
                     bit_me_map[bn] = (f, version, is_variant)
                 else:
                     _, cur_ver, cur_variant = current
-                    # Prefer non-variant, then higher version
                     if is_variant and not cur_variant:
                         continue
                     if not is_variant and cur_variant:
@@ -461,7 +536,6 @@ def main():
     all_metrics = {}
     for i, bit in enumerate(bits):
         bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
-
         if bn not in matched:
             continue
 
@@ -469,19 +543,11 @@ def main():
         print(f"  [{i+1}/{len(bits)}] Processing bit {bn}: {os.path.basename(filepath)}")
 
         try:
-            cutters, bit_diameter = extract_cutters_from_me_file(filepath)
-
-            # Use size from main workbook if not found in ME file
+            cutters, bit_diameter, engagement_thresholds = extract_cutters_from_me_file(filepath)
             if bit_diameter is None and bit.get("size"):
                 bit_diameter = float(bit["size"])
 
-            metrics, _ = compute_metrics(
-                cutters, bit_diameter,
-                bit.get("layout_type"),
-                bit.get("pattern_order"),
-                bit.get("blade_count"),
-            )
-
+            metrics = compute_metrics(cutters, bit_diameter, engagement_thresholds)
             if metrics:
                 all_metrics[bn] = metrics
         except Exception as e:
@@ -493,46 +559,52 @@ def main():
         print("No metrics computed. Exiting.")
         return
 
-    # --- COMPUTE DURABILITY SCORES ---
-    # Composite durability from multiple factors
     bit_numbers_ordered = [bn for bn in [
         str(int(b["bit_num"])) if isinstance(b["bit_num"], (int, float)) else str(b["bit_num"])
         for b in bits
     ] if bn in all_metrics]
 
+    # =========================================================================
+    # DURABILITY SCORING - all inputs from Min Engagement geometry
+    # =========================================================================
+    # Factors (higher = more durable):
+    #   1. redundancy_score: blade-pair radial overlap (redundant layouts score high)
+    #   2. avg_backrake: higher back rake = more conservative = more durable
+    #   3. avg_blades_per_zone: more blades per radial zone = more coverage
+    #   4. blade_exposure_equality: all blades equally exposed = more durable at low IPR
+    #   5. cutter_density: more cutters per unit radius = more durable
+    #   6. avg_spacing_cv: lower CV = more uniform spacing = more durable (inverted)
+    #   7. six_three_offset: larger offset = less durable at low IPR (inverted)
+
+    dur_comp_names = [
+        "redundancy", "backrake", "zone_coverage", "exposure_equality",
+        "density", "uniformity", "low_ipr_durability",
+    ]
+    weights_dur = {
+        "redundancy": 0.25,          # Radial overlap between blade pairs
+        "backrake": 0.20,            # Average back rake from ME file
+        "zone_coverage": 0.15,       # Blades per radial zone
+        "exposure_equality": 0.15,   # All blades equally exposed (F-Type, Redundant score high)
+        "density": 0.10,             # Cutter density
+        "uniformity": 0.10,          # Spacing uniformity
+        "low_ipr_durability": 0.05,  # Inverse of 6-3 offset (less offset = more durable at low IPR)
+    }
+
     durability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
-        # Higher = more durable for all these:
-        d_backrake = m["avg_backrake"]           # Higher avg backrake = more durable
-        d_density = m["cutter_density"]           # Higher density = more durable
-        d_redundancy = m["avg_blades_per_zone"]   # More blades per zone = more durable
-        d_layout = m["layout_score"]              # Redundant > SingleSet
-        d_spacing_uniformity = 1.0 - min(m["avg_spacing_cv"], 1.0)  # Lower CV = more uniform = more durable
-        d_cutters = m["avg_cutters_per_blade"]    # More cutters per blade = more durable
-
         durability_components[bn] = {
-            "backrake": d_backrake,
-            "density": d_density,
-            "redundancy": d_redundancy,
-            "layout": d_layout,
-            "uniformity": d_spacing_uniformity,
-            "cutters_per_blade": d_cutters,
+            "redundancy": m["redundancy_score"],
+            "backrake": m["avg_backrake"],
+            "zone_coverage": m["avg_blades_per_zone"],
+            "exposure_equality": m["blade_exposure_equality"],
+            "density": m["cutter_density"],
+            "uniformity": 1.0 - min(m["avg_spacing_cv"], 1.0),
+            "low_ipr_durability": 1.0 - min(m["six_three_offset"] * 20.0, 1.0),  # scale offset
         }
 
-    # Normalize each component to 0-1, then weighted sum
-    component_names = ["backrake", "density", "redundancy", "layout", "uniformity", "cutters_per_blade"]
-    weights_dur = {
-        "backrake": 0.20,       # Back rake is a strong durability indicator
-        "density": 0.15,        # Cutter density matters
-        "redundancy": 0.25,     # Radial redundancy is key for durability
-        "layout": 0.20,         # Layout type (redundant vs single-set)
-        "uniformity": 0.10,     # Spacing uniformity
-        "cutters_per_blade": 0.10,  # More cutters = more durable
-    }
-
-    # Normalize each component
-    for comp in component_names:
+    # Normalize each component to 0-1 across the population
+    for comp in dur_comp_names:
         vals = [durability_components[bn][comp] for bn in bit_numbers_ordered]
         vmin, vmax = min(vals), max(vals)
         for bn in bit_numbers_ordered:
@@ -541,61 +613,64 @@ def main():
             else:
                 durability_components[bn][comp] = 0.5
 
-    # Compute weighted durability score
-    durability_raw = {}
-    for bn in bit_numbers_ordered:
-        score = sum(durability_components[bn][comp] * weights_dur[comp] for comp in component_names)
-        durability_raw[bn] = score
-
-    # Scale to 0-9
-    dur_vals = [durability_raw[bn] for bn in bit_numbers_ordered]
-    dur_min, dur_max = min(dur_vals), max(dur_vals)
     durability_scores = {}
     for bn in bit_numbers_ordered:
-        if dur_max > dur_min:
-            scaled = ((durability_raw[bn] - dur_min) / (dur_max - dur_min)) * 9.0
-        else:
-            scaled = 4.5
-        durability_scores[bn] = round(scaled, 1)
+        raw = sum(durability_components[bn][comp] * weights_dur[comp] for comp in dur_comp_names)
+        durability_scores[bn] = raw
 
-    # --- COMPUTE STEERABILITY SCORES ---
+    # Scale to 0-9
+    dur_vals = list(durability_scores.values())
+    dur_min, dur_max = min(dur_vals), max(dur_vals)
+    for bn in bit_numbers_ordered:
+        if dur_max > dur_min:
+            durability_scores[bn] = round(((durability_scores[bn] - dur_min) / (dur_max - dur_min)) * 9.0, 1)
+        else:
+            durability_scores[bn] = 4.5
+
+    # =========================================================================
+    # STEERABILITY SCORING - all inputs from Min Engagement geometry
+    # =========================================================================
+    # Factors (higher = more steerable):
+    #   1. axial_force_ratio: predominantly axial forces = better tool face control
+    #   2. gauge_openness: fewer gauge cutters = less resistance to side forces
+    #   3. gauge_aggressiveness: lower gauge back rake = less stabilizing = more steerable
+    #   4. cone_aggressiveness: lower cone back rake = more aggressive cone = builds angle
+    #   5. profile_depth: larger Z range = more profile = more steerable
+    #   6. siderake: more side rake = directional force component
+    #   7. lateral_force: force imbalance = tendency to walk
+    #   8. blade_factor: fewer effective blades = less stabilizing
+
+    steer_comp_names = [
+        "axial_dominance", "gauge_openness", "gauge_aggressiveness",
+        "cone_aggressiveness", "profile_depth", "siderake",
+        "lateral_force", "blade_factor",
+    ]
+    weights_steer = {
+        "axial_dominance": 0.20,       # Axial force = better tool face = more steerable
+        "gauge_openness": 0.15,        # Fewer gauge cutters = more steerable
+        "gauge_aggressiveness": 0.15,  # Lower gauge back rake = more steerable
+        "cone_aggressiveness": 0.15,   # Lower cone back rake = builds angle
+        "profile_depth": 0.10,         # Deeper profile = more steerable
+        "siderake": 0.10,              # Side rake = directional force
+        "lateral_force": 0.05,         # Force imbalance
+        "blade_factor": 0.10,          # Fewer effective blades = more steerable
+    }
+
     steerability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
-        # For steerability, lower gauge contact and more aggressive profile = more steerable
-        s_gauge_ratio = 1.0 - m["gauge_cutter_ratio"]    # Fewer gauge cutters = more steerable
-        s_gauge_br = 1.0 - min(m["avg_gauge_backrake"] / 45.0, 1.0)  # Lower gauge BR = more steerable
-        s_z_range = m["z_range"]                           # More Z variation = more profile = more steerable
-        s_siderake = m["avg_siderake"]                     # More side rake = more steerable
-        s_lateral = m["lateral_resultant"]                 # More lateral imbalance = more steerable
-        s_cone_aggr = 1.0 - min(m["avg_cone_backrake"] / 30.0, 1.0)  # Lower cone BR = more aggressive = more steerable
-
-        # Fewer blades can be more steerable (inverted)
-        s_blades = 1.0 / m["blade_count_for_steer"] if m["blade_count_for_steer"] > 0 else 0.2
-
         steerability_components[bn] = {
-            "gauge_openness": s_gauge_ratio,
-            "gauge_aggressiveness": s_gauge_br,
-            "profile_depth": s_z_range,
-            "siderake": s_siderake,
-            "lateral_force": s_lateral,
-            "cone_aggressiveness": s_cone_aggr,
-            "blade_factor": s_blades,
+            "axial_dominance": m["axial_force_ratio"],
+            "gauge_openness": 1.0 - m["gauge_cutter_ratio"],
+            "gauge_aggressiveness": 1.0 - min(m["avg_gauge_backrake"] / 45.0, 1.0),
+            "cone_aggressiveness": 1.0 - min(m["avg_cone_backrake"] / 30.0, 1.0),
+            "profile_depth": m["z_range"],
+            "siderake": m["avg_siderake"],
+            "lateral_force": m["lateral_resultant"],
+            "blade_factor": 1.0 / m["effective_blade_count"] if m["effective_blade_count"] > 0 else 0.5,
         }
 
-    steer_comp_names = ["gauge_openness", "gauge_aggressiveness", "profile_depth",
-                        "siderake", "lateral_force", "cone_aggressiveness", "blade_factor"]
-    weights_steer = {
-        "gauge_openness": 0.20,        # Fewer gauge cutters = more steerable
-        "gauge_aggressiveness": 0.20,   # Lower gauge back rake = more steerable
-        "profile_depth": 0.15,          # Deeper profile = more steerable
-        "siderake": 0.10,               # Side rake affects steerability
-        "lateral_force": 0.10,          # Force imbalance
-        "cone_aggressiveness": 0.15,    # Aggressive cone = more steerable
-        "blade_factor": 0.10,           # Fewer blades = more steerable
-    }
-
-    # Normalize each component
+    # Normalize each component to 0-1
     for comp in steer_comp_names:
         vals = [steerability_components[bn][comp] for bn in bit_numbers_ordered]
         vmin, vmax = min(vals), max(vals)
@@ -605,40 +680,39 @@ def main():
             else:
                 steerability_components[bn][comp] = 0.5
 
-    # Compute weighted steerability score
-    steerability_raw = {}
-    for bn in bit_numbers_ordered:
-        score = sum(steerability_components[bn][comp] * weights_steer[comp] for comp in steer_comp_names)
-        steerability_raw[bn] = score
-
-    # Scale to 0-9
-    steer_vals = [steerability_raw[bn] for bn in bit_numbers_ordered]
-    steer_min, steer_max = min(steer_vals), max(steer_vals)
     steerability_scores = {}
     for bn in bit_numbers_ordered:
+        raw = sum(steerability_components[bn][comp] * weights_steer[comp] for comp in steer_comp_names)
+        steerability_scores[bn] = raw
+
+    # Scale to 0-9
+    steer_vals = list(steerability_scores.values())
+    steer_min, steer_max = min(steer_vals), max(steer_vals)
+    for bn in bit_numbers_ordered:
         if steer_max > steer_min:
-            scaled = ((steerability_raw[bn] - steer_min) / (steer_max - steer_min)) * 9.0
+            steerability_scores[bn] = round(((steerability_scores[bn] - steer_min) / (steer_max - steer_min)) * 9.0, 1)
         else:
-            scaled = 4.5
-        steerability_scores[bn] = round(scaled, 1)
+            steerability_scores[bn] = 4.5
 
     # --- PRINT RESULTS ---
-    print("\n" + "=" * 80)
-    print(f"{'Bit #':<8} {'Layout':<18} {'Blades':<7} {'Cutters':<9} {'Durability':<12} {'Steerability':<12}")
-    print("=" * 80)
+    print("\n" + "=" * 100)
+    print(f"{'Bit':<7} {'Layout (ref)':<18} {'Bl':<4} {'Cut':<5} {'Redund':<8} {'AxF%':<6} {'6-3off':<8} {'Dur':<6} {'Steer':<6}")
+    print("=" * 100)
     for bit in bits:
         bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
         dur = durability_scores.get(bn, "-")
         steer = steerability_scores.get(bn, "-")
         layout = str(bit.get("layout_type", ""))[:16]
         m = all_metrics.get(bn)
-        blades = m["num_blades"] if m else "-"
-        cutters = m["total_cutters"] if m else "-"
-        print(f"  {bn:<8} {layout:<18} {str(blades):<7} {str(cutters):<9} {str(dur):<12} {str(steer):<12}")
+        if m:
+            print(f"  {bn:<7} {layout:<18} {m['num_blades']:<4} {m['total_cutters']:<5} "
+                  f"{m['redundancy_score']:.2f}   {m['axial_force_ratio']:.2f}  "
+                  f"{m['six_three_offset']:.4f}  {dur:<6} {steer:<6}")
+        else:
+            print(f"  {bn:<7} {layout:<18} -    -     -       -      -         -      -")
 
     # --- WRITE TO WORKBOOK ---
     print(f"\nWriting scores to {WORKBOOK_PATH}...")
-    # Reload without data_only to preserve formulas
     wb_write = openpyxl.load_workbook(WORKBOOK_PATH)
     ws_write = wb_write["Sheet1"]
 
@@ -648,12 +722,9 @@ def main():
         ao_cell = None
         ap_cell = None
         for c in row:
-            if c.column_letter == "B":
-                bit_val = c.value
-            elif c.column_letter == "AO":
-                ao_cell = c
-            elif c.column_letter == "AP":
-                ap_cell = c
+            if c.column_letter == "B": bit_val = c.value
+            elif c.column_letter == "AO": ao_cell = c
+            elif c.column_letter == "AP": ap_cell = c
 
         if bit_val is None:
             continue
@@ -663,13 +734,18 @@ def main():
         if bn in durability_scores and ao_cell is not None:
             ao_cell.value = durability_scores[bn]
             updates += 1
+        elif ao_cell is not None:
+            ao_cell.value = None  # Clear if no data
+
         if bn in steerability_scores and ap_cell is not None:
             ap_cell.value = steerability_scores[bn]
+        elif ap_cell is not None:
+            ap_cell.value = None  # Clear if no data
 
     wb_write.save(WORKBOOK_PATH)
     print(f"Updated {updates} rows in columns AO & AP")
 
-    # Save detailed metrics to JSON for reference
+    # Save detailed metrics to JSON
     metrics_output = {}
     for bn in bit_numbers_ordered:
         metrics_output[bn] = {
