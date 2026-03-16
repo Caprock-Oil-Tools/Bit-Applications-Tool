@@ -571,6 +571,196 @@ def _default_backup_metrics():
     }
 
 
+def compute_zone_engagement(cutters, gauge_radius, engagement_thresholds):
+    """
+    Compute zone-specific minimum engagement values for BAT columns BA-BE.
+
+    Returns dict with keys:
+      six_three_engage: min ft/hr@100rpm for pri PDCs on sec blades to engage (BA)
+      nose_pdc_engage:  min ft/hr@100rpm for sec PDC backups at nose (BB)
+      taper_pdc_engage: min ft/hr@100rpm for sec PDC backups at taper (BC)
+      nose_knuckle_engage: min ft/hr@100rpm for knuckle backups at nose (BD)
+      taper_knuckle_engage: min ft/hr@100rpm for knuckle backups at taper (BE)
+
+    Zone boundaries (fraction of gauge radius):
+      Nose:  0.30 - 0.60
+      Taper: 0.60 - 0.85
+    """
+    if not cutters or gauge_radius <= 0:
+        return {}
+
+    primary_cutters = [c for c in cutters if c.get("cutter_row", 1) == 1]
+    backup_cutters = [c for c in cutters if c.get("cutter_row", 1) >= 2]
+
+    if not backup_cutters:
+        return {}
+
+    # Build sorted IPR thresholds from Settings (in/rev values)
+    sorted_thresholds = sorted(engagement_thresholds) if engagement_thresholds else []
+
+    # For each backup cutter, find its paired primary and compute Z offset.
+    # Then estimate the IPR at which it engages from the Settings thresholds.
+    # The backup with larger Z offset engages at higher IPR (needs deeper cut).
+    # Map Z offset to closest engagement threshold class.
+
+    # First, collect all backup Z offsets to determine the distribution
+    backup_z_offsets = []
+    for bc in backup_cutters:
+        rb = bc.get("radial_pos")
+        zb = bc.get("z")
+        if not (isinstance(rb, (int, float)) and isinstance(zb, (int, float))):
+            continue
+        # Find nearest primary cutter
+        best_dist = float("inf")
+        best_primary = None
+        for pc in primary_cutters:
+            rp = pc.get("radial_pos")
+            if isinstance(rp, (int, float)):
+                d = abs(rp - rb)
+                if d < best_dist:
+                    best_dist = d
+                    best_primary = pc
+        if best_primary is not None:
+            zp = best_primary.get("z")
+            if isinstance(zp, (int, float)):
+                backup_z_offsets.append(abs(zb - zp))
+
+    if not backup_z_offsets:
+        return {}
+
+    # Sort z offsets and map to engagement threshold classes
+    # The ME file's threshold classes correspond to increasing engagement difficulty
+    # Map each backup's z_offset rank to a threshold class proportionally
+    all_z_sorted = sorted(set(backup_z_offsets))
+
+    def z_offset_to_fthr(z_off):
+        """Convert a backup cutter's Z offset to estimated ft/hr at 100 RPM."""
+        if not sorted_thresholds:
+            # Fallback: use linear estimate. Z offset in inches → in/rev ≈ z_off * 2
+            # (rough geometric approximation for helical engagement)
+            ipr_est = z_off * 2.0
+            return round(ipr_est * 500)  # Convert in/rev to ft/hr at 100 RPM
+
+        # Map z_offset rank to threshold class
+        if len(all_z_sorted) <= 1:
+            idx = len(sorted_thresholds) // 2
+        else:
+            rank = all_z_sorted.index(z_off) if z_off in all_z_sorted else 0
+            frac = rank / (len(all_z_sorted) - 1)
+            idx = int(frac * (len(sorted_thresholds) - 1))
+            idx = min(idx, len(sorted_thresholds) - 1)
+
+        ipr = sorted_thresholds[idx]
+        return round(ipr * 500)  # in/rev → ft/hr at 100 RPM
+
+    # Classify backup cutters by zone and type, compute engagement values
+    nose_lo = 0.30 * gauge_radius
+    nose_hi = 0.60 * gauge_radius
+    taper_lo = 0.60 * gauge_radius
+    taper_hi = 0.85 * gauge_radius
+
+    zone_engage = {
+        "nose_pdc": [], "taper_pdc": [],
+        "nose_knuckle": [], "taper_knuckle": [],
+    }
+
+    # Also track 6-3 engagement: primary PDCs on secondary (odd-numbered) blades
+    num_blades = len(set(c["blade"] for c in cutters if "blade" in c))
+    # In a 6-3 layout, secondary blades are the higher-numbered blades
+    # (e.g., blades 4-6 in a 6-blade, or blades 7-9 in a 9-blade design)
+    # Secondary blade primaries engage later due to Z offset from primary blades
+    pri_blade_cutters = defaultdict(list)
+    for c in primary_cutters:
+        rp = c.get("radial_pos")
+        z = c.get("z")
+        if isinstance(rp, (int, float)) and isinstance(z, (int, float)):
+            pri_blade_cutters[c["blade"]].append(c)
+
+    six_three_engage_vals = []
+    if num_blades >= 6:
+        blade_nums = sorted(pri_blade_cutters.keys())
+        if len(blade_nums) >= 6:
+            # Primary blades = first half, secondary blades = second half
+            mid = len(blade_nums) // 2
+            pri_blades = set(blade_nums[:mid])
+            sec_blades = set(blade_nums[mid:])
+
+            # For each primary cutter on a secondary blade, find nearest
+            # primary cutter on a primary blade and compute Z offset
+            for sb in sec_blades:
+                for sc in pri_blade_cutters[sb]:
+                    rs = sc.get("radial_pos")
+                    zs = sc.get("z")
+                    if not (isinstance(rs, (int, float)) and isinstance(zs, (int, float))):
+                        continue
+                    best_dist = float("inf")
+                    best_z = None
+                    for pb in pri_blades:
+                        for pc in pri_blade_cutters[pb]:
+                            rp = pc.get("radial_pos")
+                            if isinstance(rp, (int, float)):
+                                d = abs(rp - rs)
+                                if d < best_dist:
+                                    best_dist = d
+                                    best_z = pc.get("z")
+                    if best_z is not None and isinstance(best_z, (int, float)):
+                        z_off = abs(zs - best_z)
+                        six_three_engage_vals.append(z_offset_to_fthr(z_off))
+
+    bi = 0
+    for bc in backup_cutters:
+        rb = bc.get("radial_pos")
+        zb = bc.get("z")
+        is_knuckle = bc.get("is_knuckle", False)
+        if not (isinstance(rb, (int, float)) and isinstance(zb, (int, float))):
+            continue
+
+        r_abs = abs(rb)
+        # Find paired primary Z offset
+        best_dist = float("inf")
+        best_primary = None
+        for pc in primary_cutters:
+            rp = pc.get("radial_pos")
+            if isinstance(rp, (int, float)):
+                d = abs(rp - rb)
+                if d < best_dist:
+                    best_dist = d
+                    best_primary = pc
+        if best_primary is None:
+            continue
+        zp = best_primary.get("z")
+        if not isinstance(zp, (int, float)):
+            continue
+
+        z_off = abs(zb - zp)
+        fthr = z_offset_to_fthr(z_off)
+
+        # Classify by zone
+        if nose_lo <= r_abs < nose_hi:
+            zone = "nose"
+        elif taper_lo <= r_abs < taper_hi:
+            zone = "taper"
+        else:
+            continue  # cone or gauge - not in BA-BE columns
+
+        typ = "knuckle" if is_knuckle else "pdc"
+        zone_engage[f"{zone}_{typ}"].append(fthr)
+
+    result = {}
+    if six_three_engage_vals:
+        result["six_three_engage"] = min(six_three_engage_vals)
+    if zone_engage["nose_pdc"]:
+        result["nose_pdc_engage"] = min(zone_engage["nose_pdc"])
+    if zone_engage["taper_pdc"]:
+        result["taper_pdc_engage"] = min(zone_engage["taper_pdc"])
+    if zone_engage["nose_knuckle"]:
+        result["nose_knuckle_engage"] = min(zone_engage["nose_knuckle"])
+    if zone_engage["taper_knuckle"]:
+        result["taper_knuckle_engage"] = min(zone_engage["taper_knuckle"])
+
+    return result
+
+
 def compute_metrics(cutters, bit_diameter, engagement_thresholds):
     """
     Compute durability and steerability metrics purely from Min Engagement data.
@@ -602,6 +792,9 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
 
     # --- BACKUP ENGAGEMENT ANALYSIS ---
     backup = analyze_backup_engagement(cutters, gauge_radius, engagement_thresholds)
+
+    # --- ZONE-SPECIFIC ENGAGEMENT (for BAT columns BA-BE) ---
+    zone_engagement = compute_zone_engagement(cutters, gauge_radius, engagement_thresholds)
 
     # --- BACK RAKE STATISTICS (from ME file) ---
     all_backrakes = [c["backrake"] for c in cutters
@@ -749,6 +942,8 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
         "avg_primary_backrake": backup["avg_primary_backrake"],
         "avg_backup_backrake": backup["avg_backup_backrake"],
         "backrake_differential": backup["backrake_differential"],
+        # Zone-specific engagement (for BAT columns BA-BE)
+        "zone_engagement": zone_engagement,
     }
 
 
@@ -1031,14 +1226,19 @@ def main():
     ws_write = wb_write["Sheet1"]
 
     updates = 0
+    engage_updates = 0
     for row in ws_write.iter_rows(min_row=5, max_row=ws_write.max_row, values_only=False):
         bit_val = None
-        ao_cell = None
-        ap_cell = None
+        ao_cell = ap_cell = ba_cell = bb_cell = bc_cell = bd_cell = be_cell = None
         for c in row:
             if c.column_letter == "B": bit_val = c.value
             elif c.column_letter == "AO": ao_cell = c
             elif c.column_letter == "AP": ap_cell = c
+            elif c.column_letter == "BA": ba_cell = c
+            elif c.column_letter == "BB": bb_cell = c
+            elif c.column_letter == "BC": bc_cell = c
+            elif c.column_letter == "BD": bd_cell = c
+            elif c.column_letter == "BE": be_cell = c
 
         if bit_val is None:
             continue
@@ -1056,8 +1256,25 @@ def main():
         elif ap_cell is not None:
             ap_cell.value = None  # Clear if no data
 
+        # Write zone-specific engagement values to BA-BE
+        if bn in all_metrics:
+            ze = all_metrics[bn].get("zone_engagement", {})
+            if ze:
+                engage_updates += 1
+            if ba_cell is not None:
+                ba_cell.value = ze.get("six_three_engage")
+            if bb_cell is not None:
+                bb_cell.value = ze.get("nose_pdc_engage")
+            if bc_cell is not None:
+                bc_cell.value = ze.get("taper_pdc_engage")
+            if bd_cell is not None:
+                bd_cell.value = ze.get("nose_knuckle_engage")
+            if be_cell is not None:
+                be_cell.value = ze.get("taper_knuckle_engage")
+
     wb_write.save(WORKBOOK_PATH)
     print(f"Updated {updates} rows in columns AO & AP")
+    print(f"Updated {engage_updates} rows in columns BA-BE (zone engagement)")
 
     # Save detailed metrics to JSON
     metrics_output = {}

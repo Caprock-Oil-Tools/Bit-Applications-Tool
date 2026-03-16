@@ -46,7 +46,11 @@
       "gauge_backup_ratio": 0.5714,
       "avg_primary_backrake": 20.4296,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.5704
+      "backrake_differential": 4.5704,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "1961": {
@@ -96,7 +100,10 @@
       "gauge_backup_ratio": 0.6875,
       "avg_primary_backrake": 21.4605,
       "avg_backup_backrake": 34.7538,
-      "backrake_differential": 13.2934
+      "backrake_differential": 13.2934,
+      "zone_engagement": {
+        "nose_pdc_engage": 31
+      }
     }
   },
   "2001": {
@@ -146,7 +153,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.0184,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.9816
+      "backrake_differential": 4.9816,
+      "zone_engagement": {}
     }
   },
   "2004": {
@@ -196,7 +204,11 @@
       "gauge_backup_ratio": 0.5556,
       "avg_primary_backrake": 19.6675,
       "avg_backup_backrake": 19.292,
-      "backrake_differential": -0.3755
+      "backrake_differential": -0.3755,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2010": {
@@ -246,7 +258,12 @@
       "gauge_backup_ratio": 0.3,
       "avg_primary_backrake": 20.1883,
       "avg_backup_backrake": 20.1825,
-      "backrake_differential": -0.0059
+      "backrake_differential": -0.0059,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 234,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2028": {
@@ -296,7 +313,11 @@
       "gauge_backup_ratio": 0.5556,
       "avg_primary_backrake": 22.4341,
       "avg_backup_backrake": 22.5566,
-      "backrake_differential": 0.1225
+      "backrake_differential": 0.1225,
+      "zone_engagement": {
+        "nose_pdc_engage": 156,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2046": {
@@ -346,7 +367,10 @@
       "gauge_backup_ratio": 0.6,
       "avg_primary_backrake": 20.1719,
       "avg_backup_backrake": 23.2789,
-      "backrake_differential": 3.107
+      "backrake_differential": 3.107,
+      "zone_engagement": {
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2051": {
@@ -396,7 +420,12 @@
       "gauge_backup_ratio": 0.4091,
       "avg_primary_backrake": 20.1591,
       "avg_backup_backrake": 31.2156,
-      "backrake_differential": 11.0564
+      "backrake_differential": 11.0564,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2053": {
@@ -446,7 +475,11 @@
       "gauge_backup_ratio": 0.5556,
       "avg_primary_backrake": 22.411,
       "avg_backup_backrake": 29.093,
-      "backrake_differential": 6.682
+      "backrake_differential": 6.682,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2054": {
@@ -496,7 +529,11 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 20.5008,
       "avg_backup_backrake": 23.7924,
-      "backrake_differential": 3.2915
+      "backrake_differential": 3.2915,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 78
+      }
     }
   },
   "2070": {
@@ -546,7 +583,11 @@
       "gauge_backup_ratio": 0.3182,
       "avg_primary_backrake": 21.0423,
       "avg_backup_backrake": 23.8324,
-      "backrake_differential": 2.7901
+      "backrake_differential": 2.7901,
+      "zone_engagement": {
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2074": {
@@ -596,7 +637,10 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 24.1161,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 0.8839
+      "backrake_differential": 0.8839,
+      "zone_engagement": {
+        "nose_pdc_engage": 47
+      }
     }
   },
   "2075": {
@@ -646,7 +690,11 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 24.1824,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 0.8176
+      "backrake_differential": 0.8176,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78
+      }
     }
   },
   "2077": {
@@ -696,7 +744,11 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 23.9434,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 1.0566
+      "backrake_differential": 1.0566,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78
+      }
     }
   },
   "2079": {
@@ -746,7 +798,8 @@
       "gauge_backup_ratio": 1.0,
       "avg_primary_backrake": 24.2926,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 0.7074
+      "backrake_differential": 0.7074,
+      "zone_engagement": {}
     }
   },
   "2081": {
@@ -796,7 +849,12 @@
       "gauge_backup_ratio": 0.5319,
       "avg_primary_backrake": 23.1756,
       "avg_backup_backrake": 23.9481,
-      "backrake_differential": 0.7725
+      "backrake_differential": 0.7725,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2090": {
@@ -846,7 +904,12 @@
       "gauge_backup_ratio": 0.4211,
       "avg_primary_backrake": 22.3336,
       "avg_backup_backrake": 24.9211,
-      "backrake_differential": 2.5874
+      "backrake_differential": 2.5874,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 156,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2091": {
@@ -896,7 +959,11 @@
       "gauge_backup_ratio": 0.3333,
       "avg_primary_backrake": 22.6261,
       "avg_backup_backrake": 25.3373,
-      "backrake_differential": 2.7113
+      "backrake_differential": 2.7113,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2095": {
@@ -946,7 +1013,11 @@
       "gauge_backup_ratio": 0.4444,
       "avg_primary_backrake": 22.2244,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 2.7756
+      "backrake_differential": 2.7756,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2096": {
@@ -996,7 +1067,11 @@
       "gauge_backup_ratio": 0.1667,
       "avg_primary_backrake": 21.2445,
       "avg_backup_backrake": 25.4444,
-      "backrake_differential": 4.1999
+      "backrake_differential": 4.1999,
+      "zone_engagement": {
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2104": {
@@ -1046,7 +1121,12 @@
       "gauge_backup_ratio": 0.4167,
       "avg_primary_backrake": 18.8914,
       "avg_backup_backrake": 25.9758,
-      "backrake_differential": 7.0844
+      "backrake_differential": 7.0844,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 78
+      }
     }
   },
   "2110": {
@@ -1096,7 +1176,11 @@
       "gauge_backup_ratio": 0.4516,
       "avg_primary_backrake": 24.7033,
       "avg_backup_backrake": 25.865,
-      "backrake_differential": 1.1617
+      "backrake_differential": 1.1617,
+      "zone_engagement": {
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2114": {
@@ -1146,7 +1230,10 @@
       "gauge_backup_ratio": 1.0,
       "avg_primary_backrake": 21.4109,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.5891
+      "backrake_differential": 3.5891,
+      "zone_engagement": {
+        "six_three_engage": 31
+      }
     }
   },
   "2115": {
@@ -1196,7 +1283,10 @@
       "gauge_backup_ratio": 0.5556,
       "avg_primary_backrake": 21.7792,
       "avg_backup_backrake": 28.7401,
-      "backrake_differential": 6.9609
+      "backrake_differential": 6.9609,
+      "zone_engagement": {
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2117": {
@@ -1246,7 +1336,10 @@
       "gauge_backup_ratio": 0.5556,
       "avg_primary_backrake": 21.7792,
       "avg_backup_backrake": 28.7401,
-      "backrake_differential": 6.9609
+      "backrake_differential": 6.9609,
+      "zone_engagement": {
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2119": {
@@ -1296,7 +1389,12 @@
       "gauge_backup_ratio": 0.4,
       "avg_primary_backrake": 20.5802,
       "avg_backup_backrake": 28.2483,
-      "backrake_differential": 7.6681
+      "backrake_differential": 7.6681,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2120": {
@@ -1346,7 +1444,10 @@
       "gauge_backup_ratio": 0.2222,
       "avg_primary_backrake": 21.4307,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.5693
+      "backrake_differential": 3.5693,
+      "zone_engagement": {
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2121": {
@@ -1396,7 +1497,10 @@
       "gauge_backup_ratio": 0.5714,
       "avg_primary_backrake": 18.1137,
       "avg_backup_backrake": 25.971,
-      "backrake_differential": 7.8573
+      "backrake_differential": 7.8573,
+      "zone_engagement": {
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2122": {
@@ -1446,7 +1550,11 @@
       "gauge_backup_ratio": 0.36,
       "avg_primary_backrake": 20.4967,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.5033
+      "backrake_differential": 4.5033,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2124": {
@@ -1496,7 +1604,11 @@
       "gauge_backup_ratio": 0.4375,
       "avg_primary_backrake": 20.8093,
       "avg_backup_backrake": 28.16,
-      "backrake_differential": 7.3506
+      "backrake_differential": 7.3506,
+      "zone_engagement": {
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2126": {
@@ -1546,7 +1658,8 @@
       "gauge_backup_ratio": 1.0,
       "avg_primary_backrake": 21.1125,
       "avg_backup_backrake": 40.0,
-      "backrake_differential": 18.8875
+      "backrake_differential": 18.8875,
+      "zone_engagement": {}
     }
   },
   "2131": {
@@ -1596,7 +1709,11 @@
       "gauge_backup_ratio": 0.5455,
       "avg_primary_backrake": 21.2054,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.7946
+      "backrake_differential": 3.7946,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2137": {
@@ -1646,7 +1763,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.7247,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.2753
+      "backrake_differential": 4.2753,
+      "zone_engagement": {}
     }
   },
   "2140": {
@@ -1696,7 +1814,12 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.3074,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.6926
+      "backrake_differential": 4.6926,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2141": {
@@ -1746,7 +1869,12 @@
       "gauge_backup_ratio": 0.1923,
       "avg_primary_backrake": 23.3996,
       "avg_backup_backrake": 25.4396,
-      "backrake_differential": 2.0399
+      "backrake_differential": 2.0399,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2142": {
@@ -1796,7 +1924,12 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 21.5047,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.4953
+      "backrake_differential": 3.4953,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 78
+      }
     }
   },
   "2143": {
@@ -1846,7 +1979,11 @@
       "gauge_backup_ratio": 0.3636,
       "avg_primary_backrake": 19.5788,
       "avg_backup_backrake": 21.7598,
-      "backrake_differential": 2.181
+      "backrake_differential": 2.181,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2145": {
@@ -1896,7 +2033,12 @@
       "gauge_backup_ratio": 0.3043,
       "avg_primary_backrake": 22.1994,
       "avg_backup_backrake": 19.5,
-      "backrake_differential": -2.6994
+      "backrake_differential": -2.6994,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2148": {
@@ -1946,7 +2088,12 @@
       "gauge_backup_ratio": 0.3611,
       "avg_primary_backrake": 20.3142,
       "avg_backup_backrake": 26.2339,
-      "backrake_differential": 5.9197
+      "backrake_differential": 5.9197,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2152": {
@@ -1996,7 +2143,10 @@
       "gauge_backup_ratio": 0.5556,
       "avg_primary_backrake": 21.7792,
       "avg_backup_backrake": 28.7401,
-      "backrake_differential": 6.9609
+      "backrake_differential": 6.9609,
+      "zone_engagement": {
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2153": {
@@ -2046,7 +2196,11 @@
       "gauge_backup_ratio": 0.9231,
       "avg_primary_backrake": 21.4605,
       "avg_backup_backrake": 27.6372,
-      "backrake_differential": 6.1767
+      "backrake_differential": 6.1767,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 78
+      }
     }
   },
   "2154": {
@@ -2096,7 +2250,10 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.5402,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.4598
+      "backrake_differential": 4.4598,
+      "zone_engagement": {
+        "nose_pdc_engage": 31
+      }
     }
   },
   "2157": {
@@ -2146,7 +2303,12 @@
       "gauge_backup_ratio": 0.4,
       "avg_primary_backrake": 20.4144,
       "avg_backup_backrake": 22.6866,
-      "backrake_differential": 2.2722
+      "backrake_differential": 2.2722,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2158": {
@@ -2196,7 +2358,11 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 19.2176,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 5.7824
+      "backrake_differential": 5.7824,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31
+      }
     }
   },
   "2160": {
@@ -2246,7 +2412,12 @@
       "gauge_backup_ratio": 0.4091,
       "avg_primary_backrake": 20.1591,
       "avg_backup_backrake": 31.2156,
-      "backrake_differential": 11.0564
+      "backrake_differential": 11.0564,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2164": {
@@ -2296,7 +2467,11 @@
       "gauge_backup_ratio": 0.35,
       "avg_primary_backrake": 24.9126,
       "avg_backup_backrake": 25.8059,
-      "backrake_differential": 0.8932
+      "backrake_differential": 0.8932,
+      "zone_engagement": {
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 78
+      }
     }
   },
   "2169": {
@@ -2346,7 +2521,12 @@
       "gauge_backup_ratio": 0.3125,
       "avg_primary_backrake": 18.9423,
       "avg_backup_backrake": 21.0777,
-      "backrake_differential": 2.1354
+      "backrake_differential": 2.1354,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "2172": {
@@ -2396,7 +2576,12 @@
       "gauge_backup_ratio": 0.5405,
       "avg_primary_backrake": 21.2113,
       "avg_backup_backrake": 23.538,
-      "backrake_differential": 2.3268
+      "backrake_differential": 2.3268,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2173": {
@@ -2446,7 +2631,13 @@
       "gauge_backup_ratio": 0.6316,
       "avg_primary_backrake": 19.9286,
       "avg_backup_backrake": 20.7346,
-      "backrake_differential": 0.806
+      "backrake_differential": 0.806,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 47,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2174": {
@@ -2496,7 +2687,11 @@
       "gauge_backup_ratio": 0.2308,
       "avg_primary_backrake": 25.5154,
       "avg_backup_backrake": 25.6214,
-      "backrake_differential": 0.1061
+      "backrake_differential": 0.1061,
+      "zone_engagement": {
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2177": {
@@ -2546,7 +2741,12 @@
       "gauge_backup_ratio": 0.3871,
       "avg_primary_backrake": 20.9713,
       "avg_backup_backrake": 28.546,
-      "backrake_differential": 7.5747
+      "backrake_differential": 7.5747,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2179": {
@@ -2596,7 +2796,11 @@
       "gauge_backup_ratio": 0.48,
       "avg_primary_backrake": 21.222,
       "avg_backup_backrake": 28.888,
-      "backrake_differential": 7.666
+      "backrake_differential": 7.666,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2180": {
@@ -2646,7 +2850,11 @@
       "gauge_backup_ratio": 0.6429,
       "avg_primary_backrake": 21.4438,
       "avg_backup_backrake": 29.3663,
-      "backrake_differential": 7.9225
+      "backrake_differential": 7.9225,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2181": {
@@ -2696,7 +2904,11 @@
       "gauge_backup_ratio": 0.5714,
       "avg_primary_backrake": 22.9646,
       "avg_backup_backrake": 29.851,
-      "backrake_differential": 6.8864
+      "backrake_differential": 6.8864,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2184": {
@@ -2746,7 +2958,11 @@
       "gauge_backup_ratio": 0.5294,
       "avg_primary_backrake": 20.4654,
       "avg_backup_backrake": 29.4584,
-      "backrake_differential": 8.993
+      "backrake_differential": 8.993,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2185": {
@@ -2796,7 +3012,12 @@
       "gauge_backup_ratio": 0.3784,
       "avg_primary_backrake": 22.1741,
       "avg_backup_backrake": 21.9338,
-      "backrake_differential": -0.2403
+      "backrake_differential": -0.2403,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 78
+      }
     }
   },
   "2186": {
@@ -2846,7 +3067,13 @@
       "gauge_backup_ratio": 0.381,
       "avg_primary_backrake": 23.2648,
       "avg_backup_backrake": 29.256,
-      "backrake_differential": 5.9912
+      "backrake_differential": 5.9912,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 109,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2188": {
@@ -2896,7 +3123,12 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.1879,
       "avg_backup_backrake": 22.9,
-      "backrake_differential": 2.7121
+      "backrake_differential": 2.7121,
+      "zone_engagement": {
+        "nose_pdc_engage": 156,
+        "taper_pdc_engage": 109,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "2190": {
@@ -2946,7 +3178,11 @@
       "gauge_backup_ratio": 0.5385,
       "avg_primary_backrake": 23.1872,
       "avg_backup_backrake": 39.7962,
-      "backrake_differential": 16.609
+      "backrake_differential": 16.609,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 47
+      }
     }
   },
   "2192": {
@@ -2996,7 +3232,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.9048,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.0952
+      "backrake_differential": 4.0952,
+      "zone_engagement": {}
     }
   },
   "2193": {
@@ -3046,7 +3283,12 @@
       "gauge_backup_ratio": 0.7368,
       "avg_primary_backrake": 24.1664,
       "avg_backup_backrake": 22.4,
-      "backrake_differential": -1.7664
+      "backrake_differential": -1.7664,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 47,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2194": {
@@ -3096,7 +3338,12 @@
       "gauge_backup_ratio": 0.4091,
       "avg_primary_backrake": 20.1591,
       "avg_backup_backrake": 31.2156,
-      "backrake_differential": 11.0564
+      "backrake_differential": 11.0564,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2195": {
@@ -3146,7 +3393,11 @@
       "gauge_backup_ratio": 0.6875,
       "avg_primary_backrake": 21.9905,
       "avg_backup_backrake": 34.7667,
-      "backrake_differential": 12.7762
+      "backrake_differential": 12.7762,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 47
+      }
     }
   },
   "2196": {
@@ -3196,7 +3447,10 @@
       "gauge_backup_ratio": 0.6875,
       "avg_primary_backrake": 21.4605,
       "avg_backup_backrake": 34.7538,
-      "backrake_differential": 13.2934
+      "backrake_differential": 13.2934,
+      "zone_engagement": {
+        "nose_pdc_engage": 31
+      }
     }
   },
   "2198": {
@@ -3246,7 +3500,11 @@
       "gauge_backup_ratio": 0.1667,
       "avg_primary_backrake": 19.7465,
       "avg_backup_backrake": 20.2508,
-      "backrake_differential": 0.5043
+      "backrake_differential": 0.5043,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "2205": {
@@ -3296,7 +3554,12 @@
       "gauge_backup_ratio": 0.4091,
       "avg_primary_backrake": 20.1591,
       "avg_backup_backrake": 31.2156,
-      "backrake_differential": 11.0564
+      "backrake_differential": 11.0564,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2206": {
@@ -3346,7 +3609,12 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 20.662,
       "avg_backup_backrake": 26.9046,
-      "backrake_differential": 6.2425
+      "backrake_differential": 6.2425,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2207": {
@@ -3396,7 +3664,12 @@
       "gauge_backup_ratio": 0.7273,
       "avg_primary_backrake": 21.8127,
       "avg_backup_backrake": 26.9582,
-      "backrake_differential": 5.1456
+      "backrake_differential": 5.1456,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2208": {
@@ -3446,7 +3719,12 @@
       "gauge_backup_ratio": 0.5319,
       "avg_primary_backrake": 23.1756,
       "avg_backup_backrake": 23.9481,
-      "backrake_differential": 0.7725
+      "backrake_differential": 0.7725,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2209": {
@@ -3496,7 +3774,12 @@
       "gauge_backup_ratio": 0.5455,
       "avg_primary_backrake": 20.281,
       "avg_backup_backrake": 27.8212,
-      "backrake_differential": 7.5402
+      "backrake_differential": 7.5402,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "2210": {
@@ -3546,7 +3829,13 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 20.3123,
       "avg_backup_backrake": 22.9439,
-      "backrake_differential": 2.6317
+      "backrake_differential": 2.6317,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2216": {
@@ -3596,7 +3885,12 @@
       "gauge_backup_ratio": 0.4884,
       "avg_primary_backrake": 26.3248,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": -1.3248
+      "backrake_differential": -1.3248,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 156,
+        "taper_pdc_engage": 78
+      }
     }
   },
   "2217": {
@@ -3646,7 +3940,13 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 20.3123,
       "avg_backup_backrake": 22.9451,
-      "backrake_differential": 2.6328
+      "backrake_differential": 2.6328,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2218": {
@@ -3696,7 +3996,13 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 20.3123,
       "avg_backup_backrake": 22.9439,
-      "backrake_differential": 2.6317
+      "backrake_differential": 2.6317,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2220": {
@@ -3746,7 +4052,12 @@
       "gauge_backup_ratio": 0.5862,
       "avg_primary_backrake": 21.9624,
       "avg_backup_backrake": 27.9249,
-      "backrake_differential": 5.9624
+      "backrake_differential": 5.9624,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 47
+      }
     }
   },
   "2224": {
@@ -3796,7 +4107,11 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 23.6192,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 1.3808
+      "backrake_differential": 1.3808,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2225": {
@@ -3846,7 +4161,10 @@
       "gauge_backup_ratio": 0.8571,
       "avg_primary_backrake": 24.9734,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 0.0266
+      "backrake_differential": 0.0266,
+      "zone_engagement": {
+        "taper_knuckle_engage": 156
+      }
     }
   },
   "2226": {
@@ -3896,7 +4214,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.9048,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.0952
+      "backrake_differential": 4.0952,
+      "zone_engagement": {}
     }
   },
   "2227": {
@@ -3946,7 +4265,11 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 21.0462,
       "avg_backup_backrake": 26.3132,
-      "backrake_differential": 5.267
+      "backrake_differential": 5.267,
+      "zone_engagement": {
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "2231": {
@@ -3996,7 +4319,11 @@
       "gauge_backup_ratio": 0.6,
       "avg_primary_backrake": 19.2687,
       "avg_backup_backrake": 24.6846,
-      "backrake_differential": 5.4159
+      "backrake_differential": 5.4159,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2232": {
@@ -4046,7 +4373,13 @@
       "gauge_backup_ratio": 0.4286,
       "avg_primary_backrake": 19.3358,
       "avg_backup_backrake": 23.8359,
-      "backrake_differential": 4.5001
+      "backrake_differential": 4.5001,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2234": {
@@ -4096,7 +4429,12 @@
       "gauge_backup_ratio": 0.25,
       "avg_primary_backrake": 26.1994,
       "avg_backup_backrake": 15.7256,
-      "backrake_differential": -10.4738
+      "backrake_differential": -10.4738,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 47,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "2235": {
@@ -4146,7 +4484,12 @@
       "gauge_backup_ratio": 0.5405,
       "avg_primary_backrake": 22.1485,
       "avg_backup_backrake": 26.3994,
-      "backrake_differential": 4.2508
+      "backrake_differential": 4.2508,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2236": {
@@ -4196,7 +4539,12 @@
       "gauge_backup_ratio": 0.3889,
       "avg_primary_backrake": 19.7668,
       "avg_backup_backrake": 23.4158,
-      "backrake_differential": 3.6489
+      "backrake_differential": 3.6489,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "2240": {
@@ -4246,7 +4594,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.8844,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.1156
+      "backrake_differential": 4.1156,
+      "zone_engagement": {}
     }
   },
   "2241": {
@@ -4296,7 +4645,11 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 23.6192,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 1.3808
+      "backrake_differential": 1.3808,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2242": {
@@ -4346,7 +4699,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 22.1872,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 2.8128
+      "backrake_differential": 2.8128,
+      "zone_engagement": {}
     }
   },
   "2247": {
@@ -4396,7 +4750,13 @@
       "gauge_backup_ratio": 0.4286,
       "avg_primary_backrake": 19.3402,
       "avg_backup_backrake": 24.0462,
-      "backrake_differential": 4.706
+      "backrake_differential": 4.706,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "2249": {
@@ -4446,7 +4806,8 @@
       "gauge_backup_ratio": 1.0,
       "avg_primary_backrake": 20.5876,
       "avg_backup_backrake": 29.3701,
-      "backrake_differential": 8.7824
+      "backrake_differential": 8.7824,
+      "zone_engagement": {}
     }
   },
   "2251": {
@@ -4496,7 +4857,10 @@
       "gauge_backup_ratio": 0.8571,
       "avg_primary_backrake": 24.9734,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 0.0266
+      "backrake_differential": 0.0266,
+      "zone_engagement": {
+        "taper_knuckle_engage": 156
+      }
     }
   },
   "2252": {
@@ -4546,7 +4910,10 @@
       "gauge_backup_ratio": 1.0,
       "avg_primary_backrake": 21.5745,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.4255
+      "backrake_differential": 3.4255,
+      "zone_engagement": {
+        "six_three_engage": 31
+      }
     }
   },
   "2256": {
@@ -4596,7 +4963,12 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 26.6796,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": -1.6796
+      "backrake_differential": -1.6796,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 234,
+        "taper_pdc_engage": 78
+      }
     }
   },
   "2265": {
@@ -4646,7 +5018,12 @@
       "gauge_backup_ratio": 0.3871,
       "avg_primary_backrake": 20.9713,
       "avg_backup_backrake": 28.546,
-      "backrake_differential": 7.5747
+      "backrake_differential": 7.5747,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2266": {
@@ -4696,7 +5073,12 @@
       "gauge_backup_ratio": 0.3871,
       "avg_primary_backrake": 20.9713,
       "avg_backup_backrake": 28.546,
-      "backrake_differential": 7.5747
+      "backrake_differential": 7.5747,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2267": {
@@ -4746,7 +5128,12 @@
       "gauge_backup_ratio": 0.3871,
       "avg_primary_backrake": 20.9713,
       "avg_backup_backrake": 28.546,
-      "backrake_differential": 7.5747
+      "backrake_differential": 7.5747,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2268": {
@@ -4796,7 +5183,11 @@
       "gauge_backup_ratio": 0.8182,
       "avg_primary_backrake": 20.6696,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.3304
+      "backrake_differential": 4.3304,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_knuckle_engage": 47
+      }
     }
   },
   "2270": {
@@ -4846,7 +5237,11 @@
       "gauge_backup_ratio": 0.7857,
       "avg_primary_backrake": 21.9425,
       "avg_backup_backrake": 24.0376,
-      "backrake_differential": 2.0951
+      "backrake_differential": 2.0951,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2272": {
@@ -4896,7 +5291,11 @@
       "gauge_backup_ratio": 0.6667,
       "avg_primary_backrake": 24.3512,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 0.6488
+      "backrake_differential": 0.6488,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2362": {
@@ -4946,7 +5345,12 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 21.7029,
       "avg_backup_backrake": 23.9672,
-      "backrake_differential": 2.2643
+      "backrake_differential": 2.2643,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 47,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "2381": {
@@ -4996,7 +5400,13 @@
       "gauge_backup_ratio": 0.4884,
       "avg_primary_backrake": 22.2872,
       "avg_backup_backrake": 27.2719,
-      "backrake_differential": 4.9847
+      "backrake_differential": 4.9847,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 109,
+        "taper_knuckle_engage": 47
+      }
     }
   },
   "2556": {
@@ -5046,7 +5456,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 19.4079,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 5.5921
+      "backrake_differential": 5.5921,
+      "zone_engagement": {}
     }
   },
   "2746": {
@@ -5096,7 +5507,13 @@
       "gauge_backup_ratio": 0.6486,
       "avg_primary_backrake": 21.8989,
       "avg_backup_backrake": 31.8996,
-      "backrake_differential": 10.0007
+      "backrake_differential": 10.0007,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 109,
+        "taper_knuckle_engage": 47
+      }
     }
   },
   "3219": {
@@ -5146,7 +5563,11 @@
       "gauge_backup_ratio": 0.5385,
       "avg_primary_backrake": 23.1872,
       "avg_backup_backrake": 39.7962,
-      "backrake_differential": 16.609
+      "backrake_differential": 16.609,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 47
+      }
     }
   },
   "3336": {
@@ -5196,7 +5617,12 @@
       "gauge_backup_ratio": 0.4571,
       "avg_primary_backrake": 23.4488,
       "avg_backup_backrake": 28.8727,
-      "backrake_differential": 5.4239
+      "backrake_differential": 5.4239,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 78
+      }
     }
   },
   "3449": {
@@ -5246,7 +5672,11 @@
       "gauge_backup_ratio": 0.4545,
       "avg_primary_backrake": 21.4542,
       "avg_backup_backrake": 26.5441,
-      "backrake_differential": 5.0898
+      "backrake_differential": 5.0898,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "3943": {
@@ -5296,7 +5726,11 @@
       "gauge_backup_ratio": 0.4545,
       "avg_primary_backrake": 21.4542,
       "avg_backup_backrake": 26.5441,
-      "backrake_differential": 5.0898
+      "backrake_differential": 5.0898,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "4149": {
@@ -5346,7 +5780,11 @@
       "gauge_backup_ratio": 0.7826,
       "avg_primary_backrake": 21.9082,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.0918
+      "backrake_differential": 3.0918,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "4206": {
@@ -5396,7 +5834,12 @@
       "gauge_backup_ratio": 0.4375,
       "avg_primary_backrake": 18.9284,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 6.0716
+      "backrake_differential": 6.0716,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 156,
+        "taper_knuckle_engage": 47
+      }
     }
   },
   "4288": {
@@ -5446,7 +5889,12 @@
       "gauge_backup_ratio": 0.4615,
       "avg_primary_backrake": 20.7684,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.2316
+      "backrake_differential": 4.2316,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 78,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "4538": {
@@ -5496,7 +5944,11 @@
       "gauge_backup_ratio": 0.3226,
       "avg_primary_backrake": 19.7596,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 5.2404
+      "backrake_differential": 5.2404,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "4720": {
@@ -5546,7 +5998,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 20.0184,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.9816
+      "backrake_differential": 4.9816,
+      "zone_engagement": {}
     }
   },
   "4796": {
@@ -5596,7 +6049,12 @@
       "gauge_backup_ratio": 0.8125,
       "avg_primary_backrake": 23.6087,
       "avg_backup_backrake": 24.2963,
-      "backrake_differential": 0.6876
+      "backrake_differential": 0.6876,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "taper_knuckle_engage": 47
+      }
     }
   },
   "5481": {
@@ -5646,7 +6104,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 22.1195,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 2.8805
+      "backrake_differential": 2.8805,
+      "zone_engagement": {}
     }
   },
   "5646": {
@@ -5696,7 +6155,13 @@
       "gauge_backup_ratio": 0.1818,
       "avg_primary_backrake": 20.861,
       "avg_backup_backrake": 21.571,
-      "backrake_differential": 0.71
+      "backrake_differential": 0.71,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 109,
+        "taper_knuckle_engage": 109
+      }
     }
   },
   "5674": {
@@ -5746,7 +6211,12 @@
       "gauge_backup_ratio": 0.4762,
       "avg_primary_backrake": 20.9536,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.0464
+      "backrake_differential": 4.0464,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 78,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "5911": {
@@ -5796,7 +6266,12 @@
       "gauge_backup_ratio": 0.2667,
       "avg_primary_backrake": 19.5678,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 5.4322
+      "backrake_differential": 5.4322,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 31
+      }
     }
   },
   "6135": {
@@ -5846,7 +6321,12 @@
       "gauge_backup_ratio": 0.4762,
       "avg_primary_backrake": 21.029,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.971
+      "backrake_differential": 3.971,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "6150": {
@@ -5896,7 +6376,12 @@
       "gauge_backup_ratio": 0.5455,
       "avg_primary_backrake": 19.8455,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 5.1545
+      "backrake_differential": 5.1545,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 234,
+        "taper_knuckle_engage": 47
+      }
     }
   },
   "6207": {
@@ -5946,7 +6431,12 @@
       "gauge_backup_ratio": 0.6111,
       "avg_primary_backrake": 20.9636,
       "avg_backup_backrake": 22.0216,
-      "backrake_differential": 1.058
+      "backrake_differential": 1.058,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "6513": {
@@ -5996,7 +6486,8 @@
       "gauge_backup_ratio": 0.0,
       "avg_primary_backrake": 22.3121,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 2.6879
+      "backrake_differential": 2.6879,
+      "zone_engagement": {}
     }
   },
   "6653": {
@@ -6046,7 +6537,14 @@
       "gauge_backup_ratio": 0.5745,
       "avg_primary_backrake": 19.7209,
       "avg_backup_backrake": 27.9612,
-      "backrake_differential": 8.2404
+      "backrake_differential": 8.2404,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 78,
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "6841": {
@@ -6096,7 +6594,10 @@
       "gauge_backup_ratio": 0.7143,
       "avg_primary_backrake": 22.0789,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 2.9211
+      "backrake_differential": 2.9211,
+      "zone_engagement": {
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "7182": {
@@ -6146,7 +6647,12 @@
       "gauge_backup_ratio": 0.4815,
       "avg_primary_backrake": 22.5773,
       "avg_backup_backrake": 27.2333,
-      "backrake_differential": 4.656
+      "backrake_differential": 4.656,
+      "zone_engagement": {
+        "nose_pdc_engage": 234,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 78
+      }
     }
   },
   "7273": {
@@ -6196,7 +6702,12 @@
       "gauge_backup_ratio": 0.4762,
       "avg_primary_backrake": 21.029,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 3.971
+      "backrake_differential": 3.971,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 31,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "7823": {
@@ -6246,7 +6757,12 @@
       "gauge_backup_ratio": 0.5,
       "avg_primary_backrake": 20.2404,
       "avg_backup_backrake": 25.0,
-      "backrake_differential": 4.7596
+      "backrake_differential": 4.7596,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 234,
+        "taper_knuckle_engage": 109
+      }
     }
   },
   "8479": {
@@ -6296,7 +6812,12 @@
       "gauge_backup_ratio": 0.6111,
       "avg_primary_backrake": 20.9636,
       "avg_backup_backrake": 22.0216,
-      "backrake_differential": 1.058
+      "backrake_differential": 1.058,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47,
+        "taper_knuckle_engage": 31
+      }
     }
   },
   "8896": {
@@ -6346,7 +6867,12 @@
       "gauge_backup_ratio": 0.4865,
       "avg_primary_backrake": 21.6115,
       "avg_backup_backrake": 24.9277,
-      "backrake_differential": 3.3162
+      "backrake_differential": 3.3162,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "nose_pdc_engage": 47,
+        "taper_pdc_engage": 31
+      }
     }
   },
   "9387": {
@@ -6396,7 +6922,11 @@
       "gauge_backup_ratio": 0.875,
       "avg_primary_backrake": 24.0957,
       "avg_backup_backrake": 23.0,
-      "backrake_differential": -1.0957
+      "backrake_differential": -1.0957,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47
+      }
     }
   },
   "9692": {
@@ -6446,7 +6976,12 @@
       "gauge_backup_ratio": 0.5918,
       "avg_primary_backrake": 23.923,
       "avg_backup_backrake": 32.3226,
-      "backrake_differential": 8.3996
+      "backrake_differential": 8.3996,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 47
+      }
     }
   },
   "9944": {
@@ -6496,7 +7031,13 @@
       "gauge_backup_ratio": 0.6757,
       "avg_primary_backrake": 21.9723,
       "avg_backup_backrake": 32.0656,
-      "backrake_differential": 10.0932
+      "backrake_differential": 10.0932,
+      "zone_engagement": {
+        "six_three_engage": 31,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 78,
+        "taper_knuckle_engage": 47
+      }
     }
   }
 }
