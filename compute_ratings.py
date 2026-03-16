@@ -14,6 +14,16 @@ Layout classification derived from cutter geometry:
 - Force direction: detected from orientation vectors (dz=axial vs dx/dy=radial)
 - 6-3 offset: detected from Z-position differences between blade groups
 - Blade exposure equality: detected from how uniformly blades cover the profile
+
+IPR-dependent engagement analysis:
+- Cutter naming convention: X.YZZ where X=blade, Y=row (1=primary, 2+=backup), ZZ=position
+- Row 2+ cutters trail behind row 1 primaries at similar radial positions
+- As IPR increases, more cutters engage; load distributions shift dynamically
+- Helix angle decreases at larger radii, affecting effective rake angle
+- Back-up element placement (radial offset, Z offset, degrees trailing) determines
+  min engagement speed, magnitude of engagement, and rate of engagement
+- Knuckles vs PDC backups have different engagement characteristics
+- Some elements are intentionally underexposed (doing no work at operating IPR)
 """
 
 import openpyxl
@@ -21,6 +31,7 @@ import os
 import glob
 import math
 import json
+import re
 import warnings
 import numpy as np
 from collections import defaultdict
@@ -133,8 +144,22 @@ def extract_cutters_from_me_file(filepath):
                 data["blade"] = int(blade_str)
             except ValueError:
                 continue
+            # Parse row number from naming convention: X.YZZ
+            # Y=row (1=primary, 2+=backup), ZZ=radial position number
+            suffix = name_str.split(".")[1]
+            if len(suffix) >= 3:
+                data["cutter_row"] = int(suffix[0])
+                data["pos_num"] = int(suffix[1:])
+            else:
+                data["cutter_row"] = 1
+                data["pos_num"] = int(suffix) if suffix.isdigit() else 0
         else:
             continue
+
+        # Identify element type: knuckle vs PDC
+        elem = data.get("element")
+        elem_str = str(elem) if elem is not None else ""
+        data["is_knuckle"] = "CPS" in elem_str.upper() or "knuckle" in elem_str.lower()
 
         # Convert back rake for v6.xx files (stored as 180 - actual_backrake)
         if is_v6 and data.get("backrake_raw") is not None:
@@ -168,6 +193,17 @@ def extract_cutters_from_me_file(filepath):
                 data["radial_pos"] = math.sqrt(x**2 + y**2)
 
         cutters.append(data)
+
+    # Deduplicate: each cutter appears twice (tip entry and base entry).
+    # Keep the first occurrence per name (tip entry has the actual back rake).
+    seen_names = set()
+    unique_cutters = []
+    for c in cutters:
+        name = str(c.get("name", ""))
+        if name not in seen_names:
+            seen_names.add(name)
+            unique_cutters.append(c)
+    cutters = unique_cutters
 
     wb.close()
     return cutters, bit_diameter, engagement_thresholds
@@ -323,6 +359,218 @@ def detect_layout_from_geometry(cutters, gauge_radius):
     }
 
 
+def analyze_backup_engagement(cutters, gauge_radius, engagement_thresholds):
+    """
+    Analyze back-up element placement and IPR-dependent engagement behavior.
+
+    Uses the cutter naming convention (X.YZZ) to identify primary (row 1) vs
+    trailing backup (row 2+) cutters, then computes:
+    - Primary-backup pair offsets (radial, Z) that determine engagement behavior
+    - Backup coverage: what fraction of the profile has backup elements
+    - Knuckle vs PDC backup ratio
+    - IPR-dependent engagement progression (how load distribution shifts with IPR)
+    - Identification of non-working elements (extremely underexposed)
+
+    Per the characterization document:
+    - Radial tip offset affects min engagement speed and magnitude
+    - Z tip offset affects min engagement speed (higher = engages later)
+    - Degrees trailing affects sensitivity to IPR changes
+    - As IPR increases, helix angle changes, effective rake changes, more cutters engage
+    """
+    primary_cutters = [c for c in cutters if c.get("cutter_row", 1) == 1]
+    backup_cutters = [c for c in cutters if c.get("cutter_row", 1) >= 2]
+
+    total = len(cutters)
+    n_primary = len(primary_cutters)
+    n_backup = len(backup_cutters)
+
+    if total == 0:
+        return _default_backup_metrics()
+
+    backup_ratio = n_backup / total
+
+    # --- Identify knuckle vs PDC backups ---
+    knuckle_backups = [c for c in backup_cutters if c.get("is_knuckle", False)]
+    pdc_backups = [c for c in backup_cutters if not c.get("is_knuckle", False)]
+    knuckle_ratio = len(knuckle_backups) / n_backup if n_backup > 0 else 0.0
+
+    # --- Match primary-backup pairs by (blade, pos_num) ---
+    by_blade_pos = defaultdict(dict)
+    for c in cutters:
+        key = (c["blade"], c.get("pos_num", 0))
+        row = c.get("cutter_row", 1)
+        by_blade_pos[key][row] = c
+
+    radial_offsets = []
+    z_offsets = []
+    paired_positions = 0
+    unpaired_backup_positions = 0
+
+    for key, rows in by_blade_pos.items():
+        if 1 in rows and 2 in rows:
+            p = rows[1]
+            b = rows[2]
+            rp = p.get("radial_pos")
+            rb = b.get("radial_pos")
+            zp = p.get("z")
+            zb = b.get("z")
+            if (isinstance(rp, (int, float)) and isinstance(rb, (int, float))
+                    and isinstance(zp, (int, float)) and isinstance(zb, (int, float))):
+                radial_offsets.append(abs(rb - rp))
+                z_offsets.append(abs(zb - zp))
+                paired_positions += 1
+        elif 2 in rows and 1 not in rows:
+            # Backup without a same-blade primary: trails behind another blade's cutter
+            # Find nearest row-1 cutter across all blades at similar radial position
+            b = rows[2]
+            rb = b.get("radial_pos")
+            if isinstance(rb, (int, float)):
+                best_dist = float("inf")
+                best_primary = None
+                for pc in primary_cutters:
+                    rp = pc.get("radial_pos")
+                    if isinstance(rp, (int, float)):
+                        d = abs(rp - rb)
+                        if d < best_dist:
+                            best_dist = d
+                            best_primary = pc
+                if best_primary is not None:
+                    zp = best_primary.get("z")
+                    zb = b.get("z")
+                    if isinstance(zp, (int, float)) and isinstance(zb, (int, float)):
+                        radial_offsets.append(best_dist)
+                        z_offsets.append(abs(zb - zp))
+                        paired_positions += 1
+            unpaired_backup_positions += 1
+
+    avg_radial_offset = float(np.mean(radial_offsets)) if radial_offsets else 0.0
+    avg_z_offset = float(np.mean(z_offsets)) if z_offsets else 0.0
+    max_z_offset = max(z_offsets) if z_offsets else 0.0
+
+    # --- Backup coverage: what fraction of the radial profile has backup elements ---
+    if gauge_radius > 0 and n_backup > 0:
+        n_bins = 20
+        bin_width = gauge_radius / n_bins
+        primary_bins = set()
+        backup_bins = set()
+        for c in primary_cutters:
+            rp = c.get("radial_pos")
+            if isinstance(rp, (int, float)) and bin_width > 0:
+                primary_bins.add(min(int(abs(rp) / bin_width), n_bins - 1))
+        for c in backup_cutters:
+            rp = c.get("radial_pos")
+            if isinstance(rp, (int, float)) and bin_width > 0:
+                backup_bins.add(min(int(abs(rp) / bin_width), n_bins - 1))
+        backup_profile_coverage = len(backup_bins & primary_bins) / len(primary_bins) if primary_bins else 0.0
+    else:
+        backup_profile_coverage = 0.0
+
+    # --- IPR-dependent engagement progression ---
+    # The engagement_thresholds from Settings represent discrete IPR levels at which
+    # new element size classes begin engaging. Analyze how the working cutter count
+    # grows across these thresholds.
+    #
+    # At low IPR: only the most exposed cutters work (aggressive, fewer cutters sharing load)
+    # At high IPR: backup cutters engage, redistributing load (more durable, lower ROP)
+    if engagement_thresholds and len(engagement_thresholds) >= 2:
+        sorted_thresholds = sorted(engagement_thresholds)
+        # Engagement spread: range of IPR over which cutters progressively engage
+        engagement_spread = sorted_thresholds[-1] - sorted_thresholds[0]
+        # Engagement concentration: are most thresholds clustered low (aggressive)
+        # or spread out (gradual engagement)?
+        median_threshold = float(np.median(sorted_thresholds))
+        # Low-IPR working fraction: what fraction of thresholds are below median?
+        # Higher = more cutters engage early = more durable at low IPR
+        low_ipr_fraction = sum(1 for t in sorted_thresholds if t <= median_threshold) / len(sorted_thresholds)
+    else:
+        engagement_spread = 0.25
+        median_threshold = 0.25
+        low_ipr_fraction = 0.5
+
+    # --- Identify non-working elements ---
+    # Extremely underexposed knuckles that are "just there" doing nothing.
+    # These have very large Z offsets relative to their primaries, making them
+    # essentially decorative at normal operating IPR.
+    non_working_count = 0
+    if z_offsets:
+        # Consider a backup "non-working" if its Z offset is > 3x the average
+        z_threshold = avg_z_offset * 3.0 if avg_z_offset > 0 else 0.1
+        for i, zo in enumerate(z_offsets):
+            if zo > z_threshold:
+                non_working_count += 1
+    non_working_ratio = non_working_count / n_backup if n_backup > 0 else 0.0
+
+    # --- Helix angle effect at gauge ---
+    # At larger radii, the helix angle decreases (POM becomes more circular).
+    # This means gauge cutters have higher effective rake at a given IPR,
+    # making them more aggressive relative to inner cutters.
+    # Compute the ratio of backup cutters in the gauge region
+    gauge_threshold = 0.85 * gauge_radius if gauge_radius > 0 else 4.0
+    gauge_backups = [c for c in backup_cutters
+                     if isinstance(c.get("radial_pos"), (int, float))
+                     and abs(c["radial_pos"]) > gauge_threshold]
+    gauge_backup_ratio = len(gauge_backups) / n_backup if n_backup > 0 else 0.0
+
+    # --- Backup back rake analysis ---
+    # Backup cutters typically have different (often higher) back rake than primaries
+    primary_br = [c["backrake"] for c in primary_cutters
+                  if c.get("backrake") is not None
+                  and isinstance(c["backrake"], (int, float)) and 0 < c["backrake"] < 60]
+    backup_br = [c["backrake"] for c in pdc_backups
+                 if c.get("backrake") is not None
+                 and isinstance(c["backrake"], (int, float)) and 0 < c["backrake"] < 60]
+    avg_primary_backrake = float(np.mean(primary_br)) if primary_br else 20.0
+    avg_backup_backrake = float(np.mean(backup_br)) if backup_br else 25.0
+    backrake_differential = avg_backup_backrake - avg_primary_backrake
+
+    return {
+        "backup_ratio": float(backup_ratio),
+        "knuckle_ratio": float(knuckle_ratio),
+        "n_primary": n_primary,
+        "n_backup": n_backup,
+        "n_knuckle_backups": len(knuckle_backups),
+        "n_pdc_backups": len(pdc_backups),
+        "avg_radial_offset": float(avg_radial_offset),
+        "avg_z_offset": float(avg_z_offset),
+        "max_z_offset": float(max_z_offset),
+        "paired_positions": paired_positions,
+        "backup_profile_coverage": float(backup_profile_coverage),
+        "engagement_spread": float(engagement_spread),
+        "median_threshold": float(median_threshold),
+        "low_ipr_fraction": float(low_ipr_fraction),
+        "non_working_ratio": float(non_working_ratio),
+        "gauge_backup_ratio": float(gauge_backup_ratio),
+        "avg_primary_backrake": float(avg_primary_backrake),
+        "avg_backup_backrake": float(avg_backup_backrake),
+        "backrake_differential": float(backrake_differential),
+    }
+
+
+def _default_backup_metrics():
+    """Return default backup metrics when no cutters are available."""
+    return {
+        "backup_ratio": 0.0,
+        "knuckle_ratio": 0.0,
+        "n_primary": 0,
+        "n_backup": 0,
+        "n_knuckle_backups": 0,
+        "n_pdc_backups": 0,
+        "avg_radial_offset": 0.0,
+        "avg_z_offset": 0.0,
+        "max_z_offset": 0.0,
+        "paired_positions": 0,
+        "backup_profile_coverage": 0.0,
+        "engagement_spread": 0.25,
+        "median_threshold": 0.25,
+        "low_ipr_fraction": 0.5,
+        "non_working_ratio": 0.0,
+        "gauge_backup_ratio": 0.0,
+        "avg_primary_backrake": 20.0,
+        "avg_backup_backrake": 25.0,
+        "backrake_differential": 5.0,
+    }
+
+
 def compute_metrics(cutters, bit_diameter, engagement_thresholds):
     """
     Compute durability and steerability metrics purely from Min Engagement data.
@@ -351,6 +599,9 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
 
     # --- LAYOUT DETECTION FROM GEOMETRY ---
     layout = detect_layout_from_geometry(cutters, gauge_radius)
+
+    # --- BACKUP ENGAGEMENT ANALYSIS ---
+    backup = analyze_backup_engagement(cutters, gauge_radius, engagement_thresholds)
 
     # --- BACK RAKE STATISTICS (from ME file) ---
     all_backrakes = [c["backrake"] for c in cutters
@@ -478,6 +729,26 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
         "max_engagement_threshold": max_engagement_threshold,
         "avg_depth": avg_depth,
         "gauge_radius": gauge_radius,
+        # Backup engagement analysis (IPR-dependent behavior)
+        "backup_ratio": backup["backup_ratio"],
+        "knuckle_ratio": backup["knuckle_ratio"],
+        "n_primary": backup["n_primary"],
+        "n_backup": backup["n_backup"],
+        "n_knuckle_backups": backup["n_knuckle_backups"],
+        "n_pdc_backups": backup["n_pdc_backups"],
+        "avg_radial_offset": backup["avg_radial_offset"],
+        "avg_z_offset": backup["avg_z_offset"],
+        "max_z_offset": backup["max_z_offset"],
+        "paired_positions": backup["paired_positions"],
+        "backup_profile_coverage": backup["backup_profile_coverage"],
+        "engagement_spread": backup["engagement_spread"],
+        "median_threshold": backup["median_threshold"],
+        "low_ipr_fraction": backup["low_ipr_fraction"],
+        "non_working_ratio": backup["non_working_ratio"],
+        "gauge_backup_ratio": backup["gauge_backup_ratio"],
+        "avg_primary_backrake": backup["avg_primary_backrake"],
+        "avg_backup_backrake": backup["avg_backup_backrake"],
+        "backrake_differential": backup["backrake_differential"],
     }
 
 
@@ -570,29 +841,54 @@ def main():
     # Factors (higher = more durable):
     #   1. redundancy_score: blade-pair radial overlap (redundant layouts score high)
     #   2. avg_backrake: higher back rake = more conservative = more durable
-    #   3. avg_blades_per_zone: more blades per radial zone = more coverage
-    #   4. blade_exposure_equality: all blades equally exposed = more durable at low IPR
-    #   5. cutter_density: more cutters per unit radius = more durable
-    #   6. avg_spacing_cv: lower CV = more uniform spacing = more durable (inverted)
-    #   7. six_three_offset: larger offset = less durable at low IPR (inverted)
+    #   3. zone_coverage: more blades per radial zone = more coverage
+    #   4. exposure_equality: all blades equally exposed = more durable at low IPR
+    #   5. density: more cutters per unit radius = more durable
+    #   6. uniformity: lower CV = more uniform spacing = more durable (inverted)
+    #   7. low_ipr_durability: inverse of 6-3 offset (less offset = more durable at low IPR)
+    #   8. backup_coverage: more backup elements covering the profile = DBR prevention
+    #   9. engagement_progression: gradual engagement = load redistribution as wear occurs
+    #  10. backup_backrake: higher backup back rake = more conservative engagement
 
     dur_comp_names = [
         "redundancy", "backrake", "zone_coverage", "exposure_equality",
         "density", "uniformity", "low_ipr_durability",
+        "backup_coverage", "engagement_progression", "backup_backrake",
     ]
     weights_dur = {
-        "redundancy": 0.25,          # Radial overlap between blade pairs
-        "backrake": 0.20,            # Average back rake from ME file
-        "zone_coverage": 0.15,       # Blades per radial zone
-        "exposure_equality": 0.15,   # All blades equally exposed (F-Type, Redundant score high)
-        "density": 0.10,             # Cutter density
-        "uniformity": 0.10,          # Spacing uniformity
-        "low_ipr_durability": 0.05,  # Inverse of 6-3 offset (less offset = more durable at low IPR)
+        "redundancy": 0.18,              # Radial overlap between blade pairs
+        "backrake": 0.14,                # Average back rake from ME file
+        "zone_coverage": 0.10,           # Blades per radial zone
+        "exposure_equality": 0.10,       # All blades equally exposed
+        "density": 0.08,                 # Cutter density
+        "uniformity": 0.05,              # Spacing uniformity
+        "low_ipr_durability": 0.05,      # Inverse of 6-3 offset
+        "backup_coverage": 0.15,         # Backup elements covering the profile (DBR prevention)
+        "engagement_progression": 0.10,  # Gradual IPR-dependent engagement progression
+        "backup_backrake": 0.05,         # Higher backup back rake = more conservative
     }
 
     durability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
+        # Backup coverage: combines backup ratio, profile coverage, and PDC backup density
+        # PDC backups contribute more to durability than knuckles (which mainly limit ROP)
+        pdc_backup_factor = m["n_pdc_backups"] / max(m["n_primary"], 1)
+        backup_coverage_raw = (
+            m["backup_ratio"] * 0.4
+            + m["backup_profile_coverage"] * 0.4
+            + min(pdc_backup_factor, 1.0) * 0.2
+        )
+
+        # Engagement progression: gradual engagement = better load redistribution
+        # Higher engagement_spread + higher low_ipr_fraction = more gradual engagement
+        # Non-working elements reduce effective progression
+        engagement_prog = (
+            min(m["engagement_spread"] * 4.0, 1.0) * 0.5
+            + m["low_ipr_fraction"] * 0.3
+            + (1.0 - m["non_working_ratio"]) * 0.2
+        )
+
         durability_components[bn] = {
             "redundancy": m["redundancy_score"],
             "backrake": m["avg_backrake"],
@@ -600,7 +896,10 @@ def main():
             "exposure_equality": m["blade_exposure_equality"],
             "density": m["cutter_density"],
             "uniformity": 1.0 - min(m["avg_spacing_cv"], 1.0),
-            "low_ipr_durability": 1.0 - min(m["six_three_offset"] * 20.0, 1.0),  # scale offset
+            "low_ipr_durability": 1.0 - min(m["six_three_offset"] * 20.0, 1.0),
+            "backup_coverage": backup_coverage_raw,
+            "engagement_progression": engagement_prog,
+            "backup_backrake": min(m["avg_backup_backrake"] / 40.0, 1.0),
         }
 
     # Normalize each component to 0-1 across the population
@@ -631,7 +930,7 @@ def main():
     # STEERABILITY SCORING - all inputs from Min Engagement geometry
     # =========================================================================
     # Factors (higher = more steerable):
-    #   1. axial_force_ratio: predominantly axial forces = better tool face control
+    #   1. axial_dominance: predominantly axial forces = better tool face control
     #   2. gauge_openness: fewer gauge cutters = less resistance to side forces
     #   3. gauge_aggressiveness: lower gauge back rake = less stabilizing = more steerable
     #   4. cone_aggressiveness: lower cone back rake = more aggressive cone = builds angle
@@ -639,26 +938,36 @@ def main():
     #   6. siderake: more side rake = directional force component
     #   7. lateral_force: force imbalance = tendency to walk
     #   8. blade_factor: fewer effective blades = less stabilizing
+    #   9. knuckle_effect: knuckles limit ROP, typically used to improve steerability
+    #  10. gauge_backup_openness: fewer gauge backups = less stabilizing at gauge
 
     steer_comp_names = [
         "axial_dominance", "gauge_openness", "gauge_aggressiveness",
         "cone_aggressiveness", "profile_depth", "siderake",
         "lateral_force", "blade_factor",
+        "knuckle_effect", "gauge_backup_openness",
     ]
     weights_steer = {
-        "axial_dominance": 0.20,       # Axial force = better tool face = more steerable
-        "gauge_openness": 0.15,        # Fewer gauge cutters = more steerable
-        "gauge_aggressiveness": 0.15,  # Lower gauge back rake = more steerable
-        "cone_aggressiveness": 0.15,   # Lower cone back rake = builds angle
-        "profile_depth": 0.10,         # Deeper profile = more steerable
-        "siderake": 0.10,              # Side rake = directional force
-        "lateral_force": 0.05,         # Force imbalance
-        "blade_factor": 0.10,          # Fewer effective blades = more steerable
+        "axial_dominance": 0.16,          # Axial force = better tool face = more steerable
+        "gauge_openness": 0.12,           # Fewer gauge cutters = more steerable
+        "gauge_aggressiveness": 0.12,     # Lower gauge back rake = more steerable
+        "cone_aggressiveness": 0.12,      # Lower cone back rake = builds angle
+        "profile_depth": 0.08,            # Deeper profile = more steerable
+        "siderake": 0.08,                 # Side rake = directional force
+        "lateral_force": 0.05,            # Force imbalance
+        "blade_factor": 0.08,             # Fewer effective blades = more steerable
+        "knuckle_effect": 0.12,           # Knuckles limit ROP = improve steerability when sliding
+        "gauge_backup_openness": 0.07,    # Fewer gauge backups = less stabilizing at gauge
     }
 
     steerability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
+        # Knuckle effect: knuckles limit ROP and improve steerability when sliding.
+        # More knuckles relative to total backups = more steerability benefit.
+        # But non-working knuckles (extremely underexposed) don't contribute.
+        effective_knuckle_ratio = m["knuckle_ratio"] * (1.0 - m["non_working_ratio"])
+
         steerability_components[bn] = {
             "axial_dominance": m["axial_force_ratio"],
             "gauge_openness": 1.0 - m["gauge_cutter_ratio"],
@@ -668,6 +977,8 @@ def main():
             "siderake": m["avg_siderake"],
             "lateral_force": m["lateral_resultant"],
             "blade_factor": 1.0 / m["effective_blade_count"] if m["effective_blade_count"] > 0 else 0.5,
+            "knuckle_effect": effective_knuckle_ratio,
+            "gauge_backup_openness": 1.0 - m["gauge_backup_ratio"],
         }
 
     # Normalize each component to 0-1
@@ -695,9 +1006,10 @@ def main():
             steerability_scores[bn] = 4.5
 
     # --- PRINT RESULTS ---
-    print("\n" + "=" * 100)
-    print(f"{'Bit':<7} {'Layout (ref)':<18} {'Bl':<4} {'Cut':<5} {'Redund':<8} {'AxF%':<6} {'6-3off':<8} {'Dur':<6} {'Steer':<6}")
-    print("=" * 100)
+    print("\n" + "=" * 130)
+    print(f"{'Bit':<7} {'Layout (ref)':<18} {'Bl':<4} {'Cut':<5} {'R1':<4} {'R2':<4} {'Kn':<3} "
+          f"{'Redund':<8} {'BkCov':<6} {'ΔR':<7} {'Δz':<7} {'Dur':<6} {'Steer':<6}")
+    print("=" * 130)
     for bit in bits:
         bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
         dur = durability_scores.get(bn, "-")
@@ -706,10 +1018,12 @@ def main():
         m = all_metrics.get(bn)
         if m:
             print(f"  {bn:<7} {layout:<18} {m['num_blades']:<4} {m['total_cutters']:<5} "
-                  f"{m['redundancy_score']:.2f}   {m['axial_force_ratio']:.2f}  "
-                  f"{m['six_three_offset']:.4f}  {dur:<6} {steer:<6}")
+                  f"{m['n_primary']:<4} {m['n_backup']:<4} {m['n_knuckle_backups']:<3} "
+                  f"{m['redundancy_score']:.2f}   {m['backup_profile_coverage']:.2f}  "
+                  f"{m['avg_radial_offset']:.4f} {m['avg_z_offset']:.4f} {dur:<6} {steer:<6}")
         else:
-            print(f"  {bn:<7} {layout:<18} -    -     -       -      -         -      -")
+            print(f"  {bn:<7} {layout:<18} -    -     -    -    -   "
+                  f"-       -      -       -       -      -")
 
     # --- WRITE TO WORKBOOK ---
     print(f"\nWriting scores to {WORKBOOK_PATH}...")
