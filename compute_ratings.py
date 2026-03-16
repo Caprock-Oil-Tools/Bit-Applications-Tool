@@ -571,6 +571,82 @@ def _default_backup_metrics():
     }
 
 
+def extract_engagement_summary(filepath):
+    """
+    Extract zone-specific engagement values directly from ME file summary area.
+
+    The Assy.Model sheet contains a "Sceondary Cutting Structure" summary block
+    with pre-computed min engagement values (ft/hr · 100 rpm) for:
+      - Sec PDC (row 29): nose and taper engagement
+      - Knuckle (row 30): nose and taper engagement
+
+    Column mapping depends on ME file version:
+      - v6.xx: JH = Nose engage, JI = Taper engage
+      - v7.xx/v8.xx: JJ = Nose engage, JK = Taper engage
+
+    Returns dict with keys matching compute_zone_engagement output, or empty dict
+    if the summary area is not found or has no data.
+    """
+    try:
+        wb = openpyxl.load_workbook(filepath, data_only=True, read_only=True)
+        ws = wb["Assy.Model"]
+        basename = os.path.basename(filepath)
+        is_v6 = "v6." in basename
+
+        # Engagement values stored in rows 29-30 of Assy.Model
+        # v6: columns JH (Nose) and JI (Taper)
+        # v7/v8: columns JJ (Nose) and JK (Taper)
+        nose_col = "JH" if is_v6 else "JJ"
+        taper_col = "JI" if is_v6 else "JK"
+        label_col = "JA" if is_v6 else "JC"
+
+        result = {}
+        for row_idx, row in enumerate(ws.iter_rows(values_only=False), 1):
+            if row_idx not in (29, 30):
+                continue
+
+            # Identify row type from label
+            label = None
+            nose_val = None
+            taper_val = None
+            for c in row:
+                if not hasattr(c, "column_letter"):
+                    continue
+                cl = c.column_letter
+                if cl == label_col and isinstance(c.value, str):
+                    label = c.value.strip()
+                if cl == nose_col and isinstance(c.value, (int, float)):
+                    nose_val = int(round(c.value))
+                if cl == taper_col and isinstance(c.value, (int, float)):
+                    taper_val = int(round(c.value))
+
+            if label is None:
+                # Try the alternate label column (some files use JA, some JC)
+                for c in row:
+                    if not hasattr(c, "column_letter"):
+                        continue
+                    cl = c.column_letter
+                    alt_col = "JC" if is_v6 else "JA"
+                    if cl == alt_col and isinstance(c.value, str):
+                        label = c.value.strip()
+
+            if label and "sec" in label.lower() and "pdc" in label.lower():
+                if nose_val is not None and nose_val > 0:
+                    result["nose_pdc_engage"] = nose_val
+                if taper_val is not None and taper_val > 0:
+                    result["taper_pdc_engage"] = taper_val
+            elif label and "knuckle" in label.lower():
+                if nose_val is not None and nose_val > 0:
+                    result["nose_knuckle_engage"] = nose_val
+                if taper_val is not None and taper_val > 0:
+                    result["taper_knuckle_engage"] = taper_val
+
+        wb.close()
+        return result
+    except Exception:
+        return {}
+
+
 def compute_zone_engagement(cutters, gauge_radius, engagement_thresholds):
     """
     Compute zone-specific minimum engagement values for BAT columns BA-BE.
@@ -1015,6 +1091,14 @@ def main():
 
             metrics = compute_metrics(cutters, bit_diameter, engagement_thresholds)
             if metrics:
+                # Read actual engagement values from ME file summary area (rows 29-30)
+                # These are pre-computed by the ME macro and more accurate than estimates
+                me_engage = extract_engagement_summary(filepath)
+                if me_engage:
+                    # Merge: ME file values take priority over Z-offset estimates
+                    computed_ze = metrics.get("zone_engagement", {})
+                    computed_ze.update(me_engage)
+                    metrics["zone_engagement"] = computed_ze
                 all_metrics[bn] = metrics
         except Exception as e:
             print(f"    ERROR: {e}")

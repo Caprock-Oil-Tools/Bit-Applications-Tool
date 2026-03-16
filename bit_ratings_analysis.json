@@ -207,7 +207,8 @@
       "backrake_differential": -0.3755,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 110,
+        "nose_pdc_engage": 110
       }
     }
   },
@@ -261,8 +262,8 @@
       "backrake_differential": -0.0059,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 234,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 110,
+        "taper_pdc_engage": 120
       }
     }
   },
@@ -315,7 +316,7 @@
       "avg_backup_backrake": 22.5566,
       "backrake_differential": 0.1225,
       "zone_engagement": {
-        "nose_pdc_engage": 156,
+        "nose_pdc_engage": 50,
         "taper_pdc_engage": 31
       }
     }
@@ -369,7 +370,8 @@
       "avg_backup_backrake": 23.2789,
       "backrake_differential": 3.107,
       "zone_engagement": {
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 31,
+        "nose_pdc_engage": 10
       }
     }
   },
@@ -423,8 +425,10 @@
       "backrake_differential": 11.0564,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 78,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 110,
+        "taper_pdc_engage": 110,
+        "nose_knuckle_engage": 80,
+        "taper_knuckle_engage": 130
       }
     }
   },
@@ -478,7 +482,8 @@
       "backrake_differential": 6.682,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 60,
+        "nose_pdc_engage": 70
       }
     }
   },
@@ -532,7 +537,8 @@
       "backrake_differential": 3.2915,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 78
+        "taper_pdc_engage": 110,
+        "nose_pdc_engage": 110
       }
     }
   },
@@ -585,8 +591,8 @@
       "avg_backup_backrake": 23.8324,
       "backrake_differential": 2.7901,
       "zone_engagement": {
-        "nose_pdc_engage": 78,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 50,
+        "taper_pdc_engage": 60
       }
     }
   },
@@ -907,8 +913,10 @@
       "backrake_differential": 2.5874,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 156,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 70,
+        "taper_pdc_engage": 120,
+        "nose_knuckle_engage": 70,
+        "taper_knuckle_engage": 80
       }
     }
   },
@@ -1070,7 +1078,8 @@
       "backrake_differential": 4.1999,
       "zone_engagement": {
         "nose_pdc_engage": 31,
-        "taper_pdc_engage": 47
+        "taper_pdc_engage": 80,
+        "nose_knuckle_engage": 410
       }
     }
   },
@@ -1124,8 +1133,9 @@
       "backrake_differential": 7.0844,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 78
+        "nose_pdc_engage": 230,
+        "taper_pdc_engage": 200,
+        "nose_knuckle_engage": 330
       }
     }
   },
@@ -1179,7 +1189,8 @@
       "backrake_differential": 1.1617,
       "zone_engagement": {
         "nose_pdc_engage": 31,
-        "taper_pdc_engage": 47
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 300
       }
     }
   },
@@ -1232,7 +1243,8 @@
       "avg_backup_backrake": 25.0,
       "backrake_differential": 3.5891,
       "zone_engagement": {
-        "six_three_engage": 31
+        "six_three_engage": 31,
+        "nose_knuckle_engage": 340
       }
     }
   },
@@ -1285,7 +1297,8 @@
       "avg_backup_backrake": 28.7401,
       "backrake_differential": 6.9609,
       "zone_engagement": {
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 180,
+        "nose_pdc_engage": 190
       }
     }
   },
@@ -1338,7 +1351,8 @@
       "avg_backup_backrake": 28.7401,
       "backrake_differential": 6.9609,
       "zone_engagement": {
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 180,
+        "nose_pdc_engage": 190
       }
     }
   },
@@ -1392,8 +1406,10 @@
       "backrake_differential": 7.6681,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 60,
+        "taper_pdc_engage": 30,
+        "nose_knuckle_engage": 140,
+        "taper_knuckle_engage": 50
       }
     }
   },
@@ -1446,7 +1462,8 @@
       "avg_backup_backrake": 25.0,
       "backrake_differential": 3.5693,
       "zone_engagement": {
-        "taper_pdc_engage": 47
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 110
       }
     }
   },
@@ -1499,7 +1516,8 @@
       "avg_backup_backrake": 25.971,
       "backrake_differential": 7.8573,
       "zone_engagement": {
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 50,
+        "nose_pdc_engage": 70
       }
     }
   },
@@ -1606,8 +1624,9 @@
       "avg_backup_backrake": 28.16,
       "backrake_differential": 7.3506,
       "zone_engagement": {
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 170,
+        "taper_pdc_engage": 130,
+        "nose_knuckle_engage": 320
       }
     }
   },
@@ -1712,7 +1731,8 @@
       "backrake_differential": 3.7946,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 550
       }
     }
   },
@@ -1818,7 +1838,8 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "nose_pdc_engage": 31,
-        "taper_pdc_engage": 47
+        "taper_pdc_engage": 47,
+        "nose_knuckle_engage": 50
       }
     }
   },
@@ -1872,8 +1893,9 @@
       "backrake_differential": 2.0399,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 47
+        "nose_pdc_engage": 100,
+        "taper_pdc_engage": 80,
+        "nose_knuckle_engage": 120
       }
     }
   },
@@ -1928,7 +1950,8 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "nose_pdc_engage": 31,
-        "taper_pdc_engage": 78
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 30
       }
     }
   },
@@ -2036,8 +2059,9 @@
       "backrake_differential": -2.6994,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 47
+        "nose_pdc_engage": 90,
+        "taper_pdc_engage": 90,
+        "nose_knuckle_engage": 110
       }
     }
   },
@@ -2091,8 +2115,9 @@
       "backrake_differential": 5.9197,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 200,
+        "taper_pdc_engage": 250,
+        "nose_knuckle_engage": 330
       }
     }
   },
@@ -2145,7 +2170,8 @@
       "avg_backup_backrake": 28.7401,
       "backrake_differential": 6.9609,
       "zone_engagement": {
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 180,
+        "nose_pdc_engage": 190
       }
     }
   },
@@ -2252,7 +2278,8 @@
       "avg_backup_backrake": 25.0,
       "backrake_differential": 4.4598,
       "zone_engagement": {
-        "nose_pdc_engage": 31
+        "nose_pdc_engage": 31,
+        "nose_knuckle_engage": 350
       }
     }
   },
@@ -2306,8 +2333,8 @@
       "backrake_differential": 2.2722,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 170,
+        "taper_pdc_engage": 140
       }
     }
   },
@@ -2361,7 +2388,8 @@
       "backrake_differential": 5.7824,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31
+        "nose_pdc_engage": 31,
+        "nose_knuckle_engage": 500
       }
     }
   },
@@ -2415,8 +2443,10 @@
       "backrake_differential": 11.0564,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 78,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 110,
+        "taper_pdc_engage": 110,
+        "nose_knuckle_engage": 80,
+        "taper_knuckle_engage": 130
       }
     }
   },
@@ -2469,8 +2499,9 @@
       "avg_backup_backrake": 25.8059,
       "backrake_differential": 0.8932,
       "zone_engagement": {
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 78
+        "nose_pdc_engage": 20,
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 140
       }
     }
   },
@@ -2524,8 +2555,10 @@
       "backrake_differential": 2.1354,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 78,
-        "nose_knuckle_engage": 31
+        "taper_pdc_engage": 210,
+        "nose_knuckle_engage": 570,
+        "nose_pdc_engage": 220,
+        "taper_knuckle_engage": 730
       }
     }
   },
@@ -2579,8 +2612,9 @@
       "backrake_differential": 2.3268,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 130,
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 310
       }
     }
   },
@@ -2634,9 +2668,9 @@
       "backrake_differential": 0.806,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 78,
-        "taper_pdc_engage": 47,
-        "taper_knuckle_engage": 31
+        "nose_pdc_engage": 140,
+        "taper_pdc_engage": 130,
+        "taper_knuckle_engage": 520
       }
     }
   },
@@ -2744,8 +2778,9 @@
       "backrake_differential": 7.5747,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 170,
+        "taper_pdc_engage": 140,
+        "nose_knuckle_engage": 360
       }
     }
   },
@@ -2799,7 +2834,8 @@
       "backrake_differential": 7.666,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 130,
+        "nose_pdc_engage": 170
       }
     }
   },
@@ -2853,7 +2889,9 @@
       "backrake_differential": 7.9225,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 260,
+        "nose_pdc_engage": 280,
+        "taper_knuckle_engage": 110
       }
     }
   },
@@ -2907,7 +2945,9 @@
       "backrake_differential": 6.8864,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 100,
+        "nose_pdc_engage": 110,
+        "taper_knuckle_engage": 340
       }
     }
   },
@@ -2961,7 +3001,8 @@
       "backrake_differential": 8.993,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 160,
+        "nose_pdc_engage": 180
       }
     }
   },
@@ -3015,8 +3056,9 @@
       "backrake_differential": -0.2403,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 78
+        "taper_pdc_engage": 730,
+        "nose_knuckle_engage": 510,
+        "nose_pdc_engage": 670
       }
     }
   },
@@ -3071,8 +3113,9 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "nose_pdc_engage": 78,
-        "taper_pdc_engage": 109,
-        "taper_knuckle_engage": 31
+        "taper_pdc_engage": 70,
+        "taper_knuckle_engage": 320,
+        "nose_knuckle_engage": 290
       }
     }
   },
@@ -3181,7 +3224,7 @@
       "backrake_differential": 16.609,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 47
+        "nose_knuckle_engage": 220
       }
     }
   },
@@ -3341,8 +3384,10 @@
       "backrake_differential": 11.0564,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 78,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 110,
+        "taper_pdc_engage": 110,
+        "nose_knuckle_engage": 80,
+        "taper_knuckle_engage": 130
       }
     }
   },
@@ -3396,7 +3441,8 @@
       "backrake_differential": 12.7762,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 47
+        "nose_pdc_engage": 47,
+        "nose_knuckle_engage": 40
       }
     }
   },
@@ -3503,7 +3549,7 @@
       "backrake_differential": 0.5043,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 31
+        "nose_knuckle_engage": 30
       }
     }
   },
@@ -3557,8 +3603,10 @@
       "backrake_differential": 11.0564,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 78,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 110,
+        "taper_pdc_engage": 110,
+        "nose_knuckle_engage": 80,
+        "taper_knuckle_engage": 130
       }
     }
   },
@@ -3667,8 +3715,9 @@
       "backrake_differential": 5.1456,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31,
-        "taper_knuckle_engage": 31
+        "taper_pdc_engage": 170,
+        "taper_knuckle_engage": 410,
+        "nose_pdc_engage": 160
       }
     }
   },
@@ -3777,8 +3826,9 @@
       "backrake_differential": 7.5402,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 31
+        "taper_pdc_engage": 130,
+        "nose_knuckle_engage": 31,
+        "nose_pdc_engage": 170
       }
     }
   },
@@ -3833,8 +3883,9 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "taper_pdc_engage": 47,
-        "nose_knuckle_engage": 31,
-        "taper_knuckle_engage": 31
+        "nose_knuckle_engage": 190,
+        "taper_knuckle_engage": 31,
+        "nose_pdc_engage": 10
       }
     }
   },
@@ -3889,7 +3940,8 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "nose_pdc_engage": 156,
-        "taper_pdc_engage": 78
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 10
       }
     }
   },
@@ -3943,9 +3995,10 @@
       "backrake_differential": 2.6328,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 47,
-        "nose_knuckle_engage": 31,
-        "taper_knuckle_engage": 31
+        "taper_pdc_engage": 80,
+        "nose_knuckle_engage": 310,
+        "taper_knuckle_engage": 31,
+        "nose_pdc_engage": 130
       }
     }
   },
@@ -4000,8 +4053,9 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "taper_pdc_engage": 47,
-        "nose_knuckle_engage": 31,
-        "taper_knuckle_engage": 31
+        "nose_knuckle_engage": 210,
+        "taper_knuckle_engage": 31,
+        "nose_pdc_engage": 30
       }
     }
   },
@@ -4055,8 +4109,9 @@
       "backrake_differential": 5.9624,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 47
+        "taper_pdc_engage": 90,
+        "nose_knuckle_engage": 200,
+        "nose_pdc_engage": 120
       }
     }
   },
@@ -4110,7 +4165,8 @@
       "backrake_differential": 1.3808,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 290
       }
     }
   },
@@ -4163,7 +4219,8 @@
       "avg_backup_backrake": 25.0,
       "backrake_differential": 0.0266,
       "zone_engagement": {
-        "taper_knuckle_engage": 156
+        "taper_knuckle_engage": 60,
+        "nose_knuckle_engage": 100
       }
     }
   },
@@ -4322,7 +4379,8 @@
       "backrake_differential": 5.4159,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 170,
+        "nose_pdc_engage": 180
       }
     }
   },
@@ -4487,7 +4545,7 @@
       "backrake_differential": 4.2508,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 78,
+        "nose_pdc_engage": 20,
         "taper_pdc_engage": 31
       }
     }
@@ -4648,7 +4706,8 @@
       "backrake_differential": 1.3808,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 31,
+        "nose_knuckle_engage": 290
       }
     }
   },
@@ -4754,7 +4813,7 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "taper_pdc_engage": 78,
-        "nose_knuckle_engage": 31,
+        "nose_knuckle_engage": 250,
         "taper_knuckle_engage": 31
       }
     }
@@ -4859,7 +4918,8 @@
       "avg_backup_backrake": 25.0,
       "backrake_differential": 0.0266,
       "zone_engagement": {
-        "taper_knuckle_engage": 156
+        "taper_knuckle_engage": 60,
+        "nose_knuckle_engage": 100
       }
     }
   },
@@ -4967,7 +5027,8 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "nose_pdc_engage": 234,
-        "taper_pdc_engage": 78
+        "taper_pdc_engage": 78,
+        "nose_knuckle_engage": 10
       }
     }
   },
@@ -5021,8 +5082,9 @@
       "backrake_differential": 7.5747,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 170,
+        "taper_pdc_engage": 140,
+        "nose_knuckle_engage": 360
       }
     }
   },
@@ -5076,8 +5138,9 @@
       "backrake_differential": 7.5747,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 170,
+        "taper_pdc_engage": 140,
+        "nose_knuckle_engage": 360
       }
     }
   },
@@ -5131,8 +5194,9 @@
       "backrake_differential": 7.5747,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 31,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 170,
+        "taper_pdc_engage": 140,
+        "nose_knuckle_engage": 360
       }
     }
   },
@@ -5186,7 +5250,8 @@
       "backrake_differential": 4.3304,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_knuckle_engage": 47
+        "taper_knuckle_engage": 47,
+        "nose_knuckle_engage": 750
       }
     }
   },
@@ -5240,7 +5305,8 @@
       "backrake_differential": 2.0951,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 31,
+        "nose_pdc_engage": 90
       }
     }
   },
@@ -5348,8 +5414,9 @@
       "backrake_differential": 2.2643,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 47,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 270,
+        "taper_pdc_engage": 390,
+        "taper_knuckle_engage": 590
       }
     }
   },
@@ -5403,9 +5470,10 @@
       "backrake_differential": 4.9847,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 47,
-        "nose_knuckle_engage": 109,
-        "taper_knuckle_engage": 47
+        "taper_pdc_engage": 330,
+        "nose_knuckle_engage": 230,
+        "taper_knuckle_engage": 47,
+        "nose_pdc_engage": 310
       }
     }
   },
@@ -5510,9 +5578,10 @@
       "backrake_differential": 10.0007,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 109,
-        "taper_knuckle_engage": 47
+        "taper_pdc_engage": 760,
+        "nose_knuckle_engage": 770,
+        "taper_knuckle_engage": 800,
+        "nose_pdc_engage": 720
       }
     }
   },
@@ -5566,7 +5635,7 @@
       "backrake_differential": 16.609,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 47
+        "nose_knuckle_engage": 220
       }
     }
   },
@@ -5620,8 +5689,10 @@
       "backrake_differential": 5.4239,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 78
+        "taper_pdc_engage": 140,
+        "nose_knuckle_engage": 70,
+        "nose_pdc_engage": 150,
+        "taper_knuckle_engage": 260
       }
     }
   },
@@ -5675,7 +5746,8 @@
       "backrake_differential": 5.0898,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 31,
+        "nose_pdc_engage": 420
       }
     }
   },
@@ -5729,7 +5801,8 @@
       "backrake_differential": 5.0898,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31
+        "taper_pdc_engage": 31,
+        "nose_pdc_engage": 420
       }
     }
   },
@@ -5783,7 +5856,8 @@
       "backrake_differential": 3.0918,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 31
+        "nose_knuckle_engage": 470,
+        "taper_knuckle_engage": 1080
       }
     }
   },
@@ -5837,7 +5911,7 @@
       "backrake_differential": 6.0716,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 156,
+        "nose_knuckle_engage": 80,
         "taper_knuckle_engage": 47
       }
     }
@@ -5892,8 +5966,8 @@
       "backrake_differential": 4.2316,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 78,
-        "taper_knuckle_engage": 31
+        "nose_knuckle_engage": 400,
+        "taper_knuckle_engage": 720
       }
     }
   },
@@ -6053,7 +6127,9 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "taper_pdc_engage": 31,
-        "taper_knuckle_engage": 47
+        "taper_knuckle_engage": 47,
+        "nose_pdc_engage": 290,
+        "nose_knuckle_engage": 340
       }
     }
   },
@@ -6159,7 +6235,7 @@
       "zone_engagement": {
         "six_three_engage": 31,
         "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 109,
+        "nose_knuckle_engage": 80,
         "taper_knuckle_engage": 109
       }
     }
@@ -6214,8 +6290,8 @@
       "backrake_differential": 4.0464,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 78,
-        "taper_knuckle_engage": 31
+        "nose_knuckle_engage": 430,
+        "taper_knuckle_engage": 510
       }
     }
   },
@@ -6324,8 +6400,8 @@
       "backrake_differential": 3.971,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 31,
-        "taper_knuckle_engage": 31
+        "nose_knuckle_engage": 450,
+        "taper_knuckle_engage": 720
       }
     }
   },
@@ -6379,8 +6455,8 @@
       "backrake_differential": 5.1545,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 234,
-        "taper_knuckle_engage": 47
+        "nose_knuckle_engage": 420,
+        "taper_knuckle_engage": 640
       }
     }
   },
@@ -6540,10 +6616,10 @@
       "backrake_differential": 8.2404,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 78,
-        "taper_pdc_engage": 78,
-        "nose_knuckle_engage": 31,
-        "taper_knuckle_engage": 31
+        "nose_pdc_engage": 300,
+        "taper_pdc_engage": 360,
+        "nose_knuckle_engage": 270,
+        "taper_knuckle_engage": 320
       }
     }
   },
@@ -6596,7 +6672,8 @@
       "avg_backup_backrake": 25.0,
       "backrake_differential": 2.9211,
       "zone_engagement": {
-        "taper_knuckle_engage": 31
+        "taper_knuckle_engage": 31,
+        "nose_knuckle_engage": 670
       }
     }
   },
@@ -6649,9 +6726,10 @@
       "avg_backup_backrake": 27.2333,
       "backrake_differential": 4.656,
       "zone_engagement": {
-        "nose_pdc_engage": 234,
-        "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 78
+        "nose_pdc_engage": 320,
+        "taper_pdc_engage": 340,
+        "nose_knuckle_engage": 300,
+        "taper_knuckle_engage": 530
       }
     }
   },
@@ -6705,8 +6783,8 @@
       "backrake_differential": 3.971,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 31,
-        "taper_knuckle_engage": 31
+        "nose_knuckle_engage": 400,
+        "taper_knuckle_engage": 640
       }
     }
   },
@@ -6760,8 +6838,8 @@
       "backrake_differential": 4.7596,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_knuckle_engage": 234,
-        "taper_knuckle_engage": 109
+        "nose_knuckle_engage": 340,
+        "taper_knuckle_engage": 350
       }
     }
   },
@@ -6815,8 +6893,10 @@
       "backrake_differential": 1.058,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 47,
-        "taper_knuckle_engage": 31
+        "taper_pdc_engage": 90,
+        "taper_knuckle_engage": 30,
+        "nose_pdc_engage": 110,
+        "nose_knuckle_engage": 100
       }
     }
   },
@@ -6870,8 +6950,9 @@
       "backrake_differential": 3.3162,
       "zone_engagement": {
         "six_three_engage": 31,
-        "nose_pdc_engage": 47,
-        "taper_pdc_engage": 31
+        "nose_pdc_engage": 270,
+        "taper_pdc_engage": 390,
+        "taper_knuckle_engage": 590
       }
     }
   },
@@ -6925,7 +7006,8 @@
       "backrake_differential": -1.0957,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 47
+        "taper_pdc_engage": 47,
+        "nose_pdc_engage": 280
       }
     }
   },
@@ -6979,8 +7061,10 @@
       "backrake_differential": 8.3996,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 47,
-        "nose_knuckle_engage": 47
+        "taper_pdc_engage": 160,
+        "nose_knuckle_engage": 80,
+        "nose_pdc_engage": 170,
+        "taper_knuckle_engage": 290
       }
     }
   },
@@ -7034,9 +7118,10 @@
       "backrake_differential": 10.0932,
       "zone_engagement": {
         "six_three_engage": 31,
-        "taper_pdc_engage": 31,
-        "nose_knuckle_engage": 78,
-        "taper_knuckle_engage": 47
+        "taper_pdc_engage": 760,
+        "nose_knuckle_engage": 770,
+        "taper_knuckle_engage": 930,
+        "nose_pdc_engage": 720
       }
     }
   }
