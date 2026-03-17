@@ -1,7 +1,7 @@
 {
   "1941": {
-    "durability_score": 6.5,
-    "steerability_score": 4.9,
+    "durability_score": 5.6,
+    "steerability_score": 4.8,
     "raw_metrics": {
       "redundancy_score": 0.6528,
       "axial_force_ratio": 0.4166,
@@ -55,8 +55,8 @@
     }
   },
   "1961": {
-    "durability_score": 6.1,
-    "steerability_score": 2.9,
+    "durability_score": 5.3,
+    "steerability_score": 3.0,
     "raw_metrics": {
       "redundancy_score": 0.3304,
       "axial_force_ratio": 0.2256,
@@ -109,8 +109,8 @@
     }
   },
   "2001": {
-    "durability_score": 4.4,
-    "steerability_score": 4.9,
+    "durability_score": 3.1,
+    "steerability_score": 5.5,
     "raw_metrics": {
       "redundancy_score": 0.3771,
       "axial_force_ratio": 0.2127,
@@ -161,8 +161,8 @@
     }
   },
   "2004": {
-    "durability_score": 5.1,
-    "steerability_score": 3.7,
+    "durability_score": 5.3,
+    "steerability_score": 3.0,
     "raw_metrics": {
       "redundancy_score": 0.7037,
       "axial_force_ratio": 0.1632,
@@ -217,8 +217,8 @@
     }
   },
   "2010": {
-    "durability_score": 7.2,
-    "steerability_score": 3.9,
+    "durability_score": 6.3,
+    "steerability_score": 3.8,
     "raw_metrics": {
       "redundancy_score": 0.7727,
       "axial_force_ratio": 0.1675,
@@ -273,8 +273,8 @@
     }
   },
   "2028": {
-    "durability_score": 5.0,
-    "steerability_score": 2.4,
+    "durability_score": 5.1,
+    "steerability_score": 2.6,
     "raw_metrics": {
       "redundancy_score": 0.359,
       "axial_force_ratio": 0.2261,
@@ -328,8 +328,8 @@
     }
   },
   "2046": {
-    "durability_score": 2.3,
-    "steerability_score": 3.7,
+    "durability_score": 2.9,
+    "steerability_score": 5.1,
     "raw_metrics": {
       "redundancy_score": 0.2727,
       "axial_force_ratio": 0.1893,
@@ -383,8 +383,8 @@
     }
   },
   "2051": {
-    "durability_score": 6.0,
-    "steerability_score": 5.2,
+    "durability_score": 9.0,
+    "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.8298,
       "axial_force_ratio": 0.331,
@@ -441,8 +441,8 @@
     }
   },
   "2053": {
-    "durability_score": 9.0,
-    "steerability_score": 3.1,
+    "durability_score": 7.5,
+    "steerability_score": 3.4,
     "raw_metrics": {
       "redundancy_score": 0.7148,
       "axial_force_ratio": 0.2524,
@@ -497,8 +497,8 @@
     }
   },
   "2054": {
-    "durability_score": 5.4,
-    "steerability_score": 4.0,
+    "durability_score": 4.9,
+    "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.6429,
       "axial_force_ratio": 0.2194,
@@ -553,8 +553,8 @@
     }
   },
   "2070": {
-    "durability_score": 4.5,
-    "steerability_score": 3.5,
+    "durability_score": 5.0,
+    "steerability_score": 3.6,
     "raw_metrics": {
       "redundancy_score": 0.373,
       "axial_force_ratio": 0.2755,
@@ -608,8 +608,8 @@
     }
   },
   "2074": {
-    "durability_score": 5.2,
-    "steerability_score": 2.2,
+    "durability_score": 4.9,
+    "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.25,
       "axial_force_ratio": 0.369,
@@ -662,8 +662,8 @@
     }
   },
   "2075": {
-    "durability_score": 7.5,
-    "steerability_score": 3.9,
+    "durability_score": 7.4,
+    "steerability_score": 4.0,
     "raw_metrics": {
       "redundancy_score": 0.2815,
       "axial_force_ratio": 0.3452,
@@ -718,7 +718,7 @@
   },
   "2077": {
     "durability_score": 7.2,
-    "steerability_score": 4.2,
+    "steerability_score": 4.1,
     "raw_metrics": {
       "redundancy_score": 0.265,
       "axial_force_ratio": 0.3446,
@@ -772,8 +772,8 @@
     }
   },
   "2079": {
-    "durability_score": 3.1,
-    "steerability_score": 1.8,
+    "durability_score": 3.3,
+    "steerability_score": 2.7,
     "raw_metrics": {
       "redundancy_score": 0.1944,
       "axial_force_ratio": 0.1844,
@@ -824,8 +824,8 @@
     }
   },
   "2081": {
-    "durability_score": 6.6,
-    "steerability_score": 3.7,
+    "durability_score": 7.4,
+    "steerability_score": 2.9,
     "raw_metrics": {
       "redundancy_score": 0.5985,
       "axial_force_ratio": 0.2453,
@@ -880,8 +880,8 @@
     }
   },
   "2090": {
-    "durability_score": 7.2,
-    "steerability_score": 4.3,
+    "durability_score": 6.6,
+    "steerability_score": 4.2,
     "raw_metrics": {
       "redundancy_score": 0.5591,
       "axial_force_ratio": 0.3102,
@@ -938,8 +938,8 @@
     }
   },
   "2091": {
-    "durability_score": 7.7,
-    "steerability_score": 4.6,
+    "durability_score": 6.6,
+    "steerability_score": 4.3,
     "raw_metrics": {
       "redundancy_score": 0.6032,
       "axial_force_ratio": 0.189,
@@ -993,8 +993,8 @@
     }
   },
   "2095": {
-    "durability_score": 7.9,
-    "steerability_score": 3.5,
+    "durability_score": 7.1,
+    "steerability_score": 3.4,
     "raw_metrics": {
       "redundancy_score": 0.6591,
       "axial_force_ratio": 0.2464,
@@ -1048,8 +1048,8 @@
     }
   },
   "2096": {
-    "durability_score": 3.7,
-    "steerability_score": 5.0,
+    "durability_score": 4.2,
+    "steerability_score": 5.9,
     "raw_metrics": {
       "redundancy_score": 0.2111,
       "axial_force_ratio": 0.285,
@@ -1104,8 +1104,8 @@
     }
   },
   "2104": {
-    "durability_score": 6.6,
-    "steerability_score": 5.2,
+    "durability_score": 6.2,
+    "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.6705,
       "axial_force_ratio": 0.2971,
@@ -1161,8 +1161,8 @@
     }
   },
   "2110": {
-    "durability_score": 6.1,
-    "steerability_score": 3.0,
+    "durability_score": 5.9,
+    "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.25,
       "axial_force_ratio": 0.359,
@@ -1217,8 +1217,8 @@
     }
   },
   "2114": {
-    "durability_score": 2.6,
-    "steerability_score": 0.7,
+    "durability_score": 3.1,
+    "steerability_score": 1.5,
     "raw_metrics": {
       "redundancy_score": 0.4333,
       "axial_force_ratio": 0.2225,
@@ -1272,8 +1272,8 @@
     }
   },
   "2115": {
-    "durability_score": 3.9,
-    "steerability_score": 2.7,
+    "durability_score": 3.4,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.25,
       "axial_force_ratio": 0.1766,
@@ -1327,8 +1327,8 @@
     }
   },
   "2117": {
-    "durability_score": 3.9,
-    "steerability_score": 2.7,
+    "durability_score": 3.4,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.25,
       "axial_force_ratio": 0.1766,
@@ -1382,8 +1382,8 @@
     }
   },
   "2119": {
-    "durability_score": 6.6,
-    "steerability_score": 5.0,
+    "durability_score": 7.1,
+    "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.4139,
       "axial_force_ratio": 0.3567,
@@ -1440,8 +1440,8 @@
     }
   },
   "2120": {
-    "durability_score": 3.0,
-    "steerability_score": 4.5,
+    "durability_score": 3.9,
+    "steerability_score": 5.3,
     "raw_metrics": {
       "redundancy_score": 0.2864,
       "axial_force_ratio": 0.35,
@@ -1495,8 +1495,8 @@
     }
   },
   "2121": {
-    "durability_score": 2.0,
-    "steerability_score": 3.9,
+    "durability_score": 3.3,
+    "steerability_score": 3.4,
     "raw_metrics": {
       "redundancy_score": 0.2614,
       "axial_force_ratio": 0.1834,
@@ -1550,8 +1550,8 @@
     }
   },
   "2122": {
-    "durability_score": 3.6,
-    "steerability_score": 5.7,
+    "durability_score": 5.1,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.4512,
       "axial_force_ratio": 0.3627,
@@ -1605,8 +1605,8 @@
     }
   },
   "2124": {
-    "durability_score": 4.8,
-    "steerability_score": 5.7,
+    "durability_score": 5.5,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.3974,
       "axial_force_ratio": 0.258,
@@ -1661,8 +1661,8 @@
     }
   },
   "2126": {
-    "durability_score": 3.5,
-    "steerability_score": 2.9,
+    "durability_score": 3.4,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.1944,
       "axial_force_ratio": 0.1508,
@@ -1713,8 +1713,8 @@
     }
   },
   "2131": {
-    "durability_score": 3.4,
-    "steerability_score": 3.4,
+    "durability_score": 4.0,
+    "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.3361,
       "axial_force_ratio": 0.3444,
@@ -1769,8 +1769,8 @@
     }
   },
   "2137": {
-    "durability_score": 0.6,
-    "steerability_score": 3.9,
+    "durability_score": 0.0,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.275,
       "axial_force_ratio": 0.1662,
@@ -1821,8 +1821,8 @@
     }
   },
   "2140": {
-    "durability_score": 2.5,
-    "steerability_score": 7.9,
+    "durability_score": 3.5,
+    "steerability_score": 8.8,
     "raw_metrics": {
       "redundancy_score": 0.2619,
       "axial_force_ratio": 0.3679,
@@ -1878,8 +1878,8 @@
     }
   },
   "2141": {
-    "durability_score": 6.3,
-    "steerability_score": 4.0,
+    "durability_score": 6.4,
+    "steerability_score": 4.2,
     "raw_metrics": {
       "redundancy_score": 0.3861,
       "axial_force_ratio": 0.2919,
@@ -1935,8 +1935,8 @@
     }
   },
   "2142": {
-    "durability_score": 2.9,
-    "steerability_score": 6.7,
+    "durability_score": 3.7,
+    "steerability_score": 7.9,
     "raw_metrics": {
       "redundancy_score": 0.2434,
       "axial_force_ratio": 0.35,
@@ -1992,8 +1992,8 @@
     }
   },
   "2143": {
-    "durability_score": 4.7,
-    "steerability_score": 3.7,
+    "durability_score": 4.1,
+    "steerability_score": 4.2,
     "raw_metrics": {
       "redundancy_score": 0.2973,
       "axial_force_ratio": 0.219,
@@ -2047,8 +2047,8 @@
     }
   },
   "2145": {
-    "durability_score": 4.6,
-    "steerability_score": 3.2,
+    "durability_score": 5.3,
+    "steerability_score": 3.1,
     "raw_metrics": {
       "redundancy_score": 0.4556,
       "axial_force_ratio": 0.2808,
@@ -2104,8 +2104,8 @@
     }
   },
   "2148": {
-    "durability_score": 5.9,
-    "steerability_score": 5.4,
+    "durability_score": 6.3,
+    "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.4538,
       "axial_force_ratio": 0.2526,
@@ -2161,8 +2161,8 @@
     }
   },
   "2152": {
-    "durability_score": 3.9,
-    "steerability_score": 2.7,
+    "durability_score": 3.4,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.25,
       "axial_force_ratio": 0.1766,
@@ -2216,7 +2216,7 @@
     }
   },
   "2153": {
-    "durability_score": 6.4,
+    "durability_score": 6.2,
     "steerability_score": 0.0,
     "raw_metrics": {
       "redundancy_score": 0.4779,
@@ -2271,8 +2271,8 @@
     }
   },
   "2154": {
-    "durability_score": 2.4,
-    "steerability_score": 4.6,
+    "durability_score": 2.9,
+    "steerability_score": 6.3,
     "raw_metrics": {
       "redundancy_score": 0.2361,
       "axial_force_ratio": 0.3156,
@@ -2326,8 +2326,8 @@
     }
   },
   "2157": {
-    "durability_score": 5.3,
-    "steerability_score": 5.4,
+    "durability_score": 5.6,
+    "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.5023,
       "axial_force_ratio": 0.2341,
@@ -2382,8 +2382,8 @@
     }
   },
   "2158": {
-    "durability_score": 4.5,
-    "steerability_score": 5.4,
+    "durability_score": 4.3,
+    "steerability_score": 6.2,
     "raw_metrics": {
       "redundancy_score": 0.6157,
       "axial_force_ratio": 0.2247,
@@ -2438,8 +2438,8 @@
     }
   },
   "2160": {
-    "durability_score": 6.0,
-    "steerability_score": 5.2,
+    "durability_score": 9.0,
+    "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.8298,
       "axial_force_ratio": 0.331,
@@ -2496,8 +2496,8 @@
     }
   },
   "2164": {
-    "durability_score": 6.6,
-    "steerability_score": 2.9,
+    "durability_score": 6.4,
+    "steerability_score": 2.5,
     "raw_metrics": {
       "redundancy_score": 0.2917,
       "axial_force_ratio": 0.3191,
@@ -2552,8 +2552,8 @@
     }
   },
   "2169": {
-    "durability_score": 4.9,
-    "steerability_score": 7.4,
+    "durability_score": 6.3,
+    "steerability_score": 6.0,
     "raw_metrics": {
       "redundancy_score": 0.7308,
       "axial_force_ratio": 0.2711,
@@ -2610,8 +2610,8 @@
     }
   },
   "2172": {
-    "durability_score": 5.7,
-    "steerability_score": 4.5,
+    "durability_score": 5.5,
+    "steerability_score": 3.5,
     "raw_metrics": {
       "redundancy_score": 0.4815,
       "axial_force_ratio": 0.1786,
@@ -2667,8 +2667,8 @@
     }
   },
   "2173": {
-    "durability_score": 3.1,
-    "steerability_score": 6.1,
+    "durability_score": 3.4,
+    "steerability_score": 4.7,
     "raw_metrics": {
       "redundancy_score": 0.2452,
       "axial_force_ratio": 0.2402,
@@ -2724,8 +2724,8 @@
     }
   },
   "2174": {
-    "durability_score": 5.7,
-    "steerability_score": 2.3,
+    "durability_score": 5.8,
+    "steerability_score": 2.6,
     "raw_metrics": {
       "redundancy_score": 0.3167,
       "axial_force_ratio": 0.3005,
@@ -2779,8 +2779,8 @@
     }
   },
   "2177": {
-    "durability_score": 7.0,
-    "steerability_score": 5.2,
+    "durability_score": 6.6,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.4899,
       "axial_force_ratio": 0.303,
@@ -2836,7 +2836,7 @@
     }
   },
   "2179": {
-    "durability_score": 6.5,
+    "durability_score": 6.3,
     "steerability_score": 3.0,
     "raw_metrics": {
       "redundancy_score": 0.5568,
@@ -2892,8 +2892,8 @@
     }
   },
   "2180": {
-    "durability_score": 5.3,
-    "steerability_score": 3.8,
+    "durability_score": 5.5,
+    "steerability_score": 3.3,
     "raw_metrics": {
       "redundancy_score": 0.3909,
       "axial_force_ratio": 0.2403,
@@ -2949,8 +2949,8 @@
     }
   },
   "2181": {
-    "durability_score": 4.8,
-    "steerability_score": 6.3,
+    "durability_score": 4.5,
+    "steerability_score": 6.8,
     "raw_metrics": {
       "redundancy_score": 0.2778,
       "axial_force_ratio": 0.2751,
@@ -3006,8 +3006,8 @@
     }
   },
   "2184": {
-    "durability_score": 5.5,
-    "steerability_score": 3.7,
+    "durability_score": 4.9,
+    "steerability_score": 3.4,
     "raw_metrics": {
       "redundancy_score": 0.3879,
       "axial_force_ratio": 0.1869,
@@ -3062,8 +3062,8 @@
     }
   },
   "2185": {
-    "durability_score": 7.9,
-    "steerability_score": 5.7,
+    "durability_score": 7.4,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.7182,
       "axial_force_ratio": 0.2867,
@@ -3119,8 +3119,8 @@
     }
   },
   "2186": {
-    "durability_score": 6.1,
-    "steerability_score": 5.0,
+    "durability_score": 6.4,
+    "steerability_score": 4.8,
     "raw_metrics": {
       "redundancy_score": 0.3535,
       "axial_force_ratio": 0.3537,
@@ -3177,8 +3177,8 @@
     }
   },
   "2188": {
-    "durability_score": 4.2,
-    "steerability_score": 8.7,
+    "durability_score": 3.9,
+    "steerability_score": 9.0,
     "raw_metrics": {
       "redundancy_score": 0.3542,
       "axial_force_ratio": 0.287,
@@ -3233,8 +3233,8 @@
     }
   },
   "2190": {
-    "durability_score": 8.6,
-    "steerability_score": 3.9,
+    "durability_score": 7.1,
+    "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.4299,
       "axial_force_ratio": 0.2635,
@@ -3288,8 +3288,8 @@
     }
   },
   "2192": {
-    "durability_score": 1.9,
-    "steerability_score": 3.1,
+    "durability_score": 0.5,
+    "steerability_score": 5.0,
     "raw_metrics": {
       "redundancy_score": 0.2639,
       "axial_force_ratio": 0.181,
@@ -3340,8 +3340,8 @@
     }
   },
   "2193": {
-    "durability_score": 5.6,
-    "steerability_score": 2.0,
+    "durability_score": 6.6,
+    "steerability_score": 1.1,
     "raw_metrics": {
       "redundancy_score": 0.5,
       "axial_force_ratio": 0.2184,
@@ -3396,8 +3396,8 @@
     }
   },
   "2194": {
-    "durability_score": 6.0,
-    "steerability_score": 5.2,
+    "durability_score": 9.0,
+    "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.8298,
       "axial_force_ratio": 0.331,
@@ -3454,8 +3454,8 @@
     }
   },
   "2195": {
-    "durability_score": 4.5,
-    "steerability_score": 2.4,
+    "durability_score": 5.7,
+    "steerability_score": 3.0,
     "raw_metrics": {
       "redundancy_score": 0.3472,
       "axial_force_ratio": 0.2212,
@@ -3510,8 +3510,8 @@
     }
   },
   "2196": {
-    "durability_score": 6.1,
-    "steerability_score": 2.9,
+    "durability_score": 5.3,
+    "steerability_score": 3.0,
     "raw_metrics": {
       "redundancy_score": 0.3304,
       "axial_force_ratio": 0.2256,
@@ -3564,8 +3564,8 @@
     }
   },
   "2198": {
-    "durability_score": 2.8,
-    "steerability_score": 9.0,
+    "durability_score": 3.3,
+    "steerability_score": 8.4,
     "raw_metrics": {
       "redundancy_score": 0.2556,
       "axial_force_ratio": 0.2585,
@@ -3619,8 +3619,8 @@
     }
   },
   "2205": {
-    "durability_score": 6.0,
-    "steerability_score": 5.2,
+    "durability_score": 9.0,
+    "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.8298,
       "axial_force_ratio": 0.331,
@@ -3677,8 +3677,8 @@
     }
   },
   "2206": {
-    "durability_score": 6.9,
-    "steerability_score": 3.4,
+    "durability_score": 7.2,
+    "steerability_score": 3.3,
     "raw_metrics": {
       "redundancy_score": 0.5649,
       "axial_force_ratio": 0.2568,
@@ -3733,8 +3733,8 @@
     }
   },
   "2207": {
-    "durability_score": 4.4,
-    "steerability_score": 4.2,
+    "durability_score": 4.6,
+    "steerability_score": 4.1,
     "raw_metrics": {
       "redundancy_score": 0.3843,
       "axial_force_ratio": 0.2525,
@@ -3790,8 +3790,8 @@
     }
   },
   "2208": {
-    "durability_score": 6.6,
-    "steerability_score": 3.7,
+    "durability_score": 7.4,
+    "steerability_score": 2.9,
     "raw_metrics": {
       "redundancy_score": 0.5985,
       "axial_force_ratio": 0.2453,
@@ -3846,8 +3846,8 @@
     }
   },
   "2209": {
-    "durability_score": 7.7,
-    "steerability_score": 4.1,
+    "durability_score": 7.0,
+    "steerability_score": 3.3,
     "raw_metrics": {
       "redundancy_score": 0.564,
       "axial_force_ratio": 0.2119,
@@ -3903,8 +3903,8 @@
     }
   },
   "2210": {
-    "durability_score": 6.4,
-    "steerability_score": 5.3,
+    "durability_score": 6.3,
+    "steerability_score": 4.1,
     "raw_metrics": {
       "redundancy_score": 0.5611,
       "axial_force_ratio": 0.2319,
@@ -3961,8 +3961,8 @@
     }
   },
   "2216": {
-    "durability_score": 6.7,
-    "steerability_score": 2.6,
+    "durability_score": 8.8,
+    "steerability_score": 2.8,
     "raw_metrics": {
       "redundancy_score": 0.5012,
       "axial_force_ratio": 0.4665,
@@ -4018,8 +4018,8 @@
     }
   },
   "2217": {
-    "durability_score": 6.7,
-    "steerability_score": 5.4,
+    "durability_score": 6.6,
+    "steerability_score": 4.2,
     "raw_metrics": {
       "redundancy_score": 0.5611,
       "axial_force_ratio": 0.2319,
@@ -4076,8 +4076,8 @@
     }
   },
   "2218": {
-    "durability_score": 6.4,
-    "steerability_score": 5.3,
+    "durability_score": 6.3,
+    "steerability_score": 4.1,
     "raw_metrics": {
       "redundancy_score": 0.5611,
       "axial_force_ratio": 0.2319,
@@ -4134,8 +4134,8 @@
     }
   },
   "2220": {
-    "durability_score": 6.6,
-    "steerability_score": 4.7,
+    "durability_score": 5.9,
+    "steerability_score": 4.3,
     "raw_metrics": {
       "redundancy_score": 0.4122,
       "axial_force_ratio": 0.2113,
@@ -4191,8 +4191,8 @@
     }
   },
   "2224": {
-    "durability_score": 3.8,
-    "steerability_score": 2.6,
+    "durability_score": 6.0,
+    "steerability_score": 3.2,
     "raw_metrics": {
       "redundancy_score": 0.4,
       "axial_force_ratio": 0.3041,
@@ -4247,8 +4247,8 @@
     }
   },
   "2225": {
-    "durability_score": 4.0,
-    "steerability_score": 5.5,
+    "durability_score": 4.1,
+    "steerability_score": 5.8,
     "raw_metrics": {
       "redundancy_score": 0.3095,
       "axial_force_ratio": 0.2759,
@@ -4302,8 +4302,8 @@
     }
   },
   "2226": {
-    "durability_score": 1.9,
-    "steerability_score": 3.1,
+    "durability_score": 1.0,
+    "steerability_score": 4.8,
     "raw_metrics": {
       "redundancy_score": 0.2639,
       "axial_force_ratio": 0.181,
@@ -4354,8 +4354,8 @@
     }
   },
   "2227": {
-    "durability_score": 5.0,
-    "steerability_score": 3.5,
+    "durability_score": 4.3,
+    "steerability_score": 4.3,
     "raw_metrics": {
       "redundancy_score": 0.2778,
       "axial_force_ratio": 0.1828,
@@ -4409,8 +4409,8 @@
     }
   },
   "2231": {
-    "durability_score": 3.7,
-    "steerability_score": 3.9,
+    "durability_score": 3.3,
+    "steerability_score": 3.6,
     "raw_metrics": {
       "redundancy_score": 0.3354,
       "axial_force_ratio": 0.1455,
@@ -4465,8 +4465,8 @@
     }
   },
   "2232": {
-    "durability_score": 6.6,
-    "steerability_score": 6.6,
+    "durability_score": 6.0,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.6264,
       "axial_force_ratio": 0.1906,
@@ -4522,8 +4522,8 @@
     }
   },
   "2234": {
-    "durability_score": 8.5,
-    "steerability_score": 2.3,
+    "durability_score": 7.9,
+    "steerability_score": 2.1,
     "raw_metrics": {
       "redundancy_score": 0.5658,
       "axial_force_ratio": 0.2135,
@@ -4578,8 +4578,8 @@
     }
   },
   "2235": {
-    "durability_score": 6.3,
-    "steerability_score": 2.0,
+    "durability_score": 6.6,
+    "steerability_score": 1.1,
     "raw_metrics": {
       "redundancy_score": 0.4592,
       "axial_force_ratio": 0.2332,
@@ -4634,8 +4634,8 @@
     }
   },
   "2236": {
-    "durability_score": 6.5,
-    "steerability_score": 6.5,
+    "durability_score": 5.8,
+    "steerability_score": 5.6,
     "raw_metrics": {
       "redundancy_score": 0.6329,
       "axial_force_ratio": 0.163,
@@ -4690,8 +4690,8 @@
     }
   },
   "2240": {
-    "durability_score": 2.6,
-    "steerability_score": 4.6,
+    "durability_score": 1.3,
+    "steerability_score": 6.8,
     "raw_metrics": {
       "redundancy_score": 0.2857,
       "axial_force_ratio": 0.1494,
@@ -4742,8 +4742,8 @@
     }
   },
   "2241": {
-    "durability_score": 3.8,
-    "steerability_score": 2.6,
+    "durability_score": 6.0,
+    "steerability_score": 3.2,
     "raw_metrics": {
       "redundancy_score": 0.4,
       "axial_force_ratio": 0.3041,
@@ -4798,8 +4798,8 @@
     }
   },
   "2242": {
-    "durability_score": 5.1,
-    "steerability_score": 3.2,
+    "durability_score": 2.8,
+    "steerability_score": 6.2,
     "raw_metrics": {
       "redundancy_score": 0.3397,
       "axial_force_ratio": 0.1273,
@@ -4850,8 +4850,8 @@
     }
   },
   "2247": {
-    "durability_score": 6.6,
-    "steerability_score": 6.8,
+    "durability_score": 6.1,
+    "steerability_score": 5.5,
     "raw_metrics": {
       "redundancy_score": 0.6166,
       "axial_force_ratio": 0.1864,
@@ -4907,8 +4907,8 @@
     }
   },
   "2249": {
-    "durability_score": 0.0,
-    "steerability_score": 1.4,
+    "durability_score": 1.6,
+    "steerability_score": 1.9,
     "raw_metrics": {
       "redundancy_score": 0.2435,
       "axial_force_ratio": 0.2194,
@@ -4959,8 +4959,8 @@
     }
   },
   "2251": {
-    "durability_score": 4.0,
-    "steerability_score": 5.5,
+    "durability_score": 4.1,
+    "steerability_score": 5.8,
     "raw_metrics": {
       "redundancy_score": 0.3095,
       "axial_force_ratio": 0.2759,
@@ -5015,7 +5015,7 @@
   },
   "2252": {
     "durability_score": 3.3,
-    "steerability_score": 3.5,
+    "steerability_score": 3.8,
     "raw_metrics": {
       "redundancy_score": 0.3076,
       "axial_force_ratio": 0.1364,
@@ -5068,8 +5068,8 @@
     }
   },
   "2256": {
-    "durability_score": 7.5,
-    "steerability_score": 2.1,
+    "durability_score": 8.3,
+    "steerability_score": 2.4,
     "raw_metrics": {
       "redundancy_score": 0.4557,
       "axial_force_ratio": 0.4341,
@@ -5125,8 +5125,8 @@
     }
   },
   "2265": {
-    "durability_score": 7.3,
-    "steerability_score": 5.2,
+    "durability_score": 6.8,
+    "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.4899,
       "axial_force_ratio": 0.303,
@@ -5182,8 +5182,8 @@
     }
   },
   "2266": {
-    "durability_score": 7.3,
-    "steerability_score": 5.2,
+    "durability_score": 6.8,
+    "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.4899,
       "axial_force_ratio": 0.303,
@@ -5239,8 +5239,8 @@
     }
   },
   "2267": {
-    "durability_score": 7.0,
-    "steerability_score": 5.2,
+    "durability_score": 6.6,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.4899,
       "axial_force_ratio": 0.303,
@@ -5296,8 +5296,8 @@
     }
   },
   "2268": {
-    "durability_score": 2.3,
-    "steerability_score": 6.2,
+    "durability_score": 2.8,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.2778,
       "axial_force_ratio": 0.2182,
@@ -5352,8 +5352,8 @@
     }
   },
   "2270": {
-    "durability_score": 4.1,
-    "steerability_score": 6.2,
+    "durability_score": 3.7,
+    "steerability_score": 6.4,
     "raw_metrics": {
       "redundancy_score": 0.3611,
       "axial_force_ratio": 0.1809,
@@ -5408,8 +5408,8 @@
     }
   },
   "2272": {
-    "durability_score": 3.9,
-    "steerability_score": 2.3,
+    "durability_score": 4.6,
+    "steerability_score": 2.2,
     "raw_metrics": {
       "redundancy_score": 0.2778,
       "axial_force_ratio": 0.2978,
@@ -5463,8 +5463,8 @@
     }
   },
   "2362": {
-    "durability_score": 5.2,
-    "steerability_score": 4.4,
+    "durability_score": 4.4,
+    "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.3731,
       "axial_force_ratio": 0.2064,
@@ -5520,7 +5520,7 @@
     }
   },
   "2381": {
-    "durability_score": 5.3,
+    "durability_score": 6.8,
     "steerability_score": 4.9,
     "raw_metrics": {
       "redundancy_score": 0.4632,
@@ -5578,8 +5578,8 @@
     }
   },
   "2556": {
-    "durability_score": 4.1,
-    "steerability_score": 4.0,
+    "durability_score": 2.7,
+    "steerability_score": 4.9,
     "raw_metrics": {
       "redundancy_score": 0.6508,
       "axial_force_ratio": 0.1779,
@@ -5630,8 +5630,8 @@
     }
   },
   "2746": {
-    "durability_score": 6.2,
-    "steerability_score": 6.5,
+    "durability_score": 5.9,
+    "steerability_score": 5.8,
     "raw_metrics": {
       "redundancy_score": 0.3333,
       "axial_force_ratio": 0.2631,
@@ -5688,8 +5688,8 @@
     }
   },
   "3219": {
-    "durability_score": 8.6,
-    "steerability_score": 3.9,
+    "durability_score": 7.1,
+    "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.4299,
       "axial_force_ratio": 0.2635,
@@ -5743,8 +5743,8 @@
     }
   },
   "3336": {
-    "durability_score": 5.9,
-    "steerability_score": 5.1,
+    "durability_score": 7.3,
+    "steerability_score": 4.0,
     "raw_metrics": {
       "redundancy_score": 0.2897,
       "axial_force_ratio": 0.2937,
@@ -5801,8 +5801,8 @@
     }
   },
   "3449": {
-    "durability_score": 4.0,
-    "steerability_score": 3.5,
+    "durability_score": 3.9,
+    "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.2917,
       "axial_force_ratio": 0.192,
@@ -5857,8 +5857,8 @@
     }
   },
   "3943": {
-    "durability_score": 4.0,
-    "steerability_score": 3.5,
+    "durability_score": 3.9,
+    "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.2917,
       "axial_force_ratio": 0.192,
@@ -5913,8 +5913,8 @@
     }
   },
   "4149": {
-    "durability_score": 5.9,
-    "steerability_score": 6.5,
+    "durability_score": 5.4,
+    "steerability_score": 5.7,
     "raw_metrics": {
       "redundancy_score": 0.6667,
       "axial_force_ratio": 0.2537,
@@ -5969,8 +5969,8 @@
     }
   },
   "4206": {
-    "durability_score": 4.7,
-    "steerability_score": 8.6,
+    "durability_score": 5.9,
+    "steerability_score": 7.1,
     "raw_metrics": {
       "redundancy_score": 0.6774,
       "axial_force_ratio": 0.2537,
@@ -6025,8 +6025,8 @@
     }
   },
   "4288": {
-    "durability_score": 5.2,
-    "steerability_score": 8.3,
+    "durability_score": 7.4,
+    "steerability_score": 7.2,
     "raw_metrics": {
       "redundancy_score": 0.7253,
       "axial_force_ratio": 0.3927,
@@ -6081,8 +6081,8 @@
     }
   },
   "4538": {
-    "durability_score": 3.8,
-    "steerability_score": 6.2,
+    "durability_score": 4.5,
+    "steerability_score": 4.9,
     "raw_metrics": {
       "redundancy_score": 0.3742,
       "axial_force_ratio": 0.2119,
@@ -6136,8 +6136,8 @@
     }
   },
   "4720": {
-    "durability_score": 4.4,
-    "steerability_score": 4.9,
+    "durability_score": 3.1,
+    "steerability_score": 5.5,
     "raw_metrics": {
       "redundancy_score": 0.3771,
       "axial_force_ratio": 0.2127,
@@ -6188,7 +6188,7 @@
     }
   },
   "4796": {
-    "durability_score": 5.6,
+    "durability_score": 4.9,
     "steerability_score": 4.7,
     "raw_metrics": {
       "redundancy_score": 0.3611,
@@ -6246,8 +6246,8 @@
     }
   },
   "5481": {
-    "durability_score": 2.7,
-    "steerability_score": 2.7,
+    "durability_score": 1.6,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.3413,
       "axial_force_ratio": 0.1973,
@@ -6298,8 +6298,8 @@
     }
   },
   "5646": {
-    "durability_score": 5.0,
-    "steerability_score": 7.7,
+    "durability_score": 5.4,
+    "steerability_score": 6.3,
     "raw_metrics": {
       "redundancy_score": 0.2619,
       "axial_force_ratio": 0.2722,
@@ -6355,8 +6355,8 @@
     }
   },
   "5674": {
-    "durability_score": 7.1,
-    "steerability_score": 7.7,
+    "durability_score": 6.9,
+    "steerability_score": 6.7,
     "raw_metrics": {
       "redundancy_score": 0.6774,
       "axial_force_ratio": 0.3457,
@@ -6411,8 +6411,8 @@
     }
   },
   "5911": {
-    "durability_score": 5.0,
-    "steerability_score": 5.8,
+    "durability_score": 4.4,
+    "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.3857,
       "axial_force_ratio": 0.1643,
@@ -6467,8 +6467,8 @@
     }
   },
   "6135": {
-    "durability_score": 7.1,
-    "steerability_score": 7.7,
+    "durability_score": 6.9,
+    "steerability_score": 6.7,
     "raw_metrics": {
       "redundancy_score": 0.6944,
       "axial_force_ratio": 0.3457,
@@ -6523,8 +6523,8 @@
     }
   },
   "6150": {
-    "durability_score": 5.3,
-    "steerability_score": 7.7,
+    "durability_score": 7.1,
+    "steerability_score": 6.4,
     "raw_metrics": {
       "redundancy_score": 0.7683,
       "axial_force_ratio": 0.3335,
@@ -6579,8 +6579,8 @@
     }
   },
   "6207": {
-    "durability_score": 3.5,
-    "steerability_score": 6.4,
+    "durability_score": 3.7,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.2685,
       "axial_force_ratio": 0.2571,
@@ -6635,8 +6635,8 @@
     }
   },
   "6513": {
-    "durability_score": 4.3,
-    "steerability_score": 2.5,
+    "durability_score": 5.2,
+    "steerability_score": 2.6,
     "raw_metrics": {
       "redundancy_score": 0.6058,
       "axial_force_ratio": 0.1981,
@@ -6687,8 +6687,8 @@
     }
   },
   "6653": {
-    "durability_score": 6.2,
-    "steerability_score": 6.7,
+    "durability_score": 6.6,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.4509,
       "axial_force_ratio": 0.3054,
@@ -6745,8 +6745,8 @@
     }
   },
   "6841": {
-    "durability_score": 2.2,
-    "steerability_score": 7.4,
+    "durability_score": 2.4,
+    "steerability_score": 7.7,
     "raw_metrics": {
       "redundancy_score": 0.25,
       "axial_force_ratio": 0.2672,
@@ -6800,8 +6800,8 @@
     }
   },
   "7182": {
-    "durability_score": 5.3,
-    "steerability_score": 5.6,
+    "durability_score": 4.9,
+    "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.2821,
       "axial_force_ratio": 0.255,
@@ -6857,8 +6857,8 @@
     }
   },
   "7273": {
-    "durability_score": 7.2,
-    "steerability_score": 7.7,
+    "durability_score": 6.9,
+    "steerability_score": 6.7,
     "raw_metrics": {
       "redundancy_score": 0.6944,
       "axial_force_ratio": 0.3457,
@@ -6913,8 +6913,8 @@
     }
   },
   "7823": {
-    "durability_score": 5.1,
-    "steerability_score": 7.9,
+    "durability_score": 7.1,
+    "steerability_score": 6.9,
     "raw_metrics": {
       "redundancy_score": 0.7509,
       "axial_force_ratio": 0.3635,
@@ -6969,8 +6969,8 @@
     }
   },
   "8479": {
-    "durability_score": 3.5,
-    "steerability_score": 6.4,
+    "durability_score": 3.7,
+    "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.2685,
       "axial_force_ratio": 0.2571,
@@ -7027,8 +7027,8 @@
     }
   },
   "8896": {
-    "durability_score": 6.3,
-    "steerability_score": 3.9,
+    "durability_score": 5.3,
+    "steerability_score": 3.3,
     "raw_metrics": {
       "redundancy_score": 0.5221,
       "axial_force_ratio": 0.205,
@@ -7084,8 +7084,8 @@
     }
   },
   "9387": {
-    "durability_score": 5.7,
-    "steerability_score": 3.7,
+    "durability_score": 4.7,
+    "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.4021,
       "axial_force_ratio": 0.1646,
@@ -7140,8 +7140,8 @@
     }
   },
   "9692": {
-    "durability_score": 8.7,
-    "steerability_score": 3.1,
+    "durability_score": 7.2,
+    "steerability_score": 2.5,
     "raw_metrics": {
       "redundancy_score": 0.4097,
       "axial_force_ratio": 0.2378,
@@ -7198,8 +7198,8 @@
     }
   },
   "9944": {
-    "durability_score": 6.4,
-    "steerability_score": 6.4,
+    "durability_score": 5.9,
+    "steerability_score": 5.7,
     "raw_metrics": {
       "redundancy_score": 0.3409,
       "axial_force_ratio": 0.2631,
