@@ -1,6 +1,6 @@
 {
   "1941": {
-    "durability_score": 4.1,
+    "durability_score": 6.5,
     "steerability_score": 4.9,
     "raw_metrics": {
       "redundancy_score": 0.6528,
@@ -8,7 +8,7 @@
       "radial_force_ratio": 0.83,
       "perpendicular_force_ratio": 0.5865,
       "six_three_offset": 0.0822,
-      "blade_exposure_equality": 0.656,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 52,
       "num_blades": 6,
@@ -17,7 +17,7 @@
       "avg_cone_backrake": 18.1144,
       "avg_nose_backrake": 15.0123,
       "avg_gauge_backrake": 25.8727,
-      "cutter_density": 13.6393,
+      "cutter_density": 16.1498,
       "avg_blades_per_zone": 3.1,
       "avg_spacing_cv": 0.8702,
       "gauge_cutter_ratio": 0.4615,
@@ -28,6 +28,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4963,
       "gauge_radius": 3.8125,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.2692,
       "knuckle_ratio": 0.0,
       "n_primary": 38,
@@ -54,7 +55,7 @@
     }
   },
   "1961": {
-    "durability_score": 4.9,
+    "durability_score": 6.1,
     "steerability_score": 2.9,
     "raw_metrics": {
       "redundancy_score": 0.3304,
@@ -62,7 +63,7 @@
       "radial_force_ratio": 0.8979,
       "perpendicular_force_ratio": 0.3277,
       "six_three_offset": 0.0298,
-      "blade_exposure_equality": 0.7243,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 52,
       "num_blades": 5,
@@ -71,7 +72,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0584,
       "avg_gauge_backrake": 30.3203,
-      "cutter_density": 11.8857,
+      "cutter_density": 12.3958,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.9777,
       "gauge_cutter_ratio": 0.5385,
@@ -82,6 +83,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5091,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 15.3,
       "backup_ratio": 0.3077,
       "knuckle_ratio": 0.0,
       "n_primary": 36,
@@ -107,7 +109,7 @@
     }
   },
   "2001": {
-    "durability_score": 1.5,
+    "durability_score": 4.4,
     "steerability_score": 4.9,
     "raw_metrics": {
       "redundancy_score": 0.3771,
@@ -115,7 +117,7 @@
       "radial_force_ratio": 0.9747,
       "perpendicular_force_ratio": 0.238,
       "six_three_offset": 0.0465,
-      "blade_exposure_equality": 0.6365,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 47,
       "num_blades": 8,
@@ -124,7 +126,7 @@
       "avg_cone_backrake": 17.3711,
       "avg_nose_backrake": 15.0631,
       "avg_gauge_backrake": 26.6932,
-      "cutter_density": 11.9365,
+      "cutter_density": 14.2137,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 0.4491,
       "gauge_cutter_ratio": 0.383,
@@ -135,6 +137,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 47,
@@ -158,7 +161,7 @@
     }
   },
   "2004": {
-    "durability_score": 3.5,
+    "durability_score": 5.1,
     "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.7037,
@@ -166,7 +169,7 @@
       "radial_force_ratio": 0.9813,
       "perpendicular_force_ratio": 0.1819,
       "six_three_offset": 0.0633,
-      "blade_exposure_equality": 0.6797,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 54,
       "num_blades": 6,
@@ -175,7 +178,7 @@
       "avg_cone_backrake": 15.7047,
       "avg_nose_backrake": 15.0457,
       "avg_gauge_backrake": 23.0178,
-      "cutter_density": 12.3429,
+      "cutter_density": 12.7599,
       "avg_blades_per_zone": 3.4,
       "avg_spacing_cv": 0.693,
       "gauge_cutter_ratio": 0.4815,
@@ -186,6 +189,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.3333,
       "knuckle_ratio": 0.0,
       "n_primary": 36,
@@ -213,7 +217,7 @@
     }
   },
   "2010": {
-    "durability_score": 6.2,
+    "durability_score": 7.2,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.7727,
@@ -221,7 +225,7 @@
       "radial_force_ratio": 0.9806,
       "perpendicular_force_ratio": 0.1869,
       "six_three_offset": 0.053,
-      "blade_exposure_equality": 0.7402,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 70,
       "num_blades": 6,
@@ -230,7 +234,7 @@
       "avg_cone_backrake": 15.8333,
       "avg_nose_backrake": 15.4417,
       "avg_gauge_backrake": 25.4922,
-      "cutter_density": 13.1765,
+      "cutter_density": 13.5181,
       "avg_blades_per_zone": 4.2,
       "avg_spacing_cv": 0.6497,
       "gauge_cutter_ratio": 0.4,
@@ -241,6 +245,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 5.3125,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.2857,
       "knuckle_ratio": 0.0,
       "n_primary": 50,
@@ -268,7 +273,7 @@
     }
   },
   "2028": {
-    "durability_score": 3.1,
+    "durability_score": 5.0,
     "steerability_score": 2.4,
     "raw_metrics": {
       "redundancy_score": 0.359,
@@ -276,7 +281,7 @@
       "radial_force_ratio": 0.9716,
       "perpendicular_force_ratio": 0.2545,
       "six_three_offset": 0.0379,
-      "blade_exposure_equality": 0.7399,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 56,
       "num_blades": 5,
@@ -285,7 +290,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 15.0235,
       "avg_gauge_backrake": 27.8441,
-      "cutter_density": 13.1765,
+      "cutter_density": 15.6018,
       "avg_blades_per_zone": 3.1,
       "avg_spacing_cv": 0.9025,
       "gauge_cutter_ratio": 0.4821,
@@ -296,6 +301,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.3214,
       "knuckle_ratio": 0.0,
       "n_primary": 38,
@@ -322,7 +328,7 @@
     }
   },
   "2046": {
-    "durability_score": 2.1,
+    "durability_score": 2.3,
     "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.2727,
@@ -339,7 +345,7 @@
       "avg_cone_backrake": 17.5,
       "avg_nose_backrake": 12.5508,
       "avg_gauge_backrake": 28.0481,
-      "cutter_density": 7.5102,
+      "cutter_density": 8.8926,
       "avg_blades_per_zone": 1.8,
       "avg_spacing_cv": 0.7233,
       "gauge_cutter_ratio": 0.3913,
@@ -350,6 +356,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.0625,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.2174,
       "knuckle_ratio": 0.0,
       "n_primary": 18,
@@ -376,7 +383,7 @@
     }
   },
   "2051": {
-    "durability_score": 7.9,
+    "durability_score": 6.0,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.8298,
@@ -393,7 +400,7 @@
       "avg_cone_backrake": 15.5,
       "avg_nose_backrake": 15.0946,
       "avg_gauge_backrake": 27.1371,
-      "cutter_density": 14.8571,
+      "cutter_density": 15.2727,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 0.6372,
       "gauge_cutter_ratio": 0.3846,
@@ -404,6 +411,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4939,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.3385,
       "knuckle_ratio": 0.0,
       "n_primary": 86,
@@ -433,7 +441,7 @@
     }
   },
   "2053": {
-    "durability_score": 7.8,
+    "durability_score": 9.0,
     "steerability_score": 3.1,
     "raw_metrics": {
       "redundancy_score": 0.7148,
@@ -441,7 +449,7 @@
       "radial_force_ratio": 0.9648,
       "perpendicular_force_ratio": 0.2876,
       "six_three_offset": 0.033,
-      "blade_exposure_equality": 0.6715,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 54,
       "num_blades": 6,
@@ -450,7 +458,7 @@
       "avg_cone_backrake": 16.6614,
       "avg_nose_backrake": 15.0119,
       "avg_gauge_backrake": 30.5355,
-      "cutter_density": 12.7059,
+      "cutter_density": 13.1352,
       "avg_blades_per_zone": 3.4,
       "avg_spacing_cv": 0.6893,
       "gauge_cutter_ratio": 0.4815,
@@ -461,6 +469,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.3333,
       "knuckle_ratio": 0.0,
       "n_primary": 36,
@@ -488,7 +497,7 @@
     }
   },
   "2054": {
-    "durability_score": 4.0,
+    "durability_score": 5.4,
     "steerability_score": 4.0,
     "raw_metrics": {
       "redundancy_score": 0.6429,
@@ -496,7 +505,7 @@
       "radial_force_ratio": 0.9719,
       "perpendicular_force_ratio": 0.2475,
       "six_three_offset": 0.0867,
-      "blade_exposure_equality": 0.7152,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 47,
       "num_blades": 6,
@@ -505,7 +514,7 @@
       "avg_cone_backrake": 16.0,
       "avg_nose_backrake": 15.659,
       "avg_gauge_backrake": 25.4512,
-      "cutter_density": 11.0588,
+      "cutter_density": 11.4425,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.8865,
       "gauge_cutter_ratio": 0.4255,
@@ -516,6 +525,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.2553,
       "knuckle_ratio": 0.0,
       "n_primary": 35,
@@ -543,7 +553,7 @@
     }
   },
   "2070": {
-    "durability_score": 2.8,
+    "durability_score": 4.5,
     "steerability_score": 3.5,
     "raw_metrics": {
       "redundancy_score": 0.373,
@@ -551,7 +561,7 @@
       "radial_force_ratio": 0.8977,
       "perpendicular_force_ratio": 0.3779,
       "six_three_offset": 0.092,
-      "blade_exposure_equality": 0.7014,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 56,
       "num_blades": 5,
@@ -560,7 +570,7 @@
       "avg_cone_backrake": 21.0,
       "avg_nose_backrake": 16.1111,
       "avg_gauge_backrake": 26.6293,
-      "cutter_density": 13.1765,
+      "cutter_density": 14.3466,
       "avg_blades_per_zone": 3.1,
       "avg_spacing_cv": 0.8171,
       "gauge_cutter_ratio": 0.3929,
@@ -571,6 +581,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4669,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 14.7,
       "backup_ratio": 0.3929,
       "knuckle_ratio": 0.0,
       "n_primary": 34,
@@ -597,7 +608,7 @@
     }
   },
   "2074": {
-    "durability_score": 3.1,
+    "durability_score": 5.2,
     "steerability_score": 2.2,
     "raw_metrics": {
       "redundancy_score": 0.25,
@@ -605,7 +616,7 @@
       "radial_force_ratio": 0.8191,
       "perpendicular_force_ratio": 0.5498,
       "six_three_offset": 0.0432,
-      "blade_exposure_equality": 0.7371,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 41,
       "num_blades": 5,
@@ -614,7 +625,7 @@
       "avg_cone_backrake": 25.0,
       "avg_nose_backrake": 17.5084,
       "avg_gauge_backrake": 30.3563,
-      "cutter_density": 9.6471,
+      "cutter_density": 11.4227,
       "avg_blades_per_zone": 3.1,
       "avg_spacing_cv": 0.5682,
       "gauge_cutter_ratio": 0.3415,
@@ -625,6 +636,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.463,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.1463,
       "knuckle_ratio": 0.0,
       "n_primary": 35,
@@ -650,7 +662,7 @@
     }
   },
   "2075": {
-    "durability_score": 4.5,
+    "durability_score": 7.5,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.2815,
@@ -658,7 +670,7 @@
       "radial_force_ratio": 0.8617,
       "perpendicular_force_ratio": 0.4834,
       "six_three_offset": 0.0162,
-      "blade_exposure_equality": 0.6677,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 50,
       "num_blades": 6,
@@ -667,7 +679,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 20.0122,
       "avg_gauge_backrake": 29.0211,
-      "cutter_density": 11.7647,
+      "cutter_density": 16.4386,
       "avg_blades_per_zone": 3.8,
       "avg_spacing_cv": 0.5509,
       "gauge_cutter_ratio": 0.36,
@@ -678,6 +690,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4342,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 11.5,
       "backup_ratio": 0.12,
       "knuckle_ratio": 0.0,
       "n_primary": 44,
@@ -704,7 +717,7 @@
     }
   },
   "2077": {
-    "durability_score": 4.1,
+    "durability_score": 7.2,
     "steerability_score": 4.2,
     "raw_metrics": {
       "redundancy_score": 0.265,
@@ -712,7 +725,7 @@
       "radial_force_ratio": 0.8632,
       "perpendicular_force_ratio": 0.4814,
       "six_three_offset": 0.0193,
-      "blade_exposure_equality": 0.6807,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 51,
       "num_blades": 6,
@@ -721,7 +734,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 20.0145,
       "avg_gauge_backrake": 29.0498,
-      "cutter_density": 11.6571,
+      "cutter_density": 16.2986,
       "avg_blades_per_zone": 3.8,
       "avg_spacing_cv": 0.5323,
       "gauge_cutter_ratio": 0.3333,
@@ -732,6 +745,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4339,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 11.4,
       "backup_ratio": 0.1176,
       "knuckle_ratio": 0.0,
       "n_primary": 45,
@@ -758,7 +772,7 @@
     }
   },
   "2079": {
-    "durability_score": 0.2,
+    "durability_score": 3.1,
     "steerability_score": 1.8,
     "raw_metrics": {
       "redundancy_score": 0.1944,
@@ -766,7 +780,7 @@
       "radial_force_ratio": 0.9763,
       "perpendicular_force_ratio": 0.2081,
       "six_three_offset": 0.0332,
-      "blade_exposure_equality": 0.6253,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 25,
       "num_blades": 4,
@@ -775,7 +789,7 @@
       "avg_cone_backrake": 18.3333,
       "avg_nose_backrake": 17.5818,
       "avg_gauge_backrake": 28.9678,
-      "cutter_density": 8.1633,
+      "cutter_density": 9.6658,
       "avg_blades_per_zone": 1.7,
       "avg_spacing_cv": 0.8216,
       "gauge_cutter_ratio": 0.56,
@@ -786,6 +800,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5352,
       "gauge_radius": 3.0625,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.08,
       "knuckle_ratio": 0.0,
       "n_primary": 23,
@@ -809,7 +824,7 @@
     }
   },
   "2081": {
-    "durability_score": 7.6,
+    "durability_score": 6.6,
     "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.5985,
@@ -817,7 +832,7 @@
       "radial_force_ratio": 0.9015,
       "perpendicular_force_ratio": 0.3438,
       "six_three_offset": 0.0395,
-      "blade_exposure_equality": 0.7554,
+      "blade_exposure_equality": 0.8884,
       "effective_blade_count": 3,
       "total_cutters": 118,
       "num_blades": 7,
@@ -826,7 +841,7 @@
       "avg_cone_backrake": 18.25,
       "avg_nose_backrake": 17.5419,
       "avg_gauge_backrake": 29.1293,
-      "cutter_density": 19.2653,
+      "cutter_density": 19.3242,
       "avg_blades_per_zone": 4.9,
       "avg_spacing_cv": 1.1597,
       "gauge_cutter_ratio": 0.4576,
@@ -837,6 +852,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5037,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3983,
       "knuckle_ratio": 0.0,
       "n_primary": 71,
@@ -864,7 +880,7 @@
     }
   },
   "2090": {
-    "durability_score": 5.6,
+    "durability_score": 7.2,
     "steerability_score": 4.3,
     "raw_metrics": {
       "redundancy_score": 0.5591,
@@ -872,7 +888,7 @@
       "radial_force_ratio": 0.8728,
       "perpendicular_force_ratio": 0.4374,
       "six_three_offset": 0.0903,
-      "blade_exposure_equality": 0.6893,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 65,
       "num_blades": 6,
@@ -881,7 +897,7 @@
       "avg_cone_backrake": 15.8333,
       "avg_nose_backrake": 15.6228,
       "avg_gauge_backrake": 27.8455,
-      "cutter_density": 13.1646,
+      "cutter_density": 14.1614,
       "avg_blades_per_zone": 3.8,
       "avg_spacing_cv": 0.6922,
       "gauge_cutter_ratio": 0.4308,
@@ -892,6 +908,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5026,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 14.9,
       "backup_ratio": 0.2923,
       "knuckle_ratio": 0.0,
       "n_primary": 46,
@@ -921,7 +938,7 @@
     }
   },
   "2091": {
-    "durability_score": 5.4,
+    "durability_score": 7.7,
     "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.6032,
@@ -929,7 +946,7 @@
       "radial_force_ratio": 0.9765,
       "perpendicular_force_ratio": 0.2125,
       "six_three_offset": 0.0327,
-      "blade_exposure_equality": 0.6883,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 50,
       "num_blades": 6,
@@ -938,7 +955,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 16.7035,
       "avg_gauge_backrake": 28.0696,
-      "cutter_density": 14.8148,
+      "cutter_density": 18.3078,
       "avg_blades_per_zone": 3.0,
       "avg_spacing_cv": 0.9639,
       "gauge_cutter_ratio": 0.4,
@@ -949,6 +966,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.3585,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 12.9,
       "backup_ratio": 0.24,
       "knuckle_ratio": 0.0,
       "n_primary": 38,
@@ -975,7 +993,7 @@
     }
   },
   "2095": {
-    "durability_score": 6.4,
+    "durability_score": 7.9,
     "steerability_score": 3.5,
     "raw_metrics": {
       "redundancy_score": 0.6591,
@@ -983,7 +1001,7 @@
       "radial_force_ratio": 0.9604,
       "perpendicular_force_ratio": 0.286,
       "six_three_offset": 0.0382,
-      "blade_exposure_equality": 0.6893,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 64,
       "num_blades": 6,
@@ -992,7 +1010,7 @@
       "avg_cone_backrake": 15.8333,
       "avg_nose_backrake": 15.6228,
       "avg_gauge_backrake": 28.3875,
-      "cutter_density": 12.962,
+      "cutter_density": 14.0153,
       "avg_blades_per_zone": 4.0,
       "avg_spacing_cv": 0.6061,
       "gauge_cutter_ratio": 0.4375,
@@ -1003,6 +1021,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5129,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 14.8,
       "backup_ratio": 0.2812,
       "knuckle_ratio": 0.2222,
       "n_primary": 46,
@@ -1029,7 +1048,7 @@
     }
   },
   "2096": {
-    "durability_score": 1.7,
+    "durability_score": 3.7,
     "steerability_score": 5.0,
     "raw_metrics": {
       "redundancy_score": 0.2111,
@@ -1037,7 +1056,7 @@
       "radial_force_ratio": 0.9061,
       "perpendicular_force_ratio": 0.3789,
       "six_three_offset": 0.0238,
-      "blade_exposure_equality": 0.737,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 41,
       "num_blades": 5,
@@ -1046,7 +1065,7 @@
       "avg_cone_backrake": 22.5,
       "avg_nose_backrake": 15.2853,
       "avg_gauge_backrake": 26.5451,
-      "cutter_density": 12.1481,
+      "cutter_density": 14.3842,
       "avg_blades_per_zone": 2.4,
       "avg_spacing_cv": 0.9364,
       "gauge_cutter_ratio": 0.3415,
@@ -1057,6 +1076,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4681,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.2927,
       "knuckle_ratio": 0.0,
       "n_primary": 29,
@@ -1084,7 +1104,7 @@
     }
   },
   "2104": {
-    "durability_score": 5.5,
+    "durability_score": 6.6,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.6705,
@@ -1092,7 +1112,7 @@
       "radial_force_ratio": 0.8954,
       "perpendicular_force_ratio": 0.4018,
       "six_three_offset": 0.0654,
-      "blade_exposure_equality": 0.7128,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 69,
       "num_blades": 6,
@@ -1101,7 +1121,7 @@
       "avg_cone_backrake": 16.5,
       "avg_nose_backrake": 15.0966,
       "avg_gauge_backrake": 23.6937,
-      "cutter_density": 13.9747,
+      "cutter_density": 14.3839,
       "avg_blades_per_zone": 3.4,
       "avg_spacing_cv": 1.0755,
       "gauge_cutter_ratio": 0.4348,
@@ -1112,6 +1132,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5036,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.3478,
       "knuckle_ratio": 0.0,
       "n_primary": 45,
@@ -1140,7 +1161,7 @@
     }
   },
   "2110": {
-    "durability_score": 5.5,
+    "durability_score": 6.1,
     "steerability_score": 3.0,
     "raw_metrics": {
       "redundancy_score": 0.25,
@@ -1148,7 +1169,7 @@
       "radial_force_ratio": 0.8414,
       "perpendicular_force_ratio": 0.5176,
       "six_three_offset": 0.0564,
-      "blade_exposure_equality": 0.7597,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 73,
       "num_blades": 5,
@@ -1157,7 +1178,7 @@
       "avg_cone_backrake": 21.0,
       "avg_nose_backrake": 15.1093,
       "avg_gauge_backrake": 32.3003,
-      "cutter_density": 14.7848,
+      "cutter_density": 14.83,
       "avg_blades_per_zone": 3.0,
       "avg_spacing_cv": 1.3046,
       "gauge_cutter_ratio": 0.4384,
@@ -1168,6 +1189,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4633,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.4247,
       "knuckle_ratio": 0.0,
       "n_primary": 42,
@@ -1195,7 +1217,7 @@
     }
   },
   "2114": {
-    "durability_score": 2.4,
+    "durability_score": 2.6,
     "steerability_score": 0.7,
     "raw_metrics": {
       "redundancy_score": 0.4333,
@@ -1203,7 +1225,7 @@
       "radial_force_ratio": 0.9677,
       "perpendicular_force_ratio": 0.2549,
       "six_three_offset": 0.0708,
-      "blade_exposure_equality": 0.7349,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 49,
       "num_blades": 6,
@@ -1212,7 +1234,7 @@
       "avg_cone_backrake": 18.0,
       "avg_nose_backrake": 15.1727,
       "avg_gauge_backrake": 29.1262,
-      "cutter_density": 8.0,
+      "cutter_density": 6.6924,
       "avg_blades_per_zone": 3.5,
       "avg_spacing_cv": 0.6711,
       "gauge_cutter_ratio": 0.4694,
@@ -1223,6 +1245,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.512,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 19.1,
       "backup_ratio": 0.1224,
       "knuckle_ratio": 0.0,
       "n_primary": 43,
@@ -1249,7 +1272,7 @@
     }
   },
   "2115": {
-    "durability_score": 2.4,
+    "durability_score": 3.9,
     "steerability_score": 2.7,
     "raw_metrics": {
       "redundancy_score": 0.25,
@@ -1257,7 +1280,7 @@
       "radial_force_ratio": 0.9784,
       "perpendicular_force_ratio": 0.1982,
       "six_three_offset": 0.0424,
-      "blade_exposure_equality": 0.7103,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 34,
       "num_blades": 5,
@@ -1266,7 +1289,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 12.8653,
       "avg_gauge_backrake": 30.361,
-      "cutter_density": 10.0741,
+      "cutter_density": 10.4373,
       "avg_blades_per_zone": 2.3333,
       "avg_spacing_cv": 0.9461,
       "gauge_cutter_ratio": 0.4412,
@@ -1277,6 +1300,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 15.4,
       "backup_ratio": 0.2647,
       "knuckle_ratio": 0.0,
       "n_primary": 25,
@@ -1303,7 +1327,7 @@
     }
   },
   "2117": {
-    "durability_score": 2.4,
+    "durability_score": 3.9,
     "steerability_score": 2.7,
     "raw_metrics": {
       "redundancy_score": 0.25,
@@ -1311,7 +1335,7 @@
       "radial_force_ratio": 0.9784,
       "perpendicular_force_ratio": 0.1982,
       "six_three_offset": 0.0424,
-      "blade_exposure_equality": 0.7103,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 34,
       "num_blades": 5,
@@ -1320,7 +1344,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 12.8653,
       "avg_gauge_backrake": 30.361,
-      "cutter_density": 10.0741,
+      "cutter_density": 10.4373,
       "avg_blades_per_zone": 2.3333,
       "avg_spacing_cv": 0.9461,
       "gauge_cutter_ratio": 0.4412,
@@ -1331,6 +1355,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 15.4,
       "backup_ratio": 0.2647,
       "knuckle_ratio": 0.0,
       "n_primary": 25,
@@ -1357,7 +1382,7 @@
     }
   },
   "2119": {
-    "durability_score": 6.4,
+    "durability_score": 6.6,
     "steerability_score": 5.0,
     "raw_metrics": {
       "redundancy_score": 0.4139,
@@ -1365,7 +1390,7 @@
       "radial_force_ratio": 0.8356,
       "perpendicular_force_ratio": 0.5212,
       "six_three_offset": 0.0316,
-      "blade_exposure_equality": 0.7778,
+      "blade_exposure_equality": 0.953,
       "effective_blade_count": 3,
       "total_cutters": 97,
       "num_blades": 6,
@@ -1374,7 +1399,7 @@
       "avg_cone_backrake": 16.2143,
       "avg_nose_backrake": 15.1725,
       "avg_gauge_backrake": 27.9509,
-      "cutter_density": 15.8367,
+      "cutter_density": 16.9817,
       "avg_blades_per_zone": 4.4,
       "avg_spacing_cv": 1.0809,
       "gauge_cutter_ratio": 0.4021,
@@ -1385,6 +1410,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4985,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 14.9,
       "backup_ratio": 0.3608,
       "knuckle_ratio": 0.0,
       "n_primary": 62,
@@ -1414,7 +1440,7 @@
     }
   },
   "2120": {
-    "durability_score": 2.0,
+    "durability_score": 3.0,
     "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.2864,
@@ -1422,7 +1448,7 @@
       "radial_force_ratio": 0.8464,
       "perpendicular_force_ratio": 0.5036,
       "six_three_offset": 0.0444,
-      "blade_exposure_equality": 0.7799,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 41,
       "num_blades": 5,
@@ -1431,7 +1457,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.0974,
       "avg_gauge_backrake": 29.5236,
-      "cutter_density": 9.3714,
+      "cutter_density": 9.4195,
       "avg_blades_per_zone": 2.6,
       "avg_spacing_cv": 0.8423,
       "gauge_cutter_ratio": 0.3659,
@@ -1442,6 +1468,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4924,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.2195,
       "knuckle_ratio": 0.0,
       "n_primary": 32,
@@ -1468,7 +1495,7 @@
     }
   },
   "2121": {
-    "durability_score": 2.2,
+    "durability_score": 2.0,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.2614,
@@ -1476,7 +1503,7 @@
       "radial_force_ratio": 0.977,
       "perpendicular_force_ratio": 0.2064,
       "six_three_offset": 0.0384,
-      "blade_exposure_equality": 0.794,
+      "blade_exposure_equality": 0.896,
       "effective_blade_count": 2,
       "total_cutters": 49,
       "num_blades": 5,
@@ -1485,7 +1512,7 @@
       "avg_cone_backrake": 17.5,
       "avg_nose_backrake": 14.102,
       "avg_gauge_backrake": 24.5462,
-      "cutter_density": 9.9241,
+      "cutter_density": 10.2304,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.88,
       "gauge_cutter_ratio": 0.4286,
@@ -1496,6 +1523,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5158,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.2857,
       "knuckle_ratio": 0.0,
       "n_primary": 35,
@@ -1522,7 +1550,7 @@
     }
   },
   "2122": {
-    "durability_score": 1.3,
+    "durability_score": 3.6,
     "steerability_score": 5.7,
     "raw_metrics": {
       "redundancy_score": 0.4512,
@@ -1530,7 +1558,7 @@
       "radial_force_ratio": 0.8164,
       "perpendicular_force_ratio": 0.5463,
       "six_three_offset": 0.0736,
-      "blade_exposure_equality": 0.6575,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 93,
       "num_blades": 7,
@@ -1539,7 +1567,7 @@
       "avg_cone_backrake": 15.7143,
       "avg_nose_backrake": 13.5,
       "avg_gauge_backrake": 26.3923,
-      "cutter_density": 15.1837,
+      "cutter_density": 17.2138,
       "avg_blades_per_zone": 4.5,
       "avg_spacing_cv": 1.0079,
       "gauge_cutter_ratio": 0.4301,
@@ -1550,6 +1578,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.486,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 14.1,
       "backup_ratio": 0.2688,
       "knuckle_ratio": 0.0,
       "n_primary": 68,
@@ -1576,7 +1605,7 @@
     }
   },
   "2124": {
-    "durability_score": 5.4,
+    "durability_score": 4.8,
     "steerability_score": 5.7,
     "raw_metrics": {
       "redundancy_score": 0.3974,
@@ -1584,7 +1613,7 @@
       "radial_force_ratio": 0.8895,
       "perpendicular_force_ratio": 0.3685,
       "six_three_offset": 0.0424,
-      "blade_exposure_equality": 0.8267,
+      "blade_exposure_equality": 0.9239,
       "effective_blade_count": 3,
       "total_cutters": 90,
       "num_blades": 5,
@@ -1593,7 +1622,7 @@
       "avg_cone_backrake": 19.2857,
       "avg_nose_backrake": 15.1619,
       "avg_gauge_backrake": 27.3373,
-      "cutter_density": 14.6939,
+      "cutter_density": 14.9888,
       "avg_blades_per_zone": 3.8,
       "avg_spacing_cv": 1.0796,
       "gauge_cutter_ratio": 0.4222,
@@ -1604,6 +1633,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5039,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.3556,
       "knuckle_ratio": 0.0,
       "n_primary": 58,
@@ -1631,7 +1661,7 @@
     }
   },
   "2126": {
-    "durability_score": 0.8,
+    "durability_score": 3.5,
     "steerability_score": 2.9,
     "raw_metrics": {
       "redundancy_score": 0.1944,
@@ -1639,7 +1669,7 @@
       "radial_force_ratio": 0.9842,
       "perpendicular_force_ratio": 0.1666,
       "six_three_offset": 0.042,
-      "blade_exposure_equality": 0.6723,
+      "blade_exposure_equality": 0.9684,
       "effective_blade_count": 1,
       "total_cutters": 28,
       "num_blades": 5,
@@ -1648,7 +1678,7 @@
       "avg_cone_backrake": 17.5,
       "avg_nose_backrake": 12.7676,
       "avg_gauge_backrake": 30.9878,
-      "cutter_density": 8.2963,
+      "cutter_density": 10.366,
       "avg_blades_per_zone": 2.3,
       "avg_spacing_cv": 0.5428,
       "gauge_cutter_ratio": 0.4286,
@@ -1659,6 +1689,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4914,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 12.8,
       "backup_ratio": 0.0357,
       "knuckle_ratio": 0.0,
       "n_primary": 27,
@@ -1682,7 +1713,7 @@
     }
   },
   "2131": {
-    "durability_score": 1.5,
+    "durability_score": 3.4,
     "steerability_score": 3.4,
     "raw_metrics": {
       "redundancy_score": 0.3361,
@@ -1690,7 +1721,7 @@
       "radial_force_ratio": 0.8721,
       "perpendicular_force_ratio": 0.4723,
       "six_three_offset": 0.0548,
-      "blade_exposure_equality": 0.6564,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 45,
       "num_blades": 6,
@@ -1699,7 +1730,7 @@
       "avg_cone_backrake": 16.75,
       "avg_nose_backrake": 15.0838,
       "avg_gauge_backrake": 28.6374,
-      "cutter_density": 11.4286,
+      "cutter_density": 11.8477,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.9225,
       "gauge_cutter_ratio": 0.4667,
@@ -1710,6 +1741,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4899,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 15.4,
       "backup_ratio": 0.2444,
       "knuckle_ratio": 0.0,
       "n_primary": 34,
@@ -1737,7 +1769,7 @@
     }
   },
   "2137": {
-    "durability_score": 0.1,
+    "durability_score": 0.6,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.275,
@@ -1745,7 +1777,7 @@
       "radial_force_ratio": 0.9804,
       "perpendicular_force_ratio": 0.1859,
       "six_three_offset": 0.0706,
-      "blade_exposure_equality": 0.748,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 33,
       "num_blades": 5,
@@ -1754,7 +1786,7 @@
       "avg_cone_backrake": 17.0,
       "avg_nose_backrake": 15.0156,
       "avg_gauge_backrake": 27.5707,
-      "cutter_density": 6.0,
+      "cutter_density": 5.0193,
       "avg_blades_per_zone": 2.7,
       "avg_spacing_cv": 0.5476,
       "gauge_cutter_ratio": 0.3939,
@@ -1765,6 +1797,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 5.5,
+      "avg_primary_cutter_dia_mm": 19.1,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 33,
@@ -1788,7 +1821,7 @@
     }
   },
   "2140": {
-    "durability_score": 0.5,
+    "durability_score": 2.5,
     "steerability_score": 7.9,
     "raw_metrics": {
       "redundancy_score": 0.2619,
@@ -1796,7 +1829,7 @@
       "radial_force_ratio": 0.7916,
       "perpendicular_force_ratio": 0.5764,
       "six_three_offset": 0.0544,
-      "blade_exposure_equality": 0.629,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 39,
       "num_blades": 6,
@@ -1805,7 +1838,7 @@
       "avg_cone_backrake": 16.75,
       "avg_nose_backrake": 15.1265,
       "avg_gauge_backrake": 26.0555,
-      "cutter_density": 9.9048,
+      "cutter_density": 9.9351,
       "avg_blades_per_zone": 2.8889,
       "avg_spacing_cv": 0.8596,
       "gauge_cutter_ratio": 0.3333,
@@ -1816,6 +1849,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4882,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2051,
       "knuckle_ratio": 0.0,
       "n_primary": 31,
@@ -1852,7 +1886,7 @@
       "radial_force_ratio": 0.8592,
       "perpendicular_force_ratio": 0.4327,
       "six_three_offset": 0.0309,
-      "blade_exposure_equality": 0.767,
+      "blade_exposure_equality": 0.9504,
       "effective_blade_count": 3,
       "total_cutters": 85,
       "num_blades": 6,
@@ -1861,7 +1895,7 @@
       "avg_cone_backrake": 19.2857,
       "avg_nose_backrake": 15.8668,
       "avg_gauge_backrake": 31.2841,
-      "cutter_density": 13.8776,
+      "cutter_density": 14.1962,
       "avg_blades_per_zone": 4.3,
       "avg_spacing_cv": 0.9415,
       "gauge_cutter_ratio": 0.3176,
@@ -1872,6 +1906,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.504,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.3059,
       "knuckle_ratio": 0.0,
       "n_primary": 59,
@@ -1900,7 +1935,7 @@
     }
   },
   "2142": {
-    "durability_score": 1.2,
+    "durability_score": 2.9,
     "steerability_score": 6.7,
     "raw_metrics": {
       "redundancy_score": 0.2434,
@@ -1908,7 +1943,7 @@
       "radial_force_ratio": 0.814,
       "perpendicular_force_ratio": 0.536,
       "six_three_offset": 0.0642,
-      "blade_exposure_equality": 0.6725,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 43,
       "num_blades": 6,
@@ -1917,7 +1952,7 @@
       "avg_cone_backrake": 18.5,
       "avg_nose_backrake": 16.6507,
       "avg_gauge_backrake": 27.2463,
-      "cutter_density": 9.8286,
+      "cutter_density": 9.8586,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 0.8407,
       "gauge_cutter_ratio": 0.3488,
@@ -1928,6 +1963,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4911,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.186,
       "knuckle_ratio": 0.0,
       "n_primary": 35,
@@ -1956,7 +1992,7 @@
     }
   },
   "2143": {
-    "durability_score": 1.9,
+    "durability_score": 4.7,
     "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.2973,
@@ -1964,7 +2000,7 @@
       "radial_force_ratio": 0.9737,
       "perpendicular_force_ratio": 0.2453,
       "six_three_offset": 0.0213,
-      "blade_exposure_equality": 0.6535,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 51,
       "num_blades": 6,
@@ -1973,7 +2009,7 @@
       "avg_cone_backrake": 17.25,
       "avg_nose_backrake": 12.5101,
       "avg_gauge_backrake": 26.4799,
-      "cutter_density": 12.0,
+      "cutter_density": 15.0256,
       "avg_blades_per_zone": 3.3,
       "avg_spacing_cv": 0.8418,
       "gauge_cutter_ratio": 0.3922,
@@ -1984,6 +2020,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4965,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 12.8,
       "backup_ratio": 0.2157,
       "knuckle_ratio": 0.0,
       "n_primary": 40,
@@ -2010,7 +2047,7 @@
     }
   },
   "2145": {
-    "durability_score": 3.1,
+    "durability_score": 4.6,
     "steerability_score": 3.2,
     "raw_metrics": {
       "redundancy_score": 0.4556,
@@ -2018,7 +2055,7 @@
       "radial_force_ratio": 0.9035,
       "perpendicular_force_ratio": 0.3773,
       "six_three_offset": 0.0713,
-      "blade_exposure_equality": 0.6488,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 75,
       "num_blades": 7,
@@ -2027,7 +2064,7 @@
       "avg_cone_backrake": 18.5833,
       "avg_nose_backrake": 17.0187,
       "avg_gauge_backrake": 26.6334,
-      "cutter_density": 14.1176,
+      "cutter_density": 14.2052,
       "avg_blades_per_zone": 4.0,
       "avg_spacing_cv": 1.0327,
       "gauge_cutter_ratio": 0.3733,
@@ -2038,6 +2075,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.511,
       "gauge_radius": 5.3125,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3067,
       "knuckle_ratio": 0.0,
       "n_primary": 52,
@@ -2074,7 +2112,7 @@
       "radial_force_ratio": 0.8943,
       "perpendicular_force_ratio": 0.3583,
       "six_three_offset": 0.0475,
-      "blade_exposure_equality": 0.7665,
+      "blade_exposure_equality": 0.9504,
       "effective_blade_count": 3,
       "total_cutters": 104,
       "num_blades": 6,
@@ -2083,7 +2121,7 @@
       "avg_cone_backrake": 16.0714,
       "avg_nose_backrake": 15.1837,
       "avg_gauge_backrake": 26.5817,
-      "cutter_density": 16.9796,
+      "cutter_density": 17.3258,
       "avg_blades_per_zone": 4.3,
       "avg_spacing_cv": 1.0737,
       "gauge_cutter_ratio": 0.4038,
@@ -2094,6 +2132,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.507,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.3462,
       "knuckle_ratio": 0.0,
       "n_primary": 68,
@@ -2122,7 +2161,7 @@
     }
   },
   "2152": {
-    "durability_score": 2.4,
+    "durability_score": 3.9,
     "steerability_score": 2.7,
     "raw_metrics": {
       "redundancy_score": 0.25,
@@ -2130,7 +2169,7 @@
       "radial_force_ratio": 0.9784,
       "perpendicular_force_ratio": 0.1982,
       "six_three_offset": 0.0424,
-      "blade_exposure_equality": 0.7103,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 34,
       "num_blades": 5,
@@ -2139,7 +2178,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 12.8653,
       "avg_gauge_backrake": 30.361,
-      "cutter_density": 10.0741,
+      "cutter_density": 10.4373,
       "avg_blades_per_zone": 2.3333,
       "avg_spacing_cv": 0.9461,
       "gauge_cutter_ratio": 0.4412,
@@ -2150,6 +2189,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 15.4,
       "backup_ratio": 0.2647,
       "knuckle_ratio": 0.0,
       "n_primary": 25,
@@ -2176,7 +2216,7 @@
     }
   },
   "2153": {
-    "durability_score": 4.2,
+    "durability_score": 6.4,
     "steerability_score": 0.0,
     "raw_metrics": {
       "redundancy_score": 0.4779,
@@ -2184,7 +2224,7 @@
       "radial_force_ratio": 0.9823,
       "perpendicular_force_ratio": 0.171,
       "six_three_offset": 0.0674,
-      "blade_exposure_equality": 0.6696,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 94,
       "num_blades": 7,
@@ -2193,7 +2233,7 @@
       "avg_cone_backrake": 18.4375,
       "avg_nose_backrake": 15.6364,
       "avg_gauge_backrake": 27.4217,
-      "cutter_density": 15.3469,
+      "cutter_density": 18.1717,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 0.874,
       "gauge_cutter_ratio": 0.5957,
@@ -2204,6 +2244,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5341,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.2766,
       "knuckle_ratio": 0.0,
       "n_primary": 68,
@@ -2230,7 +2271,7 @@
     }
   },
   "2154": {
-    "durability_score": 0.7,
+    "durability_score": 2.4,
     "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.2361,
@@ -2238,7 +2279,7 @@
       "radial_force_ratio": 0.8418,
       "perpendicular_force_ratio": 0.4738,
       "six_three_offset": 0.0772,
-      "blade_exposure_equality": 0.7164,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 34,
       "num_blades": 5,
@@ -2247,7 +2288,7 @@
       "avg_cone_backrake": 15.5,
       "avg_nose_backrake": 12.9034,
       "avg_gauge_backrake": 29.3118,
-      "cutter_density": 8.6349,
+      "cutter_density": 8.9547,
       "avg_blades_per_zone": 2.4,
       "avg_spacing_cv": 0.6976,
       "gauge_cutter_ratio": 0.3235,
@@ -2258,6 +2299,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4868,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 15.4,
       "backup_ratio": 0.1765,
       "knuckle_ratio": 0.0,
       "n_primary": 28,
@@ -2284,7 +2326,7 @@
     }
   },
   "2157": {
-    "durability_score": 5.4,
+    "durability_score": 5.3,
     "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.5023,
@@ -2292,7 +2334,7 @@
       "radial_force_ratio": 0.9005,
       "perpendicular_force_ratio": 0.3337,
       "six_three_offset": 0.0524,
-      "blade_exposure_equality": 0.771,
+      "blade_exposure_equality": 0.9472,
       "effective_blade_count": 2,
       "total_cutters": 100,
       "num_blades": 6,
@@ -2301,7 +2343,7 @@
       "avg_cone_backrake": 18.0,
       "avg_nose_backrake": 15.188,
       "avg_gauge_backrake": 24.8118,
-      "cutter_density": 16.3265,
+      "cutter_density": 16.2476,
       "avg_blades_per_zone": 4.0,
       "avg_spacing_cv": 1.1293,
       "gauge_cutter_ratio": 0.42,
@@ -2312,6 +2354,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5076,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.1,
       "backup_ratio": 0.35,
       "knuckle_ratio": 0.0,
       "n_primary": 65,
@@ -2339,7 +2382,7 @@
     }
   },
   "2158": {
-    "durability_score": 3.1,
+    "durability_score": 4.5,
     "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.6157,
@@ -2347,7 +2390,7 @@
       "radial_force_ratio": 0.8793,
       "perpendicular_force_ratio": 0.3455,
       "six_three_offset": 0.0483,
-      "blade_exposure_equality": 0.7109,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 55,
       "num_blades": 6,
@@ -2356,7 +2399,7 @@
       "avg_cone_backrake": 15.8333,
       "avg_nose_backrake": 13.1006,
       "avg_gauge_backrake": 25.4103,
-      "cutter_density": 10.0,
+      "cutter_density": 10.2545,
       "avg_blades_per_zone": 3.7,
       "avg_spacing_cv": 0.7027,
       "gauge_cutter_ratio": 0.4,
@@ -2367,6 +2410,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5129,
       "gauge_radius": 5.5,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.0909,
       "knuckle_ratio": 0.0,
       "n_primary": 50,
@@ -2394,7 +2438,7 @@
     }
   },
   "2160": {
-    "durability_score": 7.9,
+    "durability_score": 6.0,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.8298,
@@ -2411,7 +2455,7 @@
       "avg_cone_backrake": 15.5,
       "avg_nose_backrake": 15.0946,
       "avg_gauge_backrake": 27.1371,
-      "cutter_density": 14.8571,
+      "cutter_density": 15.2727,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 0.6372,
       "gauge_cutter_ratio": 0.3846,
@@ -2422,6 +2466,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4939,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.3385,
       "knuckle_ratio": 0.0,
       "n_primary": 86,
@@ -2451,7 +2496,7 @@
     }
   },
   "2164": {
-    "durability_score": 5.8,
+    "durability_score": 6.6,
     "steerability_score": 2.9,
     "raw_metrics": {
       "redundancy_score": 0.2917,
@@ -2459,7 +2504,7 @@
       "radial_force_ratio": 0.8763,
       "perpendicular_force_ratio": 0.4428,
       "six_three_offset": 0.0183,
-      "blade_exposure_equality": 0.7566,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 62,
       "num_blades": 5,
@@ -2468,7 +2513,7 @@
       "avg_cone_backrake": 23.0,
       "avg_nose_backrake": 20.0482,
       "avg_gauge_backrake": 28.6101,
-      "cutter_density": 12.557,
+      "cutter_density": 13.0832,
       "avg_blades_per_zone": 3.0,
       "avg_spacing_cv": 1.0952,
       "gauge_cutter_ratio": 0.4194,
@@ -2479,6 +2524,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5091,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 15.4,
       "backup_ratio": 0.3226,
       "knuckle_ratio": 0.0,
       "n_primary": 42,
@@ -2506,7 +2552,7 @@
     }
   },
   "2169": {
-    "durability_score": 6.1,
+    "durability_score": 4.9,
     "steerability_score": 7.4,
     "raw_metrics": {
       "redundancy_score": 0.7308,
@@ -2514,7 +2560,7 @@
       "radial_force_ratio": 0.902,
       "perpendicular_force_ratio": 0.3691,
       "six_three_offset": 0.0355,
-      "blade_exposure_equality": 0.7818,
+      "blade_exposure_equality": 0.8555,
       "effective_blade_count": 3,
       "total_cutters": 106,
       "num_blades": 6,
@@ -2523,7 +2569,7 @@
       "avg_cone_backrake": 15.625,
       "avg_nose_backrake": 15.0,
       "avg_gauge_backrake": 23.6921,
-      "cutter_density": 14.3729,
+      "cutter_density": 14.6083,
       "avg_blades_per_zone": 4.8,
       "avg_spacing_cv": 0.9603,
       "gauge_cutter_ratio": 0.3774,
@@ -2534,6 +2580,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5022,
       "gauge_radius": 7.375,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.3019,
       "knuckle_ratio": 0.5,
       "n_primary": 74,
@@ -2563,7 +2610,7 @@
     }
   },
   "2172": {
-    "durability_score": 4.4,
+    "durability_score": 5.7,
     "steerability_score": 4.5,
     "raw_metrics": {
       "redundancy_score": 0.4815,
@@ -2571,7 +2618,7 @@
       "radial_force_ratio": 0.9346,
       "perpendicular_force_ratio": 0.244,
       "six_three_offset": 0.0549,
-      "blade_exposure_equality": 0.6663,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 100,
       "num_blades": 7,
@@ -2580,7 +2627,7 @@
       "avg_cone_backrake": 15.8333,
       "avg_nose_backrake": 15.1408,
       "avg_gauge_backrake": 25.8955,
-      "cutter_density": 20.2532,
+      "cutter_density": 20.7527,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 1.2038,
       "gauge_cutter_ratio": 0.5,
@@ -2591,6 +2638,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4779,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.37,
       "knuckle_ratio": 0.0,
       "n_primary": 63,
@@ -2619,7 +2667,7 @@
     }
   },
   "2173": {
-    "durability_score": 1.4,
+    "durability_score": 3.1,
     "steerability_score": 6.1,
     "raw_metrics": {
       "redundancy_score": 0.2452,
@@ -2627,7 +2675,7 @@
       "radial_force_ratio": 0.9363,
       "perpendicular_force_ratio": 0.3039,
       "six_three_offset": 0.0238,
-      "blade_exposure_equality": 0.6271,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 53,
       "num_blades": 6,
@@ -2636,7 +2684,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.9308,
       "avg_gauge_backrake": 24.8306,
-      "cutter_density": 13.4603,
+      "cutter_density": 13.5015,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 1.1867,
       "gauge_cutter_ratio": 0.5283,
@@ -2647,6 +2695,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4903,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3585,
       "knuckle_ratio": 0.6842,
       "n_primary": 34,
@@ -2675,7 +2724,7 @@
     }
   },
   "2174": {
-    "durability_score": 4.4,
+    "durability_score": 5.7,
     "steerability_score": 2.3,
     "raw_metrics": {
       "redundancy_score": 0.3167,
@@ -2683,7 +2732,7 @@
       "radial_force_ratio": 0.8933,
       "perpendicular_force_ratio": 0.4072,
       "six_three_offset": 0.0345,
-      "blade_exposure_equality": 0.7163,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 50,
       "num_blades": 5,
@@ -2692,7 +2741,7 @@
       "avg_cone_backrake": 23.75,
       "avg_nose_backrake": 20.0,
       "avg_gauge_backrake": 29.1996,
-      "cutter_density": 11.4286,
+      "cutter_density": 11.9719,
       "avg_blades_per_zone": 2.6,
       "avg_spacing_cv": 1.0662,
       "gauge_cutter_ratio": 0.44,
@@ -2703,6 +2752,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.511,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 15.3,
       "backup_ratio": 0.26,
       "knuckle_ratio": 0.0,
       "n_primary": 37,
@@ -2729,7 +2779,7 @@
     }
   },
   "2177": {
-    "durability_score": 6.1,
+    "durability_score": 7.0,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.4899,
@@ -2737,7 +2787,7 @@
       "radial_force_ratio": 0.8685,
       "perpendicular_force_ratio": 0.4345,
       "six_three_offset": 0.0568,
-      "blade_exposure_equality": 0.7346,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 92,
       "num_blades": 6,
@@ -2746,7 +2796,7 @@
       "avg_cone_backrake": 16.0714,
       "avg_nose_backrake": 15.1933,
       "avg_gauge_backrake": 28.0217,
-      "cutter_density": 15.0204,
+      "cutter_density": 15.3546,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 1.0399,
       "gauge_cutter_ratio": 0.4022,
@@ -2757,6 +2807,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5053,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.337,
       "knuckle_ratio": 0.0,
       "n_primary": 61,
@@ -2785,7 +2836,7 @@
     }
   },
   "2179": {
-    "durability_score": 5.7,
+    "durability_score": 6.5,
     "steerability_score": 3.0,
     "raw_metrics": {
       "redundancy_score": 0.5568,
@@ -2793,7 +2844,7 @@
       "radial_force_ratio": 0.9721,
       "perpendicular_force_ratio": 0.2385,
       "six_three_offset": 0.0422,
-      "blade_exposure_equality": 0.7136,
+      "blade_exposure_equality": 0.9824,
       "effective_blade_count": 3,
       "total_cutters": 90,
       "num_blades": 7,
@@ -2802,7 +2853,7 @@
       "avg_cone_backrake": 16.0714,
       "avg_nose_backrake": 15.2033,
       "avg_gauge_backrake": 29.0157,
-      "cutter_density": 14.6939,
+      "cutter_density": 15.0306,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 0.8985,
       "gauge_cutter_ratio": 0.4333,
@@ -2813,6 +2864,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.2778,
       "knuckle_ratio": 0.0,
       "n_primary": 65,
@@ -2840,7 +2892,7 @@
     }
   },
   "2180": {
-    "durability_score": 4.0,
+    "durability_score": 5.3,
     "steerability_score": 3.8,
     "raw_metrics": {
       "redundancy_score": 0.3909,
@@ -2848,7 +2900,7 @@
       "radial_force_ratio": 0.9604,
       "perpendicular_force_ratio": 0.2799,
       "six_three_offset": 0.0603,
-      "blade_exposure_equality": 0.672,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 82,
       "num_blades": 7,
@@ -2857,7 +2909,7 @@
       "avg_cone_backrake": 16.9167,
       "avg_nose_backrake": 16.0161,
       "avg_gauge_backrake": 28.3823,
-      "cutter_density": 15.4353,
+      "cutter_density": 15.53,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 1.0824,
       "gauge_cutter_ratio": 0.5,
@@ -2868,6 +2920,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5046,
       "gauge_radius": 5.3125,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3415,
       "knuckle_ratio": 0.3571,
       "n_primary": 54,
@@ -2896,7 +2949,7 @@
     }
   },
   "2181": {
-    "durability_score": 3.3,
+    "durability_score": 4.8,
     "steerability_score": 6.3,
     "raw_metrics": {
       "redundancy_score": 0.2778,
@@ -2904,7 +2957,7 @@
       "radial_force_ratio": 0.9469,
       "perpendicular_force_ratio": 0.3282,
       "six_three_offset": 0.0294,
-      "blade_exposure_equality": 0.6455,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 49,
       "num_blades": 6,
@@ -2913,7 +2966,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 16.5358,
       "avg_gauge_backrake": 31.0172,
-      "cutter_density": 12.4444,
+      "cutter_density": 12.4825,
       "avg_blades_per_zone": 2.7,
       "avg_spacing_cv": 1.0331,
       "gauge_cutter_ratio": 0.4694,
@@ -2924,6 +2977,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5071,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2857,
       "knuckle_ratio": 0.4286,
       "n_primary": 35,
@@ -2952,7 +3006,7 @@
     }
   },
   "2184": {
-    "durability_score": 3.9,
+    "durability_score": 5.5,
     "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.3879,
@@ -2960,7 +3014,7 @@
       "radial_force_ratio": 0.976,
       "perpendicular_force_ratio": 0.2109,
       "six_three_offset": 0.0347,
-      "blade_exposure_equality": 0.6522,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 53,
       "num_blades": 6,
@@ -2969,7 +3023,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.3135,
       "avg_gauge_backrake": 27.8659,
-      "cutter_density": 12.4706,
+      "cutter_density": 12.8454,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 1.0339,
       "gauge_cutter_ratio": 0.4906,
@@ -2980,6 +3034,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.3208,
       "knuckle_ratio": 0.0,
       "n_primary": 36,
@@ -3007,7 +3062,7 @@
     }
   },
   "2185": {
-    "durability_score": 8.0,
+    "durability_score": 7.9,
     "steerability_score": 5.7,
     "raw_metrics": {
       "redundancy_score": 0.7182,
@@ -3015,7 +3070,7 @@
       "radial_force_ratio": 0.883,
       "perpendicular_force_ratio": 0.4037,
       "six_three_offset": 0.0306,
-      "blade_exposure_equality": 0.7766,
+      "blade_exposure_equality": 0.9533,
       "effective_blade_count": 3,
       "total_cutters": 109,
       "num_blades": 6,
@@ -3024,7 +3079,7 @@
       "avg_cone_backrake": 16.0714,
       "avg_nose_backrake": 15.0219,
       "avg_gauge_backrake": 29.3705,
-      "cutter_density": 16.1481,
+      "cutter_density": 16.6535,
       "avg_blades_per_zone": 4.5,
       "avg_spacing_cv": 1.1374,
       "gauge_cutter_ratio": 0.422,
@@ -3035,6 +3090,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4969,
       "gauge_radius": 6.75,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.3394,
       "knuckle_ratio": 0.5676,
       "n_primary": 72,
@@ -3063,7 +3119,7 @@
     }
   },
   "2186": {
-    "durability_score": 4.8,
+    "durability_score": 6.1,
     "steerability_score": 5.0,
     "raw_metrics": {
       "redundancy_score": 0.3535,
@@ -3071,7 +3127,7 @@
       "radial_force_ratio": 0.8112,
       "perpendicular_force_ratio": 0.5425,
       "six_three_offset": 0.0482,
-      "blade_exposure_equality": 0.6947,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 60,
       "num_blades": 6,
@@ -3080,7 +3136,7 @@
       "avg_cone_backrake": 18.75,
       "avg_nose_backrake": 17.4512,
       "avg_gauge_backrake": 30.2558,
-      "cutter_density": 13.7143,
+      "cutter_density": 14.1159,
       "avg_blades_per_zone": 3.1,
       "avg_spacing_cv": 1.0846,
       "gauge_cutter_ratio": 0.4,
@@ -3091,6 +3147,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4787,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.35,
       "knuckle_ratio": 0.2857,
       "n_primary": 39,
@@ -3120,7 +3177,7 @@
     }
   },
   "2188": {
-    "durability_score": 2.0,
+    "durability_score": 4.2,
     "steerability_score": 8.7,
     "raw_metrics": {
       "redundancy_score": 0.3542,
@@ -3128,7 +3185,7 @@
       "radial_force_ratio": 0.8428,
       "perpendicular_force_ratio": 0.4442,
       "six_three_offset": 0.1256,
-      "blade_exposure_equality": 0.7264,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 40,
       "num_blades": 5,
@@ -3137,7 +3194,7 @@
       "avg_cone_backrake": 13.4045,
       "avg_nose_backrake": 15.5733,
       "avg_gauge_backrake": 30.0,
-      "cutter_density": 9.1429,
+      "cutter_density": 10.8257,
       "avg_blades_per_zone": 3.0,
       "avg_spacing_cv": 0.8887,
       "gauge_cutter_ratio": 0.0,
@@ -3148,6 +3205,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4613,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.25,
       "knuckle_ratio": 0.5,
       "n_primary": 30,
@@ -3175,7 +3233,7 @@
     }
   },
   "2190": {
-    "durability_score": 6.6,
+    "durability_score": 8.6,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.4299,
@@ -3183,7 +3241,7 @@
       "radial_force_ratio": 0.9204,
       "perpendicular_force_ratio": 0.343,
       "six_three_offset": 0.0334,
-      "blade_exposure_equality": 0.681,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 67,
       "num_blades": 8,
@@ -3192,7 +3250,7 @@
       "avg_cone_backrake": 18.761,
       "avg_nose_backrake": 16.4165,
       "avg_gauge_backrake": 31.4289,
-      "cutter_density": 15.7647,
+      "cutter_density": 18.7723,
       "avg_blades_per_zone": 4.4,
       "avg_spacing_cv": 0.7886,
       "gauge_cutter_ratio": 0.4478,
@@ -3203,6 +3261,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4985,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.194,
       "knuckle_ratio": 0.4615,
       "n_primary": 54,
@@ -3229,7 +3288,7 @@
     }
   },
   "2192": {
-    "durability_score": 0.0,
+    "durability_score": 1.9,
     "steerability_score": 3.1,
     "raw_metrics": {
       "redundancy_score": 0.2639,
@@ -3237,7 +3296,7 @@
       "radial_force_ratio": 0.9799,
       "perpendicular_force_ratio": 0.2012,
       "six_three_offset": 0.1085,
-      "blade_exposure_equality": 0.6779,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 34,
       "num_blades": 6,
@@ -3246,7 +3305,7 @@
       "avg_cone_backrake": 16.25,
       "avg_nose_backrake": 15.1958,
       "avg_gauge_backrake": 27.8599,
-      "cutter_density": 7.7714,
+      "cutter_density": 7.7952,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.5215,
       "gauge_cutter_ratio": 0.4118,
@@ -3257,6 +3316,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 34,
@@ -3280,7 +3340,7 @@
     }
   },
   "2193": {
-    "durability_score": 3.1,
+    "durability_score": 5.6,
     "steerability_score": 2.0,
     "raw_metrics": {
       "redundancy_score": 0.5,
@@ -3288,7 +3348,7 @@
       "radial_force_ratio": 0.9299,
       "perpendicular_force_ratio": 0.2885,
       "six_three_offset": 0.051,
-      "blade_exposure_equality": 0.6298,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 66,
       "num_blades": 7,
@@ -3297,7 +3357,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 20.2042,
       "avg_gauge_backrake": 26.8637,
-      "cutter_density": 15.5294,
+      "cutter_density": 18.3878,
       "avg_blades_per_zone": 3.7,
       "avg_spacing_cv": 0.8828,
       "gauge_cutter_ratio": 0.5303,
@@ -3308,6 +3368,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4871,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.2879,
       "knuckle_ratio": 0.0,
       "n_primary": 47,
@@ -3335,7 +3396,7 @@
     }
   },
   "2194": {
-    "durability_score": 7.9,
+    "durability_score": 6.0,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.8298,
@@ -3352,7 +3413,7 @@
       "avg_cone_backrake": 15.5,
       "avg_nose_backrake": 15.0946,
       "avg_gauge_backrake": 27.1371,
-      "cutter_density": 14.8571,
+      "cutter_density": 15.2727,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 0.6372,
       "gauge_cutter_ratio": 0.3846,
@@ -3363,6 +3424,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4939,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.3385,
       "knuckle_ratio": 0.0,
       "n_primary": 86,
@@ -3392,7 +3454,7 @@
     }
   },
   "2195": {
-    "durability_score": 2.2,
+    "durability_score": 4.5,
     "steerability_score": 2.4,
     "raw_metrics": {
       "redundancy_score": 0.3472,
@@ -3400,7 +3462,7 @@
       "radial_force_ratio": 0.9015,
       "perpendicular_force_ratio": 0.3198,
       "six_three_offset": 0.0547,
-      "blade_exposure_equality": 0.6899,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 65,
       "num_blades": 6,
@@ -3409,7 +3471,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.1684,
       "avg_gauge_backrake": 30.0042,
-      "cutter_density": 14.8571,
+      "cutter_density": 17.5918,
       "avg_blades_per_zone": 3.5,
       "avg_spacing_cv": 0.9533,
       "gauge_cutter_ratio": 0.5385,
@@ -3420,6 +3482,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5096,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.2462,
       "knuckle_ratio": 0.0,
       "n_primary": 49,
@@ -3447,7 +3510,7 @@
     }
   },
   "2196": {
-    "durability_score": 4.9,
+    "durability_score": 6.1,
     "steerability_score": 2.9,
     "raw_metrics": {
       "redundancy_score": 0.3304,
@@ -3455,7 +3518,7 @@
       "radial_force_ratio": 0.8979,
       "perpendicular_force_ratio": 0.3277,
       "six_three_offset": 0.0298,
-      "blade_exposure_equality": 0.7243,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 52,
       "num_blades": 5,
@@ -3464,7 +3527,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0584,
       "avg_gauge_backrake": 30.3203,
-      "cutter_density": 11.8857,
+      "cutter_density": 12.3958,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.9777,
       "gauge_cutter_ratio": 0.5385,
@@ -3475,6 +3538,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5091,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 15.3,
       "backup_ratio": 0.3077,
       "knuckle_ratio": 0.0,
       "n_primary": 36,
@@ -3500,7 +3564,7 @@
     }
   },
   "2198": {
-    "durability_score": 0.8,
+    "durability_score": 2.8,
     "steerability_score": 9.0,
     "raw_metrics": {
       "redundancy_score": 0.2556,
@@ -3508,7 +3572,7 @@
       "radial_force_ratio": 0.8704,
       "perpendicular_force_ratio": 0.3882,
       "six_three_offset": 0.0428,
-      "blade_exposure_equality": 0.6867,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 48,
       "num_blades": 6,
@@ -3517,7 +3581,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0588,
       "avg_gauge_backrake": 24.7597,
-      "cutter_density": 10.9714,
+      "cutter_density": 11.7031,
       "avg_blades_per_zone": 3.5,
       "avg_spacing_cv": 0.6612,
       "gauge_cutter_ratio": 0.3958,
@@ -3528,6 +3592,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5069,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 15.0,
       "backup_ratio": 0.125,
       "knuckle_ratio": 0.8333,
       "n_primary": 42,
@@ -3554,7 +3619,7 @@
     }
   },
   "2205": {
-    "durability_score": 7.9,
+    "durability_score": 6.0,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.8298,
@@ -3571,7 +3636,7 @@
       "avg_cone_backrake": 15.5,
       "avg_nose_backrake": 15.0946,
       "avg_gauge_backrake": 27.1371,
-      "cutter_density": 14.8571,
+      "cutter_density": 15.2727,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 0.6372,
       "gauge_cutter_ratio": 0.3846,
@@ -3582,6 +3647,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4939,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.3385,
       "knuckle_ratio": 0.0,
       "n_primary": 86,
@@ -3611,7 +3677,7 @@
     }
   },
   "2206": {
-    "durability_score": 5.5,
+    "durability_score": 6.9,
     "steerability_score": 3.4,
     "raw_metrics": {
       "redundancy_score": 0.5649,
@@ -3619,7 +3685,7 @@
       "radial_force_ratio": 0.8931,
       "perpendicular_force_ratio": 0.3637,
       "six_three_offset": 0.0715,
-      "blade_exposure_equality": 0.6166,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 94,
       "num_blades": 9,
@@ -3628,7 +3694,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0485,
       "avg_gauge_backrake": 28.8489,
-      "cutter_density": 15.3469,
+      "cutter_density": 15.3939,
       "avg_blades_per_zone": 5.2,
       "avg_spacing_cv": 0.8123,
       "gauge_cutter_ratio": 0.4362,
@@ -3639,6 +3705,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5099,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.383,
       "knuckle_ratio": 0.0,
       "n_primary": 58,
@@ -3666,7 +3733,7 @@
     }
   },
   "2207": {
-    "durability_score": 3.0,
+    "durability_score": 4.4,
     "steerability_score": 4.2,
     "raw_metrics": {
       "redundancy_score": 0.3843,
@@ -3674,7 +3741,7 @@
       "radial_force_ratio": 0.9322,
       "perpendicular_force_ratio": 0.3203,
       "six_three_offset": 0.0351,
-      "blade_exposure_equality": 0.662,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 62,
       "num_blades": 7,
@@ -3683,7 +3750,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.0693,
       "avg_gauge_backrake": 29.1857,
-      "cutter_density": 15.746,
+      "cutter_density": 15.7942,
       "avg_blades_per_zone": 3.2,
       "avg_spacing_cv": 1.112,
       "gauge_cutter_ratio": 0.5484,
@@ -3694,6 +3761,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4895,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3548,
       "knuckle_ratio": 0.7273,
       "n_primary": 40,
@@ -3722,7 +3790,7 @@
     }
   },
   "2208": {
-    "durability_score": 7.6,
+    "durability_score": 6.6,
     "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.5985,
@@ -3730,7 +3798,7 @@
       "radial_force_ratio": 0.9015,
       "perpendicular_force_ratio": 0.3438,
       "six_three_offset": 0.0395,
-      "blade_exposure_equality": 0.7554,
+      "blade_exposure_equality": 0.8884,
       "effective_blade_count": 3,
       "total_cutters": 118,
       "num_blades": 7,
@@ -3739,7 +3807,7 @@
       "avg_cone_backrake": 18.25,
       "avg_nose_backrake": 17.5419,
       "avg_gauge_backrake": 29.1293,
-      "cutter_density": 19.2653,
+      "cutter_density": 19.3242,
       "avg_blades_per_zone": 4.9,
       "avg_spacing_cv": 1.1597,
       "gauge_cutter_ratio": 0.4576,
@@ -3750,6 +3818,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5037,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3983,
       "knuckle_ratio": 0.0,
       "n_primary": 71,
@@ -3777,7 +3846,7 @@
     }
   },
   "2209": {
-    "durability_score": 7.0,
+    "durability_score": 7.7,
     "steerability_score": 4.1,
     "raw_metrics": {
       "redundancy_score": 0.564,
@@ -3785,7 +3854,7 @@
       "radial_force_ratio": 0.9275,
       "perpendicular_force_ratio": 0.2844,
       "six_three_offset": 0.0379,
-      "blade_exposure_equality": 0.697,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 110,
       "num_blades": 7,
@@ -3794,7 +3863,7 @@
       "avg_cone_backrake": 16.25,
       "avg_nose_backrake": 15.0601,
       "avg_gauge_backrake": 27.5803,
-      "cutter_density": 17.9592,
+      "cutter_density": 18.0141,
       "avg_blades_per_zone": 4.6,
       "avg_spacing_cv": 1.138,
       "gauge_cutter_ratio": 0.4818,
@@ -3805,6 +3874,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5076,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.4,
       "knuckle_ratio": 0.2727,
       "n_primary": 66,
@@ -3833,7 +3903,7 @@
     }
   },
   "2210": {
-    "durability_score": 6.0,
+    "durability_score": 6.4,
     "steerability_score": 5.3,
     "raw_metrics": {
       "redundancy_score": 0.5611,
@@ -3841,7 +3911,7 @@
       "radial_force_ratio": 0.9028,
       "perpendicular_force_ratio": 0.3291,
       "six_three_offset": 0.0375,
-      "blade_exposure_equality": 0.7221,
+      "blade_exposure_equality": 0.9784,
       "effective_blade_count": 3,
       "total_cutters": 114,
       "num_blades": 7,
@@ -3850,7 +3920,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0507,
       "avg_gauge_backrake": 26.1578,
-      "cutter_density": 18.6122,
+      "cutter_density": 18.6692,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 1.1625,
       "gauge_cutter_ratio": 0.4561,
@@ -3861,6 +3931,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5043,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.4035,
       "knuckle_ratio": 0.3261,
       "n_primary": 68,
@@ -3890,7 +3961,7 @@
     }
   },
   "2216": {
-    "durability_score": 9.0,
+    "durability_score": 6.7,
     "steerability_score": 2.6,
     "raw_metrics": {
       "redundancy_score": 0.5012,
@@ -3907,7 +3978,7 @@
       "avg_cone_backrake": 20.0,
       "avg_nose_backrake": 20.0737,
       "avg_gauge_backrake": 35.3616,
-      "cutter_density": 14.5143,
+      "cutter_density": 14.5587,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 0.9887,
       "gauge_cutter_ratio": 0.4094,
@@ -3918,6 +3989,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4773,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3386,
       "knuckle_ratio": 0.0,
       "n_primary": 84,
@@ -3946,7 +4018,7 @@
     }
   },
   "2217": {
-    "durability_score": 6.4,
+    "durability_score": 6.7,
     "steerability_score": 5.4,
     "raw_metrics": {
       "redundancy_score": 0.5611,
@@ -3954,7 +4026,7 @@
       "radial_force_ratio": 0.9025,
       "perpendicular_force_ratio": 0.3293,
       "six_three_offset": 0.0376,
-      "blade_exposure_equality": 0.7276,
+      "blade_exposure_equality": 0.9786,
       "effective_blade_count": 3,
       "total_cutters": 114,
       "num_blades": 7,
@@ -3963,7 +4035,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0507,
       "avg_gauge_backrake": 26.1578,
-      "cutter_density": 18.6122,
+      "cutter_density": 18.6692,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 1.1633,
       "gauge_cutter_ratio": 0.4561,
@@ -3974,6 +4046,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5043,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.4035,
       "knuckle_ratio": 0.3261,
       "n_primary": 68,
@@ -4003,7 +4076,7 @@
     }
   },
   "2218": {
-    "durability_score": 6.0,
+    "durability_score": 6.4,
     "steerability_score": 5.3,
     "raw_metrics": {
       "redundancy_score": 0.5611,
@@ -4011,7 +4084,7 @@
       "radial_force_ratio": 0.9028,
       "perpendicular_force_ratio": 0.3291,
       "six_three_offset": 0.0373,
-      "blade_exposure_equality": 0.7221,
+      "blade_exposure_equality": 0.9784,
       "effective_blade_count": 3,
       "total_cutters": 114,
       "num_blades": 7,
@@ -4020,7 +4093,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0507,
       "avg_gauge_backrake": 26.1578,
-      "cutter_density": 18.6122,
+      "cutter_density": 18.6692,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 1.1625,
       "gauge_cutter_ratio": 0.4561,
@@ -4031,6 +4104,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5043,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.4035,
       "knuckle_ratio": 0.3261,
       "n_primary": 68,
@@ -4060,7 +4134,7 @@
     }
   },
   "2220": {
-    "durability_score": 5.4,
+    "durability_score": 6.6,
     "steerability_score": 4.7,
     "raw_metrics": {
       "redundancy_score": 0.4122,
@@ -4068,7 +4142,7 @@
       "radial_force_ratio": 0.9085,
       "perpendicular_force_ratio": 0.3028,
       "six_three_offset": 0.0219,
-      "blade_exposure_equality": 0.6383,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 77,
       "num_blades": 7,
@@ -4077,7 +4151,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0549,
       "avg_gauge_backrake": 29.1202,
-      "cutter_density": 17.6,
+      "cutter_density": 17.6538,
       "avg_blades_per_zone": 3.5,
       "avg_spacing_cv": 1.2682,
       "gauge_cutter_ratio": 0.5325,
@@ -4088,6 +4162,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4865,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3766,
       "knuckle_ratio": 0.4138,
       "n_primary": 48,
@@ -4116,7 +4191,7 @@
     }
   },
   "2224": {
-    "durability_score": 5.7,
+    "durability_score": 3.8,
     "steerability_score": 2.6,
     "raw_metrics": {
       "redundancy_score": 0.4,
@@ -4133,7 +4208,7 @@
       "avg_cone_backrake": 17.7778,
       "avg_nose_backrake": 16.5029,
       "avg_gauge_backrake": 31.9614,
-      "cutter_density": 12.0,
+      "cutter_density": 12.0367,
       "avg_blades_per_zone": 5.0,
       "avg_spacing_cv": 0.7437,
       "gauge_cutter_ratio": 0.4375,
@@ -4144,6 +4219,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4988,
       "gauge_radius": 8.0,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.1458,
       "knuckle_ratio": 0.0,
       "n_primary": 82,
@@ -4171,7 +4247,7 @@
     }
   },
   "2225": {
-    "durability_score": 2.5,
+    "durability_score": 4.0,
     "steerability_score": 5.5,
     "raw_metrics": {
       "redundancy_score": 0.3095,
@@ -4179,7 +4255,7 @@
       "radial_force_ratio": 0.9215,
       "perpendicular_force_ratio": 0.3543,
       "six_three_offset": 0.0201,
-      "blade_exposure_equality": 0.6589,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 25,
       "num_blades": 4,
@@ -4188,7 +4264,7 @@
       "avg_cone_backrake": 17.5,
       "avg_nose_backrake": 18.8371,
       "avg_gauge_backrake": 32.1491,
-      "cutter_density": 8.1633,
+      "cutter_density": 8.1882,
       "avg_blades_per_zone": 1.7778,
       "avg_spacing_cv": 1.1058,
       "gauge_cutter_ratio": 0.52,
@@ -4199,6 +4275,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4864,
       "gauge_radius": 3.0625,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.28,
       "knuckle_ratio": 1.0,
       "n_primary": 18,
@@ -4225,7 +4302,7 @@
     }
   },
   "2226": {
-    "durability_score": 0.0,
+    "durability_score": 1.9,
     "steerability_score": 3.1,
     "raw_metrics": {
       "redundancy_score": 0.2639,
@@ -4233,7 +4310,7 @@
       "radial_force_ratio": 0.9799,
       "perpendicular_force_ratio": 0.2012,
       "six_three_offset": 0.062,
-      "blade_exposure_equality": 0.6779,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 34,
       "num_blades": 6,
@@ -4242,7 +4319,7 @@
       "avg_cone_backrake": 16.25,
       "avg_nose_backrake": 15.1958,
       "avg_gauge_backrake": 27.8599,
-      "cutter_density": 7.7714,
+      "cutter_density": 7.7952,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.5215,
       "gauge_cutter_ratio": 0.4118,
@@ -4253,6 +4330,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 34,
@@ -4276,7 +4354,7 @@
     }
   },
   "2227": {
-    "durability_score": 2.9,
+    "durability_score": 5.0,
     "steerability_score": 3.5,
     "raw_metrics": {
       "redundancy_score": 0.2778,
@@ -4284,7 +4362,7 @@
       "radial_force_ratio": 0.9349,
       "perpendicular_force_ratio": 0.248,
       "six_three_offset": 0.0672,
-      "blade_exposure_equality": 0.729,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 49,
       "num_blades": 5,
@@ -4293,7 +4371,7 @@
       "avg_cone_backrake": 13.625,
       "avg_nose_backrake": 12.7998,
       "avg_gauge_backrake": 30.0582,
-      "cutter_density": 14.5185,
+      "cutter_density": 17.1908,
       "avg_blades_per_zone": 2.5,
       "avg_spacing_cv": 1.1365,
       "gauge_cutter_ratio": 0.4694,
@@ -4304,6 +4382,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4705,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.3265,
       "knuckle_ratio": 0.125,
       "n_primary": 33,
@@ -4330,7 +4409,7 @@
     }
   },
   "2231": {
-    "durability_score": 2.1,
+    "durability_score": 3.7,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.3354,
@@ -4338,7 +4417,7 @@
       "radial_force_ratio": 0.9861,
       "perpendicular_force_ratio": 0.1593,
       "six_three_offset": 0.033,
-      "blade_exposure_equality": 0.6496,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 51,
       "num_blades": 6,
@@ -4347,7 +4426,7 @@
       "avg_cone_backrake": 13.25,
       "avg_nose_backrake": 12.8761,
       "avg_gauge_backrake": 25.9841,
-      "cutter_density": 12.0,
+      "cutter_density": 12.0367,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 1.03,
       "gauge_cutter_ratio": 0.5098,
@@ -4358,6 +4437,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2941,
       "knuckle_ratio": 0.0,
       "n_primary": 36,
@@ -4385,7 +4465,7 @@
     }
   },
   "2232": {
-    "durability_score": 5.0,
+    "durability_score": 6.6,
     "steerability_score": 6.6,
     "raw_metrics": {
       "redundancy_score": 0.6264,
@@ -4393,7 +4473,7 @@
       "radial_force_ratio": 0.9199,
       "perpendicular_force_ratio": 0.2707,
       "six_three_offset": 0.0577,
-      "blade_exposure_equality": 0.6028,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 104,
       "num_blades": 9,
@@ -4402,7 +4482,7 @@
       "avg_cone_backrake": 15.4167,
       "avg_nose_backrake": 15.0511,
       "avg_gauge_backrake": 23.5886,
-      "cutter_density": 16.9796,
+      "cutter_density": 17.0315,
       "avg_blades_per_zone": 5.2,
       "avg_spacing_cv": 0.8422,
       "gauge_cutter_ratio": 0.4712,
@@ -4413,6 +4493,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5109,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2019,
       "knuckle_ratio": 0.4286,
       "n_primary": 83,
@@ -4441,7 +4522,7 @@
     }
   },
   "2234": {
-    "durability_score": 6.8,
+    "durability_score": 8.5,
     "steerability_score": 2.3,
     "raw_metrics": {
       "redundancy_score": 0.5658,
@@ -4449,7 +4530,7 @@
       "radial_force_ratio": 0.9686,
       "perpendicular_force_ratio": 0.245,
       "six_three_offset": 0.0359,
-      "blade_exposure_equality": 0.7183,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 70,
       "num_blades": 6,
@@ -4458,7 +4539,7 @@
       "avg_cone_backrake": 20.8333,
       "avg_nose_backrake": 18.8122,
       "avg_gauge_backrake": 28.8498,
-      "cutter_density": 14.1772,
+      "cutter_density": 16.7867,
       "avg_blades_per_zone": 4.0,
       "avg_spacing_cv": 0.51,
       "gauge_cutter_ratio": 0.3714,
@@ -4469,6 +4550,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 13.5,
       "backup_ratio": 0.2857,
       "knuckle_ratio": 0.0,
       "n_primary": 50,
@@ -4496,7 +4578,7 @@
     }
   },
   "2235": {
-    "durability_score": 5.9,
+    "durability_score": 6.3,
     "steerability_score": 2.0,
     "raw_metrics": {
       "redundancy_score": 0.4592,
@@ -4504,7 +4586,7 @@
       "radial_force_ratio": 0.9621,
       "perpendicular_force_ratio": 0.2711,
       "six_three_offset": 0.0554,
-      "blade_exposure_equality": 0.7454,
+      "blade_exposure_equality": 0.9899,
       "effective_blade_count": 3,
       "total_cutters": 108,
       "num_blades": 7,
@@ -4513,7 +4595,7 @@
       "avg_cone_backrake": 22.5714,
       "avg_nose_backrake": 20.1436,
       "avg_gauge_backrake": 26.6163,
-      "cutter_density": 17.6327,
+      "cutter_density": 17.6866,
       "avg_blades_per_zone": 4.8,
       "avg_spacing_cv": 1.1192,
       "gauge_cutter_ratio": 0.4815,
@@ -4524,6 +4606,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5132,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3426,
       "knuckle_ratio": 0.1622,
       "n_primary": 71,
@@ -4551,7 +4634,7 @@
     }
   },
   "2236": {
-    "durability_score": 4.5,
+    "durability_score": 6.5,
     "steerability_score": 6.5,
     "raw_metrics": {
       "redundancy_score": 0.6329,
@@ -4559,7 +4642,7 @@
       "radial_force_ratio": 0.9297,
       "perpendicular_force_ratio": 0.2333,
       "six_three_offset": 0.0543,
-      "blade_exposure_equality": 0.5297,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 84,
       "num_blades": 9,
@@ -4568,7 +4651,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.2423,
       "avg_gauge_backrake": 23.4613,
-      "cutter_density": 17.0127,
+      "cutter_density": 17.0647,
       "avg_blades_per_zone": 4.4,
       "avg_spacing_cv": 0.8766,
       "gauge_cutter_ratio": 0.5,
@@ -4579,6 +4662,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5125,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2143,
       "knuckle_ratio": 0.3333,
       "n_primary": 66,
@@ -4606,7 +4690,7 @@
     }
   },
   "2240": {
-    "durability_score": 0.6,
+    "durability_score": 2.6,
     "steerability_score": 4.6,
     "raw_metrics": {
       "redundancy_score": 0.2857,
@@ -4614,7 +4698,7 @@
       "radial_force_ratio": 0.9838,
       "perpendicular_force_ratio": 0.1657,
       "six_three_offset": 0.0449,
-      "blade_exposure_equality": 0.6252,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 43,
       "num_blades": 8,
@@ -4623,7 +4707,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0644,
       "avg_gauge_backrake": 27.7526,
-      "cutter_density": 10.9206,
+      "cutter_density": 10.954,
       "avg_blades_per_zone": 3.5,
       "avg_spacing_cv": 0.5704,
       "gauge_cutter_ratio": 0.4419,
@@ -4634,6 +4718,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 43,
@@ -4657,7 +4742,7 @@
     }
   },
   "2241": {
-    "durability_score": 5.7,
+    "durability_score": 3.8,
     "steerability_score": 2.6,
     "raw_metrics": {
       "redundancy_score": 0.4,
@@ -4674,7 +4759,7 @@
       "avg_cone_backrake": 17.7778,
       "avg_nose_backrake": 16.5029,
       "avg_gauge_backrake": 31.9614,
-      "cutter_density": 12.0,
+      "cutter_density": 12.0367,
       "avg_blades_per_zone": 5.0,
       "avg_spacing_cv": 0.7437,
       "gauge_cutter_ratio": 0.4375,
@@ -4685,6 +4770,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4988,
       "gauge_radius": 8.0,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.1458,
       "knuckle_ratio": 0.0,
       "n_primary": 82,
@@ -4712,7 +4798,7 @@
     }
   },
   "2242": {
-    "durability_score": 1.0,
+    "durability_score": 5.1,
     "steerability_score": 3.2,
     "raw_metrics": {
       "redundancy_score": 0.3397,
@@ -4720,7 +4806,7 @@
       "radial_force_ratio": 0.9863,
       "perpendicular_force_ratio": 0.141,
       "six_three_offset": 0.0529,
-      "blade_exposure_equality": 0.6046,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 26,
       "num_blades": 6,
@@ -4729,7 +4815,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0364,
       "avg_gauge_backrake": 30.9229,
-      "cutter_density": 10.9474,
+      "cutter_density": 15.7442,
       "avg_blades_per_zone": 2.6667,
       "avg_spacing_cv": 0.4407,
       "gauge_cutter_ratio": 0.4231,
@@ -4740,6 +4826,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.42,
       "gauge_radius": 2.375,
+      "avg_primary_cutter_dia_mm": 11.1,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 26,
@@ -4763,7 +4850,7 @@
     }
   },
   "2247": {
-    "durability_score": 5.0,
+    "durability_score": 6.6,
     "steerability_score": 6.8,
     "raw_metrics": {
       "redundancy_score": 0.6166,
@@ -4771,7 +4858,7 @@
       "radial_force_ratio": 0.9293,
       "perpendicular_force_ratio": 0.2571,
       "six_three_offset": 0.0556,
-      "blade_exposure_equality": 0.5988,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 104,
       "num_blades": 9,
@@ -4780,7 +4867,7 @@
       "avg_cone_backrake": 15.4167,
       "avg_nose_backrake": 15.0511,
       "avg_gauge_backrake": 23.6316,
-      "cutter_density": 16.9796,
+      "cutter_density": 17.0315,
       "avg_blades_per_zone": 5.2,
       "avg_spacing_cv": 0.8388,
       "gauge_cutter_ratio": 0.4712,
@@ -4791,6 +4878,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5109,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2019,
       "knuckle_ratio": 0.4286,
       "n_primary": 83,
@@ -4819,7 +4907,7 @@
     }
   },
   "2249": {
-    "durability_score": 1.1,
+    "durability_score": 0.0,
     "steerability_score": 1.4,
     "raw_metrics": {
       "redundancy_score": 0.2435,
@@ -4827,7 +4915,7 @@
       "radial_force_ratio": 0.9704,
       "perpendicular_force_ratio": 0.249,
       "six_three_offset": 0.0771,
-      "blade_exposure_equality": 0.8058,
+      "blade_exposure_equality": 0.904,
       "effective_blade_count": 2,
       "total_cutters": 37,
       "num_blades": 5,
@@ -4836,7 +4924,7 @@
       "avg_cone_backrake": 19.8,
       "avg_nose_backrake": 15.6734,
       "avg_gauge_backrake": 27.0331,
-      "cutter_density": 6.0408,
+      "cutter_density": 5.0534,
       "avg_blades_per_zone": 3.1,
       "avg_spacing_cv": 0.463,
       "gauge_cutter_ratio": 0.3784,
@@ -4847,6 +4935,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 19.1,
       "backup_ratio": 0.027,
       "knuckle_ratio": 0.0,
       "n_primary": 36,
@@ -4870,7 +4959,7 @@
     }
   },
   "2251": {
-    "durability_score": 2.5,
+    "durability_score": 4.0,
     "steerability_score": 5.5,
     "raw_metrics": {
       "redundancy_score": 0.3095,
@@ -4878,7 +4967,7 @@
       "radial_force_ratio": 0.9215,
       "perpendicular_force_ratio": 0.3543,
       "six_three_offset": 0.0201,
-      "blade_exposure_equality": 0.6589,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 25,
       "num_blades": 4,
@@ -4887,7 +4976,7 @@
       "avg_cone_backrake": 17.5,
       "avg_nose_backrake": 18.8371,
       "avg_gauge_backrake": 32.1491,
-      "cutter_density": 8.1633,
+      "cutter_density": 8.1882,
       "avg_blades_per_zone": 1.7778,
       "avg_spacing_cv": 1.1058,
       "gauge_cutter_ratio": 0.52,
@@ -4898,6 +4987,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4864,
       "gauge_radius": 3.0625,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.28,
       "knuckle_ratio": 1.0,
       "n_primary": 18,
@@ -4924,7 +5014,7 @@
     }
   },
   "2252": {
-    "durability_score": 2.0,
+    "durability_score": 3.3,
     "steerability_score": 3.5,
     "raw_metrics": {
       "redundancy_score": 0.3076,
@@ -4932,7 +5022,7 @@
       "radial_force_ratio": 0.9848,
       "perpendicular_force_ratio": 0.1516,
       "six_three_offset": 0.0339,
-      "blade_exposure_equality": 0.7258,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 55,
       "num_blades": 6,
@@ -4941,7 +5031,7 @@
       "avg_cone_backrake": 15.0,
       "avg_nose_backrake": 15.0014,
       "avg_gauge_backrake": 29.0937,
-      "cutter_density": 10.3529,
+      "cutter_density": 10.3846,
       "avg_blades_per_zone": 3.7,
       "avg_spacing_cv": 0.742,
       "gauge_cutter_ratio": 0.5091,
@@ -4952,6 +5042,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5085,
       "gauge_radius": 5.3125,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.1091,
       "knuckle_ratio": 1.0,
       "n_primary": 49,
@@ -4977,7 +5068,7 @@
     }
   },
   "2256": {
-    "durability_score": 7.9,
+    "durability_score": 7.5,
     "steerability_score": 2.1,
     "raw_metrics": {
       "redundancy_score": 0.4557,
@@ -4985,7 +5076,7 @@
       "radial_force_ratio": 0.8055,
       "perpendicular_force_ratio": 0.6286,
       "six_three_offset": 0.0407,
-      "blade_exposure_equality": 0.7731,
+      "blade_exposure_equality": 0.9525,
       "effective_blade_count": 3,
       "total_cutters": 114,
       "num_blades": 6,
@@ -4994,7 +5085,7 @@
       "avg_cone_backrake": 20.625,
       "avg_nose_backrake": 20.0157,
       "avg_gauge_backrake": 34.8499,
-      "cutter_density": 15.4576,
+      "cutter_density": 15.5049,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 1.0604,
       "gauge_cutter_ratio": 0.4386,
@@ -5005,6 +5096,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4754,
       "gauge_radius": 7.375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.3509,
       "knuckle_ratio": 0.0,
       "n_primary": 74,
@@ -5033,7 +5125,7 @@
     }
   },
   "2265": {
-    "durability_score": 6.5,
+    "durability_score": 7.3,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.4899,
@@ -5041,7 +5133,7 @@
       "radial_force_ratio": 0.8685,
       "perpendicular_force_ratio": 0.4345,
       "six_three_offset": 0.0378,
-      "blade_exposure_equality": 0.7346,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 92,
       "num_blades": 6,
@@ -5050,7 +5142,7 @@
       "avg_cone_backrake": 16.0714,
       "avg_nose_backrake": 15.1933,
       "avg_gauge_backrake": 28.0217,
-      "cutter_density": 15.0204,
+      "cutter_density": 15.3546,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 1.0399,
       "gauge_cutter_ratio": 0.4022,
@@ -5061,6 +5153,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5053,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.337,
       "knuckle_ratio": 0.0,
       "n_primary": 61,
@@ -5089,7 +5182,7 @@
     }
   },
   "2266": {
-    "durability_score": 6.5,
+    "durability_score": 7.3,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.4899,
@@ -5097,7 +5190,7 @@
       "radial_force_ratio": 0.8685,
       "perpendicular_force_ratio": 0.4345,
       "six_three_offset": 0.0389,
-      "blade_exposure_equality": 0.7346,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 92,
       "num_blades": 6,
@@ -5106,7 +5199,7 @@
       "avg_cone_backrake": 16.0714,
       "avg_nose_backrake": 15.1933,
       "avg_gauge_backrake": 28.0217,
-      "cutter_density": 15.0204,
+      "cutter_density": 15.3546,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 1.0399,
       "gauge_cutter_ratio": 0.4022,
@@ -5117,6 +5210,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5053,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.337,
       "knuckle_ratio": 0.0,
       "n_primary": 61,
@@ -5145,7 +5239,7 @@
     }
   },
   "2267": {
-    "durability_score": 6.1,
+    "durability_score": 7.0,
     "steerability_score": 5.2,
     "raw_metrics": {
       "redundancy_score": 0.4899,
@@ -5153,7 +5247,7 @@
       "radial_force_ratio": 0.8685,
       "perpendicular_force_ratio": 0.4345,
       "six_three_offset": 0.0496,
-      "blade_exposure_equality": 0.7346,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 92,
       "num_blades": 6,
@@ -5162,7 +5256,7 @@
       "avg_cone_backrake": 16.0714,
       "avg_nose_backrake": 15.1933,
       "avg_gauge_backrake": 28.0217,
-      "cutter_density": 15.0204,
+      "cutter_density": 15.3546,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 1.0399,
       "gauge_cutter_ratio": 0.4022,
@@ -5173,6 +5267,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5053,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.337,
       "knuckle_ratio": 0.0,
       "n_primary": 61,
@@ -5201,7 +5296,7 @@
     }
   },
   "2268": {
-    "durability_score": 0.6,
+    "durability_score": 2.3,
     "steerability_score": 6.2,
     "raw_metrics": {
       "redundancy_score": 0.2778,
@@ -5209,7 +5304,7 @@
       "radial_force_ratio": 0.9436,
       "perpendicular_force_ratio": 0.2746,
       "six_three_offset": 0.0497,
-      "blade_exposure_equality": 0.6847,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 45,
       "num_blades": 6,
@@ -5218,7 +5313,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.118,
       "avg_gauge_backrake": 26.9874,
-      "cutter_density": 11.4286,
+      "cutter_density": 11.4635,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 0.9166,
       "gauge_cutter_ratio": 0.5333,
@@ -5229,6 +5324,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.492,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2444,
       "knuckle_ratio": 1.0,
       "n_primary": 34,
@@ -5256,7 +5352,7 @@
     }
   },
   "2270": {
-    "durability_score": 2.6,
+    "durability_score": 4.1,
     "steerability_score": 6.2,
     "raw_metrics": {
       "redundancy_score": 0.3611,
@@ -5264,7 +5360,7 @@
       "radial_force_ratio": 0.9684,
       "perpendicular_force_ratio": 0.2126,
       "six_three_offset": 0.0379,
-      "blade_exposure_equality": 0.6623,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 47,
       "num_blades": 6,
@@ -5273,7 +5369,7 @@
       "avg_cone_backrake": 16.6667,
       "avg_nose_backrake": 15.2226,
       "avg_gauge_backrake": 28.3197,
-      "cutter_density": 13.9259,
+      "cutter_density": 13.9685,
       "avg_blades_per_zone": 2.8889,
       "avg_spacing_cv": 1.138,
       "gauge_cutter_ratio": 0.5532,
@@ -5284,6 +5380,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4693,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2979,
       "knuckle_ratio": 0.7143,
       "n_primary": 33,
@@ -5311,7 +5408,7 @@
     }
   },
   "2272": {
-    "durability_score": 2.4,
+    "durability_score": 3.9,
     "steerability_score": 2.3,
     "raw_metrics": {
       "redundancy_score": 0.2778,
@@ -5319,7 +5416,7 @@
       "radial_force_ratio": 0.9226,
       "perpendicular_force_ratio": 0.3752,
       "six_three_offset": 0.0497,
-      "blade_exposure_equality": 0.6847,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 39,
       "num_blades": 6,
@@ -5328,7 +5425,7 @@
       "avg_cone_backrake": 21.25,
       "avg_nose_backrake": 20.0872,
       "avg_gauge_backrake": 29.214,
-      "cutter_density": 9.9048,
+      "cutter_density": 9.9351,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 0.7137,
       "gauge_cutter_ratio": 0.4615,
@@ -5339,6 +5436,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5026,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.1538,
       "knuckle_ratio": 0.0,
       "n_primary": 33,
@@ -5365,7 +5463,7 @@
     }
   },
   "2362": {
-    "durability_score": 5.7,
+    "durability_score": 5.2,
     "steerability_score": 4.4,
     "raw_metrics": {
       "redundancy_score": 0.3731,
@@ -5373,7 +5471,7 @@
       "radial_force_ratio": 0.9735,
       "perpendicular_force_ratio": 0.2328,
       "six_three_offset": 2.0585,
-      "blade_exposure_equality": 0.8269,
+      "blade_exposure_equality": 0.9371,
       "effective_blade_count": 2,
       "total_cutters": 84,
       "num_blades": 6,
@@ -5382,7 +5480,7 @@
       "avg_cone_backrake": 23.5281,
       "avg_nose_backrake": 19.3889,
       "avg_gauge_backrake": 25.9846,
-      "cutter_density": 17.4545,
+      "cutter_density": 17.592,
       "avg_blades_per_zone": 3.8,
       "avg_spacing_cv": 1.1964,
       "gauge_cutter_ratio": 0.4524,
@@ -5393,6 +5491,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.496,
       "gauge_radius": 4.8125,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.4286,
       "knuckle_ratio": 0.2778,
       "n_primary": 48,
@@ -5421,7 +5520,7 @@
     }
   },
   "2381": {
-    "durability_score": 7.4,
+    "durability_score": 5.3,
     "steerability_score": 4.9,
     "raw_metrics": {
       "redundancy_score": 0.4632,
@@ -5438,7 +5537,7 @@
       "avg_cone_backrake": 16.8182,
       "avg_nose_backrake": 15.1452,
       "avg_gauge_backrake": 31.479,
-      "cutter_density": 14.5143,
+      "cutter_density": 14.6286,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 0.9621,
       "gauge_cutter_ratio": 0.4094,
@@ -5449,6 +5548,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5002,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3386,
       "knuckle_ratio": 0.5116,
       "n_primary": 84,
@@ -5478,7 +5578,7 @@
     }
   },
   "2556": {
-    "durability_score": 2.2,
+    "durability_score": 4.1,
     "steerability_score": 4.0,
     "raw_metrics": {
       "redundancy_score": 0.6508,
@@ -5486,7 +5586,7 @@
       "radial_force_ratio": 0.9796,
       "perpendicular_force_ratio": 0.1983,
       "six_three_offset": 0.0485,
-      "blade_exposure_equality": 0.6767,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 33,
       "num_blades": 6,
@@ -5495,7 +5595,7 @@
       "avg_cone_backrake": 18.2836,
       "avg_nose_backrake": 15.1502,
       "avg_gauge_backrake": 23.8769,
-      "cutter_density": 8.381,
+      "cutter_density": 8.7314,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 0.4626,
       "gauge_cutter_ratio": 0.4242,
@@ -5506,6 +5606,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 15.4,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 33,
@@ -5529,7 +5630,7 @@
     }
   },
   "2746": {
-    "durability_score": 5.4,
+    "durability_score": 6.2,
     "steerability_score": 6.5,
     "raw_metrics": {
       "redundancy_score": 0.3333,
@@ -5537,7 +5638,7 @@
       "radial_force_ratio": 0.9049,
       "perpendicular_force_ratio": 0.3582,
       "six_three_offset": 0.0404,
-      "blade_exposure_equality": 0.7281,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 90,
       "num_blades": 6,
@@ -5546,7 +5647,7 @@
       "avg_cone_backrake": 17.0577,
       "avg_nose_backrake": 15.256,
       "avg_gauge_backrake": 30.0941,
-      "cutter_density": 16.9412,
+      "cutter_density": 17.0746,
       "avg_blades_per_zone": 3.7,
       "avg_spacing_cv": 1.2475,
       "gauge_cutter_ratio": 0.5444,
@@ -5557,6 +5658,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4897,
       "gauge_radius": 5.3125,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.4111,
       "knuckle_ratio": 0.6216,
       "n_primary": 53,
@@ -5586,7 +5688,7 @@
     }
   },
   "3219": {
-    "durability_score": 6.6,
+    "durability_score": 8.6,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.4299,
@@ -5594,7 +5696,7 @@
       "radial_force_ratio": 0.9204,
       "perpendicular_force_ratio": 0.343,
       "six_three_offset": 0.0334,
-      "blade_exposure_equality": 0.681,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 67,
       "num_blades": 8,
@@ -5603,7 +5705,7 @@
       "avg_cone_backrake": 18.761,
       "avg_nose_backrake": 16.4165,
       "avg_gauge_backrake": 31.4289,
-      "cutter_density": 15.7647,
+      "cutter_density": 18.7723,
       "avg_blades_per_zone": 4.4,
       "avg_spacing_cv": 0.7886,
       "gauge_cutter_ratio": 0.4478,
@@ -5614,6 +5716,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4985,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.194,
       "knuckle_ratio": 0.4615,
       "n_primary": 54,
@@ -5640,7 +5743,7 @@
     }
   },
   "3336": {
-    "durability_score": 5.4,
+    "durability_score": 5.9,
     "steerability_score": 5.1,
     "raw_metrics": {
       "redundancy_score": 0.2897,
@@ -5648,7 +5751,7 @@
       "radial_force_ratio": 0.8914,
       "perpendicular_force_ratio": 0.4023,
       "six_three_offset": 0.0623,
-      "blade_exposure_equality": 0.8264,
+      "blade_exposure_equality": 0.9372,
       "effective_blade_count": 4,
       "total_cutters": 79,
       "num_blades": 6,
@@ -5657,7 +5760,7 @@
       "avg_cone_backrake": 19.2,
       "avg_nose_backrake": 17.2314,
       "avg_gauge_backrake": 28.9118,
-      "cutter_density": 18.5882,
+      "cutter_density": 22.1345,
       "avg_blades_per_zone": 3.7,
       "avg_spacing_cv": 1.2687,
       "gauge_cutter_ratio": 0.443,
@@ -5668,6 +5771,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4844,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.443,
       "knuckle_ratio": 0.5143,
       "n_primary": 44,
@@ -5697,7 +5801,7 @@
     }
   },
   "3449": {
-    "durability_score": 2.6,
+    "durability_score": 4.0,
     "steerability_score": 3.5,
     "raw_metrics": {
       "redundancy_score": 0.2917,
@@ -5705,7 +5809,7 @@
       "radial_force_ratio": 0.9768,
       "perpendicular_force_ratio": 0.2152,
       "six_three_offset": 0.0438,
-      "blade_exposure_equality": 0.6959,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 45,
       "num_blades": 6,
@@ -5714,7 +5818,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.1002,
       "avg_gauge_backrake": 28.6248,
-      "cutter_density": 11.4286,
+      "cutter_density": 11.4635,
       "avg_blades_per_zone": 3.0,
       "avg_spacing_cv": 0.8918,
       "gauge_cutter_ratio": 0.4222,
@@ -5725,6 +5829,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2444,
       "knuckle_ratio": 0.0,
       "n_primary": 34,
@@ -5752,7 +5857,7 @@
     }
   },
   "3943": {
-    "durability_score": 2.6,
+    "durability_score": 4.0,
     "steerability_score": 3.5,
     "raw_metrics": {
       "redundancy_score": 0.2917,
@@ -5760,7 +5865,7 @@
       "radial_force_ratio": 0.9768,
       "perpendicular_force_ratio": 0.2152,
       "six_three_offset": 0.0438,
-      "blade_exposure_equality": 0.6959,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 45,
       "num_blades": 6,
@@ -5769,7 +5874,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.1002,
       "avg_gauge_backrake": 28.6248,
-      "cutter_density": 11.4286,
+      "cutter_density": 11.4635,
       "avg_blades_per_zone": 3.0,
       "avg_spacing_cv": 0.8918,
       "gauge_cutter_ratio": 0.4222,
@@ -5780,6 +5885,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.2444,
       "knuckle_ratio": 0.0,
       "n_primary": 34,
@@ -5807,7 +5913,7 @@
     }
   },
   "4149": {
-    "durability_score": 4.7,
+    "durability_score": 5.9,
     "steerability_score": 6.5,
     "raw_metrics": {
       "redundancy_score": 0.6667,
@@ -5815,7 +5921,7 @@
       "radial_force_ratio": 0.9143,
       "perpendicular_force_ratio": 0.3394,
       "six_three_offset": 0.0539,
-      "blade_exposure_equality": 0.7147,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 73,
       "num_blades": 6,
@@ -5824,7 +5930,7 @@
       "avg_cone_backrake": 16.4167,
       "avg_nose_backrake": 15.5882,
       "avg_gauge_backrake": 27.1123,
-      "cutter_density": 13.2727,
+      "cutter_density": 13.6337,
       "avg_blades_per_zone": 3.7,
       "avg_spacing_cv": 1.0415,
       "gauge_cutter_ratio": 0.5479,
@@ -5835,6 +5941,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4855,
       "gauge_radius": 5.5,
+      "avg_primary_cutter_dia_mm": 15.6,
       "backup_ratio": 0.3151,
       "knuckle_ratio": 1.0,
       "n_primary": 50,
@@ -5862,7 +5969,7 @@
     }
   },
   "4206": {
-    "durability_score": 5.8,
+    "durability_score": 4.7,
     "steerability_score": 8.6,
     "raw_metrics": {
       "redundancy_score": 0.6774,
@@ -5870,7 +5977,7 @@
       "radial_force_ratio": 0.9067,
       "perpendicular_force_ratio": 0.347,
       "six_three_offset": 0.0215,
-      "blade_exposure_equality": 0.7833,
+      "blade_exposure_equality": 0.8566,
       "effective_blade_count": 3,
       "total_cutters": 92,
       "num_blades": 6,
@@ -5879,7 +5986,7 @@
       "avg_cone_backrake": 15.7107,
       "avg_nose_backrake": 15.0342,
       "avg_gauge_backrake": 23.5019,
-      "cutter_density": 12.4746,
+      "cutter_density": 12.6963,
       "avg_blades_per_zone": 4.8,
       "avg_spacing_cv": 0.8309,
       "gauge_cutter_ratio": 0.4348,
@@ -5890,6 +5997,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4995,
       "gauge_radius": 7.375,
+      "avg_primary_cutter_dia_mm": 15.7,
       "backup_ratio": 0.1739,
       "knuckle_ratio": 1.0,
       "n_primary": 76,
@@ -5917,7 +6025,7 @@
     }
   },
   "4288": {
-    "durability_score": 7.4,
+    "durability_score": 5.2,
     "steerability_score": 8.3,
     "raw_metrics": {
       "redundancy_score": 0.7253,
@@ -5934,7 +6042,7 @@
       "avg_cone_backrake": 16.7416,
       "avg_nose_backrake": 15.1266,
       "avg_gauge_backrake": 27.1925,
-      "cutter_density": 15.8857,
+      "cutter_density": 16.0108,
       "avg_blades_per_zone": 5.0,
       "avg_spacing_cv": 1.0938,
       "gauge_cutter_ratio": 0.4173,
@@ -5945,6 +6053,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4762,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3741,
       "knuckle_ratio": 1.0,
       "n_primary": 87,
@@ -5972,7 +6081,7 @@
     }
   },
   "4538": {
-    "durability_score": 4.2,
+    "durability_score": 3.8,
     "steerability_score": 6.2,
     "raw_metrics": {
       "redundancy_score": 0.3742,
@@ -5980,7 +6089,7 @@
       "radial_force_ratio": 0.9734,
       "perpendicular_force_ratio": 0.2384,
       "six_three_offset": 0.0436,
-      "blade_exposure_equality": 0.8494,
+      "blade_exposure_equality": 0.9455,
       "effective_blade_count": 5,
       "total_cutters": 91,
       "num_blades": 6,
@@ -5989,7 +6098,7 @@
       "avg_cone_backrake": 17.1429,
       "avg_nose_backrake": 15.0462,
       "avg_gauge_backrake": 25.3591,
-      "cutter_density": 14.8571,
+      "cutter_density": 14.9741,
       "avg_blades_per_zone": 4.5,
       "avg_spacing_cv": 0.9788,
       "gauge_cutter_ratio": 0.3626,
@@ -6000,6 +6109,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5062,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3407,
       "knuckle_ratio": 0.3548,
       "n_primary": 60,
@@ -6026,7 +6136,7 @@
     }
   },
   "4720": {
-    "durability_score": 1.5,
+    "durability_score": 4.4,
     "steerability_score": 4.9,
     "raw_metrics": {
       "redundancy_score": 0.3771,
@@ -6034,7 +6144,7 @@
       "radial_force_ratio": 0.9747,
       "perpendicular_force_ratio": 0.238,
       "six_three_offset": 0.0465,
-      "blade_exposure_equality": 0.6365,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 47,
       "num_blades": 8,
@@ -6043,7 +6153,7 @@
       "avg_cone_backrake": 17.3711,
       "avg_nose_backrake": 15.0631,
       "avg_gauge_backrake": 26.6932,
-      "cutter_density": 11.9365,
+      "cutter_density": 14.2137,
       "avg_blades_per_zone": 4.1,
       "avg_spacing_cv": 0.4491,
       "gauge_cutter_ratio": 0.383,
@@ -6054,6 +6164,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 47,
@@ -6077,7 +6188,7 @@
     }
   },
   "4796": {
-    "durability_score": 3.1,
+    "durability_score": 5.6,
     "steerability_score": 4.7,
     "raw_metrics": {
       "redundancy_score": 0.3611,
@@ -6085,7 +6196,7 @@
       "radial_force_ratio": 0.9652,
       "perpendicular_force_ratio": 0.2632,
       "six_three_offset": 0.0443,
-      "blade_exposure_equality": 0.6508,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 58,
       "num_blades": 6,
@@ -6094,7 +6205,7 @@
       "avg_cone_backrake": 17.6322,
       "avg_nose_backrake": 14.9947,
       "avg_gauge_backrake": 30.0302,
-      "cutter_density": 17.1852,
+      "cutter_density": 20.4637,
       "avg_blades_per_zone": 2.9,
       "avg_spacing_cv": 1.1536,
       "gauge_cutter_ratio": 0.5862,
@@ -6105,6 +6216,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4831,
       "gauge_radius": 3.375,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.2759,
       "knuckle_ratio": 0.6875,
       "n_primary": 42,
@@ -6134,7 +6246,7 @@
     }
   },
   "5481": {
-    "durability_score": 0.9,
+    "durability_score": 2.7,
     "steerability_score": 2.7,
     "raw_metrics": {
       "redundancy_score": 0.3413,
@@ -6142,7 +6254,7 @@
       "radial_force_ratio": 0.9768,
       "perpendicular_force_ratio": 0.2206,
       "six_three_offset": 0.0586,
-      "blade_exposure_equality": 0.6671,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 33,
       "num_blades": 6,
@@ -6151,7 +6263,7 @@
       "avg_cone_backrake": 18.75,
       "avg_nose_backrake": 15.1321,
       "avg_gauge_backrake": 28.6469,
-      "cutter_density": 8.381,
+      "cutter_density": 8.4066,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 0.5676,
       "gauge_cutter_ratio": 0.4242,
@@ -6162,6 +6274,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.0,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 33,
@@ -6185,7 +6298,7 @@
     }
   },
   "5646": {
-    "durability_score": 2.1,
+    "durability_score": 5.0,
     "steerability_score": 7.7,
     "raw_metrics": {
       "redundancy_score": 0.2619,
@@ -6193,7 +6306,7 @@
       "radial_force_ratio": 0.9058,
       "perpendicular_force_ratio": 0.3665,
       "six_three_offset": 0.0219,
-      "blade_exposure_equality": 0.6264,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 63,
       "num_blades": 6,
@@ -6202,7 +6315,7 @@
       "avg_cone_backrake": 19.8485,
       "avg_nose_backrake": 17.0616,
       "avg_gauge_backrake": 26.6642,
-      "cutter_density": 14.8235,
+      "cutter_density": 18.6954,
       "avg_blades_per_zone": 3.5,
       "avg_spacing_cv": 0.9651,
       "gauge_cutter_ratio": 0.3016,
@@ -6213,6 +6326,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.492,
       "gauge_radius": 4.25,
+      "avg_primary_cutter_dia_mm": 12.7,
       "backup_ratio": 0.3492,
       "knuckle_ratio": 0.4545,
       "n_primary": 41,
@@ -6241,7 +6355,7 @@
     }
   },
   "5674": {
-    "durability_score": 6.6,
+    "durability_score": 7.1,
     "steerability_score": 7.7,
     "raw_metrics": {
       "redundancy_score": 0.6774,
@@ -6249,7 +6363,7 @@
       "radial_force_ratio": 0.8574,
       "perpendicular_force_ratio": 0.4883,
       "six_three_offset": 0.0319,
-      "blade_exposure_equality": 0.7627,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 115,
       "num_blades": 6,
@@ -6258,7 +6372,7 @@
       "avg_cone_backrake": 17.1715,
       "avg_nose_backrake": 15.1184,
       "avg_gauge_backrake": 27.5442,
-      "cutter_density": 15.5932,
+      "cutter_density": 15.716,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 1.0839,
       "gauge_cutter_ratio": 0.4348,
@@ -6269,6 +6383,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.478,
       "gauge_radius": 7.375,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3652,
       "knuckle_ratio": 1.0,
       "n_primary": 73,
@@ -6296,7 +6411,7 @@
     }
   },
   "5911": {
-    "durability_score": 4.1,
+    "durability_score": 5.0,
     "steerability_score": 5.8,
     "raw_metrics": {
       "redundancy_score": 0.3857,
@@ -6304,7 +6419,7 @@
       "radial_force_ratio": 0.956,
       "perpendicular_force_ratio": 0.2083,
       "six_three_offset": 0.0351,
-      "blade_exposure_equality": 0.7661,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 84,
       "num_blades": 6,
@@ -6313,7 +6428,7 @@
       "avg_cone_backrake": 16.3661,
       "avg_nose_backrake": 15.139,
       "avg_gauge_backrake": 24.0134,
-      "cutter_density": 17.0127,
+      "cutter_density": 17.5159,
       "avg_blades_per_zone": 3.9,
       "avg_spacing_cv": 1.0659,
       "gauge_cutter_ratio": 0.381,
@@ -6324,6 +6439,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.5163,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.3571,
       "knuckle_ratio": 0.1,
       "n_primary": 54,
@@ -6351,7 +6467,7 @@
     }
   },
   "6135": {
-    "durability_score": 6.6,
+    "durability_score": 7.1,
     "steerability_score": 7.7,
     "raw_metrics": {
       "redundancy_score": 0.6944,
@@ -6359,7 +6475,7 @@
       "radial_force_ratio": 0.8574,
       "perpendicular_force_ratio": 0.4883,
       "six_three_offset": 0.0361,
-      "blade_exposure_equality": 0.7629,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 115,
       "num_blades": 6,
@@ -6368,7 +6484,7 @@
       "avg_cone_backrake": 17.0,
       "avg_nose_backrake": 15.1467,
       "avg_gauge_backrake": 27.6857,
-      "cutter_density": 15.5932,
+      "cutter_density": 15.716,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 1.0965,
       "gauge_cutter_ratio": 0.4348,
@@ -6379,6 +6495,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.478,
       "gauge_radius": 7.375,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3652,
       "knuckle_ratio": 1.0,
       "n_primary": 73,
@@ -6406,7 +6523,7 @@
     }
   },
   "6150": {
-    "durability_score": 7.3,
+    "durability_score": 5.3,
     "steerability_score": 7.7,
     "raw_metrics": {
       "redundancy_score": 0.7683,
@@ -6423,7 +6540,7 @@
       "avg_cone_backrake": 15.8101,
       "avg_nose_backrake": 15.0799,
       "avg_gauge_backrake": 26.1707,
-      "cutter_density": 15.0857,
+      "cutter_density": 15.584,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 1.0067,
       "gauge_cutter_ratio": 0.4394,
@@ -6434,6 +6551,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4802,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.5,
       "backup_ratio": 0.3333,
       "knuckle_ratio": 1.0,
       "n_primary": 88,
@@ -6461,7 +6579,7 @@
     }
   },
   "6207": {
-    "durability_score": 2.0,
+    "durability_score": 3.5,
     "steerability_score": 6.4,
     "raw_metrics": {
       "redundancy_score": 0.2685,
@@ -6469,7 +6587,7 @@
       "radial_force_ratio": 0.9269,
       "perpendicular_force_ratio": 0.3301,
       "six_three_offset": 0.0227,
-      "blade_exposure_equality": 0.6606,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 53,
       "num_blades": 6,
@@ -6478,7 +6596,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.8705,
       "avg_gauge_backrake": 27.148,
-      "cutter_density": 13.4603,
+      "cutter_density": 13.6317,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 1.107,
       "gauge_cutter_ratio": 0.4906,
@@ -6489,6 +6607,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4903,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 15.8,
       "backup_ratio": 0.3396,
       "knuckle_ratio": 0.7778,
       "n_primary": 35,
@@ -6516,7 +6635,7 @@
     }
   },
   "6513": {
-    "durability_score": 6.2,
+    "durability_score": 4.3,
     "steerability_score": 2.5,
     "raw_metrics": {
       "redundancy_score": 0.6058,
@@ -6533,7 +6652,7 @@
       "avg_cone_backrake": 22.5,
       "avg_nose_backrake": 21.3285,
       "avg_gauge_backrake": 26.5416,
-      "cutter_density": 10.5143,
+      "cutter_density": 10.5971,
       "avg_blades_per_zone": 5.8,
       "avg_spacing_cv": 0.4653,
       "gauge_cutter_ratio": 0.3804,
@@ -6544,6 +6663,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.52,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.0,
       "knuckle_ratio": 0.0,
       "n_primary": 92,
@@ -6567,7 +6687,7 @@
     }
   },
   "6653": {
-    "durability_score": 6.3,
+    "durability_score": 6.2,
     "steerability_score": 6.7,
     "raw_metrics": {
       "redundancy_score": 0.4509,
@@ -6575,7 +6695,7 @@
       "radial_force_ratio": 0.8888,
       "perpendicular_force_ratio": 0.4166,
       "six_three_offset": 0.0346,
-      "blade_exposure_equality": 0.7773,
+      "blade_exposure_equality": 0.9533,
       "effective_blade_count": 3,
       "total_cutters": 108,
       "num_blades": 6,
@@ -6584,7 +6704,7 @@
       "avg_cone_backrake": 17.5272,
       "avg_nose_backrake": 15.742,
       "avg_gauge_backrake": 27.9624,
-      "cutter_density": 17.6327,
+      "cutter_density": 17.7715,
       "avg_blades_per_zone": 4.3,
       "avg_spacing_cv": 1.183,
       "gauge_cutter_ratio": 0.4722,
@@ -6595,6 +6715,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4879,
       "gauge_radius": 6.125,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.4352,
       "knuckle_ratio": 0.617,
       "n_primary": 61,
@@ -6624,7 +6745,7 @@
     }
   },
   "6841": {
-    "durability_score": 0.9,
+    "durability_score": 2.2,
     "steerability_score": 7.4,
     "raw_metrics": {
       "redundancy_score": 0.25,
@@ -6632,7 +6753,7 @@
       "radial_force_ratio": 0.9377,
       "perpendicular_force_ratio": 0.3295,
       "six_three_offset": 0.0726,
-      "blade_exposure_equality": 0.7117,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 1,
       "total_cutters": 43,
       "num_blades": 5,
@@ -6641,7 +6762,7 @@
       "avg_cone_backrake": 18.7867,
       "avg_nose_backrake": 15.1809,
       "avg_gauge_backrake": 27.9457,
-      "cutter_density": 10.9206,
+      "cutter_density": 10.7009,
       "avg_blades_per_zone": 2.4,
       "avg_spacing_cv": 1.092,
       "gauge_cutter_ratio": 0.5116,
@@ -6652,6 +6773,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4834,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 16.3,
       "backup_ratio": 0.3256,
       "knuckle_ratio": 1.0,
       "n_primary": 29,
@@ -6678,7 +6800,7 @@
     }
   },
   "7182": {
-    "durability_score": 5.0,
+    "durability_score": 5.3,
     "steerability_score": 5.6,
     "raw_metrics": {
       "redundancy_score": 0.2821,
@@ -6686,7 +6808,7 @@
       "radial_force_ratio": 0.9253,
       "perpendicular_force_ratio": 0.3297,
       "six_three_offset": 1.8187,
-      "blade_exposure_equality": 0.7817,
+      "blade_exposure_equality": 0.9254,
       "effective_blade_count": 2,
       "total_cutters": 61,
       "num_blades": 5,
@@ -6695,7 +6817,7 @@
       "avg_cone_backrake": 19.927,
       "avg_nose_backrake": 21.5363,
       "avg_gauge_backrake": 27.3577,
-      "cutter_density": 15.4921,
+      "cutter_density": 17.1207,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 1.2266,
       "gauge_cutter_ratio": 0.459,
@@ -6706,6 +6828,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4993,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 14.5,
       "backup_ratio": 0.4426,
       "knuckle_ratio": 0.4074,
       "n_primary": 34,
@@ -6734,7 +6857,7 @@
     }
   },
   "7273": {
-    "durability_score": 6.7,
+    "durability_score": 7.2,
     "steerability_score": 7.7,
     "raw_metrics": {
       "redundancy_score": 0.6944,
@@ -6742,7 +6865,7 @@
       "radial_force_ratio": 0.8574,
       "perpendicular_force_ratio": 0.4883,
       "six_three_offset": 0.0331,
-      "blade_exposure_equality": 0.7629,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 3,
       "total_cutters": 115,
       "num_blades": 6,
@@ -6751,7 +6874,7 @@
       "avg_cone_backrake": 17.0,
       "avg_nose_backrake": 15.1467,
       "avg_gauge_backrake": 27.6857,
-      "cutter_density": 15.5932,
+      "cutter_density": 15.716,
       "avg_blades_per_zone": 4.7,
       "avg_spacing_cv": 1.0965,
       "gauge_cutter_ratio": 0.4348,
@@ -6762,6 +6885,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.478,
       "gauge_radius": 7.375,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3652,
       "knuckle_ratio": 1.0,
       "n_primary": 73,
@@ -6789,7 +6913,7 @@
     }
   },
   "7823": {
-    "durability_score": 7.2,
+    "durability_score": 5.1,
     "steerability_score": 7.9,
     "raw_metrics": {
       "redundancy_score": 0.7509,
@@ -6806,7 +6930,7 @@
       "avg_cone_backrake": 16.3677,
       "avg_nose_backrake": 15.1188,
       "avg_gauge_backrake": 27.779,
-      "cutter_density": 14.8571,
+      "cutter_density": 14.9741,
       "avg_blades_per_zone": 5.1,
       "avg_spacing_cv": 0.9944,
       "gauge_cutter_ratio": 0.4,
@@ -6817,6 +6941,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4796,
       "gauge_radius": 8.75,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.3385,
       "knuckle_ratio": 1.0,
       "n_primary": 86,
@@ -6844,7 +6969,7 @@
     }
   },
   "8479": {
-    "durability_score": 1.9,
+    "durability_score": 3.5,
     "steerability_score": 6.4,
     "raw_metrics": {
       "redundancy_score": 0.2685,
@@ -6852,7 +6977,7 @@
       "radial_force_ratio": 0.9269,
       "perpendicular_force_ratio": 0.3301,
       "six_three_offset": 0.0244,
-      "blade_exposure_equality": 0.6606,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 53,
       "num_blades": 6,
@@ -6861,7 +6986,7 @@
       "avg_cone_backrake": 16.875,
       "avg_nose_backrake": 15.8705,
       "avg_gauge_backrake": 27.148,
-      "cutter_density": 13.4603,
+      "cutter_density": 13.6317,
       "avg_blades_per_zone": 2.8,
       "avg_spacing_cv": 1.107,
       "gauge_cutter_ratio": 0.4906,
@@ -6872,6 +6997,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4903,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 15.8,
       "backup_ratio": 0.3396,
       "knuckle_ratio": 0.7778,
       "n_primary": 35,
@@ -6901,7 +7027,7 @@
     }
   },
   "8896": {
-    "durability_score": 7.0,
+    "durability_score": 6.3,
     "steerability_score": 3.9,
     "raw_metrics": {
       "redundancy_score": 0.5221,
@@ -6909,7 +7035,7 @@
       "radial_force_ratio": 0.9742,
       "perpendicular_force_ratio": 0.2308,
       "six_three_offset": 1.9866,
-      "blade_exposure_equality": 0.8321,
+      "blade_exposure_equality": 0.9397,
       "effective_blade_count": 3,
       "total_cutters": 86,
       "num_blades": 6,
@@ -6918,7 +7044,7 @@
       "avg_cone_backrake": 23.6589,
       "avg_nose_backrake": 18.7007,
       "avg_gauge_backrake": 25.8663,
-      "cutter_density": 17.4177,
+      "cutter_density": 17.5549,
       "avg_blades_per_zone": 3.9,
       "avg_spacing_cv": 1.1982,
       "gauge_cutter_ratio": 0.4419,
@@ -6929,6 +7055,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4953,
       "gauge_radius": 4.9375,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.4302,
       "knuckle_ratio": 0.2973,
       "n_primary": 49,
@@ -6957,7 +7084,7 @@
     }
   },
   "9387": {
-    "durability_score": 3.2,
+    "durability_score": 5.7,
     "steerability_score": 3.7,
     "raw_metrics": {
       "redundancy_score": 0.4021,
@@ -6965,7 +7092,7 @@
       "radial_force_ratio": 0.9825,
       "perpendicular_force_ratio": 0.1822,
       "six_three_offset": 0.0584,
-      "blade_exposure_equality": 0.6646,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 65,
       "num_blades": 6,
@@ -6974,7 +7101,7 @@
       "avg_cone_backrake": 16.5,
       "avg_nose_backrake": 15.0,
       "avg_gauge_backrake": 29.8333,
-      "cutter_density": 16.5079,
+      "cutter_density": 19.6573,
       "avg_blades_per_zone": 3.1,
       "avg_spacing_cv": 1.1805,
       "gauge_cutter_ratio": 0.6462,
@@ -6985,6 +7112,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.487,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.2462,
       "knuckle_ratio": 0.625,
       "n_primary": 49,
@@ -7012,7 +7140,7 @@
     }
   },
   "9692": {
-    "durability_score": 8.4,
+    "durability_score": 8.7,
     "steerability_score": 3.1,
     "raw_metrics": {
       "redundancy_score": 0.4097,
@@ -7020,7 +7148,7 @@
       "radial_force_ratio": 0.9187,
       "perpendicular_force_ratio": 0.3191,
       "six_three_offset": 2.922,
-      "blade_exposure_equality": 0.8427,
+      "blade_exposure_equality": 0.9475,
       "effective_blade_count": 3,
       "total_cutters": 91,
       "num_blades": 6,
@@ -7029,7 +7157,7 @@
       "avg_cone_backrake": 19.3199,
       "avg_nose_backrake": 22.3326,
       "avg_gauge_backrake": 30.0689,
-      "cutter_density": 23.1111,
+      "cutter_density": 27.5202,
       "avg_blades_per_zone": 4.0,
       "avg_spacing_cv": 1.2302,
       "gauge_cutter_ratio": 0.5165,
@@ -7040,6 +7168,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4729,
       "gauge_radius": 3.9375,
+      "avg_primary_cutter_dia_mm": 13.4,
       "backup_ratio": 0.5385,
       "knuckle_ratio": 0.6735,
       "n_primary": 42,
@@ -7069,7 +7198,7 @@
     }
   },
   "9944": {
-    "durability_score": 5.6,
+    "durability_score": 6.4,
     "steerability_score": 6.4,
     "raw_metrics": {
       "redundancy_score": 0.3409,
@@ -7077,7 +7206,7 @@
       "radial_force_ratio": 0.9049,
       "perpendicular_force_ratio": 0.3582,
       "six_three_offset": 0.0364,
-      "blade_exposure_equality": 0.7287,
+      "blade_exposure_equality": 1.0,
       "effective_blade_count": 2,
       "total_cutters": 90,
       "num_blades": 6,
@@ -7086,7 +7215,7 @@
       "avg_cone_backrake": 16.7,
       "avg_nose_backrake": 15.21,
       "avg_gauge_backrake": 30.2804,
-      "cutter_density": 16.9412,
+      "cutter_density": 17.0746,
       "avg_blades_per_zone": 3.7,
       "avg_spacing_cv": 1.2474,
       "gauge_cutter_ratio": 0.5556,
@@ -7097,6 +7226,7 @@
       "max_engagement_threshold": 0.7188,
       "avg_depth": 0.4897,
       "gauge_radius": 5.3125,
+      "avg_primary_cutter_dia_mm": 15.9,
       "backup_ratio": 0.4111,
       "knuckle_ratio": 0.6216,
       "n_primary": 53,

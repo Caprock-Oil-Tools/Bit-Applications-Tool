@@ -321,9 +321,12 @@ def detect_layout_from_geometry(cutters, gauge_radius):
             six_three_offset = abs(np.mean(primary) - np.mean(secondary))
 
     # --- 4. BLADE EXPOSURE EQUALITY ---
-    # How uniformly do all blades cover the full radial profile?
-    # F-Type and redundant have all blades equally exposed
-    # 6-3 has unequal exposure (secondary blades start later)
+    # Measures how uniformly blades cover the radial profile.
+    # For redundant designs (high pair overlap), secondary blades intentionally
+    # cover less of the profile — this is a feature, not a flaw.
+    # We split blades into "long" (primary) and "short" (secondary) groups
+    # and measure equality within the primary group, then credit the secondary
+    # group for the backup coverage they provide.
     blade_radial_ranges = {}
     for b in blade_nums:
         radii = [abs(c.get("radial_pos", 0)) for c in blades_dict[b]
@@ -334,9 +337,27 @@ def detect_layout_from_geometry(cutters, gauge_radius):
     if blade_radial_ranges:
         coverages = [(hi - lo) for lo, hi in blade_radial_ranges.values()]
         max_coverage = max(coverages) if coverages else 1.0
+
         if max_coverage > 0:
-            normalized_coverages = [c / max_coverage for c in coverages]
-            blade_exposure_equality = np.mean(normalized_coverages)
+            # Split blades into primary (long) and secondary (short) groups
+            # Secondary blades have < 60% of max coverage
+            threshold = 0.60 * max_coverage
+            primary_coverages = [c for c in coverages if c >= threshold]
+            secondary_coverages = [c for c in coverages if c < threshold]
+
+            if primary_coverages and secondary_coverages:
+                # Redundant design: measure equality among primary blades,
+                # and give credit for having secondary blades at all
+                pri_max = max(primary_coverages)
+                pri_normalized = [c / pri_max for c in primary_coverages] if pri_max > 0 else [1.0]
+                primary_equality = float(np.mean(pri_normalized))
+                # Secondary blade presence bonus (they exist to provide backup)
+                sec_bonus = min(len(secondary_coverages) / len(primary_coverages), 1.0) * 0.15
+                blade_exposure_equality = min(primary_equality + sec_bonus, 1.0)
+            else:
+                # All blades similar coverage (F-type or SingleSet)
+                normalized_coverages = [c / max_coverage for c in coverages]
+                blade_exposure_equality = float(np.mean(normalized_coverages))
         else:
             blade_exposure_equality = 1.0
 
@@ -905,7 +926,18 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
     avg_gauge_backrake = float(np.mean(gauge_br)) if gauge_br else 30.0
 
     # --- CUTTER DENSITY AND SPACING (from ME file) ---
-    cutter_density = total_cutters / gauge_radius if gauge_radius > 0 else total_cutters / 4.0
+    # Size-adjusted: normalize by cutter diameter so that many small cutters
+    # count proportionally to fewer large cutters covering the same area
+    raw_density = total_cutters / gauge_radius if gauge_radius > 0 else total_cutters / 4.0
+    # Compute average primary cutter diameter for size adjustment
+    _pri_radii = [c.get("pocket_radius") for c in cutters
+                  if isinstance(c.get("pocket_radius"), (int, float))
+                  and c.get("pocket_radius", 0) > 0.1
+                  and "." in str(c.get("name", ""))
+                  and str(c.get("name", "")).split(".")[1][:1] == "1"]
+    _avg_pri_dia_mm = (sum(_pri_radii) / len(_pri_radii) * 2 * 25.4) if _pri_radii else 16.0
+    # Scale density: 16mm is reference; smaller cutters get proportional boost
+    cutter_density = raw_density * (16.0 / _avg_pri_dia_mm)
 
     # Radial zone coverage: how many blades present per zone
     num_zones = 10
@@ -970,6 +1002,21 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
               if isinstance(c.get("pocket_depth"), (int, float))]
     avg_depth = float(np.mean(depths)) if depths else 0.4
 
+    # --- PRIMARY CUTTER DIAMETER (from ME file pocket_radius) ---
+    # Primary cutters have names matching X.1YY pattern (second digit after . is '1')
+    primary_radii = []
+    for c in cutters:
+        r = c.get("pocket_radius")
+        name = str(c.get("name", ""))
+        if isinstance(r, (int, float)) and r > 0.1 and "." in name:
+            parts = name.split(".")
+            if len(parts) == 2 and len(parts[1]) >= 1 and parts[1][0] == "1":
+                primary_radii.append(r)
+    avg_primary_cutter_dia_mm = (
+        round(sum(primary_radii) / len(primary_radii) * 2 * 25.4, 1)
+        if primary_radii else 16.0  # default to 16mm if unknown
+    )
+
     return {
         # Layout geometry (all from ME file)
         "redundancy_score": layout["redundancy_score"],
@@ -998,6 +1045,7 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
         "max_engagement_threshold": max_engagement_threshold,
         "avg_depth": avg_depth,
         "gauge_radius": gauge_radius,
+        "avg_primary_cutter_dia_mm": avg_primary_cutter_dia_mm,
         # Backup engagement analysis (IPR-dependent behavior)
         "backup_ratio": backup["backup_ratio"],
         "knuckle_ratio": backup["knuckle_ratio"],
@@ -1133,18 +1181,20 @@ def main():
         "redundancy", "backrake", "zone_coverage", "exposure_equality",
         "density", "uniformity", "low_ipr_durability",
         "backup_coverage", "engagement_progression", "backup_backrake",
+        "cutter_size",
     ]
     weights_dur = {
-        "redundancy": 0.18,              # Radial overlap between blade pairs
-        "backrake": 0.14,                # Average back rake from ME file
-        "zone_coverage": 0.10,           # Blades per radial zone
+        "redundancy": 0.16,              # Radial overlap between blade pairs
+        "backrake": 0.12,                # Average back rake from ME file
+        "zone_coverage": 0.08,           # Blades per radial zone
         "exposure_equality": 0.10,       # All blades equally exposed
         "density": 0.08,                 # Cutter density
         "uniformity": 0.05,              # Spacing uniformity
-        "low_ipr_durability": 0.05,      # Inverse of 6-3 offset
-        "backup_coverage": 0.15,         # Backup elements covering the profile (DBR prevention)
-        "engagement_progression": 0.10,  # Gradual IPR-dependent engagement progression
+        "low_ipr_durability": 0.04,      # Inverse of 6-3 offset
+        "backup_coverage": 0.13,         # Backup elements covering the profile (DBR prevention)
+        "engagement_progression": 0.09,  # Gradual IPR-dependent engagement progression
         "backup_backrake": 0.05,         # Higher backup back rake = more conservative
+        "cutter_size": 0.10,             # Smaller cutters = more durable (less exposure, more per area)
     }
 
     durability_components = {}
@@ -1168,6 +1218,12 @@ def main():
             + (1.0 - m["non_working_ratio"]) * 0.2
         )
 
+        # Cutter size factor: smaller cutters = more durable
+        # Invert so smaller diameters get higher scores
+        # Range is ~11mm to ~19mm; use inverse linear mapping
+        cutter_dia = m.get("avg_primary_cutter_dia_mm", 16.0)
+        cutter_size_score = max(0.0, (20.0 - cutter_dia) / 10.0)  # 10mm→1.0, 15mm→0.5, 20mm→0.0
+
         durability_components[bn] = {
             "redundancy": m["redundancy_score"],
             "backrake": m["avg_backrake"],
@@ -1179,6 +1235,7 @@ def main():
             "backup_coverage": backup_coverage_raw,
             "engagement_progression": engagement_prog,
             "backup_backrake": min(m["avg_backup_backrake"] / 40.0, 1.0),
+            "cutter_size": cutter_size_score,
         }
 
     # Normalize each component to 0-1 across the population
