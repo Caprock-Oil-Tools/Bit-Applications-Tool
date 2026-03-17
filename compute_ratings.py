@@ -1177,65 +1177,106 @@ def main():
     #   9. engagement_progression: gradual engagement = load redistribution as wear occurs
     #  10. backup_backrake: higher backup back rake = more conservative engagement
 
+    # Physical basis (from BIT_DESIGN_KNOWLEDGE_LOG.md):
+    #   Durability = how long the bit drills / how much footage before pull.
+    #   Driven by: load distribution, cutting conservatism, backup protection,
+    #   low-IPR resilience, and cutter geometry.
+    #
+    #   Key domain rules:
+    #   - Redundant layouts (perpendicular forces) are the most durable basic type
+    #   - 6-3 layouts are VULNERABLE at low IPR (effectively 3-bladed)
+    #   - F-Type: similar aggressiveness to 6-3 but all blades equally exposed =
+    #     more durable at low IPR than 6-3
+    #   - Smaller cutters = more durable (less exposure per cutter, more fit per area)
+    #   - PDC backups increase durability more than knuckles (knuckles mainly limit ROP)
+    #   - Backups with smaller Z-offset engage sooner = more load sharing = more durable
+    #   - Backups with smaller radial offset also engage sooner (per placement doc)
+    #   - Higher backrake = more conservative cutting = more durable
+    #   - More blades & higher cutter density = better load distribution
+    #
+    #   Removed components from previous version:
+    #   - engagement_progression: used engagement_spread & low_ipr_fraction which are
+    #     CONSTANT across all bits (identical Settings sheet template) → zero discrimination
+    #   - exposure_equality weight reduced: only 32 unique values, 97% mean, near-constant
+
     dur_comp_names = [
-        "redundancy", "backrake", "zone_coverage", "exposure_equality",
-        "density", "uniformity", "low_ipr_durability",
-        "backup_coverage", "engagement_progression", "backup_backrake",
-        "cutter_size",
+        "redundancy", "force_balance", "avg_backrake", "nose_backrake",
+        "zone_coverage", "density", "uniformity",
+        "low_ipr_resilience", "backup_protection", "backup_engage_timing",
+        "backrake_differential", "cutter_size", "eff_blade_count",
     ]
     weights_dur = {
-        "redundancy": 0.16,              # Radial overlap between blade pairs
-        "backrake": 0.12,                # Average back rake from ME file
-        "zone_coverage": 0.08,           # Blades per radial zone
-        "exposure_equality": 0.10,       # All blades equally exposed
-        "density": 0.08,                 # Cutter density
-        "uniformity": 0.05,              # Spacing uniformity
-        "low_ipr_durability": 0.04,      # Inverse of 6-3 offset
-        "backup_coverage": 0.13,         # Backup elements covering the profile (DBR prevention)
-        "engagement_progression": 0.09,  # Gradual IPR-dependent engagement progression
-        "backup_backrake": 0.05,         # Higher backup back rake = more conservative
-        "cutter_size": 0.10,             # Smaller cutters = more durable (less exposure, more per area)
+        "redundancy": 0.14,              # Blade-pair radial overlap = shared cutting load
+        "force_balance": 0.06,           # Balanced (perpendicular) forces = redundant layout
+        "avg_backrake": 0.10,            # Higher overall backrake = more conservative cutting
+        "nose_backrake": 0.06,           # Nose does most work; conservative nose = durable
+        "zone_coverage": 0.07,           # More blades per radial zone = better load sharing
+        "density": 0.07,                 # More cutters per unit radius = less work each
+        "uniformity": 0.04,              # Even spacing = no weak spots in profile coverage
+        "low_ipr_resilience": 0.10,      # Inverse of 6-3 offset; 6-3 = 3-bladed at low IPR
+        "backup_protection": 0.12,       # Backup PDCs covering profile = DBR prevention + load share
+        "backup_engage_timing": 0.08,    # Backups that engage sooner = more load sharing
+        "backrake_differential": 0.04,   # Higher backup BR vs primary = gradual load transition
+        "cutter_size": 0.08,             # Smaller cutters = less exposure = more durable
+        "eff_blade_count": 0.04,         # More effective blades = more stable load distribution
     }
 
     durability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
-        # Backup coverage: combines backup ratio, profile coverage, and PDC backup density
-        # PDC backups contribute more to durability than knuckles (which mainly limit ROP)
+
+        # Force balance: perpendicular_force_ratio is highest when forces are balanced
+        # between axial and radial = redundant layout characteristic = most durable type
+        force_balance = m["perpendicular_force_ratio"]
+
+        # Backup protection composite:
+        # PDC backups contribute more to durability than knuckles (per knowledge log).
+        # Combines: (a) overall backup ratio, (b) how much of the profile they cover,
+        # (c) specifically PDC backup density relative to primaries.
         pdc_backup_factor = m["n_pdc_backups"] / max(m["n_primary"], 1)
-        backup_coverage_raw = (
-            m["backup_ratio"] * 0.4
-            + m["backup_profile_coverage"] * 0.4
-            + min(pdc_backup_factor, 1.0) * 0.2
+        backup_protection = (
+            m["backup_ratio"] * 0.35
+            + m["backup_profile_coverage"] * 0.40
+            + min(pdc_backup_factor, 1.0) * 0.25
         )
 
-        # Engagement progression: gradual engagement = better load redistribution
-        # Higher engagement_spread + higher low_ipr_fraction = more gradual engagement
-        # Non-working elements reduce effective progression
-        engagement_prog = (
-            min(m["engagement_spread"] * 4.0, 1.0) * 0.5
-            + m["low_ipr_fraction"] * 0.3
-            + (1.0 - m["non_working_ratio"]) * 0.2
-        )
+        # Backup engagement timing:
+        # Per the characterization doc: smaller Z-offset = lower min engagement speed
+        # = backup engages sooner = shares load earlier = more durable.
+        # Smaller radial offset: min engagement speed DECREASES, magnitude INCREASES.
+        # Bits with NO backups get 0 (no backup timing benefit at all).
+        if m["n_backup"] > 0:
+            z_timing = 1.0 / (1.0 + m["avg_z_offset"] * 8.0)
+            r_timing = 1.0 / (1.0 + m["avg_radial_offset"] * 8.0)
+            backup_timing = z_timing * 0.6 + r_timing * 0.4
+        else:
+            backup_timing = 0.0
 
-        # Cutter size factor: smaller cutters = more durable
-        # Invert so smaller diameters get higher scores
-        # Range is ~11mm to ~19mm; use inverse linear mapping
+        # Backrake differential: higher backup backrake vs primary = more conservative
+        # engagement when backups come in = gradual load transition = more durable.
+        # Clamp to positive range (negative means backup is more aggressive than primary).
+        br_diff = max(m["backrake_differential"], 0.0)
+        br_diff_score = min(br_diff / 15.0, 1.0)
+
+        # Cutter size: smaller cutters = more durable (less DOC per cutter, more fit per area).
+        # Range ~11mm to ~19mm. Inverse linear mapping.
         cutter_dia = m.get("avg_primary_cutter_dia_mm", 16.0)
-        cutter_size_score = max(0.0, (20.0 - cutter_dia) / 10.0)  # 10mm→1.0, 15mm→0.5, 20mm→0.0
+        cutter_size_score = max(0.0, (20.0 - cutter_dia) / 10.0)
 
         durability_components[bn] = {
             "redundancy": m["redundancy_score"],
-            "backrake": m["avg_backrake"],
+            "force_balance": force_balance,
+            "avg_backrake": m["avg_backrake"],
+            "nose_backrake": m["avg_nose_backrake"],
             "zone_coverage": m["avg_blades_per_zone"],
-            "exposure_equality": m["blade_exposure_equality"],
             "density": m["cutter_density"],
             "uniformity": 1.0 - min(m["avg_spacing_cv"], 1.0),
-            "low_ipr_durability": 1.0 - min(m["six_three_offset"] * 20.0, 1.0),
-            "backup_coverage": backup_coverage_raw,
-            "engagement_progression": engagement_prog,
-            "backup_backrake": min(m["avg_backup_backrake"] / 40.0, 1.0),
+            "low_ipr_resilience": 1.0 - min(m["six_three_offset"] * 5.0, 1.0),
+            "backup_protection": backup_protection,
+            "backup_engage_timing": backup_timing,
+            "backrake_differential": br_diff_score,
             "cutter_size": cutter_size_score,
+            "eff_blade_count": min(m["effective_blade_count"] / 6.0, 1.0),
         }
 
     # Normalize each component to 0-1 across the population
@@ -1265,56 +1306,87 @@ def main():
     # =========================================================================
     # STEERABILITY SCORING - all inputs from Min Engagement geometry
     # =========================================================================
-    # Factors (higher = more steerable):
-    #   1. axial_dominance: predominantly axial forces = better tool face control
-    #   2. gauge_openness: fewer gauge cutters = less resistance to side forces
-    #   3. gauge_aggressiveness: lower gauge back rake = less stabilizing = more steerable
-    #   4. cone_aggressiveness: lower cone back rake = more aggressive cone = builds angle
-    #   5. profile_depth: larger Z range = more profile = more steerable
-    #   6. siderake: more side rake = directional force component
-    #   7. lateral_force: force imbalance = tendency to walk
-    #   8. blade_factor: fewer effective blades = less stabilizing
-    #   9. knuckle_effect: knuckles limit ROP, typically used to improve steerability
-    #  10. gauge_backup_openness: fewer gauge backups = less stabilizing at gauge
+    # Physical basis (from BIT_DESIGN_KNOWLEDGE_LOG.md):
+    #   Steerability = how well the driller can control bit direction.
+    #
+    #   Key domain rules:
+    #   - Reverse spiral (axial forces) = best tool face control = most steerable
+    #     for curves and laterals. Forward spiral (radial forces) = least steerable
+    #     for directional work.
+    #   - Open gauge (fewer/less aggressive gauge cutters, fewer gauge backups)
+    #     = less lateral resistance = bit can move sideways = more steerable.
+    #     Gauge is the STRONGEST physical driver — it's what contacts the wall.
+    #   - Knuckles limit ROP → improve steerability when sliding (motor has more
+    #     control over direction when ROP is limited).
+    #   - Fewer effective blades = less gyroscopic stability = easier to turn.
+    #   - Aggressive cone (lower backrake) = builds angle more effectively.
+    #   - Deeper profile (larger Z range) = more side-cutting area available.
+    #   - 6-3 layout = more aggressive = more responsive to directional input.
+    #   - Fewer backups overall = less stabilizing = easier to steer.
 
     steer_comp_names = [
-        "axial_dominance", "gauge_openness", "gauge_aggressiveness",
-        "cone_aggressiveness", "profile_depth", "siderake",
-        "lateral_force", "blade_factor",
-        "knuckle_effect", "gauge_backup_openness",
+        "axial_dominance", "gauge_freedom",
+        "cone_aggressiveness", "nose_aggressiveness",
+        "profile_depth", "blade_factor",
+        "knuckle_effect", "siderake",
+        "lateral_imbalance", "low_backup_density", "layout_aggressiveness",
     ]
     weights_steer = {
-        "axial_dominance": 0.16,          # Axial force = better tool face = more steerable
-        "gauge_openness": 0.12,           # Fewer gauge cutters = more steerable
-        "gauge_aggressiveness": 0.12,     # Lower gauge back rake = more steerable
-        "cone_aggressiveness": 0.12,      # Lower cone back rake = builds angle
-        "profile_depth": 0.08,            # Deeper profile = more steerable
-        "siderake": 0.08,                 # Side rake = directional force
-        "lateral_force": 0.05,            # Force imbalance
-        "blade_factor": 0.08,             # Fewer effective blades = more steerable
-        "knuckle_effect": 0.12,           # Knuckles limit ROP = improve steerability when sliding
-        "gauge_backup_openness": 0.07,    # Fewer gauge backups = less stabilizing at gauge
+        "axial_dominance": 0.15,          # Axial forces = tool face control (reverse spiral)
+        "gauge_freedom": 0.20,            # Open gauge = less wall contact = steerable (strongest driver)
+        "cone_aggressiveness": 0.10,      # Aggressive cone builds angle
+        "nose_aggressiveness": 0.07,      # Aggressive nose aids directional response
+        "profile_depth": 0.07,            # Deeper profile = more side-cutting area
+        "blade_factor": 0.10,             # Fewer effective blades = less stabilizing
+        "knuckle_effect": 0.12,           # Knuckles limit ROP = better sliding steerability
+        "siderake": 0.06,                 # Side rake = directional force component
+        "lateral_imbalance": 0.03,        # Force imbalance = walking tendency
+        "low_backup_density": 0.05,       # Fewer backups = less stabilizing overall
+        "layout_aggressiveness": 0.05,    # 6-3 / fewer blades = more responsive layout
     }
 
     steerability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
-        # Knuckle effect: knuckles limit ROP and improve steerability when sliding.
-        # More knuckles relative to total backups = more steerability benefit.
-        # But non-working knuckles (extremely underexposed) don't contribute.
+
+        # Gauge freedom composite: THE most important physical driver.
+        # The gauge region is what contacts the wellbore wall. An "open" gauge with
+        # fewer cutters, lower backrake, and fewer backups resists lateral movement
+        # less, making the bit more steerable.
+        gauge_openness = 1.0 - m["gauge_cutter_ratio"]
+        gauge_aggr = 1.0 - min(m["avg_gauge_backrake"] / 45.0, 1.0)
+        gauge_backup_open = 1.0 - m["gauge_backup_ratio"]
+        gauge_freedom = (
+            gauge_openness * 0.35
+            + gauge_aggr * 0.35
+            + gauge_backup_open * 0.30
+        )
+
+        # Knuckle effect: knuckles specifically limit ROP → improve steerability
+        # when sliding (per backup characterization doc). Non-working knuckles
+        # (Z offset > 3x average = extremely underexposed) don't contribute.
         effective_knuckle_ratio = m["knuckle_ratio"] * (1.0 - m["non_working_ratio"])
+
+        # Layout aggressiveness: more aggressive layouts are more responsive to
+        # directional input. 6-3 offset presence + fewer effective blades both
+        # indicate a more aggressive, responsive design.
+        layout_aggr = (
+            min(m["six_three_offset"] * 5.0, 1.0) * 0.5
+            + (1.0 / max(m["effective_blade_count"], 1)) * 0.5
+        )
 
         steerability_components[bn] = {
             "axial_dominance": m["axial_force_ratio"],
-            "gauge_openness": 1.0 - m["gauge_cutter_ratio"],
-            "gauge_aggressiveness": 1.0 - min(m["avg_gauge_backrake"] / 45.0, 1.0),
+            "gauge_freedom": gauge_freedom,
             "cone_aggressiveness": 1.0 - min(m["avg_cone_backrake"] / 30.0, 1.0),
+            "nose_aggressiveness": 1.0 - min(m["avg_nose_backrake"] / 30.0, 1.0),
             "profile_depth": m["z_range"],
-            "siderake": m["avg_siderake"],
-            "lateral_force": m["lateral_resultant"],
-            "blade_factor": 1.0 / m["effective_blade_count"] if m["effective_blade_count"] > 0 else 0.5,
+            "blade_factor": 1.0 / max(m["effective_blade_count"], 1),
             "knuckle_effect": effective_knuckle_ratio,
-            "gauge_backup_openness": 1.0 - m["gauge_backup_ratio"],
+            "siderake": m["avg_siderake"],
+            "lateral_imbalance": m["lateral_resultant"],
+            "low_backup_density": 1.0 - m["backup_ratio"],
+            "layout_aggressiveness": layout_aggr,
         }
 
     # Normalize each component to 0-1
