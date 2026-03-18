@@ -462,27 +462,333 @@ This can be done with:
 
 ---
 
-## 7. QUESTIONS AND UNKNOWNS
+## 7. VBA MACRO ANALYSIS — CUTLET PLOT METHODS
 
-1. **Exact ellipse projection math**: How exactly is the 3D circle-to-2D ellipse
-   projection computed? The backup engagement section stores ellipse params (IR-JA),
-   but the exact formulas for projecting a tilted PDC face aren't explicitly shown.
+### 7.1 Overview: Two Methods
 
-2. **Overlap calculation**: How is the "preceding cutter profile" determined?
-   Is it strictly blade order? Or is it based on angular position (theta)?
-   The offset angle (AS) suggests angular ordering with helical Z offset.
+The ME file contains two distinct cutlet plot methods, each with its own VBA modules:
 
-3. **Gauge cutter handling**: The smallest cutlet areas are at gauge. Are gauge
-   cutters that project to zero area (like 1.107 in the old 1941 @ 0.25 IPR data)
-   simply excluded?
+1. **AutoCAD Script Method** (`SCR_Output_Module.bas`, `Ellipse.cls`) — generates a `.scr` file
+   that draws 2D ellipses in AutoCAD, creates boundary regions, and runs MASSPROP to extract
+   centroid and area. Results are parsed from the AutoCAD log file and placed on the MassProp sheet.
 
-4. **Formation yield strength**: Is 29,500 psi always used, or does this vary
-   by application? The file appears to use a single constant.
+2. **Solid Edge 3D Method** (`SE_Cutlets.bas`, `SE_Cutlets_v2.bas`) — places actual 3D cutter
+   solid bodies into Solid Edge at coordinate system positions from Excel. Produces a 3D cutlet
+   model viewed orthogonally. Does NOT directly compute centroid/area.
 
-5. **The "IDS" terminology**: Appears frequently (e.g., "Volume at IDS",
-   "@ IDS"). What does IDS stand for? Likely "Intended Drilling Speed" or
-   "In-service Drilling Speed" — the target IPR for analysis.
+**For computational replication, the AutoCAD method is the relevant one** — it's already a 2D
+ellipse-based approach that we can replicate with computational geometry.
 
-6. **Centroid Z plane is always horizontal**: CB=0, CC=0, CD=-1 for every cutter.
-   This means the centroid Z calculation assumes the centroid lies on a horizontal
-   plane perpendicular to the bit axis. Is this always valid?
+### 7.2 AutoCAD Script Method — Complete Flow
+
+**Entry Point**: `SCR_Output_Module.ProduceSCRfile()`
+
+Called from the `SCR_file` form with parameters:
+- `scrFileLoc`: Output .scr file path
+- `Sheet4scr`: Sheet name to read data from (e.g., "Assy.Model")
+- `printOption`: "None", "PDF", or "Letter"
+- `textHeight`: Text size for labels
+- `RunType`: "LOCATION" (static) or "VOLUMETRIC" (with cutlets + MASSPROP)
+
+**Step 1: CollectData()** — Read cutters from Excel into Ellipses[] array
+
+```
+Settings sheet defines column mappings:
+  Name_Column  → J  (cutter name)
+  X_Column     → X  (radial position)
+  Z_Column_Stationary → Y  (Z at 0 IPR)
+  Z_Column_Drilling   → AT (Z with helical offset at given IPR)
+  Rcutter_Column      → H  (cutter diameter)
+  DegTilt_Column      → AN (tilt angle)
+  DegRake_Column      → AO (back rake angle)
+  DegZPolar_Column    → Q  (angular position in degrees)
+
+START_ROW = 9
+
+For each row starting at START_ROW:
+  - Read Name, X, Z, Diameter, Tilt, Rake, ZPolar from those columns
+  - Create Ellipse object:
+      Name = CutterName (as double, e.g., 1.101)
+      Xc = -1 × X_Column  (NEGATED — radial position becomes negative)
+      Yc = Z_Column_Drilling (for VOLUMETRIC) or Z_Column_Stationary (for LOCATION)
+      Major = Rcutter_Column (half-diameter = radius)
+      Tilt = -1 × DegTilt_Column (NEGATED)
+      Rake = DegRake_Column
+      Minor = Major × cos(Rake)  ← KEY: minor axis from back rake
+      zPolar = DegZPolar_Column
+      RevolutionNum = 1
+      MassPropFlag = False
+  - Continue until CutterName is no longer numeric
+```
+
+**CRITICAL: X is negated and Tilt is negated.** The revolved Z projection has X pointing
+left (toward bit center) and the tilt sign is flipped.
+
+**Step 2: AdditionalEllipses(IPR)** — Create revolution 2 and 3 copies (VOLUMETRIC only)
+
+Given N cutters at indices 0..(N-1), where Ellipses(N-1).IsLast = True:
+
+```
+Revolution 2 (shifted by 1×IPR, MassProp=True):
+  For index = 0 to N-2:
+    Ellipses(N + index) = copy of Ellipses(index)
+    Shifted down by: Yc = Yc + IPR  (shiftDown(-1 * IPR_Value) adds IPR to Y)
+    SolveMassProperties(True) ← THESE are the cutlets that get measured
+
+Revolution 3 (shifted by 2×IPR, MassProp=False):
+  For index = 0 to N-2:
+    Ellipses(2N-1 + index) = copy of Ellipses(index)
+    Shifted down by: Yc = Yc + 2×IPR
+    SolveMassProperties(False)
+```
+
+**Array layout after AdditionalEllipses:**
+- [0..N-1]: Revolution 1 — current positions (N cutters)
+- [N..2N-2]: Revolution 2 — shifted by 1×IPR (N-1 cutters, copies of 0..N-2)
+- [2N-1..3N-3]: Revolution 3 — shifted by 2×IPR (N-1 cutters, copies of 0..N-2)
+
+Note: The LAST cutter (index N-1) is NOT copied to Rev 2 or Rev 3.
+
+**Physical meaning:**
+- Rev 1 = where cutters were on the PREVIOUS revolution (already cut this rock)
+- Rev 2 = where cutters are on the CURRENT revolution (these are the cutlets we measure)
+- Rev 3 = where cutters will be on the NEXT revolution (provides bottom boundary)
+
+### 7.3 Drawing and Sequencing — THE CRITICAL PART
+
+**Step 3: DrawData() for VOLUMETRIC mode**
+
+```vb
+' Find last index
+index = 0
+Do While Not Ellipses(index).IsLast
+    index = index + 1
+Loop
+TopIndex = index
+
+' === DRAW ELLIPSES IN REVERSE ORDER (last → first) ===
+Do While index >= 0
+    ' 1) Draw the ellipse
+    Call Ellipses(index).Draw(Filenum)
+
+    ' 2) Erase center — trim interior, store boundary points
+    Call Ellipses(index).EraseCenter(Filenum, 0.002, 1)
+
+    ' 3) For each LOWER-indexed ellipse, remove this ellipse's
+    '    boundary points that fall inside it
+    index2 = 0
+    Do While index2 < index
+        Call Ellipses(index).RemovePointsInEllipse(Ellipses(index2))
+        index2 = index2 + 1
+    Loop
+
+    index = index - 1
+Loop
+```
+
+**SEQUENCING RULE: Lower-indexed ellipses MASK higher-indexed ones.**
+
+This means:
+- Blade 1 cutters (lowest indices) are DOMINANT — they cut first
+- Blade 6 cutters (highest indices) only see what's left after blades 1-5
+- Within each blade, inner cutters (earlier indices) have priority over outer cutters
+- Rev 1 ellipses (indices 0..N-1) mask EVERYTHING in Rev 2 and Rev 3
+
+The physical interpretation: As the bit rotates, blade 1 encounters the rock first,
+then blade 2 (60° later), etc. The helical Z offset in the Y-coordinate accounts
+for the bit's descent between blades.
+
+**Step 4: Trim at gauge line**
+
+`TrimTrimmers()` draws vertical lines at X = -GageRadius and X = 0, then trims
+everything outside the gauge diameter. The gage line (3.9375 for a 7.875" bit)
+defines the outer boundary.
+
+**Step 5: Create boundaries and run MASSPROP**
+
+```vb
+' CREATE BOUNDARIES — one per Rev 2 cutter (MassProp=True)
+' Process in REVERSE order (same direction as drawing)
+Do While index >= 0
+    If Ellipses(index).DoISolveMassProperties Then  ' Only Rev 2
+        ' Create layer named by cutter number
+        createLayer(Ellipses(index).CutterName, "white")
+        ' Zoom to the MidThetaPoint of visible arc
+        ' Run AutoCAD -BOUNDARY command at the midpoint
+        Print #Filenum, "-BOUNDARY"
+        Print #Filenum, midThetaPt.x & "," & midThetaPt.y
+        ' Turn off the layer (hide the boundary)
+    End If
+    index = index - 1
+Loop
+
+' MASSPROP — turn on each cutter's boundary one at a time
+' Process in REVERSE order
+Do While index >= 0
+    If Ellipses(index).DoISolveMassProperties Then
+        ' Turn on layer, zoom, run MASSPROP
+        Print #Filenum, "MASSPROP WINDOW ..."
+        Print #Filenum, "N"  ' Don't save to file
+        ' Turn off layer
+    End If
+    index = index - 1
+Loop
+```
+
+**Step 6: ProcessMassResults()** — Parse AutoCAD log
+
+```vb
+' Reads the log file line by line
+' Extracts: CutterPocket (from layer name), Area, Centroid X, Centroid Y
+' NOTE: CX = -1 * CX  (centroid X is NEGATED back to positive radial)
+' Sorts by Centroid_X ascending (inner radius → outer radius)
+' Places results on "MassProp" sheet starting at row 9
+```
+
+### 7.4 Ellipse Geometry (Ellipse.cls)
+
+**Ellipse parameterization** on the revolved Z plane:
+
+```
+Center: (Xc, Yc) where Xc = -radial, Yc = Z_drilling
+Major axis radius: Major = PDC_radius (half the pocket diameter)
+Minor axis radius: Minor = Major × cos(Rake)
+Tilt angle: from DegTilt column (negated)
+```
+
+**Point on ellipse at angle θ** (parametric):
+
+```
+X_raw = (Major × Minor) / sqrt(Minor² + Major² × tan²(θ))  [adjusted for quadrant]
+Y_raw = X_raw × tan(θ)
+
+Rotated by tilt angle:
+X_final = X_raw × cos(tilt) - Y_raw × sin(tilt) + Xc
+Y_final = X_raw × sin(tilt) + Y_raw × cos(tilt) + Yc
+```
+
+**Point-in-ellipse test** (for masking):
+
+```
+cosT = cos(tilt_rad)
+sinT = sin(tilt_rad)
+eq = ((px-cx)*cosT + (py-cy)*sinT)² / Major² + ((px-cx)*sinT - (py-cy)*cosT)² / Minor²
+isInside = (eq <= 1)
+```
+
+**RemovePointsInEllipse** additional conditions:
+- Points are also removed if `RevolutionNum ≠ 2` (only Rev 2 retains points)
+- Points beyond the gage line (x < -GageLine) are removed
+
+**MidThetaPoint** — finds the midpoint of the visible arc (for BOUNDARY seed point):
+- Tracks LowestTheta and HighestTheta of remaining visible points
+- MidTheta = (LowestTheta + HighestTheta) / 2
+- Returns the point on the ellipse at that angle, slightly undersized
+
+### 7.5 Solid Edge Method (SE_Cutlets.bas / SE_Cutlets_v2.bas)
+
+This method is for **visualization**, not quantitative measurement. It:
+
+1. Reads coordinate system data from columns AJ-AQ (row 164+):
+   - AJ: New CS name (cutter name)
+   - AK: Reference CS name (parent in the coordinate system tree)
+   - AL-AN: X/Y/Z offset from parent (inches → converted to meters)
+   - AO-AQ: X/Y/Z rotation from parent (degrees → radians)
+   - AR: Part file name (solid model)
+   - AV: RGB color
+
+2. Creates coordinate systems in Solid Edge relative to parent systems
+3. For non-reference systems, imports the actual 3D cutter solid model
+4. Colors each cutter body by blade
+
+**v2 additions:**
+- Unions all bodies into one design body
+- Creates a gauge trim (cuts at bit radius)
+- Adjusts lighting for better visualization
+- Progress bar
+
+The parent-child hierarchy creates the spatial arrangement of cutters. The "reference"
+coordinate systems are intermediate positioning nodes that aren't rendered.
+
+### 7.6 Backup Engagement Calculation (Ellipse_Min_Dist_Calc.bas)
+
+This is a SEPARATE calculation from the cutlet plot. It determines at what ft/hr
+each backup cutter begins to engage its primary.
+
+```
+For each primary-backup pair (data from columns IR-JA):
+  - Primary ellipse: center, major, minor, tilt (from IR-IV)
+  - Secondary ellipse: center, major, minor, tilt (from IW-JA)
+  - Degrees trailing: from column IN
+
+  Starting at 0 ft/hr, incrementing by 10 ft/hr:
+    - Generate points on primary ellipse arc (90° ± 60° range, 0.5° steps)
+    - Generate points on secondary ellipse arc (same range)
+    - For secondary: shift Y center by helical offset = ((ft_hr*12/60)/RPM/360) × DegTrailing
+    - Find minimum distance between any point pair
+    - When minDist < 0.00165" (half of 0.0033), declare engagement
+    - Record the ft/hr at engagement → column IQ
+```
+
+This is the module that computes the engagement speed values used for the
+engagement threshold and progression metrics.
+
+---
+
+## 8. COMPUTATIONAL REPLICATION PLAN
+
+### 8.1 What We Now Know
+
+From the macro analysis, the AutoCAD cutlet plot method is a well-defined
+2D computational geometry problem:
+
+1. **Inputs**: For each cutter — radial position (X), Z position with helical offset,
+   PDC diameter, tilt angle, back rake angle
+2. **Ellipse construction**: Major = PDC radius, Minor = Major × cos(rake), tilted by tilt angle
+3. **Three revolutions**: Original, shifted by IPR, shifted by 2×IPR
+4. **Sequencing**: Cutters ordered by blade (1→6), inner to outer within each blade.
+   Lower indices mask higher indices. Rev 1 masks Rev 2 which masks Rev 3.
+5. **Cutlet**: For each Rev 2 cutter, the portion of its ellipse NOT covered by
+   any lower-indexed ellipse (from any revolution)
+6. **Output**: Centroid (X, Y) and Area for each cutlet
+
+### 8.2 Implementation Steps
+
+**Phase 1: Ellipse-based cutlet computation (Python)**
+
+1. Read cutter data from Assy.Model sheet (same columns as the macros use)
+2. Construct ellipses with same parameterization as Ellipse.cls
+3. Create 3 revolutions (same as AdditionalEllipses)
+4. For each Rev 2 ellipse, compute the non-overlapped region:
+   - Use Shapely polygons (approximate ellipses as high-resolution polygons)
+   - Subtract all lower-indexed ellipses from the current one
+   - Clip to gauge line
+   - Compute area and centroid of the resulting polygon
+5. Validate against MassProp sheet values
+
+**Phase 2: Force computation**
+
+With centroid + area, the rest is pure math (already understood from section 4).
+
+**Phase 3: Scoring model improvement**
+
+Replace proxy-based scoring with actual force-distribution-based scoring.
+
+### 8.3 Validation Strategy
+
+- Compare computed centroids and areas against the 26 values on the MassProp sheet
+- User noted these values are "close but not 100% trusted" — expect reasonable
+  agreement (~5-10% tolerance) rather than exact match
+
+---
+
+## 9. ANSWERED QUESTIONS (from user)
+
+1. **IDS** = Instantaneous Drill Speed. Formula: `IDS = ((ft/hr × 12) / 60) / RPM`
+2. **Formation yield strength**: Kept constant (29,500 psi) across all assemblies
+   to expose the distribution of forces, not absolute values
+3. **Cutter sequencing**: CRITICALLY IMPORTANT — reviewed macros (see section 7.3)
+4. **Backup engagement ellipse params (IR-JA)**: Don't use these; they're for the
+   separate engagement calculation, not for cutlet geometry
+5. **MassProp values**: Close but not 100% trusted
+6. **Standard IPR**: 0.25 in/rev for all analyses
