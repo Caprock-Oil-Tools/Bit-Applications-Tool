@@ -1071,7 +1071,209 @@ def compute_metrics(cutters, bit_diameter, engagement_thresholds):
     }
 
 
+def compute_cutlet_metrics(cutlet_results, cutters_from_me, gage_radius):
+    """
+    Compute durability and steerability metrics directly from cutlet geometry.
+
+    This is the core improvement: instead of proxy metrics (cutter counts,
+    average backrake), we use DIRECT measurements of what each cutter does:
+    cutlet area = rock removed per revolution.
+
+    Inputs:
+        cutlet_results: list of dicts from cutlet_engine.compute_cutlets()
+            Each has: name, centroid_x, centroid_y, area
+        cutters_from_me: list of dicts from extract_cutters_from_me_file()
+            Each has: blade, cutter_row, backrake, radial_pos, z, etc.
+        gage_radius: float, bit radius in inches
+
+    Returns dict of cutlet-derived metrics.
+    """
+    if not cutlet_results:
+        return None
+
+    areas = [r['area'] for r in cutlet_results]
+    centroids_x = [r['centroid_x'] for r in cutlet_results]
+    centroids_y = [r['centroid_y'] for r in cutlet_results]
+
+    # Parse blade/row from cutter names
+    pri_areas = []
+    bkp_areas = []
+    gauge_pri_areas = []
+    gauge_bkp_areas = []
+    cone_areas = []      # < 30% of gage
+    nose_areas = []      # 30-60%
+    shoulder_areas = []  # 60-85%
+    gauge_areas = []     # > 85%
+
+    blade_areas = defaultdict(list)  # areas grouped by blade
+
+    for r in cutlet_results:
+        name_str = str(r['name'])
+        parts = name_str.split('.')
+        blade = int(parts[0]) if len(parts) == 2 else 1
+        suffix = parts[1] if len(parts) == 2 else '100'
+        cutter_row = int(suffix[0]) if len(suffix) >= 1 else 1
+
+        blade_areas[blade].append(r['area'])
+
+        # Zone classification by centroid radial position
+        radial_frac = r['centroid_x'] / gage_radius if gage_radius > 0 else 0
+        if radial_frac < 0.30:
+            cone_areas.append(r['area'])
+        elif radial_frac < 0.60:
+            nose_areas.append(r['area'])
+        elif radial_frac < 0.85:
+            shoulder_areas.append(r['area'])
+        else:
+            gauge_areas.append(r['area'])
+
+        if cutter_row == 1:
+            pri_areas.append(r['area'])
+            if radial_frac >= 0.85:
+                gauge_pri_areas.append(r['area'])
+        else:
+            bkp_areas.append(r['area'])
+            if radial_frac >= 0.85:
+                gauge_bkp_areas.append(r['area'])
+
+    n_cutlets = len(areas)
+    total_area = sum(areas)
+    mean_area = np.mean(areas)
+    area_cv = float(np.std(areas) / mean_area) if mean_area > 0 else 0
+    max_area = max(areas)
+    min_area = min(areas)
+    max_min_ratio = max_area / min_area if min_area > 0 else 999
+
+    # --- LOAD BALANCE: how uniformly is cutting work distributed? ---
+    # Gini coefficient: 0 = perfect equality, 1 = all work on one cutter
+    sorted_areas = sorted(areas)
+    n = len(sorted_areas)
+    cum_sum = np.cumsum(sorted_areas)
+    gini = float((2 * np.sum((np.arange(1, n + 1) * sorted_areas)) - (n + 1) * total_area)
+                 / (n * total_area)) if total_area > 0 else 0
+
+    # --- BLADE LOAD BALANCE: how uniformly is work distributed across blades? ---
+    blade_totals = [sum(v) for v in blade_areas.values()]
+    blade_cv = float(np.std(blade_totals) / np.mean(blade_totals)) if blade_totals and np.mean(blade_totals) > 0 else 0
+
+    # --- WORK PER CUTTER: normalized by bit size ---
+    # Total cutting area / number of cutlets, normalized by gage_radius
+    work_per_cutter = total_area / n_cutlets if n_cutlets > 0 else 0
+    # Normalize to in² per inch of radius
+    work_intensity = total_area / gage_radius if gage_radius > 0 else total_area
+
+    # --- BACKUP ENGAGEMENT ---
+    n_backup_cutlets = len(bkp_areas)
+    backup_cutlet_fraction = n_backup_cutlets / n_cutlets if n_cutlets > 0 else 0
+    backup_area_fraction = sum(bkp_areas) / total_area if total_area > 0 and bkp_areas else 0
+    backup_to_primary_ratio = (np.mean(bkp_areas) / np.mean(pri_areas)
+                               if bkp_areas and pri_areas and np.mean(pri_areas) > 0
+                               else 0)
+
+    # --- GAUGE REGION: directly measures lateral wall contact ---
+    gauge_area_total = sum(gauge_areas)
+    gauge_area_fraction = gauge_area_total / total_area if total_area > 0 else 0
+    n_gauge_cutlets = len(gauge_areas)
+
+    # --- ZONE DISTRIBUTION ---
+    cone_frac = sum(cone_areas) / total_area if total_area > 0 else 0
+    nose_frac = sum(nose_areas) / total_area if total_area > 0 else 0
+    shoulder_frac = sum(shoulder_areas) / total_area if total_area > 0 else 0
+    gauge_frac = gauge_area_fraction
+
+    # --- BACKRAKE from ME file (still needed; cutlets don't encode orientation) ---
+    all_br = [c["backrake"] for c in cutters_from_me
+              if c.get("backrake") is not None
+              and isinstance(c["backrake"], (int, float)) and 0 < c["backrake"] < 60]
+    avg_backrake = float(np.mean(all_br)) if all_br else 20.0
+
+    gauge_br = [c["backrake"] for c in cutters_from_me
+                if c.get("backrake") and isinstance(c["backrake"], (int, float))
+                and 0 < c["backrake"] < 60
+                and isinstance(c.get("radial_pos"), (int, float))
+                and abs(c["radial_pos"]) >= 0.85 * gage_radius]
+    avg_gauge_backrake = float(np.mean(gauge_br)) if gauge_br else 30.0
+
+    cone_br = [c["backrake"] for c in cutters_from_me
+               if c.get("backrake") and isinstance(c["backrake"], (int, float))
+               and 0 < c["backrake"] < 60
+               and isinstance(c.get("radial_pos"), (int, float))
+               and abs(c["radial_pos"]) < 0.30 * gage_radius]
+    avg_cone_backrake = float(np.mean(cone_br)) if cone_br else 15.0
+
+    # --- SIDERAKE ---
+    all_sr = [abs(c["siderake"]) for c in cutters_from_me
+              if c.get("siderake") is not None
+              and isinstance(c["siderake"], (int, float)) and abs(c["siderake"]) < 30]
+    avg_siderake = float(np.mean(all_sr)) if all_sr else 0.0
+
+    # --- FORCE BALANCE from cutlet centroids ---
+    # Centroid positions tell us where cutting force is applied.
+    # Asymmetric centroid distribution = directional tendency.
+    if len(centroids_x) > 1:
+        cx_cv = float(np.std(centroids_x) / np.mean(centroids_x)) if np.mean(centroids_x) > 0 else 0
+    else:
+        cx_cv = 0
+
+    # --- PROFILE DEPTH from cutlet centroids ---
+    y_range = max(centroids_y) - min(centroids_y) if len(centroids_y) > 1 else 0
+
+    # --- CUTTER SIZE from ME file ---
+    primary_radii = []
+    for c in cutters_from_me:
+        r = c.get("pocket_radius")
+        name = str(c.get("name", ""))
+        if isinstance(r, (int, float)) and r > 0.1 and "." in name:
+            parts = name.split(".")
+            if len(parts) == 2 and len(parts[1]) >= 1 and parts[1][0] == "1":
+                primary_radii.append(r)
+    avg_primary_dia_mm = (
+        round(sum(primary_radii) / len(primary_radii) * 2 * 25.4, 1)
+        if primary_radii else 16.0
+    )
+
+    # --- BLADE COUNT ---
+    num_blades = len(blade_areas)
+
+    return {
+        # Cutlet-derived (the new stuff)
+        "n_cutlets": n_cutlets,
+        "total_area": float(total_area),
+        "mean_area": float(mean_area),
+        "area_cv": float(area_cv),
+        "max_area": float(max_area),
+        "min_area": float(min_area),
+        "max_min_ratio": float(max_min_ratio),
+        "gini": float(gini),
+        "blade_cv": float(blade_cv),
+        "work_per_cutter": float(work_per_cutter),
+        "work_intensity": float(work_intensity),
+        "backup_cutlet_fraction": float(backup_cutlet_fraction),
+        "backup_area_fraction": float(backup_area_fraction),
+        "backup_to_primary_ratio": float(backup_to_primary_ratio),
+        "gauge_area_total": float(gauge_area_total),
+        "gauge_area_fraction": float(gauge_area_fraction),
+        "n_gauge_cutlets": n_gauge_cutlets,
+        "cone_frac": float(cone_frac),
+        "nose_frac": float(nose_frac),
+        "shoulder_frac": float(shoulder_frac),
+        "gauge_frac": float(gauge_frac),
+        "y_range": float(y_range),
+        "cx_cv": float(cx_cv),
+        # Orientation-derived (still from ME file, cutlets don't encode angle)
+        "avg_backrake": float(avg_backrake),
+        "avg_gauge_backrake": float(avg_gauge_backrake),
+        "avg_cone_backrake": float(avg_cone_backrake),
+        "avg_siderake": float(avg_siderake),
+        "avg_primary_dia_mm": float(avg_primary_dia_mm),
+        "num_blades": num_blades,
+        "gage_radius": float(gage_radius),
+    }
+
+
 def main():
+    from cutlet_engine import compute_cutlets
+
     print("Loading main workbook (for bit numbers and size fallback only)...")
     wb_main = openpyxl.load_workbook(WORKBOOK_PATH, data_only=True)
     ws = wb_main["Sheet1"]
@@ -1122,7 +1324,11 @@ def main():
     matched = {bn: info[0] for bn, info in bit_me_map.items()}
     print(f"Matched {len(matched)} bits to Min Engagement files")
 
-    # Extract metrics for all matched bits
+    # =========================================================================
+    # Extract cutlet-based metrics for all matched bits
+    # =========================================================================
+    from cutlet_engine import read_cutter_data_from_me as read_me_for_cutlets
+
     all_metrics = {}
     for i, bit in enumerate(bits):
         bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
@@ -1133,20 +1339,21 @@ def main():
         print(f"  [{i+1}/{len(bits)}] Processing bit {bn}: {os.path.basename(filepath)}")
 
         try:
-            cutters, bit_diameter, engagement_thresholds = extract_cutters_from_me_file(filepath)
+            # Extract cutter data for cutlet computation
+            me_cutters, ipr_val, gage_rad = read_me_for_cutlets(filepath)
+
+            # Compute cutlets via Shapely polygon operations
+            cutlet_results = compute_cutlets(me_cutters, ipr_val, gage_rad)
+            cutlet_results = [r for r in cutlet_results if r['area'] >= 0.001]
+
+            # Also extract ME-file cutter data for orientation metrics (backrake, siderake)
+            cutters_me, bit_diameter, engagement_thresholds = extract_cutters_from_me_file(filepath)
             if bit_diameter is None and bit.get("size"):
                 bit_diameter = float(bit["size"])
 
-            metrics = compute_metrics(cutters, bit_diameter, engagement_thresholds)
+            # Compute cutlet-derived metrics
+            metrics = compute_cutlet_metrics(cutlet_results, cutters_me, gage_rad)
             if metrics:
-                # Read actual engagement values from ME file summary area (rows 29-30)
-                # These are pre-computed by the ME macro and more accurate than estimates
-                me_engage = extract_engagement_summary(filepath)
-                if me_engage:
-                    # Merge: ME file values take priority over Z-offset estimates
-                    computed_ze = metrics.get("zone_engagement", {})
-                    computed_ze.update(me_engage)
-                    metrics["zone_engagement"] = computed_ze
                 all_metrics[bn] = metrics
         except Exception as e:
             print(f"    ERROR: {e}")
@@ -1163,120 +1370,72 @@ def main():
     ] if bn in all_metrics]
 
     # =========================================================================
-    # DURABILITY SCORING - all inputs from Min Engagement geometry
+    # DURABILITY SCORING — cutlet-derived
     # =========================================================================
-    # Factors (higher = more durable):
-    #   1. redundancy_score: blade-pair radial overlap (redundant layouts score high)
-    #   2. avg_backrake: higher back rake = more conservative = more durable
-    #   3. zone_coverage: more blades per radial zone = more coverage
-    #   4. exposure_equality: all blades equally exposed = more durable at low IPR
-    #   5. density: more cutters per unit radius = more durable
-    #   6. uniformity: lower CV = more uniform spacing = more durable (inverted)
-    #   7. low_ipr_durability: inverse of 6-3 offset (less offset = more durable at low IPR)
-    #   8. backup_coverage: more backup elements covering the profile = DBR prevention
-    #   9. engagement_progression: gradual engagement = load redistribution as wear occurs
-    #  10. backup_backrake: higher backup back rake = more conservative engagement
-
-    # Physical basis (from BIT_DESIGN_KNOWLEDGE_LOG.md):
-    #   Durability = how long the bit drills / how much footage before pull.
-    #   Driven by: load distribution, cutting conservatism, backup protection,
-    #   low-IPR resilience, and cutter geometry.
+    # Physical basis: durability = how long the bit drills before pull.
+    # The cutlet geometry DIRECTLY measures load per cutter (area = rock removed).
     #
-    #   Key domain rules:
-    #   - Redundant layouts (perpendicular forces) are the most durable basic type
-    #   - 6-3 layouts are VULNERABLE at low IPR (effectively 3-bladed)
-    #   - F-Type: similar aggressiveness to 6-3 but all blades equally exposed =
-    #     more durable at low IPR than 6-3
-    #   - Smaller cutters = more durable (less exposure per cutter, more fit per area)
-    #   - PDC backups increase durability more than knuckles (knuckles mainly limit ROP)
-    #   - Backups with smaller Z-offset engage sooner = more load sharing = more durable
-    #   - Backups with smaller radial offset also engage sooner (per placement doc)
-    #   - Higher backrake = more conservative cutting = more durable
-    #   - More blades & higher cutter density = better load distribution
-    #
-    #   Removed components from previous version:
-    #   - engagement_progression: used engagement_spread & low_ipr_fraction which are
-    #     CONSTANT across all bits (identical Settings sheet template) → zero discrimination
-    #   - exposure_equality weight reduced: only 32 unique values, 97% mean, near-constant
+    # Key physical principles:
+    #   1. Uniform cutlet areas = even load distribution = no single cutter overloaded
+    #   2. More working cutlets = more cutters sharing the load
+    #   3. Lower work per cutter = less wear per revolution
+    #   4. Backup cutlets present = load sharing from trailing elements
+    #   5. Higher backrake = more conservative cutting angle = less cutter damage
+    #   6. Smaller cutters = less depth of cut per cutter = more durable
+    #   7. Even blade loading = no single blade takes disproportionate damage
 
     dur_comp_names = [
-        "redundancy", "force_balance", "avg_backrake", "nose_backrake",
-        "zone_coverage", "density", "uniformity",
-        "low_ipr_resilience", "backup_protection", "backup_engage_timing",
-        "backrake_differential", "cutter_size", "eff_blade_count",
+        "load_uniformity",    # Gini coefficient of cutlet areas (inverted)
+        "cutter_count",       # Number of working cutlets (normalized by bit size)
+        "work_per_cutter",    # Mean area per cutlet (inverted — less = more durable)
+        "blade_balance",      # Blade-level CV of total cutting area (inverted)
+        "backup_engagement",  # Fraction of cutlets that are backup elements
+        "backrake",           # Average back rake (higher = more conservative)
+        "cutter_size",        # Primary cutter diameter (smaller = more durable)
     ]
     weights_dur = {
-        "redundancy": 0.14,              # Blade-pair radial overlap = shared cutting load
-        "force_balance": 0.06,           # Balanced (perpendicular) forces = redundant layout
-        "avg_backrake": 0.10,            # Higher overall backrake = more conservative cutting
-        "nose_backrake": 0.06,           # Nose does most work; conservative nose = durable
-        "zone_coverage": 0.07,           # More blades per radial zone = better load sharing
-        "density": 0.07,                 # More cutters per unit radius = less work each
-        "uniformity": 0.04,              # Even spacing = no weak spots in profile coverage
-        "low_ipr_resilience": 0.10,      # Inverse of 6-3 offset; 6-3 = 3-bladed at low IPR
-        "backup_protection": 0.12,       # Backup PDCs covering profile = DBR prevention + load share
-        "backup_engage_timing": 0.08,    # Backups that engage sooner = more load sharing
-        "backrake_differential": 0.04,   # Higher backup BR vs primary = gradual load transition
-        "cutter_size": 0.08,             # Smaller cutters = less exposure = more durable
-        "eff_blade_count": 0.04,         # More effective blades = more stable load distribution
+        "load_uniformity": 0.25,     # THE most important: even load = even wear
+        "cutter_count": 0.18,        # More cutters sharing work = longer life
+        "work_per_cutter": 0.15,     # Less rock per cutter per revolution
+        "blade_balance": 0.12,       # No blade overloaded
+        "backup_engagement": 0.12,   # Backups actively sharing load at operating IPR
+        "backrake": 0.10,            # Conservative cutting angle
+        "cutter_size": 0.08,         # Smaller cutters = less DOC
     }
 
     durability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
 
-        # Force balance: perpendicular_force_ratio is highest when forces are balanced
-        # between axial and radial = redundant layout characteristic = most durable type
-        force_balance = m["perpendicular_force_ratio"]
+        # Load uniformity: 1 - Gini. Gini=0 means perfect equality.
+        load_uniformity = 1.0 - m["gini"]
 
-        # Backup protection composite:
-        # PDC backups contribute more to durability than knuckles (per knowledge log).
-        # Combines: (a) overall backup ratio, (b) how much of the profile they cover,
-        # (c) specifically PDC backup density relative to primaries.
-        pdc_backup_factor = m["n_pdc_backups"] / max(m["n_primary"], 1)
-        backup_protection = (
-            m["backup_ratio"] * 0.35
-            + m["backup_profile_coverage"] * 0.40
-            + min(pdc_backup_factor, 1.0) * 0.25
-        )
+        # Cutter count: normalize by bit radius so 6" and 12" bits are comparable
+        cutter_count = m["n_cutlets"] / m["gage_radius"] if m["gage_radius"] > 0 else m["n_cutlets"]
 
-        # Backup engagement timing:
-        # Per the characterization doc: smaller Z-offset = lower min engagement speed
-        # = backup engages sooner = shares load earlier = more durable.
-        # Smaller radial offset: min engagement speed DECREASES, magnitude INCREASES.
-        # Bits with NO backups get 0 (no backup timing benefit at all).
-        if m["n_backup"] > 0:
-            z_timing = 1.0 / (1.0 + m["avg_z_offset"] * 8.0)
-            r_timing = 1.0 / (1.0 + m["avg_radial_offset"] * 8.0)
-            backup_timing = z_timing * 0.6 + r_timing * 0.4
-        else:
-            backup_timing = 0.0
+        # Work per cutter: inverted (less work = more durable)
+        work_per_cutter = 1.0 / (1.0 + m["work_per_cutter"] * 20.0)
 
-        # Backrake differential: higher backup backrake vs primary = more conservative
-        # engagement when backups come in = gradual load transition = more durable.
-        # Clamp to positive range (negative means backup is more aggressive than primary).
-        br_diff = max(m["backrake_differential"], 0.0)
-        br_diff_score = min(br_diff / 15.0, 1.0)
+        # Blade balance: inverted CV (lower CV = more balanced)
+        blade_balance = 1.0 / (1.0 + m["blade_cv"])
 
-        # Cutter size: smaller cutters = more durable (less DOC per cutter, more fit per area).
-        # Range ~11mm to ~19mm. Inverse linear mapping.
-        cutter_dia = m.get("avg_primary_cutter_dia_mm", 16.0)
-        cutter_size_score = max(0.0, (20.0 - cutter_dia) / 10.0)
+        # Backup engagement: fraction of cutlets from backup row cutters
+        backup_engagement = m["backup_cutlet_fraction"]
+
+        # Backrake: direct from ME file (cutlets don't encode orientation)
+        backrake = m["avg_backrake"]
+
+        # Cutter size: smaller = more durable. Range ~11-19mm, invert.
+        cutter_size = max(0.0, (20.0 - m["avg_primary_dia_mm"]) / 10.0)
 
         durability_components[bn] = {
-            "redundancy": m["redundancy_score"],
-            "force_balance": force_balance,
-            "avg_backrake": m["avg_backrake"],
-            "nose_backrake": m["avg_nose_backrake"],
-            "zone_coverage": m["avg_blades_per_zone"],
-            "density": m["cutter_density"],
-            "uniformity": 1.0 - min(m["avg_spacing_cv"], 1.0),
-            "low_ipr_resilience": 1.0 - min(m["six_three_offset"] * 5.0, 1.0),
-            "backup_protection": backup_protection,
-            "backup_engage_timing": backup_timing,
-            "backrake_differential": br_diff_score,
-            "cutter_size": cutter_size_score,
-            "eff_blade_count": min(m["effective_blade_count"] / 6.0, 1.0),
+            "load_uniformity": load_uniformity,
+            "cutter_count": cutter_count,
+            "work_per_cutter": work_per_cutter,
+            "blade_balance": blade_balance,
+            "backup_engagement": backup_engagement,
+            "backrake": backrake,
+            "cutter_size": cutter_size,
         }
 
     # Normalize each component to 0-1 across the population
@@ -1304,89 +1463,78 @@ def main():
             durability_scores[bn] = 4.5
 
     # =========================================================================
-    # STEERABILITY SCORING - all inputs from Min Engagement geometry
+    # STEERABILITY SCORING — cutlet-derived
     # =========================================================================
-    # Physical basis (from BIT_DESIGN_KNOWLEDGE_LOG.md):
-    #   Steerability = how well the driller can control bit direction.
+    # Physical basis: steerability = how well the driller can control direction.
+    # Cutlet geometry tells us about gauge wall contact (lateral resistance)
+    # and force distribution.
     #
-    #   Key domain rules:
-    #   - Reverse spiral (axial forces) = best tool face control = most steerable
-    #     for curves and laterals. Forward spiral (radial forces) = least steerable
-    #     for directional work.
-    #   - Open gauge (fewer/less aggressive gauge cutters, fewer gauge backups)
-    #     = less lateral resistance = bit can move sideways = more steerable.
-    #     Gauge is the STRONGEST physical driver — it's what contacts the wall.
-    #   - Knuckles limit ROP → improve steerability when sliding (motor has more
-    #     control over direction when ROP is limited).
-    #   - Fewer effective blades = less gyroscopic stability = easier to turn.
-    #   - Aggressive cone (lower backrake) = builds angle more effectively.
-    #   - Deeper profile (larger Z range) = more side-cutting area available.
-    #   - 6-3 layout = more aggressive = more responsive to directional input.
-    #   - Fewer backups overall = less stabilizing = easier to steer.
+    # Key physical principles:
+    #   1. Gauge cutting area = direct measure of wall contact = lateral resistance
+    #      LESS gauge area = LESS wall grip = MORE steerable
+    #   2. Gauge backrake = how aggressively gauge cutters dig into the wall
+    #      LOWER gauge backrake = more aggressive gauge = LESS steerable
+    #   3. Cone aggressiveness = lower cone backrake = builds angle better
+    #   4. Fewer blades = less gyroscopic stability = easier to turn
+    #   5. Profile depth (Y range) = more side-cutting capability
+    #   6. Siderake = directional force component aiding steerability
+    #   7. Fewer working cutlets = less stabilizing = easier to steer
 
     steer_comp_names = [
-        "axial_dominance", "gauge_freedom",
-        "cone_aggressiveness", "nose_aggressiveness",
-        "profile_depth", "blade_factor",
-        "knuckle_effect", "siderake",
-        "lateral_imbalance", "low_backup_density", "layout_aggressiveness",
+        "gauge_openness",        # Inverse of gauge area fraction
+        "gauge_aggressiveness",  # Inverse of gauge backrake (aggressive gauge = less steerable)
+        "cone_aggressiveness",   # Inverse of cone backrake (aggressive cone = builds angle)
+        "blade_factor",          # Fewer blades = more steerable
+        "profile_depth",         # Larger Y range = more side-cutting area
+        "siderake",              # Higher siderake = more directional force
+        "low_cutter_count",      # Fewer working cutlets = less stabilizing
     ]
     weights_steer = {
-        "axial_dominance": 0.15,          # Axial forces = tool face control (reverse spiral)
-        "gauge_freedom": 0.20,            # Open gauge = less wall contact = steerable (strongest driver)
-        "cone_aggressiveness": 0.10,      # Aggressive cone builds angle
-        "nose_aggressiveness": 0.07,      # Aggressive nose aids directional response
-        "profile_depth": 0.07,            # Deeper profile = more side-cutting area
-        "blade_factor": 0.10,             # Fewer effective blades = less stabilizing
-        "knuckle_effect": 0.12,           # Knuckles limit ROP = better sliding steerability
-        "siderake": 0.06,                 # Side rake = directional force component
-        "lateral_imbalance": 0.03,        # Force imbalance = walking tendency
-        "low_backup_density": 0.05,       # Fewer backups = less stabilizing overall
-        "layout_aggressiveness": 0.05,    # 6-3 / fewer blades = more responsive layout
+        "gauge_openness": 0.30,        # Gauge contact is THE strongest physical driver
+        "gauge_aggressiveness": 0.15,  # How hard gauge cutters bite the wall
+        "cone_aggressiveness": 0.15,   # Aggressive cone builds angle
+        "blade_factor": 0.12,          # Fewer blades = less stable = more steerable
+        "profile_depth": 0.10,         # Side-cutting capability
+        "siderake": 0.08,              # Directional force component
+        "low_cutter_count": 0.10,      # Less total cutting = less stabilizing
     }
 
     steerability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
 
-        # Gauge freedom composite: THE most important physical driver.
-        # The gauge region is what contacts the wellbore wall. An "open" gauge with
-        # fewer cutters, lower backrake, and fewer backups resists lateral movement
-        # less, making the bit more steerable.
-        gauge_openness = 1.0 - m["gauge_cutter_ratio"]
-        gauge_aggr = 1.0 - min(m["avg_gauge_backrake"] / 45.0, 1.0)
-        gauge_backup_open = 1.0 - m["gauge_backup_ratio"]
-        gauge_freedom = (
-            gauge_openness * 0.35
-            + gauge_aggr * 0.35
-            + gauge_backup_open * 0.30
-        )
+        # Gauge openness: LESS gauge cutting area = MORE steerable
+        gauge_openness = 1.0 - m["gauge_area_fraction"]
 
-        # Knuckle effect: knuckles specifically limit ROP → improve steerability
-        # when sliding (per backup characterization doc). Non-working knuckles
-        # (Z offset > 3x average = extremely underexposed) don't contribute.
-        effective_knuckle_ratio = m["knuckle_ratio"] * (1.0 - m["non_working_ratio"])
+        # Gauge aggressiveness: LOWER backrake = more aggressive = LESS steerable
+        # So we want high backrake for steerability? No — we want LESS wall contact.
+        # Actually: aggressive gauge (low BR) grips the wall harder = LESS steerable.
+        # Conservative gauge (high BR) slides = MORE steerable.
+        gauge_aggressiveness = min(m["avg_gauge_backrake"] / 45.0, 1.0)
 
-        # Layout aggressiveness: more aggressive layouts are more responsive to
-        # directional input. 6-3 offset presence + fewer effective blades both
-        # indicate a more aggressive, responsive design.
-        layout_aggr = (
-            min(m["six_three_offset"] * 5.0, 1.0) * 0.5
-            + (1.0 / max(m["effective_blade_count"], 1)) * 0.5
-        )
+        # Cone aggressiveness: lower cone BR = builds angle better = MORE steerable
+        cone_aggressiveness = 1.0 - min(m["avg_cone_backrake"] / 30.0, 1.0)
+
+        # Blade factor: fewer blades = less stabilizing = more steerable
+        blade_factor = 1.0 / max(m["num_blades"], 1)
+
+        # Profile depth from cutlet centroids
+        profile_depth = m["y_range"]
+
+        # Siderake
+        siderake = m["avg_siderake"]
+
+        # Low cutter count: fewer working cutlets = less stabilizing
+        low_cutter_count = 1.0 / (1.0 + m["n_cutlets"] / max(m["gage_radius"], 1.0))
 
         steerability_components[bn] = {
-            "axial_dominance": m["axial_force_ratio"],
-            "gauge_freedom": gauge_freedom,
-            "cone_aggressiveness": 1.0 - min(m["avg_cone_backrake"] / 30.0, 1.0),
-            "nose_aggressiveness": 1.0 - min(m["avg_nose_backrake"] / 30.0, 1.0),
-            "profile_depth": m["z_range"],
-            "blade_factor": 1.0 / max(m["effective_blade_count"], 1),
-            "knuckle_effect": effective_knuckle_ratio,
-            "siderake": m["avg_siderake"],
-            "lateral_imbalance": m["lateral_resultant"],
-            "low_backup_density": 1.0 - m["backup_ratio"],
-            "layout_aggressiveness": layout_aggr,
+            "gauge_openness": gauge_openness,
+            "gauge_aggressiveness": gauge_aggressiveness,
+            "cone_aggressiveness": cone_aggressiveness,
+            "blade_factor": blade_factor,
+            "profile_depth": profile_depth,
+            "siderake": siderake,
+            "low_cutter_count": low_cutter_count,
         }
 
     # Normalize each component to 0-1
@@ -1415,8 +1563,8 @@ def main():
 
     # --- PRINT RESULTS ---
     print("\n" + "=" * 130)
-    print(f"{'Bit':<7} {'Layout (ref)':<18} {'Bl':<4} {'Cut':<5} {'R1':<4} {'R2':<4} {'Kn':<3} "
-          f"{'Redund':<8} {'BkCov':<6} {'ΔR':<7} {'Δz':<7} {'Dur':<6} {'Steer':<6}")
+    print(f"{'Bit':<7} {'Layout (ref)':<18} {'Cutlets':<8} {'TotArea':<8} {'Gini':<6} "
+          f"{'BldCV':<6} {'BkpFrac':<8} {'GaugeFr':<8} {'Dur':<6} {'Steer':<6}")
     print("=" * 130)
     for bit in bits:
         bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
@@ -1425,13 +1573,11 @@ def main():
         layout = str(bit.get("layout_type", ""))[:16]
         m = all_metrics.get(bn)
         if m:
-            print(f"  {bn:<7} {layout:<18} {m['num_blades']:<4} {m['total_cutters']:<5} "
-                  f"{m['n_primary']:<4} {m['n_backup']:<4} {m['n_knuckle_backups']:<3} "
-                  f"{m['redundancy_score']:.2f}   {m['backup_profile_coverage']:.2f}  "
-                  f"{m['avg_radial_offset']:.4f} {m['avg_z_offset']:.4f} {dur:<6} {steer:<6}")
+            print(f"  {bn:<7} {layout:<18} {m['n_cutlets']:<8} {m['total_area']:<8.3f} "
+                  f"{m['gini']:<6.3f} {m['blade_cv']:<6.3f} {m['backup_cutlet_fraction']:<8.3f} "
+                  f"{m['gauge_area_fraction']:<8.3f} {dur:<6} {steer:<6}")
         else:
-            print(f"  {bn:<7} {layout:<18} -    -     -    -    -   "
-                  f"-       -      -       -       -      -")
+            print(f"  {bn:<7} {layout:<18} -       -        -      -      -        -        -      -")
 
     # --- WRITE TO WORKBOOK ---
     print(f"\nWriting scores to {WORKBOOK_PATH}...")
@@ -1439,19 +1585,13 @@ def main():
     ws_write = wb_write["Sheet1"]
 
     updates = 0
-    engage_updates = 0
     for row in ws_write.iter_rows(min_row=5, max_row=ws_write.max_row, values_only=False):
         bit_val = None
-        ao_cell = ap_cell = ba_cell = bb_cell = bc_cell = bd_cell = be_cell = None
+        ao_cell = ap_cell = None
         for c in row:
             if c.column_letter == "B": bit_val = c.value
             elif c.column_letter == "AO": ao_cell = c
             elif c.column_letter == "AP": ap_cell = c
-            elif c.column_letter == "BA": ba_cell = c
-            elif c.column_letter == "BB": bb_cell = c
-            elif c.column_letter == "BC": bc_cell = c
-            elif c.column_letter == "BD": bd_cell = c
-            elif c.column_letter == "BE": be_cell = c
 
         if bit_val is None:
             continue
@@ -1462,32 +1602,15 @@ def main():
             ao_cell.value = durability_scores[bn]
             updates += 1
         elif ao_cell is not None:
-            ao_cell.value = None  # Clear if no data
+            ao_cell.value = None
 
         if bn in steerability_scores and ap_cell is not None:
             ap_cell.value = steerability_scores[bn]
         elif ap_cell is not None:
-            ap_cell.value = None  # Clear if no data
-
-        # Write zone-specific engagement values to BA-BE
-        if bn in all_metrics:
-            ze = all_metrics[bn].get("zone_engagement", {})
-            if ze:
-                engage_updates += 1
-            if ba_cell is not None:
-                ba_cell.value = ze.get("six_three_engage")
-            if bb_cell is not None:
-                bb_cell.value = ze.get("nose_pdc_engage")
-            if bc_cell is not None:
-                bc_cell.value = ze.get("taper_pdc_engage")
-            if bd_cell is not None:
-                bd_cell.value = ze.get("nose_knuckle_engage")
-            if be_cell is not None:
-                be_cell.value = ze.get("taper_knuckle_engage")
+            ap_cell.value = None
 
     wb_write.save(WORKBOOK_PATH)
     print(f"Updated {updates} rows in columns AO & AP")
-    print(f"Updated {engage_updates} rows in columns BA-BE (zone engagement)")
 
     # Save detailed metrics to JSON
     metrics_output = {}
@@ -1495,8 +1618,8 @@ def main():
         metrics_output[bn] = {
             "durability_score": durability_scores.get(bn),
             "steerability_score": steerability_scores.get(bn),
-            "raw_metrics": {k: round(v, 4) if isinstance(v, float) else v
-                           for k, v in all_metrics[bn].items()},
+            "cutlet_metrics": {k: round(v, 4) if isinstance(v, float) else v
+                               for k, v in all_metrics[bn].items()},
         }
 
     with open("bit_ratings_analysis.json", "w") as f:
