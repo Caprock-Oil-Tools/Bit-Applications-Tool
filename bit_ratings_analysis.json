@@ -1,7 +1,7 @@
 {
   "1941": {
-    "durability_score": 0.9,
-    "steerability_score": 1.9,
+    "durability_score": 4.2,
+    "steerability_score": 1.4,
     "cutlet_metrics": {
       "n_cutlets": 32,
       "total_area": 0.9442,
@@ -47,12 +47,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 6,
       "gage_radius": 3.8125,
-      "bit_diameter": 7.625
+      "bit_diameter": 7.625,
+      "cutter_density": 0.7008,
+      "max_mean_ratio": 2.1656,
+      "pri_sec_area_ratio": 1.2356,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "1961": {
-    "durability_score": 5.1,
-    "steerability_score": 3.7,
+    "durability_score": 5.0,
+    "steerability_score": 3.1,
     "cutlet_metrics": {
       "n_cutlets": 42,
       "total_area": 5.3511,
@@ -98,12 +103,17 @@
       "avg_primary_dia_mm": 15.3,
       "num_blades": 5,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.6985,
+      "max_mean_ratio": 2.3201,
+      "pri_sec_area_ratio": 1.0935,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2001": {
-    "durability_score": 4.8,
-    "steerability_score": 4.8,
+    "durability_score": 5.0,
+    "steerability_score": 2.4,
     "cutlet_metrics": {
       "n_cutlets": 39,
       "total_area": 1.1603,
@@ -149,12 +159,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 8,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.8007,
+      "max_mean_ratio": 3.4889,
+      "pri_sec_area_ratio": 1.0317,
+      "n_primary_blades": 4,
+      "n_secondary_blades": 4
     }
   },
   "2004": {
-    "durability_score": 4.9,
-    "steerability_score": 3.2,
+    "durability_score": 4.0,
+    "steerability_score": 3.0,
     "cutlet_metrics": {
       "n_cutlets": 31,
       "total_area": 1.0829,
@@ -200,12 +215,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.5155,
+      "max_mean_ratio": 2.1298,
+      "pri_sec_area_ratio": 0.916,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2010": {
-    "durability_score": 5.4,
-    "steerability_score": 1.5,
+    "durability_score": 4.0,
+    "steerability_score": 2.2,
     "cutlet_metrics": {
       "n_cutlets": 43,
       "total_area": 1.3177,
@@ -251,12 +271,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 5.3125,
-      "bit_diameter": 10.625
+      "bit_diameter": 10.625,
+      "cutter_density": 0.485,
+      "max_mean_ratio": 2.3104,
+      "pri_sec_area_ratio": 0.9428,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2028": {
-    "durability_score": 6.6,
-    "steerability_score": 5.4,
+    "durability_score": 5.3,
+    "steerability_score": 2.8,
     "cutlet_metrics": {
       "n_cutlets": 48,
       "total_area": 1.0903,
@@ -302,12 +327,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 5,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.8459,
+      "max_mean_ratio": 3.9534,
+      "pri_sec_area_ratio": 1.0179,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2046": {
-    "durability_score": 8.2,
-    "steerability_score": 1.9,
+    "durability_score": 6.4,
+    "steerability_score": 4.2,
     "cutlet_metrics": {
       "n_cutlets": 21,
       "total_area": 0.7666,
@@ -353,12 +383,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 3,
       "gage_radius": 3.0625,
-      "bit_diameter": 6.125
+      "bit_diameter": 6.125,
+      "cutter_density": 0.7127,
+      "max_mean_ratio": 2.5065,
+      "pri_sec_area_ratio": 1.0,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 0
     }
   },
   "2051": {
-    "durability_score": 3.3,
-    "steerability_score": 1.5,
+    "durability_score": 4.4,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 90,
       "total_area": 2.1732,
@@ -404,12 +439,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3742,
+      "max_mean_ratio": 3.5906,
+      "pri_sec_area_ratio": 0.9659,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2053": {
-    "durability_score": 5.5,
-    "steerability_score": 7.5,
+    "durability_score": 6.2,
+    "steerability_score": 4.9,
     "cutlet_metrics": {
       "n_cutlets": 36,
       "total_area": 1.0498,
@@ -455,12 +495,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.6344,
+      "max_mean_ratio": 2.2633,
+      "pri_sec_area_ratio": 1.0295,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2054": {
-    "durability_score": 5.3,
-    "steerability_score": 4.9,
+    "durability_score": 5.5,
+    "steerability_score": 2.8,
     "cutlet_metrics": {
       "n_cutlets": 29,
       "total_area": 1.0479,
@@ -506,12 +551,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.5111,
+      "max_mean_ratio": 1.8044,
+      "pri_sec_area_ratio": 1.0247,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2070": {
-    "durability_score": 7.2,
-    "steerability_score": 5.0,
+    "durability_score": 6.0,
+    "steerability_score": 1.8,
     "cutlet_metrics": {
       "n_cutlets": 43,
       "total_area": 1.0483,
@@ -557,12 +607,17 @@
       "avg_primary_dia_mm": 14.7,
       "num_blades": 5,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.7578,
+      "max_mean_ratio": 2.818,
+      "pri_sec_area_ratio": 0.8671,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2074": {
-    "durability_score": 7.8,
-    "steerability_score": 4.2,
+    "durability_score": 6.8,
+    "steerability_score": 0.1,
     "cutlet_metrics": {
       "n_cutlets": 35,
       "total_area": 1.0488,
@@ -608,12 +663,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 5,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.6168,
+      "max_mean_ratio": 2.5629,
+      "pri_sec_area_ratio": 0.9104,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2075": {
-    "durability_score": 7.3,
-    "steerability_score": 6.1,
+    "durability_score": 7.2,
+    "steerability_score": 2.4,
     "cutlet_metrics": {
       "n_cutlets": 44,
       "total_area": 1.0483,
@@ -659,12 +719,17 @@
       "avg_primary_dia_mm": 11.5,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.7754,
+      "max_mean_ratio": 2.5645,
+      "pri_sec_area_ratio": 0.9045,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2077": {
-    "durability_score": 6.5,
-    "steerability_score": 3.3,
+    "durability_score": 7.0,
+    "steerability_score": 2.4,
     "cutlet_metrics": {
       "n_cutlets": 46,
       "total_area": 1.0832,
@@ -710,12 +775,17 @@
       "avg_primary_dia_mm": 11.4,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.765,
+      "max_mean_ratio": 2.5947,
+      "pri_sec_area_ratio": 1.0557,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2079": {
-    "durability_score": 7.9,
-    "steerability_score": 1.2,
+    "durability_score": 5.3,
+    "steerability_score": 3.7,
     "cutlet_metrics": {
       "n_cutlets": 17,
       "total_area": 0.7549,
@@ -761,12 +831,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 4,
       "gage_radius": 3.0625,
-      "bit_diameter": 6.125
+      "bit_diameter": 6.125,
+      "cutter_density": 0.577,
+      "max_mean_ratio": 2.1168,
+      "pri_sec_area_ratio": 1.0116,
+      "n_primary_blades": 2,
+      "n_secondary_blades": 2
     }
   },
   "2081": {
-    "durability_score": 3.6,
-    "steerability_score": 4.2,
+    "durability_score": 5.5,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 108,
       "total_area": 7.3617,
@@ -812,12 +887,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.9164,
+      "max_mean_ratio": 4.1386,
+      "pri_sec_area_ratio": 1.0869,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2090": {
-    "durability_score": 4.4,
-    "steerability_score": 5.7,
+    "durability_score": 5.6,
+    "steerability_score": 3.5,
     "cutlet_metrics": {
       "n_cutlets": 43,
       "total_area": 1.2203,
@@ -863,12 +943,17 @@
       "avg_primary_dia_mm": 14.9,
       "num_blades": 6,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.5614,
+      "max_mean_ratio": 2.4314,
+      "pri_sec_area_ratio": 0.993,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2091": {
-    "durability_score": 6.3,
-    "steerability_score": 7.4,
+    "durability_score": 6.8,
+    "steerability_score": 6.1,
     "cutlet_metrics": {
       "n_cutlets": 32,
       "total_area": 0.8323,
@@ -914,12 +999,17 @@
       "avg_primary_dia_mm": 12.9,
       "num_blades": 6,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 0.8942,
+      "max_mean_ratio": 2.5106,
+      "pri_sec_area_ratio": 0.9188,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2095": {
-    "durability_score": 4.7,
-    "steerability_score": 5.6,
+    "durability_score": 5.4,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 37,
       "total_area": 0.9293,
@@ -965,12 +1055,17 @@
       "avg_primary_dia_mm": 14.8,
       "num_blades": 6,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.4831,
+      "max_mean_ratio": 2.146,
+      "pri_sec_area_ratio": 0.9975,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2096": {
     "durability_score": 6.5,
-    "steerability_score": 3.1,
+    "steerability_score": 0.1,
     "cutlet_metrics": {
       "n_cutlets": 23,
       "total_area": 0.8339,
@@ -1016,12 +1111,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 5,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 0.6427,
+      "max_mean_ratio": 2.0548,
+      "pri_sec_area_ratio": 1.045,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2104": {
-    "durability_score": 2.8,
-    "steerability_score": 4.9,
+    "durability_score": 4.1,
+    "steerability_score": 1.0,
     "cutlet_metrics": {
       "n_cutlets": 36,
       "total_area": 1.2259,
@@ -1067,12 +1167,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.47,
+      "max_mean_ratio": 2.1026,
+      "pri_sec_area_ratio": 0.8775,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2110": {
-    "durability_score": 6.3,
-    "steerability_score": 5.9,
+    "durability_score": 5.9,
+    "steerability_score": 3.2,
     "cutlet_metrics": {
       "n_cutlets": 31,
       "total_area": 1.2237,
@@ -1118,12 +1223,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 5,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.4048,
+      "max_mean_ratio": 2.0596,
+      "pri_sec_area_ratio": 0.9734,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2114": {
-    "durability_score": 4.3,
-    "steerability_score": 5.4,
+    "durability_score": 3.8,
+    "steerability_score": 2.2,
     "cutlet_metrics": {
       "n_cutlets": 36,
       "total_area": 1.5215,
@@ -1169,12 +1279,17 @@
       "avg_primary_dia_mm": 19.1,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.3055,
+      "max_mean_ratio": 2.3069,
+      "pri_sec_area_ratio": 0.9301,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2115": {
-    "durability_score": 6.1,
-    "steerability_score": 7.6,
+    "durability_score": 5.4,
+    "steerability_score": 4.3,
     "cutlet_metrics": {
       "n_cutlets": 20,
       "total_area": 0.8331,
@@ -1220,12 +1335,17 @@
       "avg_primary_dia_mm": 15.4,
       "num_blades": 5,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 0.5589,
+      "max_mean_ratio": 2.1558,
+      "pri_sec_area_ratio": 0.9406,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2117": {
-    "durability_score": 6.1,
-    "steerability_score": 7.6,
+    "durability_score": 5.4,
+    "steerability_score": 4.3,
     "cutlet_metrics": {
       "n_cutlets": 20,
       "total_area": 0.8331,
@@ -1271,12 +1391,17 @@
       "avg_primary_dia_mm": 15.4,
       "num_blades": 5,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 0.5589,
+      "max_mean_ratio": 2.1558,
+      "pri_sec_area_ratio": 0.9406,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2119": {
-    "durability_score": 4.6,
-    "steerability_score": 6.6,
+    "durability_score": 4.9,
+    "steerability_score": 3.6,
     "cutlet_metrics": {
       "n_cutlets": 51,
       "total_area": 1.5113,
@@ -1322,11 +1447,16 @@
       "avg_primary_dia_mm": 14.9,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4327,
+      "max_mean_ratio": 2.6625,
+      "pri_sec_area_ratio": 1.0276,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2120": {
-    "durability_score": 5.7,
+    "durability_score": 4.4,
     "steerability_score": 3.6,
     "cutlet_metrics": {
       "n_cutlets": 28,
@@ -1373,12 +1503,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 5,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.4656,
+      "max_mean_ratio": 2.4078,
+      "pri_sec_area_ratio": 1.0442,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2121": {
-    "durability_score": 4.3,
-    "steerability_score": 5.1,
+    "durability_score": 5.0,
+    "steerability_score": 1.7,
     "cutlet_metrics": {
       "n_cutlets": 30,
       "total_area": 1.2177,
@@ -1424,12 +1559,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 5,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.3917,
+      "max_mean_ratio": 1.8502,
+      "pri_sec_area_ratio": 1.0511,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2122": {
-    "durability_score": 4.2,
-    "steerability_score": 5.9,
+    "durability_score": 3.0,
+    "steerability_score": 2.9,
     "cutlet_metrics": {
       "n_cutlets": 56,
       "total_area": 1.5184,
@@ -1475,12 +1615,17 @@
       "avg_primary_dia_mm": 14.1,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4751,
+      "max_mean_ratio": 2.4895,
+      "pri_sec_area_ratio": 1.1909,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2124": {
-    "durability_score": 3.8,
-    "steerability_score": 6.2,
+    "durability_score": 4.2,
+    "steerability_score": 6.0,
     "cutlet_metrics": {
       "n_cutlets": 48,
       "total_area": 1.6166,
@@ -1526,12 +1671,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 5,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4073,
+      "max_mean_ratio": 2.9365,
+      "pri_sec_area_ratio": 1.0276,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2126": {
-    "durability_score": 5.1,
-    "steerability_score": 6.8,
+    "durability_score": 4.1,
+    "steerability_score": 4.8,
     "cutlet_metrics": {
       "n_cutlets": 24,
       "total_area": 0.9308,
@@ -1577,12 +1727,17 @@
       "avg_primary_dia_mm": 12.8,
       "num_blades": 5,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 0.6707,
+      "max_mean_ratio": 2.5501,
+      "pri_sec_area_ratio": 1.0782,
+      "n_primary_blades": 2,
+      "n_secondary_blades": 3
     }
   },
   "2131": {
-    "durability_score": 3.8,
-    "steerability_score": 5.8,
+    "durability_score": 5.3,
+    "steerability_score": 2.9,
     "cutlet_metrics": {
       "n_cutlets": 26,
       "total_area": 0.9717,
@@ -1628,12 +1783,17 @@
       "avg_primary_dia_mm": 15.4,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5338,
+      "max_mean_ratio": 1.8489,
+      "pri_sec_area_ratio": 0.9952,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2137": {
-    "durability_score": 0.0,
-    "steerability_score": 6.5,
+    "durability_score": 3.2,
+    "steerability_score": 3.1,
     "cutlet_metrics": {
       "n_cutlets": 28,
       "total_area": 1.3662,
@@ -1679,12 +1839,17 @@
       "avg_primary_dia_mm": 19.1,
       "num_blades": 5,
       "gage_radius": 5.5,
-      "bit_diameter": 11.0
+      "bit_diameter": 11.0,
+      "cutter_density": 0.2946,
+      "max_mean_ratio": 2.0884,
+      "pri_sec_area_ratio": 1.1551,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2140": {
-    "durability_score": 3.6,
-    "steerability_score": 4.5,
+    "durability_score": 3.7,
+    "steerability_score": 1.6,
     "cutlet_metrics": {
       "n_cutlets": 28,
       "total_area": 0.9559,
@@ -1730,12 +1895,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5749,
+      "max_mean_ratio": 2.4166,
+      "pri_sec_area_ratio": 1.1034,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2141": {
-    "durability_score": 4.8,
-    "steerability_score": 7.4,
+    "durability_score": 6.1,
+    "steerability_score": 4.5,
     "cutlet_metrics": {
       "n_cutlets": 49,
       "total_area": 1.5204,
@@ -1781,12 +1951,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4158,
+      "max_mean_ratio": 2.0626,
+      "pri_sec_area_ratio": 0.9627,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2142": {
-    "durability_score": 5.5,
-    "steerability_score": 3.1,
+    "durability_score": 4.1,
+    "steerability_score": 1.7,
     "cutlet_metrics": {
       "n_cutlets": 31,
       "total_area": 1.0617,
@@ -1832,12 +2007,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.5155,
+      "max_mean_ratio": 2.3826,
+      "pri_sec_area_ratio": 1.177,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2143": {
-    "durability_score": 6.2,
-    "steerability_score": 4.6,
+    "durability_score": 4.9,
+    "steerability_score": 2.5,
     "cutlet_metrics": {
       "n_cutlets": 34,
       "total_area": 1.0513,
@@ -1883,12 +2063,17 @@
       "avg_primary_dia_mm": 12.8,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.5992,
+      "max_mean_ratio": 2.0601,
+      "pri_sec_area_ratio": 0.9361,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2145": {
     "durability_score": 4.9,
-    "steerability_score": 0.0,
+    "steerability_score": 1.9,
     "cutlet_metrics": {
       "n_cutlets": 41,
       "total_area": 1.3131,
@@ -1934,12 +2119,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 7,
       "gage_radius": 5.3125,
-      "bit_diameter": 10.625
+      "bit_diameter": 10.625,
+      "cutter_density": 0.4624,
+      "max_mean_ratio": 2.0108,
+      "pri_sec_area_ratio": 0.949,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2148": {
-    "durability_score": 4.6,
-    "steerability_score": 6.9,
+    "durability_score": 5.3,
+    "steerability_score": 4.2,
     "cutlet_metrics": {
       "n_cutlets": 54,
       "total_area": 1.5198,
@@ -1985,12 +2175,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4582,
+      "max_mean_ratio": 2.2491,
+      "pri_sec_area_ratio": 0.9424,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2152": {
-    "durability_score": 6.1,
-    "steerability_score": 7.6,
+    "durability_score": 5.4,
+    "steerability_score": 4.3,
     "cutlet_metrics": {
       "n_cutlets": 20,
       "total_area": 0.8331,
@@ -2036,12 +2231,17 @@
       "avg_primary_dia_mm": 15.4,
       "num_blades": 5,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 0.5589,
+      "max_mean_ratio": 2.1558,
+      "pri_sec_area_ratio": 0.9406,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2153": {
-    "durability_score": 4.7,
-    "steerability_score": 5.7,
+    "durability_score": 3.9,
+    "steerability_score": 2.5,
     "cutlet_metrics": {
       "n_cutlets": 62,
       "total_area": 1.5146,
@@ -2087,12 +2287,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.5261,
+      "max_mean_ratio": 3.1602,
+      "pri_sec_area_ratio": 1.1215,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2154": {
-    "durability_score": 3.6,
-    "steerability_score": 6.3,
+    "durability_score": 5.9,
+    "steerability_score": 3.3,
     "cutlet_metrics": {
       "n_cutlets": 22,
       "total_area": 0.9731,
@@ -2138,12 +2343,17 @@
       "avg_primary_dia_mm": 15.4,
       "num_blades": 5,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.4517,
+      "max_mean_ratio": 1.5261,
+      "pri_sec_area_ratio": 1.1223,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2157": {
-    "durability_score": 4.5,
-    "steerability_score": 5.8,
+    "durability_score": 3.4,
+    "steerability_score": 2.9,
     "cutlet_metrics": {
       "n_cutlets": 51,
       "total_area": 1.5209,
@@ -2189,12 +2399,17 @@
       "avg_primary_dia_mm": 16.1,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4327,
+      "max_mean_ratio": 3.36,
+      "pri_sec_area_ratio": 0.95,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2158": {
-    "durability_score": 1.0,
-    "steerability_score": 5.0,
+    "durability_score": 0.6,
+    "steerability_score": 1.5,
     "cutlet_metrics": {
       "n_cutlets": 39,
       "total_area": 1.3659,
@@ -2240,12 +2455,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 5.5,
-      "bit_diameter": 11.0
+      "bit_diameter": 11.0,
+      "cutter_density": 0.4104,
+      "max_mean_ratio": 2.0586,
+      "pri_sec_area_ratio": 4.18,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2160": {
-    "durability_score": 3.3,
-    "steerability_score": 1.5,
+    "durability_score": 4.4,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 90,
       "total_area": 2.1732,
@@ -2291,12 +2511,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3742,
+      "max_mean_ratio": 3.5906,
+      "pri_sec_area_ratio": 0.9659,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2164": {
-    "durability_score": 6.7,
-    "steerability_score": 5.4,
+    "durability_score": 5.0,
+    "steerability_score": 1.4,
     "cutlet_metrics": {
       "n_cutlets": 42,
       "total_area": 1.2196,
@@ -2342,12 +2567,17 @@
       "avg_primary_dia_mm": 15.4,
       "num_blades": 5,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.5484,
+      "max_mean_ratio": 3.275,
+      "pri_sec_area_ratio": 1.0614,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2169": {
-    "durability_score": 4.5,
-    "steerability_score": 2.9,
+    "durability_score": 2.6,
+    "steerability_score": 2.4,
     "cutlet_metrics": {
       "n_cutlets": 67,
       "total_area": 1.8353,
@@ -2393,12 +2623,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 6,
       "gage_radius": 7.375,
-      "bit_diameter": 14.75
+      "bit_diameter": 14.75,
+      "cutter_density": 0.3921,
+      "max_mean_ratio": 2.9826,
+      "pri_sec_area_ratio": 0.9562,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2172": {
     "durability_score": 3.6,
-    "steerability_score": 5.6,
+    "steerability_score": 5.5,
     "cutlet_metrics": {
       "n_cutlets": 48,
       "total_area": 1.3181,
@@ -2444,12 +2679,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 7,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.6267,
+      "max_mean_ratio": 3.4413,
+      "pri_sec_area_ratio": 0.8848,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2173": {
-    "durability_score": 3.4,
-    "steerability_score": 4.7,
+    "durability_score": 3.6,
+    "steerability_score": 2.0,
     "cutlet_metrics": {
       "n_cutlets": 26,
       "total_area": 0.9749,
@@ -2495,12 +2735,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5338,
+      "max_mean_ratio": 2.2056,
+      "pri_sec_area_ratio": 1.1559,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2174": {
-    "durability_score": 5.0,
-    "steerability_score": 3.1,
+    "durability_score": 5.3,
+    "steerability_score": 0.2,
     "cutlet_metrics": {
       "n_cutlets": 47,
       "total_area": 4.8871,
@@ -2546,12 +2791,17 @@
       "avg_primary_dia_mm": 15.3,
       "num_blades": 5,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.7816,
+      "max_mean_ratio": 2.7909,
+      "pri_sec_area_ratio": 0.9752,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2177": {
-    "durability_score": 4.2,
-    "steerability_score": 7.2,
+    "durability_score": 2.2,
+    "steerability_score": 4.4,
     "cutlet_metrics": {
       "n_cutlets": 52,
       "total_area": 1.5222,
@@ -2597,12 +2847,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4412,
+      "max_mean_ratio": 2.9515,
+      "pri_sec_area_ratio": 1.7682,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2179": {
-    "durability_score": 4.6,
-    "steerability_score": 6.8,
+    "durability_score": 5.2,
+    "steerability_score": 4.4,
     "cutlet_metrics": {
       "n_cutlets": 55,
       "total_area": 1.5202,
@@ -2648,12 +2903,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4667,
+      "max_mean_ratio": 2.4891,
+      "pri_sec_area_ratio": 1.0187,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2180": {
-    "durability_score": 5.6,
-    "steerability_score": 8.0,
+    "durability_score": 6.0,
+    "steerability_score": 4.6,
     "cutlet_metrics": {
       "n_cutlets": 42,
       "total_area": 1.3151,
@@ -2699,12 +2959,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 7,
       "gage_radius": 5.3125,
-      "bit_diameter": 10.625
+      "bit_diameter": 10.625,
+      "cutter_density": 0.4737,
+      "max_mean_ratio": 2.044,
+      "pri_sec_area_ratio": 0.9486,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2181": {
-    "durability_score": 3.9,
-    "steerability_score": 6.5,
+    "durability_score": 5.3,
+    "steerability_score": 4.6,
     "cutlet_metrics": {
       "n_cutlets": 26,
       "total_area": 0.974,
@@ -2750,12 +3015,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5338,
+      "max_mean_ratio": 2.2423,
+      "pri_sec_area_ratio": 1.0046,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2184": {
-    "durability_score": 5.6,
-    "steerability_score": 6.7,
+    "durability_score": 4.3,
+    "steerability_score": 4.5,
     "cutlet_metrics": {
       "n_cutlets": 28,
       "total_area": 1.0525,
@@ -2801,12 +3071,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.4934,
+      "max_mean_ratio": 2.4848,
+      "pri_sec_area_ratio": 0.9649,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2185": {
-    "durability_score": 4.4,
-    "steerability_score": 3.0,
+    "durability_score": 4.0,
+    "steerability_score": 4.7,
     "cutlet_metrics": {
       "n_cutlets": 54,
       "total_area": 1.6794,
@@ -2852,12 +3127,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 6.75,
-      "bit_diameter": 13.5
+      "bit_diameter": 13.5,
+      "cutter_density": 0.3773,
+      "max_mean_ratio": 2.6141,
+      "pri_sec_area_ratio": 0.9428,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2186": {
-    "durability_score": 6.2,
-    "steerability_score": 3.4,
+    "durability_score": 5.6,
+    "steerability_score": 2.7,
     "cutlet_metrics": {
       "n_cutlets": 29,
       "total_area": 1.0819,
@@ -2903,12 +3183,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.4823,
+      "max_mean_ratio": 2.3132,
+      "pri_sec_area_ratio": 1.0135,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2188": {
-    "durability_score": 1.4,
-    "steerability_score": 4.5,
+    "durability_score": 3.9,
+    "steerability_score": 9.0,
     "cutlet_metrics": {
       "n_cutlets": 39,
       "total_area": 3.6539,
@@ -2954,12 +3239,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 5,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.6486,
+      "max_mean_ratio": 2.3151,
+      "pri_sec_area_ratio": 1.0193,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2190": {
-    "durability_score": 6.9,
-    "steerability_score": 6.0,
+    "durability_score": 8.1,
+    "steerability_score": 5.0,
     "cutlet_metrics": {
       "n_cutlets": 53,
       "total_area": 1.1414,
@@ -3005,12 +3295,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 8,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.934,
+      "max_mean_ratio": 4.3648,
+      "pri_sec_area_ratio": 1.0836,
+      "n_primary_blades": 4,
+      "n_secondary_blades": 4
     }
   },
   "2192": {
-    "durability_score": 5.3,
-    "steerability_score": 3.2,
+    "durability_score": 4.1,
+    "steerability_score": 2.1,
     "cutlet_metrics": {
       "n_cutlets": 30,
       "total_area": 1.0837,
@@ -3056,12 +3351,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.4989,
+      "max_mean_ratio": 2.2672,
+      "pri_sec_area_ratio": 0.9803,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2193": {
-    "durability_score": 4.0,
-    "steerability_score": 2.0,
+    "durability_score": 5.9,
+    "steerability_score": 0.0,
     "cutlet_metrics": {
       "n_cutlets": 55,
       "total_area": 4.7456,
@@ -3107,12 +3407,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 7,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.9692,
+      "max_mean_ratio": 2.4211,
+      "pri_sec_area_ratio": 0.9421,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2194": {
-    "durability_score": 3.3,
-    "steerability_score": 1.5,
+    "durability_score": 4.4,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 90,
       "total_area": 2.1732,
@@ -3158,12 +3463,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3742,
+      "max_mean_ratio": 3.5906,
+      "pri_sec_area_ratio": 0.9659,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2195": {
-    "durability_score": 6.1,
-    "steerability_score": 3.9,
+    "durability_score": 5.8,
+    "steerability_score": 5.1,
     "cutlet_metrics": {
       "n_cutlets": 42,
       "total_area": 1.1794,
@@ -3209,12 +3519,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.6985,
+      "max_mean_ratio": 3.4935,
+      "pri_sec_area_ratio": 0.9768,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2196": {
-    "durability_score": 5.1,
-    "steerability_score": 3.7,
+    "durability_score": 5.0,
+    "steerability_score": 3.1,
     "cutlet_metrics": {
       "n_cutlets": 42,
       "total_area": 5.3511,
@@ -3260,12 +3575,17 @@
       "avg_primary_dia_mm": 15.3,
       "num_blades": 5,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.6985,
+      "max_mean_ratio": 2.3201,
+      "pri_sec_area_ratio": 1.0935,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2198": {
-    "durability_score": 6.4,
-    "steerability_score": 3.4,
+    "durability_score": 5.8,
+    "steerability_score": 3.6,
     "cutlet_metrics": {
       "n_cutlets": 38,
       "total_area": 1.083,
@@ -3311,12 +3631,17 @@
       "avg_primary_dia_mm": 15.0,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.6319,
+      "max_mean_ratio": 2.6491,
+      "pri_sec_area_ratio": 0.9939,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2205": {
-    "durability_score": 3.3,
-    "steerability_score": 1.5,
+    "durability_score": 4.4,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 90,
       "total_area": 2.1732,
@@ -3362,12 +3687,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3742,
+      "max_mean_ratio": 3.5906,
+      "pri_sec_area_ratio": 0.9659,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2206": {
-    "durability_score": 3.5,
-    "steerability_score": 3.7,
+    "durability_score": 3.7,
+    "steerability_score": 1.7,
     "cutlet_metrics": {
       "n_cutlets": 87,
       "total_area": 7.1671,
@@ -3413,12 +3743,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 9,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.7382,
+      "max_mean_ratio": 3.1537,
+      "pri_sec_area_ratio": 0.9461,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 6
     }
   },
   "2207": {
-    "durability_score": 4.7,
-    "steerability_score": 5.5,
+    "durability_score": 5.0,
+    "steerability_score": 3.2,
     "cutlet_metrics": {
       "n_cutlets": 33,
       "total_area": 0.9732,
@@ -3464,12 +3799,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.6775,
+      "max_mean_ratio": 2.9128,
+      "pri_sec_area_ratio": 1.0126,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2208": {
-    "durability_score": 3.6,
-    "steerability_score": 4.2,
+    "durability_score": 5.5,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 108,
       "total_area": 7.3617,
@@ -3515,12 +3855,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.9164,
+      "max_mean_ratio": 4.1386,
+      "pri_sec_area_ratio": 1.0869,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2209": {
-    "durability_score": 4.7,
-    "steerability_score": 6.3,
+    "durability_score": 4.4,
+    "steerability_score": 3.7,
     "cutlet_metrics": {
       "n_cutlets": 51,
       "total_area": 1.5207,
@@ -3566,12 +3911,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4327,
+      "max_mean_ratio": 2.9345,
+      "pri_sec_area_ratio": 0.9141,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2210": {
-    "durability_score": 4.2,
-    "steerability_score": 6.1,
+    "durability_score": 2.3,
+    "steerability_score": 3.6,
     "cutlet_metrics": {
       "n_cutlets": 70,
       "total_area": 1.5174,
@@ -3617,12 +3967,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.5939,
+      "max_mean_ratio": 4.0734,
+      "pri_sec_area_ratio": 1.4008,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2216": {
-    "durability_score": 9.0,
-    "steerability_score": 1.8,
+    "durability_score": 5.8,
+    "steerability_score": 4.4,
     "cutlet_metrics": {
       "n_cutlets": 101,
       "total_area": 2.1624,
@@ -3668,12 +4023,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.4199,
+      "max_mean_ratio": 3.7973,
+      "pri_sec_area_ratio": 0.9755,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2217": {
-    "durability_score": 4.6,
-    "steerability_score": 5.7,
+    "durability_score": 4.0,
+    "steerability_score": 3.3,
     "cutlet_metrics": {
       "n_cutlets": 54,
       "total_area": 1.5195,
@@ -3719,12 +4079,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4582,
+      "max_mean_ratio": 3.138,
+      "pri_sec_area_ratio": 1.0247,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2218": {
-    "durability_score": 4.1,
-    "steerability_score": 6.0,
+    "durability_score": 2.1,
+    "steerability_score": 3.6,
     "cutlet_metrics": {
       "n_cutlets": 62,
       "total_area": 1.5132,
@@ -3770,12 +4135,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.5261,
+      "max_mean_ratio": 3.6179,
+      "pri_sec_area_ratio": 1.4013,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2220": {
-    "durability_score": 4.7,
-    "steerability_score": 3.8,
+    "durability_score": 2.7,
+    "steerability_score": 5.7,
     "cutlet_metrics": {
       "n_cutlets": 36,
       "total_area": 1.0853,
@@ -3821,12 +4191,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.5987,
+      "max_mean_ratio": 2.8162,
+      "pri_sec_area_ratio": 2.2508,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2224": {
-    "durability_score": 7.4,
-    "steerability_score": 2.0,
+    "durability_score": 4.9,
+    "steerability_score": 4.3,
     "cutlet_metrics": {
       "n_cutlets": 69,
       "total_area": 1.9882,
@@ -3872,12 +4247,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 8.0,
-      "bit_diameter": 16.0
+      "bit_diameter": 16.0,
+      "cutter_density": 0.3432,
+      "max_mean_ratio": 2.8284,
+      "pri_sec_area_ratio": 0.9391,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2225": {
-    "durability_score": 6.7,
-    "steerability_score": 2.6,
+    "durability_score": 4.8,
+    "steerability_score": 5.5,
     "cutlet_metrics": {
       "n_cutlets": 14,
       "total_area": 0.7548,
@@ -3923,12 +4303,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 4,
       "gage_radius": 3.0625,
-      "bit_diameter": 6.125
+      "bit_diameter": 6.125,
+      "cutter_density": 0.4751,
+      "max_mean_ratio": 2.0032,
+      "pri_sec_area_ratio": 0.8408,
+      "n_primary_blades": 2,
+      "n_secondary_blades": 2
     }
   },
   "2226": {
-    "durability_score": 3.9,
-    "steerability_score": 3.2,
+    "durability_score": 0.4,
+    "steerability_score": 2.1,
     "cutlet_metrics": {
       "n_cutlets": 30,
       "total_area": 1.0843,
@@ -3974,12 +4359,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 4.375,
-      "bit_diameter": 8.75
+      "bit_diameter": 8.75,
+      "cutter_density": 0.4989,
+      "max_mean_ratio": 2.266,
+      "pri_sec_area_ratio": 8.2971,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2227": {
-    "durability_score": 5.0,
-    "steerability_score": 7.0,
+    "durability_score": 7.7,
+    "steerability_score": 4.2,
     "cutlet_metrics": {
       "n_cutlets": 48,
       "total_area": 3.6073,
@@ -4025,12 +4415,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 5,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 1.3414,
+      "max_mean_ratio": 2.8875,
+      "pri_sec_area_ratio": 1.1142,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2231": {
-    "durability_score": 4.8,
-    "steerability_score": 6.4,
+    "durability_score": 3.3,
+    "steerability_score": 4.6,
     "cutlet_metrics": {
       "n_cutlets": 30,
       "total_area": 1.0557,
@@ -4076,12 +4471,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.5287,
+      "max_mean_ratio": 2.6428,
+      "pri_sec_area_ratio": 0.5875,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2232": {
-    "durability_score": 3.3,
-    "steerability_score": 3.1,
+    "durability_score": 2.0,
+    "steerability_score": 1.3,
     "cutlet_metrics": {
       "n_cutlets": 100,
       "total_area": 7.2216,
@@ -4127,12 +4527,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 9,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.8485,
+      "max_mean_ratio": 3.5754,
+      "pri_sec_area_ratio": 1.1567,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 6
     }
   },
   "2234": {
-    "durability_score": 7.3,
-    "steerability_score": 6.0,
+    "durability_score": 7.7,
+    "steerability_score": 3.8,
     "cutlet_metrics": {
       "n_cutlets": 62,
       "total_area": 1.2143,
@@ -4178,12 +4583,17 @@
       "avg_primary_dia_mm": 13.5,
       "num_blades": 6,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.8095,
+      "max_mean_ratio": 3.4311,
+      "pri_sec_area_ratio": 1.0011,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2235": {
-    "durability_score": 4.8,
-    "steerability_score": 4.7,
+    "durability_score": 5.0,
+    "steerability_score": 1.8,
     "cutlet_metrics": {
       "n_cutlets": 79,
       "total_area": 1.5111,
@@ -4229,12 +4639,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 7,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.6703,
+      "max_mean_ratio": 4.3863,
+      "pri_sec_area_ratio": 0.9592,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "2236": {
-    "durability_score": 0.2,
-    "steerability_score": 4.6,
+    "durability_score": 2.5,
+    "steerability_score": 1.2,
     "cutlet_metrics": {
       "n_cutlets": 80,
       "total_area": 5.7692,
@@ -4280,12 +4695,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 9,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 1.0445,
+      "max_mean_ratio": 3.5679,
+      "pri_sec_area_ratio": 1.21,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 6
     }
   },
   "2240": {
-    "durability_score": 4.5,
-    "steerability_score": 5.2,
+    "durability_score": 3.9,
+    "steerability_score": 2.6,
     "cutlet_metrics": {
       "n_cutlets": 35,
       "total_area": 0.9748,
@@ -4331,12 +4751,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 8,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.7186,
+      "max_mean_ratio": 3.5402,
+      "pri_sec_area_ratio": 1.2826,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 5
     }
   },
   "2241": {
-    "durability_score": 7.4,
-    "steerability_score": 2.0,
+    "durability_score": 4.9,
+    "steerability_score": 4.3,
     "cutlet_metrics": {
       "n_cutlets": 69,
       "total_area": 1.9882,
@@ -4382,12 +4807,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 8.0,
-      "bit_diameter": 16.0
+      "bit_diameter": 16.0,
+      "cutter_density": 0.3432,
+      "max_mean_ratio": 2.8284,
+      "pri_sec_area_ratio": 0.9391,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2242": {
-    "durability_score": 4.3,
-    "steerability_score": 1.5,
+    "durability_score": 8.1,
+    "steerability_score": 5.6,
     "cutlet_metrics": {
       "n_cutlets": 22,
       "total_area": 0.5829,
@@ -4433,12 +4863,17 @@
       "avg_primary_dia_mm": 11.1,
       "num_blades": 6,
       "gage_radius": 2.375,
-      "bit_diameter": 4.75
+      "bit_diameter": 4.75,
+      "cutter_density": 1.2415,
+      "max_mean_ratio": 2.1438,
+      "pri_sec_area_ratio": 1.0704,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2247": {
-    "durability_score": 3.9,
-    "steerability_score": 6.2,
+    "durability_score": 0.8,
+    "steerability_score": 3.5,
     "cutlet_metrics": {
       "n_cutlets": 69,
       "total_area": 1.5194,
@@ -4484,12 +4919,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 9,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.5854,
+      "max_mean_ratio": 3.7647,
+      "pri_sec_area_ratio": 1.5557,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 6
     }
   },
   "2249": {
-    "durability_score": 4.5,
-    "steerability_score": 4.1,
+    "durability_score": 4.2,
+    "steerability_score": 0.9,
     "cutlet_metrics": {
       "n_cutlets": 32,
       "total_area": 1.5168,
@@ -4535,12 +4975,17 @@
       "avg_primary_dia_mm": 19.1,
       "num_blades": 5,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.2715,
+      "max_mean_ratio": 2.1392,
+      "pri_sec_area_ratio": 0.956,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "2251": {
-    "durability_score": 6.7,
-    "steerability_score": 2.6,
+    "durability_score": 4.8,
+    "steerability_score": 5.5,
     "cutlet_metrics": {
       "n_cutlets": 14,
       "total_area": 0.7548,
@@ -4586,12 +5031,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 4,
       "gage_radius": 3.0625,
-      "bit_diameter": 6.125
+      "bit_diameter": 6.125,
+      "cutter_density": 0.4751,
+      "max_mean_ratio": 2.0032,
+      "pri_sec_area_ratio": 0.8408,
+      "n_primary_blades": 2,
+      "n_secondary_blades": 2
     }
   },
   "2252": {
-    "durability_score": 4.4,
-    "steerability_score": 4.0,
+    "durability_score": 1.1,
+    "steerability_score": 2.9,
     "cutlet_metrics": {
       "n_cutlets": 42,
       "total_area": 1.3197,
@@ -4637,12 +5087,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 5.3125,
-      "bit_diameter": 10.625
+      "bit_diameter": 10.625,
+      "cutter_density": 0.4737,
+      "max_mean_ratio": 2.6892,
+      "pri_sec_area_ratio": 3.9897,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2256": {
-    "durability_score": 4.7,
-    "steerability_score": 2.2,
+    "durability_score": 5.8,
+    "steerability_score": 4.6,
     "cutlet_metrics": {
       "n_cutlets": 106,
       "total_area": 1.8322,
@@ -4688,12 +5143,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 7.375,
-      "bit_diameter": 14.75
+      "bit_diameter": 14.75,
+      "cutter_density": 0.6203,
+      "max_mean_ratio": 4.7325,
+      "pri_sec_area_ratio": 0.9379,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2265": {
-    "durability_score": 4.1,
-    "steerability_score": 7.3,
+    "durability_score": 1.3,
+    "steerability_score": 4.4,
     "cutlet_metrics": {
       "n_cutlets": 51,
       "total_area": 1.5231,
@@ -4739,12 +5199,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4327,
+      "max_mean_ratio": 2.893,
+      "pri_sec_area_ratio": 3.1551,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2266": {
-    "durability_score": 3.8,
-    "steerability_score": 7.4,
+    "durability_score": 0.1,
+    "steerability_score": 4.3,
     "cutlet_metrics": {
       "n_cutlets": 50,
       "total_area": 1.525,
@@ -4790,12 +5255,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4242,
+      "max_mean_ratio": 2.8328,
+      "pri_sec_area_ratio": 7.3618,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2267": {
-    "durability_score": 3.6,
-    "steerability_score": 7.5,
+    "durability_score": 0.0,
+    "steerability_score": 4.2,
     "cutlet_metrics": {
       "n_cutlets": 40,
       "total_area": 1.523,
@@ -4841,12 +5311,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.3394,
+      "max_mean_ratio": 2.2692,
+      "pri_sec_area_ratio": 41.2269,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2268": {
-    "durability_score": 3.3,
-    "steerability_score": 5.9,
+    "durability_score": 1.9,
+    "steerability_score": 3.7,
     "cutlet_metrics": {
       "n_cutlets": 29,
       "total_area": 0.9745,
@@ -4892,12 +5367,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5954,
+      "max_mean_ratio": 3.0384,
+      "pri_sec_area_ratio": 1.8627,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2270": {
-    "durability_score": 6.1,
-    "steerability_score": 6.2,
+    "durability_score": 5.4,
+    "steerability_score": 4.9,
     "cutlet_metrics": {
       "n_cutlets": 24,
       "total_area": 0.8338,
@@ -4943,12 +5423,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 0.6707,
+      "max_mean_ratio": 2.32,
+      "pri_sec_area_ratio": 0.9932,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2272": {
-    "durability_score": 3.6,
-    "steerability_score": 5.6,
+    "durability_score": 3.3,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 32,
       "total_area": 0.9733,
@@ -4994,12 +5479,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.657,
+      "max_mean_ratio": 3.347,
+      "pri_sec_area_ratio": 1.6283,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2362": {
-    "durability_score": 4.8,
-    "steerability_score": 7.2,
+    "durability_score": 2.4,
+    "steerability_score": 0.8,
     "cutlet_metrics": {
       "n_cutlets": 41,
       "total_area": 1.1944,
@@ -5045,12 +5535,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 4.8125,
-      "bit_diameter": 9.625
+      "bit_diameter": 9.625,
+      "cutter_density": 0.5635,
+      "max_mean_ratio": 3.1237,
+      "pri_sec_area_ratio": 1.8753,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2381": {
-    "durability_score": 8.8,
-    "steerability_score": 2.2,
+    "durability_score": 5.1,
+    "steerability_score": 4.9,
     "cutlet_metrics": {
       "n_cutlets": 73,
       "total_area": 2.1751,
@@ -5096,12 +5591,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3035,
+      "max_mean_ratio": 2.742,
+      "pri_sec_area_ratio": 0.9762,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2556": {
-    "durability_score": 3.5,
-    "steerability_score": 3.8,
+    "durability_score": 4.3,
+    "steerability_score": 0.8,
     "cutlet_metrics": {
       "n_cutlets": 28,
       "total_area": 0.9707,
@@ -5147,12 +5647,17 @@
       "avg_primary_dia_mm": 15.4,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5749,
+      "max_mean_ratio": 1.9326,
+      "pri_sec_area_ratio": 0.994,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "2746": {
-    "durability_score": 5.6,
-    "steerability_score": 8.2,
+    "durability_score": 3.5,
+    "steerability_score": 5.8,
     "cutlet_metrics": {
       "n_cutlets": 44,
       "total_area": 1.3659,
@@ -5198,12 +5703,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 5.3125,
-      "bit_diameter": 10.625
+      "bit_diameter": 10.625,
+      "cutter_density": 0.4963,
+      "max_mean_ratio": 2.6834,
+      "pri_sec_area_ratio": 1.8922,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "3219": {
-    "durability_score": 6.9,
-    "steerability_score": 6.0,
+    "durability_score": 8.1,
+    "steerability_score": 5.0,
     "cutlet_metrics": {
       "n_cutlets": 53,
       "total_area": 1.1414,
@@ -5249,12 +5759,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 8,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.934,
+      "max_mean_ratio": 4.3648,
+      "pri_sec_area_ratio": 1.0836,
+      "n_primary_blades": 4,
+      "n_secondary_blades": 4
     }
   },
   "3336": {
-    "durability_score": 7.0,
-    "steerability_score": 6.7,
+    "durability_score": 6.3,
+    "steerability_score": 3.2,
     "cutlet_metrics": {
       "n_cutlets": 41,
       "total_area": 1.0505,
@@ -5300,12 +5815,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.7225,
+      "max_mean_ratio": 2.896,
+      "pri_sec_area_ratio": 0.9932,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "3449": {
-    "durability_score": 3.6,
-    "steerability_score": 6.0,
+    "durability_score": 3.1,
+    "steerability_score": 4.2,
     "cutlet_metrics": {
       "n_cutlets": 28,
       "total_area": 0.9741,
@@ -5351,12 +5871,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5749,
+      "max_mean_ratio": 2.9061,
+      "pri_sec_area_ratio": 1.7283,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "3943": {
-    "durability_score": 3.6,
-    "steerability_score": 6.0,
+    "durability_score": 3.1,
+    "steerability_score": 4.2,
     "cutlet_metrics": {
       "n_cutlets": 28,
       "total_area": 0.9741,
@@ -5402,12 +5927,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5749,
+      "max_mean_ratio": 2.9061,
+      "pri_sec_area_ratio": 1.7283,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "4149": {
-    "durability_score": 2.5,
-    "steerability_score": 5.9,
+    "durability_score": 1.1,
+    "steerability_score": 2.4,
     "cutlet_metrics": {
       "n_cutlets": 42,
       "total_area": 1.3703,
@@ -5453,12 +5983,17 @@
       "avg_primary_dia_mm": 15.6,
       "num_blades": 6,
       "gage_radius": 5.5,
-      "bit_diameter": 11.0
+      "bit_diameter": 11.0,
+      "cutter_density": 0.442,
+      "max_mean_ratio": 2.4735,
+      "pri_sec_area_ratio": 4.1767,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "4206": {
-    "durability_score": 3.7,
-    "steerability_score": 2.6,
+    "durability_score": 3.3,
+    "steerability_score": 2.1,
     "cutlet_metrics": {
       "n_cutlets": 62,
       "total_area": 1.8327,
@@ -5504,12 +6039,17 @@
       "avg_primary_dia_mm": 15.7,
       "num_blades": 6,
       "gage_radius": 7.375,
-      "bit_diameter": 14.75
+      "bit_diameter": 14.75,
+      "cutter_density": 0.3628,
+      "max_mean_ratio": 2.2903,
+      "pri_sec_area_ratio": 0.9836,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "4288": {
-    "durability_score": 1.4,
-    "steerability_score": 2.2,
+    "durability_score": 3.0,
+    "steerability_score": 2.9,
     "cutlet_metrics": {
       "n_cutlets": 77,
       "total_area": 2.1764,
@@ -5555,12 +6095,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3201,
+      "max_mean_ratio": 2.9223,
+      "pri_sec_area_ratio": 1.0317,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "4538": {
-    "durability_score": 4.5,
-    "steerability_score": 6.3,
+    "durability_score": 2.9,
+    "steerability_score": 3.2,
     "cutlet_metrics": {
       "n_cutlets": 49,
       "total_area": 0.9337,
@@ -5606,12 +6151,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4158,
+      "max_mean_ratio": 2.9546,
+      "pri_sec_area_ratio": 1.8637,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "4720": {
-    "durability_score": 4.8,
-    "steerability_score": 4.8,
+    "durability_score": 5.0,
+    "steerability_score": 2.4,
     "cutlet_metrics": {
       "n_cutlets": 39,
       "total_area": 1.1603,
@@ -5657,12 +6207,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 8,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.8007,
+      "max_mean_ratio": 3.4889,
+      "pri_sec_area_ratio": 1.0317,
+      "n_primary_blades": 4,
+      "n_secondary_blades": 4
     }
   },
   "4796": {
-    "durability_score": 5.4,
-    "steerability_score": 6.0,
+    "durability_score": 6.2,
+    "steerability_score": 5.6,
     "cutlet_metrics": {
       "n_cutlets": 38,
       "total_area": 0.94,
@@ -5708,12 +6263,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 6,
       "gage_radius": 3.375,
-      "bit_diameter": 6.75
+      "bit_diameter": 6.75,
+      "cutter_density": 1.0619,
+      "max_mean_ratio": 3.2502,
+      "pri_sec_area_ratio": 1.5212,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "5481": {
-    "durability_score": 3.8,
-    "steerability_score": 4.5,
+    "durability_score": 3.6,
+    "steerability_score": 1.8,
     "cutlet_metrics": {
       "n_cutlets": 26,
       "total_area": 0.9745,
@@ -5759,12 +6319,17 @@
       "avg_primary_dia_mm": 16.0,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5338,
+      "max_mean_ratio": 2.4866,
+      "pri_sec_area_ratio": 1.3301,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "5646": {
-    "durability_score": 6.4,
-    "steerability_score": 4.2,
+    "durability_score": 5.4,
+    "steerability_score": 1.9,
     "cutlet_metrics": {
       "n_cutlets": 37,
       "total_area": 1.0493,
@@ -5810,12 +6375,17 @@
       "avg_primary_dia_mm": 12.7,
       "num_blades": 6,
       "gage_radius": 4.25,
-      "bit_diameter": 8.5
+      "bit_diameter": 8.5,
+      "cutter_density": 0.652,
+      "max_mean_ratio": 2.2497,
+      "pri_sec_area_ratio": 0.9386,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "5674": {
-    "durability_score": 1.6,
-    "steerability_score": 3.2,
+    "durability_score": 2.7,
+    "steerability_score": 3.3,
     "cutlet_metrics": {
       "n_cutlets": 65,
       "total_area": 1.8334,
@@ -5861,12 +6431,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 7.375,
-      "bit_diameter": 14.75
+      "bit_diameter": 14.75,
+      "cutter_density": 0.3804,
+      "max_mean_ratio": 2.9143,
+      "pri_sec_area_ratio": 1.0348,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "5911": {
-    "durability_score": 6.4,
-    "steerability_score": 5.9,
+    "durability_score": 5.0,
+    "steerability_score": 3.2,
     "cutlet_metrics": {
       "n_cutlets": 44,
       "total_area": 0.9305,
@@ -5912,12 +6487,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.5745,
+      "max_mean_ratio": 2.317,
+      "pri_sec_area_ratio": 0.9707,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "6135": {
-    "durability_score": 0.9,
-    "steerability_score": 3.6,
+    "durability_score": 1.4,
+    "steerability_score": 3.5,
     "cutlet_metrics": {
       "n_cutlets": 65,
       "total_area": 1.8351,
@@ -5963,12 +6543,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 7.375,
-      "bit_diameter": 14.75
+      "bit_diameter": 14.75,
+      "cutter_density": 0.3804,
+      "max_mean_ratio": 2.9045,
+      "pri_sec_area_ratio": 1.7044,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "6150": {
-    "durability_score": 2.1,
-    "steerability_score": 1.9,
+    "durability_score": 1.7,
+    "steerability_score": 0.7,
     "cutlet_metrics": {
       "n_cutlets": 77,
       "total_area": 7.2004,
@@ -6014,12 +6599,17 @@
       "avg_primary_dia_mm": 15.5,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3201,
+      "max_mean_ratio": 2.3088,
+      "pri_sec_area_ratio": 0.934,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "6207": {
-    "durability_score": 3.3,
-    "steerability_score": 4.4,
+    "durability_score": 4.8,
+    "steerability_score": 1.5,
     "cutlet_metrics": {
       "n_cutlets": 47,
       "total_area": 4.4172,
@@ -6065,12 +6655,17 @@
       "avg_primary_dia_mm": 15.8,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.965,
+      "max_mean_ratio": 2.7505,
+      "pri_sec_area_ratio": 1.1256,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "6513": {
-    "durability_score": 8.1,
-    "steerability_score": 1.3,
+    "durability_score": 4.9,
+    "steerability_score": 1.5,
     "cutlet_metrics": {
       "n_cutlets": 82,
       "total_area": 2.1788,
@@ -6116,12 +6711,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 7,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.3409,
+      "max_mean_ratio": 3.2065,
+      "pri_sec_area_ratio": 0.9536,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 4
     }
   },
   "6653": {
-    "durability_score": 4.3,
-    "steerability_score": 5.0,
+    "durability_score": 5.5,
+    "steerability_score": 4.8,
     "cutlet_metrics": {
       "n_cutlets": 56,
       "total_area": 1.6018,
@@ -6167,12 +6767,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 6.125,
-      "bit_diameter": 12.25
+      "bit_diameter": 12.25,
+      "cutter_density": 0.4751,
+      "max_mean_ratio": 2.643,
+      "pri_sec_area_ratio": 1.0301,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "6841": {
-    "durability_score": 2.8,
-    "steerability_score": 5.2,
+    "durability_score": 5.2,
+    "steerability_score": 2.9,
     "cutlet_metrics": {
       "n_cutlets": 23,
       "total_area": 0.9729,
@@ -6218,12 +6823,17 @@
       "avg_primary_dia_mm": 16.3,
       "num_blades": 5,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.4722,
+      "max_mean_ratio": 1.8558,
+      "pri_sec_area_ratio": 1.087,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "7182": {
-    "durability_score": 4.2,
-    "steerability_score": 5.2,
+    "durability_score": 6.0,
+    "steerability_score": 3.0,
     "cutlet_metrics": {
       "n_cutlets": 28,
       "total_area": 0.9724,
@@ -6269,11 +6879,16 @@
       "avg_primary_dia_mm": 14.5,
       "num_blades": 5,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5749,
+      "max_mean_ratio": 2.007,
+      "pri_sec_area_ratio": 0.8218,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 2
     }
   },
   "7273": {
-    "durability_score": 1.8,
+    "durability_score": 2.9,
     "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 65,
@@ -6320,12 +6935,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 7.375,
-      "bit_diameter": 14.75
+      "bit_diameter": 14.75,
+      "cutter_density": 0.3804,
+      "max_mean_ratio": 2.9056,
+      "pri_sec_area_ratio": 0.9863,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "7823": {
-    "durability_score": 2.9,
-    "steerability_score": 2.7,
+    "durability_score": 3.1,
+    "steerability_score": 3.3,
     "cutlet_metrics": {
       "n_cutlets": 76,
       "total_area": 2.1761,
@@ -6371,12 +6991,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 8.75,
-      "bit_diameter": 17.5
+      "bit_diameter": 17.5,
+      "cutter_density": 0.316,
+      "max_mean_ratio": 3.4576,
+      "pri_sec_area_ratio": 0.9666,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "8479": {
-    "durability_score": 3.9,
-    "steerability_score": 5.7,
+    "durability_score": 4.7,
+    "steerability_score": 3.4,
     "cutlet_metrics": {
       "n_cutlets": 27,
       "total_area": 0.9736,
@@ -6422,12 +7047,17 @@
       "avg_primary_dia_mm": 15.8,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.5543,
+      "max_mean_ratio": 2.1603,
+      "pri_sec_area_ratio": 1.1086,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "8896": {
-    "durability_score": 3.3,
-    "steerability_score": 5.5,
+    "durability_score": 2.7,
+    "steerability_score": 2.1,
     "cutlet_metrics": {
       "n_cutlets": 40,
       "total_area": 1.2225,
@@ -6473,12 +7103,17 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 4.9375,
-      "bit_diameter": 9.875
+      "bit_diameter": 9.875,
+      "cutter_density": 0.5223,
+      "max_mean_ratio": 2.984,
+      "pri_sec_area_ratio": 1.8135,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "9387": {
-    "durability_score": 4.0,
-    "steerability_score": 6.5,
+    "durability_score": 7.6,
+    "steerability_score": 6.9,
     "cutlet_metrics": {
       "n_cutlets": 36,
       "total_area": 0.8915,
@@ -6524,12 +7159,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.7391,
+      "max_mean_ratio": 2.2331,
+      "pri_sec_area_ratio": 0.9921,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "9692": {
-    "durability_score": 4.5,
-    "steerability_score": 5.1,
+    "durability_score": 9.0,
+    "steerability_score": 4.3,
     "cutlet_metrics": {
       "n_cutlets": 44,
       "total_area": 1.0573,
@@ -6575,12 +7215,17 @@
       "avg_primary_dia_mm": 13.4,
       "num_blades": 6,
       "gage_radius": 3.9375,
-      "bit_diameter": 7.875
+      "bit_diameter": 7.875,
+      "cutter_density": 0.9034,
+      "max_mean_ratio": 2.73,
+      "pri_sec_area_ratio": 1.0061,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   },
   "9944": {
-    "durability_score": 4.1,
-    "steerability_score": 9.0,
+    "durability_score": 5.6,
+    "steerability_score": 6.5,
     "cutlet_metrics": {
       "n_cutlets": 41,
       "total_area": 1.4104,
@@ -6626,7 +7271,12 @@
       "avg_primary_dia_mm": 15.9,
       "num_blades": 6,
       "gage_radius": 5.3125,
-      "bit_diameter": 10.625
+      "bit_diameter": 10.625,
+      "cutter_density": 0.4624,
+      "max_mean_ratio": 2.4157,
+      "pri_sec_area_ratio": 0.9382,
+      "n_primary_blades": 3,
+      "n_secondary_blades": 3
     }
   }
 }

@@ -255,45 +255,48 @@ Sum of forces predicts: WOB, Torque, magnitude/direction of lateral force
 
 **Scale**: 0 = most aggressive, 9 = most durable
 
-### Components & Weights
+### Fundamental Principle: Constant Volume
+
+For a given hole size (bit diameter) and IPR, the **total volume of rock removed per revolution is constant** (π × r² × IPR). This volume is divided among all working cutlets. Therefore:
+- **More cutlets = smaller individual cutlets = less force per cutter = more durable**
+- **Fewer cutlets = larger individual cutlets = more force per cutter = more aggressive**
+
+This is the single most important physical relationship for durability scoring.
+
+### Primary vs Secondary Blade Analysis
+
+In a typical 6-bladed design:
+- **Primary blades** (typically 1, 3, 5): Start near the center of the bit, cover the full radial profile
+- **Secondary blades** (typically 2, 4, 6): Start closer to the middle of the bit's radius, do NOT extend to center
+
+At radial positions where BOTH primary and secondary blades have row 1 (primary) cutters, the **cutlet size differential** is a key durability indicator:
+- If primary blade row 1 cutlets are much LARGER than secondary blade row 1 cutlets at overlapping radii → primary blades doing most of the work → more aggressive → less durable
+- If they are similar size → work is well distributed → more durable
+
+### Working Row 2 (Secondary/Backup) Cutters
+
+Row 2 cutters that actually form cutlets (i.e., they are doing work at operating IPR) **increase durability** because:
+- More cutters sharing the same constant total volume of rock
+- Forces on primaries decrease
+- Reduced primary overload risk
+- They also **decrease cutting efficiency** and **decrease aggressiveness**
+
+### Components & Weights (Cutlet-Derived, Global Scoring)
 
 | Component | Weight | What It Measures | Higher = More Durable |
 |-----------|--------|-----------------|----------------------|
-| **Redundancy** | 16% | Blade-pair radial overlap | More overlap = blades share load |
-| **Backup Coverage** | 13% | Backup ratio + profile coverage + PDC backup density | More backups covering more of profile = DBR prevention |
-| **Backrake** | 12% | Average backrake from ME file | Higher backrake = more conservative cutting |
-| **Exposure Equality** | 10% | How uniformly blades cover the profile | Equal exposure = no blade takes disproportionate load at low IPR |
-| **Cutter Size** | 10% | Average primary cutter diameter (inverted) | Smaller cutters = less exposure per cutter, more cutters per area |
-| **Engagement Progression** | 9% | Gradual IPR-dependent engagement | Wide spread + high low-IPR fraction = gradual load redistribution |
-| **Zone Coverage** | 8% | Average blades per radial zone | More blades per zone = better load sharing |
-| **Density** | 8% | Cutters per unit radius (size-adjusted) | More cutters = each one does less work |
-| **Backup Backrake** | 5% | Average backup cutter backrake | Higher = more conservative engagement |
-| **Uniformity** | 5% | Spacing uniformity (inverted CV) | Lower CV = more even spacing = no weak spots |
-| **Low-IPR Durability** | 4% | Inverse of 6-3 offset | Less offset = all blades work at low IPR |
+| **Cutter Density** | 22% | Cutlets per sq inch of bit face area | More cutlets sharing constant volume = less force each |
+| **Load Balance** | 18% | 1 - Gini coefficient of cutlet areas | Even per-cutter load = no single cutter overloaded |
+| **Chamfer Toughness** | 15% | Average chamfer fraction (perimeter×0.020"/area) | Smaller cutlets have proportionally more chamfer = tougher |
+| **Peak Moderation** | 12% | 1/max_mean_ratio (largest vs average cutlet) | No single cutter doing disproportionate work |
+| **Blade Balance** | 10% | 1/(1+blade_cv) of total work per blade | Even per-blade load distribution |
+| **Backrake** | 10% | Average backrake / 30° (capped at 1.0) | Higher backrake = more conservative cutting angle |
+| **Backup Engagement** | 7% | Fraction of cutlets from row 2+ cutters | Working backups sharing load at operating IPR |
+| **Pri-Sec Balance** | 6% | 1/pri_sec_area_ratio at overlapping radii | Balanced primary-secondary blade work distribution |
 
-### Cutter Size Scoring
-```
-cutter_size_score = max(0.0, (20.0 - diameter_mm) / 10.0)
-  10mm → 1.0 (most durable)
-  13mm → 0.7
-  16mm → 0.4 (reference size)
-  19mm → 0.1 (least durable)
-```
+### Scoring Method: Global Min-Max Normalization
 
-### Backup Coverage Composite
-```
-backup_coverage = backup_ratio × 0.4
-               + profile_coverage × 0.4
-               + min(pdc_backup_factor, 1.0) × 0.2
-```
-PDC backups contribute more to durability than knuckles (knuckles mainly limit ROP).
-
-### Engagement Progression Composite
-```
-engagement_prog = min(engagement_spread × 4.0, 1.0) × 0.5
-                + low_ipr_fraction × 0.3
-                + (1.0 - non_working_ratio) × 0.2
-```
+All metrics are size-independent (ratios, density per unit area, CV, entropy) so they are directly comparable across all bit sizes. Scoring uses global min-max normalization across the entire population — no per-size-bucket rescaling (which amplified small differences within small groups).
 
 ---
 

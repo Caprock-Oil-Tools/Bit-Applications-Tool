@@ -1273,8 +1273,87 @@ def compute_cutlet_metrics(cutlet_results, cutters_from_me, gage_radius):
     # --- BLADE COUNT ---
     num_blades = len(blade_areas)
 
-    # --- BIT SIZE (for per-size-bucket scoring) ---
+    # --- BIT SIZE ---
     bit_diameter = gage_radius * 2
+
+    # --- CUTTER DENSITY: cutlets per sq inch of bit face ---
+    # More cutlets sharing the same total volume = smaller individual cutlets
+    # = less force per cutter = more durable (constant volume principle)
+    bit_face_area = math.pi * gage_radius ** 2
+    cutter_density = n_cutlets / bit_face_area if bit_face_area > 0 else 0
+
+    # --- MAX-TO-MEAN RATIO: peak cutter overload indicator ---
+    # If the largest cutlet is much bigger than average, one cutter is doing
+    # disproportionate work and will wear/break first
+    max_mean_ratio = max_area / mean_area if mean_area > 0 else 1.0
+
+    # --- PRIMARY vs SECONDARY BLADE ROW 1 CUTLET SIZE ANALYSIS ---
+    # Primary blades start near center; secondary blades start mid-radius.
+    # Compare row 1 cutlet sizes at overlapping radial positions.
+    # Large differential = primary blades doing most of the work = more aggressive.
+    blade_min_radial = {}
+    blade_row1_cutlets = defaultdict(list)  # blade -> [(radial, area)]
+    for r in cutlet_results:
+        name_str = str(r['name'])
+        parts = name_str.split('.')
+        if len(parts) != 2:
+            continue
+        try:
+            blade_num = int(parts[0])
+        except ValueError:
+            continue
+        suffix = parts[1]
+        cutter_row = int(suffix[0]) if len(suffix) >= 1 and suffix[0].isdigit() else 1
+
+        radial = r['centroid_x']
+        if blade_num not in blade_min_radial or radial < blade_min_radial[blade_num]:
+            blade_min_radial[blade_num] = radial
+        if cutter_row == 1:
+            blade_row1_cutlets[blade_num].append((radial, r['area']))
+
+    # Classify blades: primary start near center, secondary start mid-radius
+    primary_blades = set()
+    secondary_blades = set()
+    center_threshold = 0.25 * gage_radius
+    for bnum, min_r in blade_min_radial.items():
+        if min_r < center_threshold:
+            primary_blades.add(bnum)
+        else:
+            secondary_blades.add(bnum)
+
+    # Compare row 1 cutlet areas at overlapping radial positions
+    pri_sec_area_ratio = 1.0  # default: balanced
+    n_primary_blades = len(primary_blades)
+    n_secondary_blades = len(secondary_blades)
+
+    if primary_blades and secondary_blades:
+        # Find the radial range where secondary blades have cutters
+        sec_radials = []
+        for b in secondary_blades:
+            if b in blade_row1_cutlets:
+                sec_radials.extend([r for r, _ in blade_row1_cutlets[b]])
+        if sec_radials:
+            sec_min_r = min(sec_radials)
+            sec_max_r = max(sec_radials)
+
+            # Collect primary blade row 1 areas in the secondary blade radial range
+            pri_areas_overlap = []
+            for b in primary_blades:
+                if b in blade_row1_cutlets:
+                    for r, a in blade_row1_cutlets[b]:
+                        if sec_min_r * 0.9 <= r <= sec_max_r * 1.1:
+                            pri_areas_overlap.append(a)
+
+            sec_areas_all = []
+            for b in secondary_blades:
+                if b in blade_row1_cutlets:
+                    sec_areas_all.extend([a for _, a in blade_row1_cutlets[b]])
+
+            if pri_areas_overlap and sec_areas_all:
+                pri_mean = float(np.mean(pri_areas_overlap))
+                sec_mean = float(np.mean(sec_areas_all))
+                if sec_mean > 0:
+                    pri_sec_area_ratio = pri_mean / sec_mean
 
     return {
         # Cutlet-derived
@@ -1315,6 +1394,12 @@ def compute_cutlet_metrics(cutlet_results, cutters_from_me, gage_radius):
         "num_blades": num_blades,
         "gage_radius": float(gage_radius),
         "bit_diameter": float(bit_diameter),
+        # Layout structure metrics
+        "cutter_density": float(cutter_density),
+        "max_mean_ratio": float(max_mean_ratio),
+        "pri_sec_area_ratio": float(pri_sec_area_ratio),
+        "n_primary_blades": n_primary_blades,
+        "n_secondary_blades": n_secondary_blades,
     }
 
 
@@ -1417,220 +1502,123 @@ def main():
     ] if bn in all_metrics]
 
     # =========================================================================
-    # PER-SIZE-BUCKET SCORING WITH BEST-FIT RESCALING
+    # GLOBAL SCORING — all bits scored on the same scale
     # =========================================================================
-    # Each bit size (diameter) is its own scoring bucket because the volume of
-    # rock removed per revolution is π × r² × IPR — fundamentally different for
-    # different hole sizes.
+    # Previous approach (per-size-bucket with rescaling) amplified tiny metric
+    # differences within small buckets, producing unintuitive 0-9 spreads.
     #
-    # Approach:
-    #   1. Group bits by diameter
-    #   2. Compute raw component values (mostly size-independent shape metrics)
-    #   3. Score each bucket independently 0-9
-    #   4. Best-fit rescale across buckets: use size-independent "reference
-    #      score" (from metrics that are directly comparable across sizes) to
-    #      find optimal monotonic mapping that aligns buckets while preserving
-    #      intra-bucket ordering
+    # New approach: global min-max normalization across ALL bits.
+    # All metrics used are already size-independent (ratios, CV, entropy,
+    # density normalized by bit face area, etc.), so cross-size comparison
+    # is valid.
 
-    # Group bits by diameter
-    size_buckets = defaultdict(list)
-    for bn in bit_numbers_ordered:
-        m = all_metrics[bn]
-        # Round diameter to nearest 0.25" for grouping
-        bucket_dia = round(m["bit_diameter"] * 4) / 4
-        size_buckets[bucket_dia].append(bn)
+    def score_global_0_9(components, comp_names, weights):
+        """Score all bits globally from 0 to 9.
 
-    print(f"\nSize buckets: {dict((k, len(v)) for k, v in size_buckets.items())}")
-
-    # =========================================================================
-    # Helper: score a bucket 0-9 independently
-    # =========================================================================
-    def score_bucket_0_9(bucket_bns, components, comp_names, weights):
-        """Score a single size bucket from 0 to 9.
-
-        1. Normalize each component within the bucket to 0-1
+        1. Normalize each component across ALL bits to 0-1
         2. Weighted sum → raw score
-        3. Scale raw scores to 0-9 within the bucket
+        3. Scale raw scores to 0-9 globally
         Returns dict {bn: score}
         """
-        if len(bucket_bns) <= 1:
-            return {bucket_bns[0]: 4.5} if bucket_bns else {}
+        bns = list(components.keys())
+        if not bns:
+            return {}
 
-        # Normalize each component within this bucket
-        normed = {bn: dict(components[bn]) for bn in bucket_bns}
+        # Normalize each component globally
+        normed = {bn: dict(components[bn]) for bn in bns}
         for comp in comp_names:
-            vals = [normed[bn][comp] for bn in bucket_bns]
+            vals = [normed[bn][comp] for bn in bns]
             vmin, vmax = min(vals), max(vals)
             if vmax > vmin:
-                for bn in bucket_bns:
+                for bn in bns:
                     normed[bn][comp] = (normed[bn][comp] - vmin) / (vmax - vmin)
             else:
-                for bn in bucket_bns:
+                for bn in bns:
                     normed[bn][comp] = 0.5
 
         # Weighted sum
         raw = {}
-        for bn in bucket_bns:
+        for bn in bns:
             raw[bn] = sum(normed[bn][comp] * weights[comp] for comp in comp_names)
 
         # Scale to 0-9
         rmin, rmax = min(raw.values()), max(raw.values())
         scores = {}
-        for bn in bucket_bns:
+        for bn in bns:
             if rmax > rmin:
-                scores[bn] = (raw[bn] - rmin) / (rmax - rmin) * 9.0
+                scores[bn] = round(((raw[bn] - rmin) / (rmax - rmin)) * 9.0, 1)
             else:
                 scores[bn] = 4.5
+            scores[bn] = max(0.0, min(9.0, scores[bn]))
         return scores
 
     # =========================================================================
-    # Helper: best-fit rescale across buckets
-    # =========================================================================
-    def bestfit_rescale(bucket_scores, reference_scores, size_buckets):
-        """
-        Rescale per-bucket 0-9 scores to align with a global reference,
-        preserving intra-bucket ordering.
-
-        For each bucket, find offset and scale (affine transform) that
-        minimizes MSE to the reference scores for bits in that bucket.
-        Then clip to 0-9 and round.
-
-        The reference score is computed from size-independent metrics that
-        are directly comparable across all bit sizes.
-        """
-        # Collect all bucket scores and references
-        all_scores = {}
-
-        for bucket_dia, bucket_bns in size_buckets.items():
-            if len(bucket_bns) <= 1:
-                # Single-bit bucket: use the reference score directly
-                bn = bucket_bns[0]
-                all_scores[bn] = reference_scores.get(bn, 4.5)
-                continue
-
-            # Get bucket scores and reference scores
-            b_scores = [bucket_scores[bn] for bn in bucket_bns]
-            r_scores = [reference_scores[bn] for bn in bucket_bns]
-
-            # Fit affine transform: ref ≈ a * bucket_score + b
-            # Least squares: minimize Σ(r_i - (a * b_i + b))²
-            b_arr = np.array(b_scores)
-            r_arr = np.array(r_scores)
-
-            b_mean = np.mean(b_arr)
-            r_mean = np.mean(r_arr)
-
-            # Compute a (slope) and b (intercept)
-            b_var = np.var(b_arr)
-            if b_var > 1e-10:
-                a = np.sum((b_arr - b_mean) * (r_arr - r_mean)) / np.sum((b_arr - b_mean) ** 2)
-                # Ensure monotonic (a > 0, preserving order)
-                a = max(a, 0.1)
-                b = r_mean - a * b_mean
-            else:
-                a = 1.0
-                b = r_mean - b_mean
-
-            # Apply transform
-            for bn, bs in zip(bucket_bns, b_scores):
-                all_scores[bn] = a * bs + b
-
-        # Final clip to 0-9 and round
-        # First, rescale to use the full 0-9 range
-        smin = min(all_scores.values())
-        smax = max(all_scores.values())
-        for bn in all_scores:
-            if smax > smin:
-                all_scores[bn] = round(((all_scores[bn] - smin) / (smax - smin)) * 9.0, 1)
-            else:
-                all_scores[bn] = 4.5
-            all_scores[bn] = max(0.0, min(9.0, all_scores[bn]))
-
-        return all_scores
-
-    # =========================================================================
-    # DURABILITY SCORING — cutlet-derived, per-size-bucket
+    # DURABILITY SCORING — cutlet-derived, global
     # =========================================================================
     # Physical basis: durability = how long the bit drills before pull.
+    # 0 = most aggressive (wears fast), 9 = most durable (lasts long)
     #
-    # Key physics from cutlet plots and force distributions:
-    #   1. Force distribution uniformity (entropy): even force spread = no
-    #      single cutter overloaded = longer life. From cutlet area distribution.
-    #   2. Chamfer fraction: 0.020" x 45° chamfer on all PDCs. Higher chamfer
-    #      fraction = more cutter area in compression = tougher cutters = more
-    #      durable, BUT less efficient. More cutlets → smaller avg area →
-    #      higher chamfer fraction → more durable.
-    #   3. Load balance (Gini): how evenly is cutting work distributed across
-    #      individual cutters? Already size-independent.
-    #   4. Blade balance (CV): how evenly is total work distributed across
-    #      blades? Already size-independent.
-    #   5. Force spread: how many radial bins carry significant load? More
-    #      spread = more of the profile is actively cutting = more durable.
-    #   6. Backup engagement: backup cutlets sharing load at operating IPR.
-    #   7. Backrake: higher = more conservative cutting angle = less damage.
+    # Key physics:
+    #   1. Cutter density (cutlets per sq inch of bit face): more cutlets
+    #      sharing the same total rock volume = smaller individual cutlets
+    #      = less force per cutter = more durable. Normalized by bit face
+    #      area so it's comparable across bit sizes.
+    #   2. Load balance (Gini): even per-cutter load = no single cutter
+    #      overloaded = longer life.
+    #   3. Chamfer fraction: 0.020" x 45° chamfer on all PDCs. Smaller
+    #      cutlets have proportionally more chamfer = tougher cutting.
+    #   4. Peak moderation: 1/max_mean_ratio — if the largest cutlet is
+    #      much bigger than average, that cutter wears fastest.
+    #   5. Blade balance (CV): even per-blade load distribution.
+    #   6. Backrake: higher = more conservative cutting angle = less damage.
+    #   7. Backup engagement: row 2 cutters forming cutlets = sharing load.
+    #   8. Primary-secondary blade balance: when primary and secondary blade
+    #      row 1 cutlets are similar size at overlapping radii, load is
+    #      better distributed. Large differential = primaries doing most
+    #      of the work = more aggressive.
 
     dur_comp_names = [
-        "force_uniformity",   # Entropy of radial force distribution (shape)
-        "chamfer_toughness",  # Avg chamfer fraction (higher = tougher cutters)
-        "load_balance",       # 1 - Gini coefficient (even per-cutter load)
+        "cutter_density",     # More cutlets per unit bit face = more durable
+        "load_balance",       # 1 - Gini (even per-cutter load)
+        "chamfer_toughness",  # Higher chamfer fraction = tougher cutters
+        "peak_moderation",    # 1/max_mean_ratio (no single cutter overloaded)
         "blade_balance",      # 1 / (1 + blade_cv) (even per-blade load)
-        "force_spread",       # Fraction of radial bins with >5% of total force
-        "backup_engagement",  # Fraction of cutlets that are backup elements
-        "backrake",           # Average back rake (conservative cutting angle)
+        "backrake",           # Conservative cutting angle
+        "backup_engagement",  # Row 2 cutters forming cutlets = sharing load
+        "pri_sec_balance",    # Primary-secondary blade cutlet size balance
     ]
     weights_dur = {
-        "force_uniformity": 0.25,    # THE most important: even radial force shape
-        "chamfer_toughness": 0.18,   # Chamfer physics: compression → toughness
+        "cutter_density": 0.22,      # Fundamental: more cutters = less force each
         "load_balance": 0.18,        # Per-cutter Gini — no single cutter overloaded
-        "blade_balance": 0.12,       # No blade takes disproportionate damage
-        "force_spread": 0.10,        # Force spread across the full profile
-        "backup_engagement": 0.10,   # Backups actively sharing load
-        "backrake": 0.07,            # Conservative cutting angle
+        "chamfer_toughness": 0.15,   # Chamfer physics: compression → toughness
+        "peak_moderation": 0.12,     # Worst-case cutter overload
+        "blade_balance": 0.10,       # No blade takes disproportionate damage
+        "backrake": 0.10,            # Conservative cutting angle
+        "backup_engagement": 0.07,   # Backups actively sharing load
+        "pri_sec_balance": 0.06,     # Balanced primary-secondary blade work
     }
 
     durability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
         durability_components[bn] = {
-            "force_uniformity": m["force_uniformity"],
-            "chamfer_toughness": m["avg_chamfer_fraction"],
+            "cutter_density": m["cutter_density"],
             "load_balance": 1.0 - m["gini"],
+            "chamfer_toughness": m["avg_chamfer_fraction"],
+            "peak_moderation": 1.0 / max(m["max_mean_ratio"], 1.0),
             "blade_balance": 1.0 / (1.0 + m["blade_cv"]),
-            "force_spread": m["force_spread"],
+            "backrake": min(m["avg_backrake"] / 30.0, 1.0),
             "backup_engagement": m["backup_cutlet_fraction"],
-            "backrake": m["avg_backrake"],
+            "pri_sec_balance": 1.0 / max(m["pri_sec_area_ratio"], 1.0),
         }
 
-    # Step 1: Score each size bucket independently 0-9
-    dur_bucket_scores = {}
-    for bucket_dia, bucket_bns in size_buckets.items():
-        bucket_result = score_bucket_0_9(bucket_bns, durability_components, dur_comp_names, weights_dur)
-        dur_bucket_scores.update(bucket_result)
-
-    # Step 2: Compute reference score from size-independent metrics
-    # These metrics are directly comparable across all bit sizes (no volume dependence)
-    dur_ref_comp = ["force_uniformity", "chamfer_toughness", "load_balance",
-                    "blade_balance", "backup_engagement", "backrake"]
-    dur_ref_raw = {}
-    for bn in bit_numbers_ordered:
-        dur_ref_raw[bn] = sum(durability_components[bn][c] for c in dur_ref_comp) / len(dur_ref_comp)
-
-    # Normalize reference to 0-9
-    rmin, rmax = min(dur_ref_raw.values()), max(dur_ref_raw.values())
-    dur_reference = {}
-    for bn in bit_numbers_ordered:
-        if rmax > rmin:
-            dur_reference[bn] = ((dur_ref_raw[bn] - rmin) / (rmax - rmin)) * 9.0
-        else:
-            dur_reference[bn] = 4.5
-
-    # Step 3: Best-fit rescale bucket scores to align with reference
-    durability_scores = bestfit_rescale(dur_bucket_scores, dur_reference, size_buckets)
+    durability_scores = score_global_0_9(durability_components, dur_comp_names, weights_dur)
 
     # =========================================================================
-    # STEERABILITY SCORING — cutlet-derived, per-size-bucket
+    # STEERABILITY SCORING — cutlet-derived, global
     # =========================================================================
     # Physical basis: steerability = how well the driller can control direction.
+    # 0 = least steerable, 9 = most steerable
     #
     # Key physics from cutlet plots:
     #   1. Gauge area fraction: LESS gauge cutting = LESS wall grip = MORE
@@ -1683,36 +1671,15 @@ def main():
             "profile_depth": m["y_range"],
         }
 
-    # Step 1: Score each size bucket independently 0-9
-    steer_bucket_scores = {}
-    for bucket_dia, bucket_bns in size_buckets.items():
-        bucket_result = score_bucket_0_9(bucket_bns, steerability_components, steer_comp_names, weights_steer)
-        steer_bucket_scores.update(bucket_result)
-
-    # Step 2: Compute reference score from size-independent metrics
-    steer_ref_comp = ["gauge_openness", "gauge_conservatism", "cone_aggressiveness",
-                      "blade_factor", "siderake"]
-    steer_ref_raw = {}
-    for bn in bit_numbers_ordered:
-        steer_ref_raw[bn] = sum(steerability_components[bn][c] for c in steer_ref_comp) / len(steer_ref_comp)
-
-    rmin, rmax = min(steer_ref_raw.values()), max(steer_ref_raw.values())
-    steer_reference = {}
-    for bn in bit_numbers_ordered:
-        if rmax > rmin:
-            steer_reference[bn] = ((steer_ref_raw[bn] - rmin) / (rmax - rmin)) * 9.0
-        else:
-            steer_reference[bn] = 4.5
-
-    # Step 3: Best-fit rescale
-    steerability_scores = bestfit_rescale(steer_bucket_scores, steer_reference, size_buckets)
+    steerability_scores = score_global_0_9(steerability_components, steer_comp_names, weights_steer)
 
     # --- PRINT RESULTS ---
-    print("\n" + "=" * 150)
-    print(f"{'Bit':<7} {'Size':<6} {'Layout (ref)':<16} {'Cutlets':<8} {'Gini':<6} "
-          f"{'FrcUnif':<8} {'ChamFr':<7} {'BldCV':<6} {'BkpFr':<6} {'GaugeFr':<8} "
+    print("\n" + "=" * 170)
+    print(f"{'Bit':<7} {'Size':<6} {'Layout (ref)':<16} {'Cutlets':<8} {'Density':<8} "
+          f"{'Gini':<6} {'ChamFr':<7} {'MaxMn':<6} {'BldCV':<6} {'BkpFr':<6} "
+          f"{'PriSec':<7} {'BR':<6} {'GaugeFr':<8} "
           f"{'Dur':<6} {'Steer':<6}")
-    print("=" * 150)
+    print("=" * 170)
     for bit in bits:
         bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
         dur = durability_scores.get(bn, "-")
@@ -1721,11 +1688,14 @@ def main():
         m = all_metrics.get(bn)
         if m:
             print(f"  {bn:<7} {m['bit_diameter']:<6.2f} {layout:<16} {m['n_cutlets']:<8} "
-                  f"{m['gini']:<6.3f} {m['force_uniformity']:<8.3f} {m['avg_chamfer_fraction']:<7.3f} "
-                  f"{m['blade_cv']:<6.3f} {m['backup_cutlet_fraction']:<6.3f} "
+                  f"{m['cutter_density']:<8.3f} "
+                  f"{m['gini']:<6.3f} {m['avg_chamfer_fraction']:<7.3f} "
+                  f"{m['max_mean_ratio']:<6.2f} {m['blade_cv']:<6.3f} "
+                  f"{m['backup_cutlet_fraction']:<6.3f} "
+                  f"{m['pri_sec_area_ratio']:<7.3f} {m['avg_backrake']:<6.1f} "
                   f"{m['gauge_area_fraction']:<8.3f} {dur:<6} {steer:<6}")
         else:
-            print(f"  {bn:<7} {'?':<6} {layout:<16} -       -      -        -       -      -      -        -      -")
+            print(f"  {bn:<7} {'?':<6} {layout:<16} {'':>8} {'':>8} {'':>6} {'':>7} {'':>6} {'':>6} {'':>6} {'':>7} {'':>6} {'':>8} {'-':<6} {'-':<6}")
 
     # --- WRITE TO WORKBOOK ---
     print(f"\nWriting scores to {WORKBOOK_PATH}...")
