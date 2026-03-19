@@ -782,7 +782,109 @@ Replace proxy-based scoring with actual force-distribution-based scoring.
 
 ---
 
-## 9. ANSWERED QUESTIONS (from user)
+## 9. CHAMFER EFFECTS ON CUTLET EFFICIENCY AND DURABILITY
+
+### 9.1 The Chamfer Geometry
+
+All cutters in the current designs have **0.020" x 45° chamfers** on the PDC (Polycrystalline
+Diamond Compact) cutting face. The chamfer is a beveled ring around the cutter edge.
+
+- The **flat face** of the cutter (inside the chamfer ring) does the efficient shearing of rock
+- The **chamfer portion** does NOT cut as efficiently — it puts the PDC into compression
+  rather than shearing
+- The chamfer's purpose: improve cutter toughness by keeping the PDC in compression,
+  preventing the diamond table from overloading and shearing off
+
+### 9.2 Chamfer Fraction vs Cutlet Size
+
+For a given cutter with chamfer width `w = 0.020"`:
+
+- **Large cutlets** (high IPR, fewer cutters at a radius): The chamfer ring is a small
+  fraction of the total cutlet area → most of the cutting is done by the efficient flat face
+- **Small cutlets** (low IPR, many cutters at a radius): The chamfer ring is a LARGE
+  fraction of the cutlet area → more of the cutting energy goes into compression
+  (keeping the cutter intact) rather than shearing rock
+
+This is a fundamental trade-off:
+- **Smaller chamfer** = more aggressive, more efficient, but less tough
+- **Bigger chamfer** = less aggressive, less efficient, but more tough
+
+### 9.3 Constant Volume Principle
+
+No matter how many cutters are doing work at a given IPR for a given hole size, **the
+volume of material being removed per revolution remains constant** (it's just π × r² × IPR).
+
+This means:
+- More cutlets = smaller average cutlet areas (same volume distributed across more cutters)
+- Smaller average cutlet areas = larger percentage of each cutlet is chamfer
+- Larger chamfer fraction = decreased cutting efficiency (more energy in compression,
+  less in shearing)
+- BUT: larger chamfer fraction = increased cutter toughness (durability)
+
+### 9.4 Implications for Scoring
+
+**For Layout Durability (0-9):**
+- Higher chamfer fraction = MORE durable (cutters kept in compression longer)
+- But this is a natural consequence of having more cutters / smaller cutlets
+- The force DISTRIBUTION pattern matters (how evenly forces spread across cutters),
+  not the absolute force magnitudes
+- Each bit size is its own bucket: a 6.5" bit and a 12.25" bit have fundamentally
+  different volumes removed, so they can't be directly compared on absolute metrics
+- Score within each size bucket, then scale buckets to fit the 0-9 range
+
+**For Steerability (0-9):**
+- Chamfer fraction affects gauge region particularly: gauge cutlets with high chamfer
+  fraction = less aggressive lateral cutting = easier to steer
+- But also: more gauge cutlets (even if small) = more wall contact = harder to steer
+
+### 9.5 Computing Chamfer Fraction
+
+For each cutlet with area `A` and perimeter `P`:
+- Approximate chamfer area ≈ `P × w_proj` where `w_proj ≈ 0.020"` (projected chamfer width)
+- Chamfer fraction ≈ `(P × 0.020) / A`
+- For a circle of radius r: chamfer_frac = `2 × 0.020 / r` → inversely proportional to size
+- For small cutlets, this can approach or exceed 1.0 (entire cutlet is chamfer)
+
+Simpler aggregate metric: `chamfer_efficiency = 0.020 / sqrt(mean_cutlet_area)`
+This captures the key physics: smaller cutlets → higher chamfer fraction → less efficient.
+
+---
+
+## 10. SCORING METHODOLOGY — PER-SIZE BUCKETS
+
+### 10.1 Why Per-Size Buckets
+
+Each bit size drills a different hole diameter. The volume of rock removed per revolution
+is `V = π × (hole_radius)² × IPR`. A 12.25" bit removes ~3.5x the volume of a 6.5" bit.
+
+This means:
+- Absolute cutlet area totals are NOT comparable across sizes
+- A 6.5" bit with total area 0.5 in² is NOT "less durable" than a 12.25" bit with 1.2 in²
+- The DISTRIBUTION of areas within each size group is what matters
+
+### 10.2 Scoring Approach
+
+1. **Group bits by hole size** (6.5", 7.875", 8.5", 8.75", etc.)
+2. **Score within each group** using distribution-based metrics:
+   - Force distribution shape (normalized area distribution across radial profile)
+   - Chamfer fraction (computed from cutlet areas and perimeters)
+   - Load balance (Gini, blade CV — these are already size-independent)
+3. **Scale groups** to fit the 0-9 range:
+   - Each group gets its own internal 0-1 normalization
+   - Then groups are aligned so the overall 0-9 scale is meaningful
+
+### 10.3 Force Distribution Shape (Not Magnitudes)
+
+Since formation yield strength is held constant at 29,500 psi, the absolute force
+numbers just scale with area. What matters is the SHAPE of the distribution:
+- Normalize each bit's cutlet areas to sum to 1.0
+- Compare the resulting probability distribution across the radial profile
+- Uniform distributions = durable (no single cutter overloaded)
+- Spiky distributions = aggressive but fragile
+
+---
+
+## 11. ANSWERED QUESTIONS (from user)
 
 1. **IDS** = Instantaneous Drill Speed. Formula: `IDS = ((ft/hr × 12) / 60) / RPM`
 2. **Formation yield strength**: Kept constant (29,500 psi) across all assemblies
@@ -792,3 +894,10 @@ Replace proxy-based scoring with actual force-distribution-based scoring.
    separate engagement calculation, not for cutlet geometry
 5. **MassProp values**: Close but not 100% trusted
 6. **Standard IPR**: 0.25 in/rev for all analyses
+7. **Chamfer**: All cutters use 0.020" x 45° chamfer. Chamfer portion of cutlet
+   does not cut efficiently — puts PDC in compression instead of shearing rock.
+   Smaller cutlets = higher chamfer fraction = less efficient but more durable.
+8. **Constant volume**: Regardless of cutter count, volume removed is constant for
+   a given hole size and IPR. More cutlets = smaller avg area = higher chamfer %.
+9. **Per-size scoring**: Each bit size is its own scoring bucket. Score within bucket,
+   then scale to fit the 0-9 range across all sizes.
