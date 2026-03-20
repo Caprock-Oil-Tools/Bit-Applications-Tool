@@ -132,3 +132,93 @@ From user inputs during this study:
 - "Even though these are different designs you can see that the amount of shift matters"
 - The shift amount is a design parameter that varies continuously
 - Both F-type and 6-3 are on the same spectrum, just at different points
+
+---
+
+## Key Finding 7: The Analysis Pipeline Is a Dependency Chain
+
+The bit/rock interaction analysis builds in layers, each depending on the one below:
+
+```
+Layer 0: 2D Cutlet Plots (FOUNDATION)
+   └── Cutlet areas, shapes, centroids (X,Y), per-cutter geometry
+   └── This is what the current durability score is almost entirely built on
+
+Layer 1: Minimum Engagement Speeds (in/rev)
+   └── Tells you the IPR at which each backup/secondary cutter first appears
+       in the cutlet plot and begins doing work
+   └── Contextual — helps interpret WHEN Layer 0 data becomes meaningful
+       for a given cutter
+
+Layer 2: 3D Helical Paths — Material Removal per Cutlet
+   └── Built FROM the 2D cutlet plots
+   └── One revolution at a given IPR traces each cutter's helical path
+   └── Produces VOLUME of rock removed per cutlet (not just area)
+   └── This is what the bit actually does — removes material in 3D
+
+Layer 3: Cutlet Force Calculations (per-cutter)
+   └── Requires THREE inputs:
+       a) Cutter orientation data (tilt angle and back rake)
+       b) 2D cutlet centroids (X,Y) and areas (from Layer 0)
+       c) 3D helical path volumes (from Layer 2)
+   └── Produces per-cutter forces: Torque, Radial, Tangential, Axial
+
+Layer 4: Bit-Level Force Summation
+   └── Sum of all per-cutter forces from Layer 3
+   └── Evaluates how forces act on the bit AS A WHOLE
+   └── This is where you see overall bit behavior: walk tendency,
+       torque demand, stability, etc.
+```
+
+### Current Gap in Durability Scoring
+
+The current durability score uses **only Layer 0** (2D cutlet geometry) plus
+some orientation data (backrake, chamfer). It does NOT use:
+- **Layer 2** (3D volumes — actual material removal)
+- **Layer 3** (per-cutter forces — actual mechanical loading)
+- **Layer 4** (bit-level forces — overall bit behavior)
+
+This means the score is reasoning about cutter AREA exposure but not about
+the actual VOLUME of rock each cutter removes or the FORCES each cutter
+experiences. Area is a proxy for work, but volume and force are the real
+physics.
+
+### Insight: Why This Matters for Durability
+
+A cutter's durability is limited by the forces it experiences, which depend on:
+1. How much material it removes per revolution (3D volume, not just 2D area)
+2. Its orientation relative to the rock (backrake, tilt → force direction)
+3. Where on the bit face it sits (centroid position → moment arm for torque)
+
+Two cutters with identical 2D cutlet areas can experience very different forces
+if they sit at different radii or have different orientations. The 3D volume
+captures depth-of-cut effects that 2D area misses entirely.
+
+### Plan: Improving Durability Score with Deeper Physics
+
+To better predict layout durability, the scoring should progressively
+incorporate higher layers:
+
+**Phase 1 — Incorporate 3D Volume Data (Layer 2)**
+- Replace or augment 2D area-based metrics with volume-based equivalents
+- Volume-based Gini coefficient (work distribution by actual material removed)
+- Volume-based primary/secondary ratios (instead of area ratios)
+- Understand what volume data is already available or needs to be computed
+
+**Phase 2 — Incorporate Per-Cutter Forces (Layer 3)**
+- Use force calculations to identify overloaded cutters
+- Force-based load balance (which cutter sees the most mechanical stress)
+- Max force vs mean force ratio (force-based peak moderation)
+- Identify cutters at risk of impact damage (high axial force + low backrake)
+
+**Phase 3 — Incorporate Bit-Level Forces (Layer 4)**
+- Use summed forces to evaluate overall bit stability under load
+- Torque demand as a function of layout
+- Net radial force (walk tendency — relates to both durability and steerability)
+- Force balance across blades (not just area balance)
+
+**Phase 4 — Use Min Engagement Speeds (Layer 1) for Context**
+- Weight durability penalties by the IPR range where backup cutters are absent
+- A bit whose backups engage at 0.050 in/rev is more robust than one
+  whose backups don't appear until 0.200 in/rev
+- This connects the "when do cutters engage" question directly to scoring
