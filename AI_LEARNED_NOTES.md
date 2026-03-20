@@ -228,3 +228,100 @@ incorporate higher layers:
 - A bit whose backups engage at 0.050 in/rev is more robust than one
   whose backups don't appear until 0.200 in/rev
 - This connects the "when do cutters engage" question directly to scoring
+
+---
+
+## Key Finding 8: Force Calculation Methodology (from Min Engagement v8.01)
+
+### The Force Model — What It Does and Doesn't Account For
+
+**What it models:** Forces on the FACE of each PDC cutter, based on the
+cutter's face orientation relative to its helical path of motion. It does
+NOT model chamfer geometry forces — only the flat face orientation.
+
+### The Pipeline (columns AV through IE, 8 logical groups)
+
+```
+Group 1: CUTLET INPUTS (AV-BE)
+   Pulls centroid Y/Z, area, volume from MassProp sheet
+   Volume = Area × helical arc length (3D sweep of 2D cutlet)
+   Master filter: AV only populates if cutter has valid data (area ≥ 0.0001)
+
+Group 2: 3D CENTROID LOCATION (BF-EO) — Pure analytic geometry
+   Step 1: Define PDC face plane from cutter center + orientation angles
+   Step 2: Define horizontal Z-plane at cutlet centroid height
+   Step 3: Find line of intersection (two planes → a line)
+   Step 4: Intersect line with sphere (cutter diameter) → 2 points
+   Step 5: Intersect segment with cylinder (at cutlet radial position) → final point
+   Step 6: Convert to cylindrical coords (theta, r, Z)
+
+Group 3: CUTTER FACE UNIT VECTOR (ES-EY)
+   Takes cutter face orientation from design data (cols AD-AF)
+   Rotates into local reference frame aligned with cutlet's angular position
+   2D rotation matrix: [cos(θ), -sin(θ); sin(θ), cos(θ)] applied to X,Y
+
+Group 4: PATH OF MOTION UNIT VECTOR (EZ-FF)
+   Helix angle = ATAN(IPR / (r × 2π)) — pitch of cutting path
+   POM vector built from cutlet angular position + helix angle
+   Rotated into same local frame as face vector
+
+Group 5: RAKE ANGLE DECOMPOSITION (FG-GI)
+   Difference vector: Face - POM (how face differs from path of motion)
+   Total Rake = ACOS((2 - |diff|²) / 2) — 3D angle between face and POM
+   Side Rake = angle in XY projection (perpendicular to bit axis)
+   Helix/Back Rake = angle in XZ projection (along bit axis)
+   Signs: +1/-1 for push toward/away from axis
+   Direction cosines from (SideRake+90, HelixRake):
+     → % Radial, % Tangential, % Axial force split
+
+Group 6: FORCE CALCULATION ENGINE (GJ-GZ) — The core
+   BASE FORCE = Rock Yield Strength (psi) × Cutlet Area (in²) = Tangential Force (lbs)
+   Global constant: 29,500 psi (formation pressure / rock strength)
+   Redistribute tangential force via direction cosines → Radial, Axial components
+   Torque = Force × radial moment arm
+   Work components = Force × helical circumference
+
+Group 7: LATERAL FORCE VECTORS (HA-HH)
+   Converts per-cutlet forces back to global X-Y components
+   Applies sign conventions (toward/away from axis)
+   Row 8 sums all X,Y components → resultant magnitude and direction
+   This is the NET lateral force on the bit (walk tendency)
+
+Group 8: SORTED OUTPUT TABLE (HI-IE)
+   Everything re-sorted by radial position (center to gauge)
+   Rake angles, areas, volumes, torques, forces all in one table
+   Row 6 has SUMs and AVERAGEs across all cutlets
+```
+
+### The Fundamental Force Equation
+
+```
+Tangential Force (lbs) = Pressure (psi) × Cutlet Area (in²)
+```
+
+This is the base. Everything else is geometry to decompose that single
+force into directional components based on cutter orientation.
+
+### How Cutter Orientation Factors In
+
+The face unit vector vs. path-of-motion unit vector determines rake angles.
+These rakes are decomposed into:
+- Side Rake (XY plane) → controls Radial vs Tangential force split
+- Helix/Back Rake (XZ plane) → controls Axial component
+
+Direction cosines: GB = cos(SideRake+90)·cos(HelixRake), etc.
+These produce percentage force splits (GG, GH, GI) that redistribute
+the single tangential force into 3 orthogonal components.
+
+**Key insight:** The method captures HOW the face orientation redirects
+cutting forces, but NOT the additional forces from chamfer contact
+geometry. The chamfer adds resistance in a different way (wider contact
+area, different effective rake). This is a known simplification.
+
+### Key Input Parameters
+- RPM: 100 (AS3)
+- ROP: 125 ft/hr (AS4)
+- IPR: derived from ROP/RPM
+- Rock Yield Strength: 29,500 psi (GW2) — global constant
+- Cutter positions: N, O, P (X, Y, Z)
+- Cutter orientations: AD, AE, AF (unit vector) → AG (tilt), AH (rake)
