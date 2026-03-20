@@ -1403,6 +1403,78 @@ def compute_cutlet_metrics(cutlet_results, cutters_from_me, gage_radius):
     }
 
 
+def _compute_pri_sec_ratio(cutlet_results, gage_radius):
+    """Compute primary/secondary blade row-1 cutlet area ratio.
+
+    Standalone version of the pri_sec logic from compute_cutlet_metrics,
+    so it can be called at different IPR values without recomputing all metrics.
+
+    Returns float ratio (1.0 = balanced, higher = more imbalanced).
+    """
+    blade_min_radial = {}
+    blade_row1_cutlets = defaultdict(list)
+
+    for r in cutlet_results:
+        name_str = str(r['name'])
+        parts = name_str.split('.')
+        if len(parts) != 2:
+            continue
+        try:
+            blade_num = int(parts[0])
+        except ValueError:
+            continue
+        suffix = parts[1]
+        cutter_row = int(suffix[0]) if len(suffix) >= 1 and suffix[0].isdigit() else 1
+
+        radial = r['centroid_x']
+        if blade_num not in blade_min_radial or radial < blade_min_radial[blade_num]:
+            blade_min_radial[blade_num] = radial
+        if cutter_row == 1:
+            blade_row1_cutlets[blade_num].append((radial, r['area']))
+
+    primary_blades = set()
+    secondary_blades = set()
+    center_threshold = 0.25 * gage_radius
+    for bnum, min_r in blade_min_radial.items():
+        if min_r < center_threshold:
+            primary_blades.add(bnum)
+        else:
+            secondary_blades.add(bnum)
+
+    if not primary_blades or not secondary_blades:
+        return 1.0
+
+    sec_radials = []
+    for b in secondary_blades:
+        if b in blade_row1_cutlets:
+            sec_radials.extend([r for r, _ in blade_row1_cutlets[b]])
+    if not sec_radials:
+        return 100.0  # secondaries have no cutlets at all
+
+    sec_min_r = min(sec_radials)
+    sec_max_r = max(sec_radials)
+
+    pri_areas_overlap = []
+    for b in primary_blades:
+        if b in blade_row1_cutlets:
+            for r, a in blade_row1_cutlets[b]:
+                if sec_min_r * 0.9 <= r <= sec_max_r * 1.1:
+                    pri_areas_overlap.append(a)
+
+    sec_areas_all = []
+    for b in secondary_blades:
+        if b in blade_row1_cutlets:
+            sec_areas_all.extend([a for _, a in blade_row1_cutlets[b]])
+
+    if pri_areas_overlap and sec_areas_all:
+        pri_mean = float(np.mean(pri_areas_overlap))
+        sec_mean = float(np.mean(sec_areas_all))
+        if sec_mean > 0:
+            return pri_mean / sec_mean
+
+    return 100.0  # no overlap or zero secondary area
+
+
 def main():
     from cutlet_engine import compute_cutlets
 
@@ -1486,6 +1558,30 @@ def main():
             # Compute cutlet-derived metrics
             metrics = compute_cutlet_metrics(cutlet_results, cutters_me, gage_rad)
             if metrics:
+                # --- Multi-IPR layout balance analysis ---
+                # Compute cutlets at low IPR (0.100) to capture worst-case
+                # primary/secondary imbalance. At low IPR:
+                # - True 6-3: secondaries absent (ratio 429:1)
+                # - F-type small shift: secondaries starved (ratio 8:1)
+                # - F-type good shift: proportional balance (ratio 3:1)
+                low_ipr = 0.100
+                try:
+                    low_ipr_cutlets = compute_cutlets(me_cutters, low_ipr, gage_rad)
+                    low_ipr_cutlets = [r for r in low_ipr_cutlets if r['area'] >= 0.001]
+                    low_ipr_ratio = _compute_pri_sec_ratio(low_ipr_cutlets, gage_rad)
+                except Exception:
+                    low_ipr_ratio = metrics["pri_sec_area_ratio"]
+
+                # Stability: how much the ratio changes from low to file IPR
+                file_ratio = metrics["pri_sec_area_ratio"]
+                if file_ratio > 0:
+                    ratio_change = low_ipr_ratio / file_ratio
+                else:
+                    ratio_change = low_ipr_ratio
+
+                metrics["pri_sec_ratio_low_ipr"] = float(low_ipr_ratio)
+                metrics["pri_sec_ratio_stability"] = float(ratio_change)
+
                 all_metrics[bn] = metrics
         except Exception as e:
             print(f"    ERROR: {e}")
@@ -1558,58 +1654,75 @@ def main():
     # Physical basis: durability = how long the bit drills before pull.
     # 0 = most aggressive (wears fast), 9 = most durable (lasts long)
     #
-    # Key physics:
-    #   1. Cutter density (cutlets per sq inch of bit face): more cutlets
-    #      sharing the same total rock volume = smaller individual cutlets
-    #      = less force per cutter = more durable. Normalized by bit face
-    #      area so it's comparable across bit sizes.
-    #   2. Load balance (Gini): even per-cutter load = no single cutter
-    #      overloaded = longer life.
-    #   3. Chamfer fraction: 0.020" x 45° chamfer on all PDCs. Smaller
-    #      cutlets have proportionally more chamfer = tougher cutting.
-    #   4. Peak moderation: 1/max_mean_ratio — if the largest cutlet is
-    #      much bigger than average, that cutter wears fastest.
-    #   5. Blade balance (CV): even per-blade load distribution.
-    #   6. Backrake: higher = more conservative cutting angle = less damage.
-    #   7. Backup engagement: row 2 cutters forming cutlets = sharing load.
-    #   8. Primary-secondary blade balance: when primary and secondary blade
-    #      row 1 cutlets are similar size at overlapping radii, load is
-    #      better distributed. Large differential = primaries doing most
-    #      of the work = more aggressive.
+    # Informed by multi-IPR F-type vs 6-3 study (see AI_LEARNED_NOTES.md):
+    #
+    #   1. LOW-IPR LAYOUT BALANCE (20%): pri/sec blade cutlet area ratio at
+    #      IPR=0.100 — the single most revealing durability metric.
+    #      At low IPR, layout imbalance is at its worst:
+    #        - True 6-3:  429:1  (secondaries absent, acts as 3-blade)
+    #        - F-type small shift: 8:1 (secondaries starved)
+    #        - F-type good shift:  3:1 (proportional, all blades working)
+    #        - Redundant:          ~1:1 (balanced)
+    #      Uses 1/log2(ratio+1) to map this huge range to 0-1 scale.
+    #
+    #   2. Cutter density (15%): more cutlets sharing constant rock volume
+    #      = less force per cutter = more durable.
+    #   3. Load balance (12%): Gini — even per-cutter distribution.
+    #   4. Chamfer toughness (12%): smaller cutlets = more chamfer fraction.
+    #   5. Backrake (10%): higher = more conservative cutting angle.
+    #   6. Peak moderation (8%): 1/max_mean_ratio.
+    #   7. Blade balance (8%): CV of per-blade load totals.
+    #   8. Backup engagement (7%): row 2 cutters forming cutlets.
+    #   9. Layout stability (8%): how much pri/sec ratio changes from low
+    #      IPR to file IPR. Stable = consistent across drilling conditions.
 
     dur_comp_names = [
-        "cutter_density",     # More cutlets per unit bit face = more durable
-        "load_balance",       # 1 - Gini (even per-cutter load)
-        "chamfer_toughness",  # Higher chamfer fraction = tougher cutters
-        "peak_moderation",    # 1/max_mean_ratio (no single cutter overloaded)
-        "blade_balance",      # 1 / (1 + blade_cv) (even per-blade load)
-        "backrake",           # Conservative cutting angle
-        "backup_engagement",  # Row 2 cutters forming cutlets = sharing load
-        "pri_sec_balance",    # Primary-secondary blade cutlet size balance
+        "low_ipr_layout_balance",  # Primary metric: pri/sec ratio at IPR=0.100
+        "cutter_density",          # More cutlets per unit bit face = more durable
+        "load_balance",            # 1 - Gini (even per-cutter load)
+        "chamfer_toughness",       # Higher chamfer fraction = tougher cutters
+        "backrake",                # Conservative cutting angle
+        "peak_moderation",         # 1/max_mean_ratio (no single cutter overloaded)
+        "blade_balance",           # 1 / (1 + blade_cv) (even per-blade load)
+        "backup_engagement",       # Row 2 cutters forming cutlets = sharing load
+        "layout_stability",        # Ratio consistency across IPR values
     ]
     weights_dur = {
-        "cutter_density": 0.22,      # Fundamental: more cutters = less force each
-        "load_balance": 0.18,        # Per-cutter Gini — no single cutter overloaded
-        "chamfer_toughness": 0.15,   # Chamfer physics: compression → toughness
-        "peak_moderation": 0.12,     # Worst-case cutter overload
-        "blade_balance": 0.10,       # No blade takes disproportionate damage
-        "backrake": 0.10,            # Conservative cutting angle
-        "backup_engagement": 0.07,   # Backups actively sharing load
-        "pri_sec_balance": 0.06,     # Balanced primary-secondary blade work
+        "low_ipr_layout_balance": 0.20,  # Worst-case layout imbalance (key finding)
+        "cutter_density": 0.15,          # Fundamental: more cutters = less force each
+        "load_balance": 0.12,            # Per-cutter Gini — no single cutter overloaded
+        "chamfer_toughness": 0.12,       # Chamfer physics: compression → toughness
+        "backrake": 0.10,                # Conservative cutting angle
+        "peak_moderation": 0.08,         # Worst-case cutter overload
+        "blade_balance": 0.08,           # No blade takes disproportionate damage
+        "backup_engagement": 0.07,       # Backups actively sharing load
+        "layout_stability": 0.08,        # Consistent balance across IPR values
     }
 
     durability_components = {}
     for bn in bit_numbers_ordered:
         m = all_metrics[bn]
+
+        # Low-IPR layout balance: 1/log2(ratio+1) maps the huge range to 0-1
+        # ratio=1 → 1.0, ratio=3 → 0.50, ratio=8 → 0.30, ratio=100 → 0.15
+        low_ipr_ratio = m.get("pri_sec_ratio_low_ipr", m["pri_sec_area_ratio"])
+        low_ipr_balance = 1.0 / math.log2(max(low_ipr_ratio, 1.0) + 1.0)
+
+        # Layout stability: 1/stability where stability = low_ratio/file_ratio
+        # Same ratio at both IPR → 1.0, much worse at low IPR → <1.0
+        stability = m.get("pri_sec_ratio_stability", 1.0)
+        stability_score = 1.0 / max(stability, 1.0)
+
         durability_components[bn] = {
+            "low_ipr_layout_balance": low_ipr_balance,
             "cutter_density": m["cutter_density"],
             "load_balance": 1.0 - m["gini"],
             "chamfer_toughness": m["avg_chamfer_fraction"],
+            "backrake": min(m["avg_backrake"] / 30.0, 1.0),
             "peak_moderation": 1.0 / max(m["max_mean_ratio"], 1.0),
             "blade_balance": 1.0 / (1.0 + m["blade_cv"]),
-            "backrake": min(m["avg_backrake"] / 30.0, 1.0),
             "backup_engagement": m["backup_cutlet_fraction"],
-            "pri_sec_balance": 1.0 / max(m["pri_sec_area_ratio"], 1.0),
+            "layout_stability": stability_score,
         }
 
     durability_scores = score_global_0_9(durability_components, dur_comp_names, weights_dur)
@@ -1674,12 +1787,12 @@ def main():
     steerability_scores = score_global_0_9(steerability_components, steer_comp_names, weights_steer)
 
     # --- PRINT RESULTS ---
-    print("\n" + "=" * 170)
+    print("\n" + "=" * 190)
     print(f"{'Bit':<7} {'Size':<6} {'Layout (ref)':<16} {'Cutlets':<8} {'Density':<8} "
           f"{'Gini':<6} {'ChamFr':<7} {'MaxMn':<6} {'BldCV':<6} {'BkpFr':<6} "
-          f"{'PriSec':<7} {'BR':<6} {'GaugeFr':<8} "
+          f"{'PS@IPR':<7} {'PS@Low':<7} {'Stab':<6} {'BR':<6} {'GaugeFr':<8} "
           f"{'Dur':<6} {'Steer':<6}")
-    print("=" * 170)
+    print("=" * 190)
     for bit in bits:
         bn = str(int(bit["bit_num"])) if isinstance(bit["bit_num"], (int, float)) else str(bit["bit_num"])
         dur = durability_scores.get(bn, "-")
@@ -1687,15 +1800,18 @@ def main():
         layout = str(bit.get("layout_type", ""))[:14]
         m = all_metrics.get(bn)
         if m:
+            low_ipr_r = m.get('pri_sec_ratio_low_ipr', m['pri_sec_area_ratio'])
+            stab = m.get('pri_sec_ratio_stability', 1.0)
             print(f"  {bn:<7} {m['bit_diameter']:<6.2f} {layout:<16} {m['n_cutlets']:<8} "
                   f"{m['cutter_density']:<8.3f} "
                   f"{m['gini']:<6.3f} {m['avg_chamfer_fraction']:<7.3f} "
                   f"{m['max_mean_ratio']:<6.2f} {m['blade_cv']:<6.3f} "
                   f"{m['backup_cutlet_fraction']:<6.3f} "
-                  f"{m['pri_sec_area_ratio']:<7.3f} {m['avg_backrake']:<6.1f} "
+                  f"{m['pri_sec_area_ratio']:<7.3f} {low_ipr_r:<7.1f} {stab:<6.2f} "
+                  f"{m['avg_backrake']:<6.1f} "
                   f"{m['gauge_area_fraction']:<8.3f} {dur:<6} {steer:<6}")
         else:
-            print(f"  {bn:<7} {'?':<6} {layout:<16} {'':>8} {'':>8} {'':>6} {'':>7} {'':>6} {'':>6} {'':>6} {'':>7} {'':>6} {'':>8} {'-':<6} {'-':<6}")
+            print(f"  {bn:<7} {'?':<6} {layout:<16} {'':>8} {'':>8} {'':>6} {'':>7} {'':>6} {'':>6} {'':>6} {'':>7} {'':>7} {'':>6} {'':>6} {'':>8} {'-':<6} {'-':<6}")
 
     # --- WRITE TO WORKBOOK ---
     print(f"\nWriting scores to {WORKBOOK_PATH}...")
