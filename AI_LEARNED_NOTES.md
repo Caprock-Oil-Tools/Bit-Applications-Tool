@@ -140,7 +140,13 @@ From user inputs during this study:
 The bit/rock interaction analysis builds in layers, each depending on the one below:
 
 ```
-Layer 0: 2D Cutlet Plots (FOUNDATION)
+Solid Edge CAD → Extracted Hole Data → All downstream analysis layers
+
+The true foundation is the CAD geometry from Solid Edge — specifically
+the hole data extracted from it. This defines cutter positions,
+orientations, and the hole profile that all analysis is built on.
+
+Layer 0: 2D Cutlet Plots (first analysis layer)
    └── Cutlet areas, shapes, centroids (X,Y), per-cutter geometry
    └── This is what the current durability score is almost entirely built on
 
