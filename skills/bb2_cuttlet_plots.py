@@ -64,6 +64,82 @@ def get_row_from_name(name):
     return 1
 
 
+def _filter_non_cutting_fragments(cutlet_polys, ipr):
+    """
+    Remove cutlet fragments that don't represent real material removal.
+
+    Artifacts occur when Rev 2 ellipses extend into regions not covered by
+    any lower-indexed ellipse, creating tiny isolated fragments far below
+    the main cutting profile. These fragments aren't actually cutting new rock.
+
+    Approach: build the cutting profile from the substantial cutlets, then
+    discard any fragment whose centroid Z is more than 3x IPR below the
+    local profile.
+    """
+    from collections import defaultdict
+    from shapely.ops import unary_union
+
+    if len(cutlet_polys) < 3:
+        return cutlet_polys
+
+    # Explode MultiPolygons into individual pieces
+    pieces = []
+    for name, poly in cutlet_polys:
+        if poly.geom_type == 'MultiPolygon':
+            for geom in poly.geoms:
+                if geom.area > 1e-10:
+                    pieces.append((name, geom, -geom.centroid.x, geom.centroid.y, geom.area))
+        elif poly.area > 1e-10:
+            pieces.append((name, poly, -poly.centroid.x, poly.centroid.y, poly.area))
+
+    if not pieces:
+        return []
+
+    # Build main cutting profile from the largest 80% of pieces
+    by_area = sorted(pieces, key=lambda p: p[4], reverse=True)
+    n_profile = max(3, int(len(by_area) * 0.8))
+    profile_pieces = by_area[:n_profile]
+
+    # For each piece, check Z against nearest profile neighbors
+    threshold = 3 * ipr
+    kept = []
+    removed = []
+
+    for name, poly, cx, cy, area in pieces:
+        # Find 5 nearest profile pieces by radial distance
+        neighbors = sorted(profile_pieces, key=lambda p: abs(cx - p[2]))[:5]
+        neighbor_zs = sorted([p[3] for p in neighbors])
+        median_z = neighbor_zs[len(neighbor_zs) // 2]
+
+        if cy >= median_z - threshold:
+            kept.append((name, poly))
+        else:
+            removed.append((name, cx, cy, area))
+
+    if removed:
+        print(f"  Filtered {len(removed)} non-cutting fragments:")
+        for name, cx, cy, area in removed:
+            print(f"    {name}: r={cx:.4f}, z={cy:.4f}, area={area:.6f}")
+
+    # Recombine pieces per cutter name (merge back MultiPolygon fragments)
+    by_name = defaultdict(list)
+    name_order = []
+    for name, poly in kept:
+        if name not in by_name:
+            name_order.append(name)
+        by_name[name].append(poly)
+
+    result = []
+    for name in name_order:
+        polys = by_name[name]
+        if len(polys) == 1:
+            result.append((name, polys[0]))
+        else:
+            result.append((name, unary_union(polys)))
+
+    return result
+
+
 def build_cutlet_polygons(cutters, ipr, gage_radius):
     """Build ellipses, perform subtraction, return list of (name, cutlet_polygon) pairs."""
     N = len(cutters)
@@ -121,6 +197,9 @@ def build_cutlet_polygons(cutters, ipr, gage_radius):
 
         cutlet_polys.append((all_ellipses[idx]['name'], cutlet))
 
+    # Remove non-cutting artifact fragments
+    cutlet_polys = _filter_non_cutting_fragments(cutlet_polys, ipr)
+
     return cutlet_polys
 
 
@@ -154,11 +233,16 @@ def plot_cutlets(cutlet_polys, gage_radius, assy_name, ipr, output_path):
     # Gage line on the mirrored side
     ax.axvline(x=-gage_radius, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
 
-    # Title: "2176r06 - Cutlet Plot"
+    # Single-line title: "2176r06 - Cutlet Plot @ 0.250 in/rev"
     label = extract_assy_label(assy_name)
-    ax.set_title(f'{label} - Cutlet Plot\nIPR = {ipr:.3f} in/rev', fontsize=12, fontweight='bold')
+    ax.set_title(f'{label} - Cutlet Plot @ {ipr:.3f} in/rev', fontsize=12, fontweight='bold')
     ax.set_xlabel('Radial Distance (in)')
+
+    # Y axis label and ticks on the right side
+    ax.yaxis.set_label_position('right')
+    ax.yaxis.tick_right()
     ax.set_ylabel('Axial Distance (in)')
+
     ax.set_aspect('equal')
     ax.grid(True, alpha=0.2)
 
@@ -166,10 +250,10 @@ def plot_cutlets(cutlet_polys, gage_radius, assy_name, ipr, output_path):
     from matplotlib.ticker import FuncFormatter
     ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: f'{abs(x):.1f}'))
 
-    # Legend with primary colors
+    # Legend with primary colors in bottom right
     blades_present = sorted(set(get_blade_from_name(name) for name, _ in cutlet_polys))
     handles = [mpatches.Patch(color=blade_color(b, 1), label=f'Blade {b}') for b in blades_present]
-    ax.legend(handles=handles, loc='lower left', fontsize=9)
+    ax.legend(handles=handles, loc='lower right', fontsize=9)
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
