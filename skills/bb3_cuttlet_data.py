@@ -148,7 +148,8 @@ def main():
     print(f"  Cutlets with data: {len(data)}")
 
     # Write Excel
-    output_file = os.path.join(output_dir, f"{assy_name}_cutlet_data.xlsx")
+    file_stem = f"{assy_name} @ {ipr:.3f} IPR"
+    output_file = os.path.join(output_dir, f"{file_stem}_cutlet_data.xlsx")
     write_cuttlet_data_excel(data, assy_name, ipr, gage_radius, output_file)
 
     # Print summary

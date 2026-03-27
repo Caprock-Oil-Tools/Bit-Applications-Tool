@@ -128,18 +128,28 @@ def main():
 
     for i, assy_name in enumerate(assemblies, 1):
         assy_dir = os.path.join(MASTER_DIR, assy_name)
-        plot_file = os.path.join(assy_dir, f"{assy_name}_cutlet_plot.png")
-        data_file = os.path.join(assy_dir, f"{assy_name}_cutlet_data.xlsx")
+
+        source = find_source_file(assy_dir)
+        if not source:
+            continue
+
+        # Read source to get IPR for filename construction
+        try:
+            cutters, ipr, gage_radius = read_cutter_data_from_me(source)
+        except Exception as e:
+            print(f"[{i}/{total}] {assy_name} — FAILED to read source: {e}")
+            failed.append((assy_name, str(e)))
+            continue
+
+        file_stem = f"{assy_name} @ {ipr:.3f} IPR"
+        plot_file = os.path.join(assy_dir, f"{file_stem}_cutlet_plot.png")
+        data_file = os.path.join(assy_dir, f"{file_stem}_cutlet_data.xlsx")
 
         need_plot = not os.path.exists(plot_file)
         need_data = not os.path.exists(data_file)
 
         if not need_plot and not need_data:
             skipped += 1
-            continue
-
-        source = find_source_file(assy_dir)
-        if not source:
             continue
 
         print(f"[{i}/{total}] {assy_name}", end="")
@@ -150,7 +160,6 @@ def main():
         print()
 
         try:
-            cutters, ipr, gage_radius = read_cutter_data_from_me(source)
             cutlet_polys = build_cutlet_polygons(cutters, ipr, gage_radius)
 
             if need_plot:

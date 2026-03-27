@@ -140,8 +140,51 @@ def _filter_non_cutting_fragments(cutlet_polys, ipr):
     return result
 
 
+def _filter_non_drilling_cutters(cutters):
+    """
+    Remove back-reamers and wear pad elements from the cutter list.
+
+    Back-reamers are located at the opposite end of the bit, past the wear pads,
+    far from the drilling cutters. They only cut when pulling out of hole.
+    Wear pad elements don't remove material either.
+
+    Detection: sort cutters by z_drill and look for a large gap (>1 inch).
+    Cutters on the low-Z side of the largest gap are back-reamers.
+    If no significant gap exists, the bit has no back-reamers.
+    """
+    if len(cutters) < 2:
+        return cutters
+
+    sorted_by_z = sorted(cutters, key=lambda c: c['z_drill'])
+
+    # Find the largest Z gap
+    max_gap = 0
+    max_gap_idx = -1
+    for i in range(1, len(sorted_by_z)):
+        gap = sorted_by_z[i]['z_drill'] - sorted_by_z[i - 1]['z_drill']
+        if gap > max_gap:
+            max_gap = gap
+            max_gap_idx = i
+
+    # Only filter if there's a large gap (>1 inch) indicating a separate group
+    if max_gap > 1.0:
+        # Keep the upper group (drilling cutters), discard lower group (back-reamers)
+        drilling_cutters = sorted_by_z[max_gap_idx:]
+        removed = sorted_by_z[:max_gap_idx]
+        removed_names = [c['name'] for c in removed]
+        print(f"  Excluded {len(removed)} non-drilling cutters (back-reamers/wear pads): {removed_names}")
+        return drilling_cutters
+
+    return cutters
+
+
 def build_cutlet_polygons(cutters, ipr, gage_radius):
-    """Build ellipses, perform subtraction, return list of (name, cutlet_polygon) pairs."""
+    """Build ellipses, perform subtraction, return list of (name, cutlet_polygon) pairs.
+
+    Back-reamers and wear pad elements are excluded before computation —
+    they don't remove material during drilling.
+    """
+    cutters = _filter_non_drilling_cutters(cutters)
     N = len(cutters)
     all_ellipses = []
 
@@ -289,7 +332,8 @@ def main():
     print(f"  Cutlets: {len(cutlet_polys)}")
 
     # Generate plot
-    output_file = os.path.join(output_dir, f"{assy_name}_cutlet_plot.png")
+    file_stem = f"{assy_name} @ {ipr:.3f} IPR"
+    output_file = os.path.join(output_dir, f"{file_stem}_cutlet_plot.png")
     plot_cutlets(cutlet_polys, gage_radius, assy_name, ipr, output_file)
 
     # Summary stats
