@@ -112,10 +112,12 @@ def read_cutter_data_from_me(filepath):
         rake = ws.cell(row=row, column=col_idx(rake_col)).value
         zpolar = ws.cell(row=row, column=col_idx(zpolar_col)).value
 
-        # Read element type from column K to identify knuckles (CPS elements)
+        # Identify knuckles: rake=0 means cylindrical element (not angled PDC face)
+        # These include CPS elements and "Inactive" part numbers
         element = ws.cell(row=row, column=col_idx('K')).value
         element_str = str(element).upper() if element else ''
-        is_knuckle = 'CPS' in element_str
+        rake_val = float(rake) if rake is not None else 0.0
+        is_knuckle = rake_val == 0.0
 
         if radial is None or major is None:
             break
