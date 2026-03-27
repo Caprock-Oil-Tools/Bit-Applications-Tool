@@ -28,12 +28,28 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from shapely.geometry import box
 
-# Blade colors
-BLADE_COLORS = {
-    1: '#e41a1c', 2: '#377eb8', 3: '#4daf4a',
-    4: '#ff7f00', 5: '#984ea3', 6: '#a65628',
-    7: '#f781bf', 8: '#999999', 9: '#66c2a5',
+# Blade colors from ME color mapping (RGB)
+# Row 1 = primary (saturated), Row 2+ = secondary (lighter)
+BLADE_COLORS_PRIMARY = {
+    1: (255, 127, 0),   2: (204, 204, 0),   3: (0, 204, 0),
+    4: (0, 204, 204),   5: (0, 102, 204),   6: (127, 0, 255),
+    7: (204, 0, 204),   8: (204, 0, 0),     9: (127, 63, 0),
 }
+BLADE_COLORS_SECONDARY = {
+    1: (255, 188, 121), 2: (255, 255, 91),  3: (97, 255, 97),
+    4: (91, 255, 255),  5: (121, 188, 255), 6: (188, 121, 255),
+    7: (255, 91, 255),  8: (255, 97, 97),   9: (167, 103, 40),
+}
+
+def _rgb(r, g, b):
+    return (r / 255, g / 255, b / 255)
+
+def blade_color(blade, row):
+    if row == 1:
+        rgb = BLADE_COLORS_PRIMARY.get(blade, (51, 51, 51))
+    else:
+        rgb = BLADE_COLORS_SECONDARY.get(blade, (153, 153, 153))
+    return _rgb(*rgb)
 
 
 def get_blade_from_name(name):
@@ -108,22 +124,26 @@ def build_cutlet_polygons(cutters, ipr, gage_radius):
     return cutlet_polys
 
 
+def extract_assy_label(assy_name):
+    """Convert 'Assy_2176r06' to '2176r06' for plot title."""
+    return assy_name.replace("Assy_", "")
+
+
 def plot_cutlets(cutlet_polys, gage_radius, assy_name, ipr, output_path):
     """Plot all cutlet polygons colored by blade, save to output_path."""
     fig, ax = plt.subplots(1, 1, figsize=(12, 8))
 
     for name, cutlet in cutlet_polys:
-        blade = get_blade_from_name(name)
+        blade_num = get_blade_from_name(name)
         row = get_row_from_name(name)
-        color = BLADE_COLORS.get(blade, '#333333')
-        alpha = 0.7 if row == 1 else 0.35
+        color = blade_color(blade_num, row)
         edgecolor = 'black' if row == 1 else '#666666'
         linewidth = 0.5 if row == 1 else 0.3
 
-        def fill_poly(geom):
+        def fill_poly(geom, c=color, ec=edgecolor, lw=linewidth):
             xs, ys = geom.exterior.xy
-            ax.fill([-x for x in xs], ys, color=color, alpha=alpha,
-                    edgecolor=edgecolor, linewidth=linewidth)
+            # Plot at native negative-X positions (mirrored left of Y axis)
+            ax.fill(list(xs), ys, color=c, edgecolor=ec, linewidth=lw)
 
         if cutlet.geom_type == 'Polygon':
             fill_poly(cutlet)
@@ -131,17 +151,25 @@ def plot_cutlets(cutlet_polys, gage_radius, assy_name, ipr, output_path):
             for geom in cutlet.geoms:
                 fill_poly(geom)
 
-    ax.axvline(x=gage_radius, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
-    ax.set_title(f'{assy_name} — Cuttlet Cross Sections\nIPR = {ipr:.3f} in/rev', fontsize=12, fontweight='bold')
-    ax.set_xlabel('Radial Position (in)')
-    ax.set_ylabel('Z (in)')
+    # Gage line on the mirrored side
+    ax.axvline(x=-gage_radius, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
+
+    # Title: "2176r06 - Cutlet Plot"
+    label = extract_assy_label(assy_name)
+    ax.set_title(f'{label} - Cutlet Plot\nIPR = {ipr:.3f} in/rev', fontsize=12, fontweight='bold')
+    ax.set_xlabel('Radial Distance (in)')
+    ax.set_ylabel('Axial Distance (in)')
     ax.set_aspect('equal')
     ax.grid(True, alpha=0.2)
 
-    # Legend
+    # Make X tick labels show positive values even though geometry is negative
+    from matplotlib.ticker import FuncFormatter
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: f'{abs(x):.1f}'))
+
+    # Legend with primary colors
     blades_present = sorted(set(get_blade_from_name(name) for name, _ in cutlet_polys))
-    handles = [mpatches.Patch(color=BLADE_COLORS.get(b, '#333'), label=f'Blade {b}') for b in blades_present]
-    ax.legend(handles=handles, loc='lower right', fontsize=9)
+    handles = [mpatches.Patch(color=blade_color(b, 1), label=f'Blade {b}') for b in blades_present]
+    ax.legend(handles=handles, loc='lower left', fontsize=9)
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
