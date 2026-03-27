@@ -112,6 +112,11 @@ def read_cutter_data_from_me(filepath):
         rake = ws.cell(row=row, column=col_idx(rake_col)).value
         zpolar = ws.cell(row=row, column=col_idx(zpolar_col)).value
 
+        # Read element type from column K to identify knuckles (CPS elements)
+        element = ws.cell(row=row, column=col_idx('K')).value
+        element_str = str(element).upper() if element else ''
+        is_knuckle = 'CPS' in element_str
+
         if radial is None or major is None:
             break
 
@@ -124,6 +129,7 @@ def read_cutter_data_from_me(filepath):
             'tilt': float(tilt) if tilt is not None else 0.0,
             'rake': float(rake) if rake is not None else 0.0,
             'zpolar': float(zpolar) if zpolar is not None else 0.0,
+            'is_knuckle': is_knuckle,
         })
         row += 1
 

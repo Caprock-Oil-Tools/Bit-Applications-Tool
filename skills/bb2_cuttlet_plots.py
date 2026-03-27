@@ -64,7 +64,7 @@ def get_row_from_name(name):
     return 1
 
 
-def _filter_non_cutting_fragments(cutlet_polys, ipr):
+def _filter_non_cutting_fragments(cutlet_polys, ipr, knuckle_names=None):
     """
     Remove cutlet fragments that don't represent real material removal.
 
@@ -72,10 +72,14 @@ def _filter_non_cutting_fragments(cutlet_polys, ipr):
     any lower-indexed ellipse, creating tiny isolated fragments far below
     the main cutting profile. These fragments aren't actually cutting new rock.
 
+    Knuckle (CPS) cutlets are NEVER filtered — they are real cutting elements.
+
     Approach: build the cutting profile from the substantial cutlets, then
     discard any fragment whose centroid Z is more than 3x IPR below the
     local profile.
     """
+    if knuckle_names is None:
+        knuckle_names = set()
     from collections import defaultdict
     from shapely.ops import unary_union
 
@@ -106,6 +110,11 @@ def _filter_non_cutting_fragments(cutlet_polys, ipr):
     removed = []
 
     for name, poly, cx, cy, area in pieces:
+        # Never filter knuckle cutlets — they are real cutting elements
+        if name in knuckle_names:
+            kept.append((name, poly))
+            continue
+
         # Find 5 nearest profile pieces by radial distance
         neighbors = sorted(profile_pieces, key=lambda p: abs(cx - p[2]))[:5]
         neighbor_zs = sorted([p[3] for p in neighbors])
@@ -181,10 +190,13 @@ def _filter_non_drilling_cutters(cutters):
 def build_cutlet_polygons(cutters, ipr, gage_radius):
     """Build ellipses, perform subtraction, return list of (name, cutlet_polygon) pairs.
 
-    Back-reamers and wear pad elements are excluded before computation —
+    Back-reamers are excluded before computation —
     they don't remove material during drilling.
+    Knuckles (CPS elements) ARE included as cutting elements.
     """
     cutters = _filter_non_drilling_cutters(cutters)
+    # Track which cutter names are knuckles so the fragment filter preserves them
+    knuckle_names = {c['name'] for c in cutters if c.get('is_knuckle')}
     N = len(cutters)
     all_ellipses = []
 
@@ -240,8 +252,8 @@ def build_cutlet_polygons(cutters, ipr, gage_radius):
 
         cutlet_polys.append((all_ellipses[idx]['name'], cutlet))
 
-    # Remove non-cutting artifact fragments
-    cutlet_polys = _filter_non_cutting_fragments(cutlet_polys, ipr)
+    # Remove non-cutting artifact fragments (but never remove knuckle cutlets)
+    cutlet_polys = _filter_non_cutting_fragments(cutlet_polys, ipr, knuckle_names)
 
     return cutlet_polys
 
