@@ -128,10 +128,11 @@ def main():
         print(f"Error: Source file not found: {source_path}")
         sys.exit(1)
 
-    output_dir = os.path.join(PROJECT_ROOT, "assemblies", assy_name, "cuttlet_data")
+    # Output directory: Master/<assy_name>/
+    output_dir = os.path.join(PROJECT_ROOT, "Master", assy_name)
     os.makedirs(output_dir, exist_ok=True)
 
-    print(f"BB3: Cuttlet Data — {assy_name}")
+    print(f"BB3: Cutlet Data — {assy_name}")
     print(f"  Source: {source_path}")
 
     # Read cutter data
@@ -144,10 +145,10 @@ def main():
 
     # Extract data
     data = extract_cuttlet_data(cutlet_polys)
-    print(f"  Cuttlets with data: {len(data)}")
+    print(f"  Cutlets with data: {len(data)}")
 
     # Write Excel
-    output_file = os.path.join(output_dir, f"{assy_name}_cuttlet_data.xlsx")
+    output_file = os.path.join(output_dir, f"{assy_name}_cutlet_data.xlsx")
     write_cuttlet_data_excel(data, assy_name, ipr, gage_radius, output_file)
 
     # Print summary

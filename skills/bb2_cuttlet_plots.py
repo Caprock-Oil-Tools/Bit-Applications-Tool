@@ -8,7 +8,7 @@ Usage:
     python skills/bb2_cuttlet_plots.py <source_xlsm_path> <assy_name>
 
 Example:
-    python skills/bb2_cuttlet_plots.py "assemblies/Assy_2176r06/source/2176r06 Min Engagement v8.01.xlsm" Assy_2176r06
+    python skills/bb2_cuttlet_plots.py "Master/2176r06/2176r06 Min Engagement v8.01.xlsm" 2176r06
 """
 
 import sys
@@ -234,8 +234,7 @@ def plot_cutlets(cutlet_polys, gage_radius, assy_name, ipr, output_path):
     ax.axvline(x=-gage_radius, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
 
     # Single-line title: "2176r06 - Cutlet Plot @ 0.250 in/rev"
-    label = extract_assy_label(assy_name)
-    ax.set_title(f'{label} - Cutlet Plot @ {ipr:.3f} in/rev', fontsize=12, fontweight='bold')
+    ax.set_title(f'{assy_name} - Cutlet Plot @ {ipr:.3f} in/rev', fontsize=12, fontweight='bold')
     ax.set_xlabel('Radial Distance (in)')
 
     # Y axis label and ticks on the right side
@@ -267,17 +266,17 @@ def main():
         sys.exit(1)
 
     source_path = sys.argv[1]
-    assy_name = sys.argv[2]
+    assy_name = sys.argv[2]  # e.g. "2176r06"
 
     if not os.path.exists(source_path):
         print(f"Error: Source file not found: {source_path}")
         sys.exit(1)
 
-    # Output directory
-    output_dir = os.path.join(PROJECT_ROOT, "assemblies", assy_name, "cuttlet_plots")
+    # Output directory: Master/<assy_name>/
+    output_dir = os.path.join(PROJECT_ROOT, "Master", assy_name)
     os.makedirs(output_dir, exist_ok=True)
 
-    print(f"BB2: Cuttlet Plots — {assy_name}")
+    print(f"BB2: Cutlet Plots — {assy_name}")
     print(f"  Source: {source_path}")
 
     # Read cutter data
@@ -290,7 +289,7 @@ def main():
     print(f"  Cutlets: {len(cutlet_polys)}")
 
     # Generate plot
-    output_file = os.path.join(output_dir, f"{assy_name}_cuttlet_plot.png")
+    output_file = os.path.join(output_dir, f"{assy_name}_cutlet_plot.png")
     plot_cutlets(cutlet_polys, gage_radius, assy_name, ipr, output_file)
 
     # Summary stats
