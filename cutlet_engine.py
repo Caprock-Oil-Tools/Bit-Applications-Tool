@@ -112,6 +112,13 @@ def read_cutter_data_from_me(filepath):
         rake = ws.cell(row=row, column=col_idx(rake_col)).value
         zpolar = ws.cell(row=row, column=col_idx(zpolar_col)).value
 
+        # Identify knuckles: rake=0 means cylindrical element (not angled PDC face)
+        # These include CPS elements and "Inactive" part numbers
+        element = ws.cell(row=row, column=col_idx('K')).value
+        element_str = str(element).upper() if element else ''
+        rake_val = float(rake) if rake is not None else 0.0
+        is_knuckle = rake_val == 0.0
+
         if radial is None or major is None:
             break
 
@@ -124,6 +131,7 @@ def read_cutter_data_from_me(filepath):
             'tilt': float(tilt) if tilt is not None else 0.0,
             'rake': float(rake) if rake is not None else 0.0,
             'zpolar': float(zpolar) if zpolar is not None else 0.0,
+            'is_knuckle': is_knuckle,
         })
         row += 1
 
@@ -159,9 +167,39 @@ def read_massprop_ground_truth(filepath):
 # Core cutlet computation
 # ---------------------------------------------------------------------------
 
+def _filter_non_drilling_cutters(cutters):
+    """
+    Remove back-reamers and wear pad elements from the cutter list.
+
+    Back-reamers are at the opposite end of the bit, past wear pads.
+    Detection: largest Z gap > 1 inch separates drilling from non-drilling cutters.
+    """
+    if len(cutters) < 2:
+        return cutters
+
+    sorted_by_z = sorted(cutters, key=lambda c: c['z_drill'])
+    max_gap = 0
+    max_gap_idx = -1
+    for i in range(1, len(sorted_by_z)):
+        gap = sorted_by_z[i]['z_drill'] - sorted_by_z[i - 1]['z_drill']
+        if gap > max_gap:
+            max_gap = gap
+            max_gap_idx = i
+
+    if max_gap > 1.0:
+        drilling_cutters = sorted_by_z[max_gap_idx:]
+        removed = sorted_by_z[:max_gap_idx]
+        print(f"  Excluded {len(removed)} non-drilling cutters (back-reamers/wear pads)")
+        return drilling_cutters
+
+    return cutters
+
+
 def compute_cutlets(cutters, ipr, gage_radius, n_ellipse_points=720):
     """
     Compute cutlet area and centroid for each cutter.
+
+    Back-reamers and wear pad elements are excluded before computation.
 
     Based on the VBA macro flow, optimized to 2 revolutions:
       1. Build ellipses for all cutters (Rev 1 — original positions)
@@ -176,6 +214,7 @@ def compute_cutlets(cutters, ipr, gage_radius, n_ellipse_points=720):
 
     Returns list of dicts with keys: name, centroid_x, centroid_y, area, perimeter
     """
+    cutters = _filter_non_drilling_cutters(cutters)
     N = len(cutters)
 
     # Build all ellipse data: (name, xc, yc, major, minor, tilt, revolution, massprop_flag)
